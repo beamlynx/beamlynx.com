@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import Documentation from './pages/Documentation';
+import { ColorPaletteProvider } from './contexts/ColorPaletteContext';
+import Navbar from './components/Navbar';
+import { AnimatePresence } from 'framer-motion';
+import Footer from './components/Footer';
+import { useEffect, lazy, Suspense } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+const Home = lazy(() => import('./pages/Home'));
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+// Scroll to top on route change
+function ScrollToTop() {
+  const location = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+  
+  return null;
 }
 
-export default App
+const AppContent = () => {
+  const location = useLocation();
+
+  return (
+    <div className="min-h-screen flex flex-col overflow-x-hidden">
+      <Navbar />
+      <ScrollToTop />
+      <main className="flex-1 relative">
+        <AnimatePresence mode="wait">
+          <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+            <Routes location={location} key={location.pathname}>
+              <Route path="/" element={<Home />} />
+              <Route path="/docs" element={<Documentation />} />
+            </Routes>
+          </Suspense>
+        </AnimatePresence>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+const App = () => {
+  return (
+    <ColorPaletteProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </ColorPaletteProvider>
+  );
+};
+
+export default App;

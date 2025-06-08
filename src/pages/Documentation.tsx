@@ -1,0 +1,363 @@
+import React, { useEffect, useState, useCallback } from 'react';
+import { useColorPalette } from '../contexts/ColorPaletteContext';
+
+const SECTIONS = [
+  { id: 'introduction', label: 'Introduction' },
+  { id: 'basic-syntax', label: 'Basic Syntax' },
+  { id: 'select', label: 'Select' },
+  { id: 'where', label: 'Where' },
+  { id: 'table', label: 'Table' },
+  { id: 'join', label: 'Join' },
+  { id: 'group', label: 'Group' },
+  { id: 'limit', label: 'Limit' },
+  { id: 'order', label: 'Order' },
+  { id: 'count', label: 'Count' },
+  { id: 'delete', label: 'Delete' },
+  { id: 'from', label: 'From' }
+] as const;
+
+const Documentation: React.FC = () => {
+  const palette = useColorPalette();
+  const [activeSection, setActiveSection] = useState('introduction');
+
+  // Simple scroll spy
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100; // Offset for navbar
+
+      for (const section of SECTIONS) {
+        const element = document.getElementById(section.id);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section.id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Handle section link clicks
+  const handleSectionClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const sectionTop = section.offsetTop;
+      
+      window.scrollTo({
+        top: sectionTop,
+        behavior: 'smooth'
+      });
+      
+      setActiveSection(sectionId);
+      
+      // Update URL without scrolling
+      window.history.pushState(null, '', `#${sectionId}`);
+    }
+  }, []);
+
+  return (
+    <div className="main-content min-h-screen relative">
+      {/* Fixed Sidebar */}
+      <div 
+        className="fixed left-4 top-24 w-64 rounded-lg p-6 overflow-auto max-h-[calc(100vh-120px)]"
+        style={{ 
+          backgroundColor: `${palette.background}dd`,
+          borderRight: `1px solid ${palette.accent}20`,
+          backdropFilter: 'blur(8px)'
+        }}
+      >
+        <h3 
+          className="text-xl font-semibold mb-6"
+          style={{ color: palette.primary }}
+        >
+          Contents
+        </h3>
+        <nav className="space-y-1.5">
+          {SECTIONS.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              onClick={(e) => handleSectionClick(e, id)}
+              className="block py-2 px-3 rounded transition-colors duration-200 text-[15px] leading-relaxed"
+              style={{ 
+                color: activeSection === id ? palette.primary : palette.secondary,
+                backgroundColor: activeSection === id ? `${palette.accent}10` : 'transparent'
+              }}
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto px-6 py-12 ml-80">
+        <div>
+          <h1 
+            className="text-4xl font-bold mb-12 tracking-tight"
+            style={{ color: palette.primary }}
+          >
+            Pine Lang Documentation
+          </h1>
+
+          <div className="prose prose-lg max-w-none">
+            <style>
+              {`
+                section[id] {
+                  scroll-margin-top: 100px;
+                }
+                section[id] h2 {
+                  scroll-margin-top: 100px;
+                }
+              `}
+            </style>
+            
+            <section id="introduction" className="mb-16">
+              <h2 
+                className="text-3xl font-semibold mb-6 tracking-tight"
+                style={{ color: palette.primary }}
+              >
+                Introduction
+              </h2>
+              <p 
+                className="text-lg leading-relaxed mb-6"
+                style={{ color: palette.text }}
+              >
+                Pine Lang is a powerful, intuitive query language that transpiles to SQL. It features a
+                pipe-based syntax inspired by Unix pipes, making queries readable and composable.
+                As you write queries, you see a real-time visualization of table relationships.
+              </p>
+            </section>
+
+            <section id="basic-syntax" className="mb-16">
+              <h2 
+                className="text-3xl font-semibold mb-6 tracking-tight"
+                style={{ color: palette.primary }}
+              >
+                Basic Syntax
+              </h2>
+              <p 
+                className="text-lg leading-relaxed mb-6"
+                style={{ color: palette.text }}
+              >
+                Pine Lang uses a pipe-based syntax (<code>|</code>) to chain operations. Each operation
+                transforms the query in some way. The basic format is:
+              </p>
+              <pre className="font-mono text-[15px] leading-relaxed">
+                <code>table_name | operation1: args | operation2: args</code>
+              </pre>
+            </section>
+
+            <section id="select" className="mb-16">
+              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                Select Operation
+              </h2>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                The select operation (<code>select:</code> or <code>s:</code>) specifies which columns to return in the query result.
+              </p>
+              <pre className="font-mono text-sm">
+                <code>{`-- Select specific columns
+company | select: id, name
+
+-- Select with alias
+company | s: id as company_id
+
+-- Select with table qualification
+company as c | employee as e | s: c.id, e.name
+
+-- Select all columns from a table
+company as c | s: c.*`}</code>
+              </pre>
+            </section>
+
+            <section id="where" className="mb-16">
+              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                Where Operation
+              </h2>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                The where operation (<code>where:</code> or <code>w:</code>) filters the results based on conditions.
+              </p>
+              <pre className="font-mono text-sm">
+                <code>{`-- Basic equality
+company | where: name = 'Acme Inc.'
+
+-- Multiple conditions
+company | where: name like 'Acme%', country = 'US'
+
+-- NULL checks
+company | where: deleted_at is null
+
+-- IN clause
+company | where: country in ('US', 'UK', 'CA')
+
+-- Column comparison
+company | where: created_at = updated_at`}</code>
+              </pre>
+            </section>
+
+            <section id="table" className="mb-16">
+              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                Table Operation
+              </h2>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                Tables can be referenced directly or with schema qualification. They can also use aliases
+                and relationship indicators.
+              </p>
+              <pre className="font-mono text-sm">
+                <code>{`-- Basic table reference
+users
+
+-- Schema qualified
+public.users
+
+-- With alias
+users as u
+
+-- Child relationship
+has: orders
+
+-- Parent relationship
+of: users
+users^`}</code>
+              </pre>
+            </section>
+
+            <section id="join" className="mb-16">
+              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                Join Operation
+              </h2>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                Pine Lang automatically handles joins based on foreign key relationships.
+                Simply pipe tables together to create joins.
+              </p>
+              <pre className="font-mono text-sm">
+                <code>{`-- Basic join
+company | employee
+
+-- Multi-table join
+company | employee | document
+
+-- Join with schema qualification
+x.company | y.employee | z.document
+
+-- Join with context
+company as c | employee | from: c | document`}</code>
+              </pre>
+            </section>
+
+            <section id="group" className="mb-16">
+              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                Group Operation
+              </h2>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                The group operation (<code>group:</code> or <code>g:</code>) groups results and performs aggregations.
+              </p>
+              <pre className="font-mono text-sm">
+                <code>{`-- Group by status and count
+email | group: status => count
+
+-- Multiple aggregations
+orders | group: status => count, sum`}</code>
+              </pre>
+            </section>
+
+            <section id="limit" className="mb-16">
+              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                Limit Operation
+              </h2>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                The limit operation (<code>limit:</code> or <code>l:</code>) restricts the number of returned rows.
+              </p>
+              <pre className="font-mono text-sm">
+                <code>{`-- Limit to 10 rows
+company | limit: 10
+
+-- With other operations
+company | where: country = 'US' | limit: 5`}</code>
+              </pre>
+            </section>
+
+            <section id="order" className="mb-16">
+              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                Order Operation
+              </h2>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                The order operation (<code>order:</code> or <code>o:</code>) sorts the results.
+              </p>
+              <pre className="font-mono text-sm">
+                <code>{`-- Basic ordering
+company | order: name
+
+-- Descending order
+company | order: name desc
+
+-- Multiple columns
+company | order: country asc, name desc`}</code>
+              </pre>
+            </section>
+
+            <section id="count" className="mb-16">
+              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                Count Operation
+              </h2>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                The count operation (<code>count:</code>) returns the total number of rows.
+              </p>
+              <pre className="font-mono text-sm">
+                <code>{`-- Simple count
+company | count:
+
+-- Count with conditions
+company | where: country = 'US' | count:`}</code>
+              </pre>
+            </section>
+
+            <section id="delete" className="mb-16">
+              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                Delete Operation
+              </h2>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                Pine Lang provides two delete operations:
+              </p>
+              <ul className="list-disc pl-6 mb-4" style={{ color: palette.text }}>
+                <li><code>delete:</code> or <code>d:</code> - Mark for deletion</li>
+                <li><code>delete!</code> or <code>d!</code> - Execute deletion</li>
+              </ul>
+              <pre className="font-mono text-sm">
+                <code>{`-- Mark for deletion
+company | where: status = 'inactive' | delete:
+
+-- Execute deletion
+company | where: status = 'inactive' | delete! .id`}</code>
+              </pre>
+            </section>
+
+            <section id="from" className="mb-16">
+              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                From Operation
+              </h2>
+              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                The from operation (<code>from:</code> or <code>f:</code>) sets the context for subsequent operations.
+              </p>
+              <pre className="font-mono text-sm">
+                <code>{`-- Set context for joins
+company as c | employee | from: c | document
+
+-- Multiple contexts
+company as c | employee as e | from: c | document | from: e | attachment`}</code>
+              </pre>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Documentation; 

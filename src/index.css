@@ -1,68 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-primary: #2E3440;
+  --color-secondary: #4C566A;
+  --color-accent: #5E81AC;
+  --color-background: #ECEFF4;
+  --color-text: #2E3440;
+  --navbar-height: 64px;
+  
+  /* Typography scale */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  
+  /* Line heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  --line-height-loose: 2;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--navbar-height);
+  font-size: 16px;
+  line-height: var(--line-height-normal);
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  padding-top: var(--navbar-height); /* Add padding for fixed navbar */
+  overflow-x: hidden;
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+}
+
+#root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography styles */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+  margin-bottom: 1em;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+h2 {
+  font-size: var(--font-size-3xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+h3 {
+  font-size: var(--font-size-2xl);
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 1.5em;
+  line-height: var(--line-height-relaxed);
+}
+
+/* Main content wrapper */
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Section styles */
+section[id] {
+  scroll-margin-top: var(--navbar-height);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+section[id] h2 {
+  margin-top: -1rem; /* Compensate for section padding */
+}
+
+/* Code block styles */
+pre {
+  margin: 1.5rem 0;
+  padding: 1.5rem;
+  background-color: #2E3440;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  color: #D8DEE9;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+pre code {
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  padding: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Inline code styles */
+:not(pre) > code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  color: var(--color-primary);
+  background-color: rgba(94, 129, 172, 0.1);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em;
+  white-space: nowrap;
+}
+
+/* Tailwind layer customizations */
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-white to-pine-50 text-base antialiased;
   }
-  a:hover {
-    color: #747bff;
+}
+
+@layer components {
+  .nav-link {
+    @apply text-pine-600 hover:text-pine-800 transition-colors duration-200;
   }
-  button {
-    background-color: #f9f9f9;
+
+  .btn-primary {
+    @apply rounded-md bg-pine-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm 
+           hover:bg-pine-500 focus-visible:outline focus-visible:outline-2 
+           focus-visible:outline-offset-2 focus-visible:outline-pine-600 
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .card {
+    @apply p-6 bg-white rounded-lg shadow-sm border border-gray-100 
+           hover:shadow-md transition-shadow duration-200;
   }
 }
