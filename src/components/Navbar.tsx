@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
       <div 
         className="absolute inset-0 -z-10"
         style={{ 
-          backgroundColor: `${palette.background}dd`,
+          backgroundColor: `${palette.background}`,
           backdropFilter: 'blur(8px)',
           borderBottom: `1px solid ${palette.accent}20`
         }}
@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
               <rect x="0" y="4" width="4" height="32" rx="1" fill="currentColor"/>
               <rect x="6" y="0" width="4" height="24" rx="1" fill="currentColor"/>
               <rect x="12" y="4" width="4" height="14" rx="1" fill="currentColor"/>
-              <rect x="18" y="8" width="4" height="4" rx="1" fill="currentColor"/>
+              <rect x="18" y="8" width="4" height="6" rx="1" fill="currentColor"/>
             </svg>
             <span className="text-lg sm:text-xl font-semibold tracking-tight font-mono">pine-lang</span>
           </Link>

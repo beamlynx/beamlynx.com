@@ -67,24 +67,23 @@ const Documentation: React.FC = () => {
     <div 
       className="fixed top-[var(--navbar-height)] left-0 right-0 z-40 md:hidden"
       style={{
-        backgroundColor: `${palette.background}dd`,
+        backgroundColor: palette.background,
         backdropFilter: 'blur(8px)',
         borderBottom: `1px solid ${palette.accent}20`
       }}
     >
       <div className="flex items-center justify-between px-4 py-3">
         <h1 className="text-lg font-semibold" style={{ color: palette.primary }}>
-          Documentation
+          {SECTIONS.find(s => s.id === activeSection)?.label}
         </h1>
         <button
           onClick={() => setIsMobileMenuOpen(true)}
-          className="flex items-center space-x-2 px-3 py-1.5 rounded-lg transition-colors duration-200"
+          className="flex items-center px-3 py-1.5 rounded-lg transition-colors duration-200"
           style={{ 
             backgroundColor: `${palette.accent}10`,
             color: palette.accent
           }}
         >
-          <span className="text-sm font-medium">Menu</span>
           <svg 
             className="w-5 h-5" 
             fill="none" 
@@ -100,29 +99,6 @@ const Documentation: React.FC = () => {
           </svg>
         </button>
       </div>
-      <div 
-        className="px-4 py-2 text-sm overflow-x-auto whitespace-nowrap hide-scrollbar"
-        style={{ color: palette.secondary }}
-      >
-        {activeSection && (
-          <div className="flex items-center space-x-2">
-            <svg 
-              className="w-4 h-4" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-            <span>{SECTIONS.find(s => s.id === activeSection)?.label}</span>
-          </div>
-        )}
-      </div>
     </div>
   );
 
@@ -131,7 +107,7 @@ const Documentation: React.FC = () => {
       className={`${
         isMobile 
           ? 'fixed inset-0 bg-black/50 z-50 flex items-start justify-end'
-          : 'fixed left-0 top-[var(--navbar-height)] bottom-0 w-72 overflow-auto hidden md:block border-r z-40'
+          : 'fixed left-0 top-[var(--navbar-height)] bottom-0 w-72 z-40 hidden md:block'
       }`}
       onClick={isMobile ? () => setIsMobileMenuOpen(false) : undefined}
     >
@@ -143,7 +119,7 @@ const Documentation: React.FC = () => {
         className={`${
           isMobile 
             ? 'w-[85%] max-w-sm h-full overflow-auto'
-            : 'h-full w-full'
+            : 'h-full w-full overflow-y-auto'
         }`}
         style={{ 
           backgroundColor: isMobile ? palette.background : `${palette.background}aa`,
@@ -207,19 +183,17 @@ const Documentation: React.FC = () => {
       {/* Mobile Header */}
       <MobileHeader />
 
-      {/* Add padding to account for fixed header on mobile */}
-      <div className="md:h-[calc(100vh-var(--navbar-height))] md:overflow-y-auto">
-        <div className="md:hidden h-[calc(var(--navbar-height) + 1rem)]" />
-        {/* Sidebar for desktop */}
-        <Sidebar />
+      {/* Sidebar for desktop */}
+      <Sidebar />
 
-        {/* Mobile menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && <Sidebar isMobile />}
-        </AnimatePresence>
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && <Sidebar isMobile />}
+      </AnimatePresence>
 
-        {/* Main Content */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:ml-80">
+      {/* Main Content */}
+      <main className="pt-[calc(var(--navbar-height)+4rem)] md:pt-0 md:pl-72">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
           <div>
             <h1 
               className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 tracking-tight md:block hidden"
@@ -478,7 +452,7 @@ company as c | employee as e | from: c | document | from: e | attachment`}</code
             </div>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };
