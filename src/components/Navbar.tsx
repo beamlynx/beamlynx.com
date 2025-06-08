@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
         <rect x="12" y="4" width="4" height="14" rx="1" fill="currentColor"/>
         <rect x="18" y="8" width="4" height="6" rx="1" fill="currentColor"/>
       </svg>
-      <span className="text-lg sm:text-xl font-semibold tracking-tight font-mono hidden lg:inline">pine-lang</span>
+      <span className="text-lg sm:text-xl font-semibold tracking-tight font-mono hidden md:inline whitespace-nowrap">pine-lang</span>
     </Link>
   );
 
@@ -95,7 +95,11 @@ const Navbar: React.FC = () => {
               <div>
                 <button
                   onClick={() => setShowMobileMessage(true)}
-                  className="w-full px-3 py-2.5 rounded-lg text-[15px] font-medium bg-pine-600 text-white text-center transition-colors duration-200"
+                  className="w-full px-3 py-2.5 rounded-lg text-[15px] font-medium text-white text-center transition-colors duration-200"
+                  style={{ 
+                    backgroundColor: palette.accent,
+                    boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)'
+                  }}
                 >
                   Try It
                   <span className="inline-block ml-1">→</span>
@@ -142,7 +146,7 @@ const Navbar: React.FC = () => {
       >
         <div className="flex items-center justify-between h-full">
           {/* Left: Logo */}
-          <div className="w-20">
+          <div className="w-32 md:w-48">
             <Logo />
           </div>
 

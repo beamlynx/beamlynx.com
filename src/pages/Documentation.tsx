@@ -195,12 +195,6 @@ const Documentation: React.FC = () => {
       <main className="pt-[calc(var(--navbar-height)+4rem)] md:pt-0 md:pl-72">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
           <div>
-            <h1 
-              className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 tracking-tight md:block hidden"
-              style={{ color: palette.primary }}
-            >
-              Pine Lang Documentation
-            </h1>
 
             <div className="prose prose-lg max-w-none">
               <style>
@@ -210,6 +204,41 @@ const Documentation: React.FC = () => {
                   }
                   section[id] h2 {
                     scroll-margin-top: 100px;
+                  }
+                  /* Style inline code blocks */
+                  code:not(pre code) {
+                    background-color: ${palette.accent}10;
+                    color: ${palette.accent};
+                    padding: 0.2em 0.4em;
+                    border-radius: 0.25em;
+                    font-size: 0.875em;
+                    font-weight: 500;
+                    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+                    white-space: nowrap;
+                  }
+                  /* Remove any pseudo-elements that might be adding backticks */
+                  code:not(pre code)::before,
+                  code:not(pre code)::after {
+                    content: none !important;
+                  }
+                  /* Style code blocks within pre tags */
+                  pre {
+                    background-color: ${palette.accent}10;
+                    border-radius: 0.5em;
+                    padding: 1em;
+                    margin: 1em 0;
+                    overflow-x: auto;
+                  }
+                  pre code {
+                    color: ${palette.primary};
+                    padding: 0;
+                    background: none;
+                    font-size: 0.875em;
+                    line-height: 1.7;
+                  }
+                  pre code::before,
+                  pre code::after {
+                    content: none !important;
                   }
                 `}
               </style>
@@ -245,7 +274,7 @@ const Documentation: React.FC = () => {
                   Pine Lang uses a pipe-based syntax (<code>|</code>) to chain operations. Each operation
                   transforms the query in some way. The basic format is:
                 </p>
-                <pre className="font-mono text-[15px] leading-relaxed">
+                <pre>
                   <code>table_name | operation1: args | operation2: args</code>
                 </pre>
               </section>
@@ -257,7 +286,7 @@ const Documentation: React.FC = () => {
                 <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
                   The select operation (<code>select:</code> or <code>s:</code>) specifies which columns to return in the query result.
                 </p>
-                <pre className="font-mono text-sm">
+                <pre>
                   <code>{`-- Select specific columns
 company | select: id, name
 
@@ -279,7 +308,7 @@ company as c | s: c.*`}</code>
                 <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
                   The where operation (<code>where:</code> or <code>w:</code>) filters the results based on conditions.
                 </p>
-                <pre className="font-mono text-sm">
+                <pre>
                   <code>{`-- Basic equality
 company | where: name = 'Acme Inc.'
 
@@ -305,7 +334,7 @@ company | where: created_at = updated_at`}</code>
                   Tables can be referenced directly or with schema qualification. They can also use aliases
                   and relationship indicators.
                 </p>
-                <pre className="font-mono text-sm">
+                <pre>
                   <code>{`-- Basic table reference
 users
 
@@ -332,7 +361,7 @@ users^`}</code>
                   Pine Lang automatically handles joins based on foreign key relationships.
                   Simply pipe tables together to create joins.
                 </p>
-                <pre className="font-mono text-sm">
+                <pre>
                   <code>{`-- Basic join
 company | employee
 
@@ -354,7 +383,7 @@ company as c | employee | from: c | document`}</code>
                 <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
                   The group operation (<code>group:</code> or <code>g:</code>) groups results and performs aggregations.
                 </p>
-                <pre className="font-mono text-sm">
+                <pre>
                   <code>{`-- Group by status and count
 email | group: status => count
 
@@ -370,7 +399,7 @@ orders | group: status => count, sum`}</code>
                 <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
                   The limit operation (<code>limit:</code> or <code>l:</code>) restricts the number of returned rows.
                 </p>
-                <pre className="font-mono text-sm">
+                <pre>
                   <code>{`-- Limit to 10 rows
 company | limit: 10
 
@@ -386,7 +415,7 @@ company | where: country = 'US' | limit: 5`}</code>
                 <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
                   The order operation (<code>order:</code> or <code>o:</code>) sorts the results.
                 </p>
-                <pre className="font-mono text-sm">
+                <pre>
                   <code>{`-- Basic ordering
 company | order: name
 
@@ -405,7 +434,7 @@ company | order: country asc, name desc`}</code>
                 <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
                   The count operation (<code>count:</code>) returns the total number of rows.
                 </p>
-                <pre className="font-mono text-sm">
+                <pre>
                   <code>{`-- Simple count
 company | count:
 
@@ -425,7 +454,7 @@ company | where: country = 'US' | count:`}</code>
                   <li><code>delete:</code> or <code>d:</code> - Mark for deletion</li>
                   <li><code>delete!</code> or <code>d!</code> - Execute deletion</li>
                 </ul>
-                <pre className="font-mono text-sm">
+                <pre>
                   <code>{`-- Mark for deletion
 company | where: status = 'inactive' | delete:
 
@@ -441,7 +470,7 @@ company | where: status = 'inactive' | delete! .id`}</code>
                 <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
                   The from operation (<code>from:</code> or <code>f:</code>) sets the context for subsequent operations.
                 </p>
-                <pre className="font-mono text-sm">
+                <pre>
                   <code>{`-- Set context for joins
 company as c | employee | from: c | document
 

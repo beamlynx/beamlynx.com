@@ -19,8 +19,8 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900"
             >
-              Write SQL with delight
-              <span className="text-pine-600"> and insight</span>
+              Query databases
+              <span className="text-pine-600"> visually and intuitively</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-600 max-w-3xl mx-auto px-4 sm:px-6"
             >
-              Pine Lang is a powerful, intuitive query language that makes database interactions beautiful.
+              Pine Lang is a simple, intuitive query language that makes database interactions delightful.
               Write queries while seeing your database relationships come to life.
             </motion.p>
             <motion.div
@@ -62,7 +62,7 @@ const Home = () => {
               <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Visual Query Building</h3>
               <p className="text-sm sm:text-base text-gray-600">
                 See your database relationships visualized in real-time as you write queries.
-                Understanding complex joins has never been easier.
+                Visualizing relationships has never been easier.
               </p>
             </motion.div>
 
@@ -76,7 +76,7 @@ const Home = () => {
               <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Intuitive Syntax</h3>
               <p className="text-sm sm:text-base text-gray-600">
                 Write queries in a language that feels natural and converts seamlessly to SQL.
-                No more wrestling with complex JOIN syntax.
+                This allows you to focus on the problem, not the syntax.
               </p>
             </motion.div>
 
@@ -87,10 +87,10 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="card"
             >
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Real-time Preview</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Real-time Visualization</h3>
               <p className="text-sm sm:text-base text-gray-600">
-                See your results instantly as you type. Debug and optimize your queries
-                with immediate visual feedback.
+                Watch your database relationships come to life as you type. See how tables connect 
+                and understand query paths through interactive visual feedback.
               </p>
             </motion.div>
           </div>
