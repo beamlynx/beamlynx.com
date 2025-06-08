@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import { useEffect, lazy, Suspense } from 'react';
 
 const Home = lazy(() => import('./pages/Home'));
+const Posts = lazy(() => import('./pages/Posts'));
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -32,6 +33,7 @@ const AppContent = () => {
             <Routes location={location} key={location.pathname}>
               <Route path="/" element={<Home />} />
               <Route path="/docs" element={<Documentation />} />
+              <Route path="/posts" element={<Posts />} />
             </Routes>
           </Suspense>
         </AnimatePresence>
