@@ -40,27 +40,24 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <Link 
             to="/"
-            className="group flex items-center space-x-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded-lg px-2 py-1 -ml-2"
+            className="group flex items-center space-x-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded-lg px-2 py-1 -ml-2"
             style={{ 
               color: palette.primary,
               '--tw-ring-color': palette.accent
             } as React.CSSProperties}
           >
             <svg 
-              className="w-8 h-8 transition-transform group-hover:scale-110" 
-              viewBox="0 0 24 24" 
+              className="w-7 h-7 transition-transform group-hover:scale-110" 
+              viewBox="0 0 32 32" 
               fill="none"
               style={{ color: palette.accent }}
             >
-              <path 
-                d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" 
-                stroke="currentColor" 
-                strokeWidth="2" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              />
+              <rect x="0" y="4" width="4" height="32" rx="1" fill="currentColor"/>
+              <rect x="6" y="0" width="4" height="24" rx="1" fill="currentColor"/>
+              <rect x="12" y="4" width="4" height="14" rx="1" fill="currentColor"/>
+              <rect x="18" y="8" width="4" height="4" rx="1" fill="currentColor"/>
             </svg>
-            <span className="text-xl font-semibold tracking-tight">Pine Lang</span>
+            <span className="text-xl font-semibold tracking-tight font-mono">pine-lang</span>
           </Link>
 
           {/* Navigation Links */}
