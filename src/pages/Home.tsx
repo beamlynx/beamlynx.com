@@ -17,7 +17,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900"
             >
               Write SQL with delight
               <span className="text-pine-600"> and insight</span>
@@ -26,16 +26,16 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-6 text-lg leading-8 text-gray-600 max-w-3xl mx-auto"
+              className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-600 max-w-3xl mx-auto px-4 sm:px-6"
             >
-              Pine Lang is a visual query language that makes database interactions intuitive and beautiful.
+              Pine Lang is a powerful, intuitive query language that makes database interactions beautiful.
               Write queries while seeing your database relationships come to life.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-10 flex items-center justify-center"
+              className="mt-8 sm:mt-10 flex items-center justify-center px-4 sm:px-6"
             >
               <Link
                 to="/docs"
@@ -49,9 +49,9 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="bg-white py-16 sm:py-24">
+      <section className="bg-white py-12 sm:py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:gap-12 sm:grid-cols-2 lg:grid-cols-3">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -59,8 +59,8 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="card"
             >
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Visual Query Building</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Visual Query Building</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 See your database relationships visualized in real-time as you write queries.
                 Understanding complex joins has never been easier.
               </p>
@@ -73,8 +73,8 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="card"
             >
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Intuitive Syntax</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Intuitive Syntax</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Write queries in a language that feels natural and converts seamlessly to SQL.
                 No more wrestling with complex JOIN syntax.
               </p>
@@ -87,8 +87,8 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="card"
             >
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Real-time Preview</h3>
-              <p className="text-gray-600">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Real-time Preview</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 See your results instantly as you type. Debug and optimize your queries
                 with immediate visual feedback.
               </p>

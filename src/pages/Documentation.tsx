@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useColorPalette } from '../contexts/ColorPaletteContext';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const SECTIONS = [
   { id: 'introduction', label: 'Introduction' },
@@ -19,6 +20,7 @@ const SECTIONS = [
 const Documentation: React.FC = () => {
   const palette = useColorPalette();
   const [activeSection, setActiveSection] = useState('introduction');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Simple scroll spy
   useEffect(() => {
@@ -61,108 +63,228 @@ const Documentation: React.FC = () => {
     }
   }, []);
 
-  return (
-    <div className="main-content min-h-screen relative">
-      {/* Fixed Sidebar */}
-      <div 
-        className="fixed left-4 top-24 w-64 rounded-lg p-6 overflow-auto max-h-[calc(100vh-120px)]"
-        style={{ 
-          backgroundColor: `${palette.background}dd`,
-          borderRight: `1px solid ${palette.accent}20`,
-          backdropFilter: 'blur(8px)'
-        }}
-      >
-        <h3 
-          className="text-xl font-semibold mb-6"
-          style={{ color: palette.primary }}
+  const MobileHeader = () => (
+    <div 
+      className="fixed top-[var(--navbar-height)] left-0 right-0 z-40 md:hidden"
+      style={{
+        backgroundColor: `${palette.background}dd`,
+        backdropFilter: 'blur(8px)',
+        borderBottom: `1px solid ${palette.accent}20`
+      }}
+    >
+      <div className="flex items-center justify-between px-4 py-3">
+        <h1 className="text-lg font-semibold" style={{ color: palette.primary }}>
+          Documentation
+        </h1>
+        <button
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="flex items-center space-x-2 px-3 py-1.5 rounded-lg transition-colors duration-200"
+          style={{ 
+            backgroundColor: `${palette.accent}10`,
+            color: palette.accent
+          }}
         >
-          Contents
-        </h3>
-        <nav className="space-y-1.5">
+          <span className="text-sm font-medium">Menu</span>
+          <svg 
+            className="w-5 h-5" 
+            fill="none" 
+            stroke="currentColor" 
+            viewBox="0 0 24 24"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+      <div 
+        className="px-4 py-2 text-sm overflow-x-auto whitespace-nowrap hide-scrollbar"
+        style={{ color: palette.secondary }}
+      >
+        {activeSection && (
+          <div className="flex items-center space-x-2">
+            <svg 
+              className="w-4 h-4" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+            <span>{SECTIONS.find(s => s.id === activeSection)?.label}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  const Sidebar = ({ isMobile = false }) => (
+    <div 
+      className={`${
+        isMobile 
+          ? 'fixed inset-0 bg-black/50 z-50 flex items-start justify-end'
+          : 'fixed left-0 top-[var(--navbar-height)] bottom-0 w-72 overflow-auto hidden md:block border-r z-40'
+      }`}
+      onClick={isMobile ? () => setIsMobileMenuOpen(false) : undefined}
+    >
+      <motion.div
+        initial={isMobile ? { x: 300 } : undefined}
+        animate={isMobile ? { x: 0 } : undefined}
+        exit={isMobile ? { x: 300 } : undefined}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className={`${
+          isMobile 
+            ? 'w-[85%] max-w-sm h-full overflow-auto'
+            : 'h-full w-full'
+        }`}
+        style={{ 
+          backgroundColor: isMobile ? palette.background : `${palette.background}aa`,
+          backdropFilter: 'blur(8px)',
+          borderLeft: isMobile ? `1px solid ${palette.accent}20` : 'none',
+          borderRight: isMobile ? 'none' : `1px solid ${palette.accent}20`,
+        }}
+        onClick={isMobile ? e => e.stopPropagation() : undefined}
+      >
+        {isMobile && (
+          <div 
+            className="sticky top-0 flex items-center justify-between p-4 border-b"
+            style={{ borderColor: `${palette.accent}20` }}
+          >
+            <h2 className="text-lg font-semibold" style={{ color: palette.primary }}>
+              Navigation
+            </h2>
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-1 rounded-lg hover:bg-black/5"
+              style={{ color: palette.secondary }}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        )}
+        <nav className="p-4 space-y-0.5">
           {SECTIONS.map(({ id, label }) => (
             <a
               key={id}
               href={`#${id}`}
-              onClick={(e) => handleSectionClick(e, id)}
-              className="block py-2 px-3 rounded transition-colors duration-200 text-[15px] leading-relaxed"
+              onClick={(e) => {
+                handleSectionClick(e, id);
+                if (isMobile) setIsMobileMenuOpen(false);
+              }}
+              className={`
+                block py-2 px-3 rounded-md transition-all duration-200 
+                text-[15px] leading-relaxed hover:bg-black/5
+                ${activeSection === id ? 'bg-black/5 shadow-sm' : ''}
+              `}
               style={{ 
                 color: activeSection === id ? palette.primary : palette.secondary,
-                backgroundColor: activeSection === id ? `${palette.accent}10` : 'transparent'
+                ...(activeSection === id && {
+                  transform: 'translateX(2px)',
+                  fontWeight: 500
+                })
               }}
             >
               {label}
             </a>
           ))}
         </nav>
-      </div>
+      </motion.div>
+    </div>
+  );
 
-      {/* Main Content */}
-      <div className="max-w-4xl mx-auto px-6 py-12 ml-80">
-        <div>
-          <h1 
-            className="text-4xl font-bold mb-12 tracking-tight"
-            style={{ color: palette.primary }}
-          >
-            Pine Lang Documentation
-          </h1>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-white to-pine-50">
+      {/* Mobile Header */}
+      <MobileHeader />
 
-          <div className="prose prose-lg max-w-none">
-            <style>
-              {`
-                section[id] {
-                  scroll-margin-top: 100px;
-                }
-                section[id] h2 {
-                  scroll-margin-top: 100px;
-                }
-              `}
-            </style>
-            
-            <section id="introduction" className="mb-16">
-              <h2 
-                className="text-3xl font-semibold mb-6 tracking-tight"
-                style={{ color: palette.primary }}
-              >
-                Introduction
-              </h2>
-              <p 
-                className="text-lg leading-relaxed mb-6"
-                style={{ color: palette.text }}
-              >
-                Pine Lang is a powerful, intuitive query language that transpiles to SQL. It features a
-                pipe-based syntax inspired by Unix pipes, making queries readable and composable.
-                As you write queries, you see a real-time visualization of table relationships.
-              </p>
-            </section>
+      {/* Add padding to account for fixed header on mobile */}
+      <div className="md:h-[calc(100vh-var(--navbar-height))] md:overflow-y-auto">
+        <div className="md:hidden h-[calc(var(--navbar-height) + 1rem)]" />
+        {/* Sidebar for desktop */}
+        <Sidebar />
 
-            <section id="basic-syntax" className="mb-16">
-              <h2 
-                className="text-3xl font-semibold mb-6 tracking-tight"
-                style={{ color: palette.primary }}
-              >
-                Basic Syntax
-              </h2>
-              <p 
-                className="text-lg leading-relaxed mb-6"
-                style={{ color: palette.text }}
-              >
-                Pine Lang uses a pipe-based syntax (<code>|</code>) to chain operations. Each operation
-                transforms the query in some way. The basic format is:
-              </p>
-              <pre className="font-mono text-[15px] leading-relaxed">
-                <code>table_name | operation1: args | operation2: args</code>
-              </pre>
-            </section>
+        {/* Mobile menu */}
+        <AnimatePresence>
+          {isMobileMenuOpen && <Sidebar isMobile />}
+        </AnimatePresence>
 
-            <section id="select" className="mb-16">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
-                Select Operation
-              </h2>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
-                The select operation (<code>select:</code> or <code>s:</code>) specifies which columns to return in the query result.
-              </p>
-              <pre className="font-mono text-sm">
-                <code>{`-- Select specific columns
+        {/* Main Content */}
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:ml-80">
+          <div>
+            <h1 
+              className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 tracking-tight md:block hidden"
+              style={{ color: palette.primary }}
+            >
+              Pine Lang Documentation
+            </h1>
+
+            <div className="prose prose-lg max-w-none">
+              <style>
+                {`
+                  section[id] {
+                    scroll-margin-top: 100px;
+                  }
+                  section[id] h2 {
+                    scroll-margin-top: 100px;
+                  }
+                `}
+              </style>
+              
+              <section id="introduction" className="mb-16">
+                <h2 
+                  className="text-3xl font-semibold mb-6 tracking-tight"
+                  style={{ color: palette.primary }}
+                >
+                  Introduction
+                </h2>
+                <p 
+                  className="text-lg leading-relaxed mb-6"
+                  style={{ color: palette.text }}
+                >
+                  Pine Lang is a powerful, intuitive query language that transpiles to SQL. It features a
+                  pipe-based syntax inspired by Unix pipes, making queries readable and composable.
+                  As you write queries, you see a real-time visualization of table relationships.
+                </p>
+              </section>
+
+              <section id="basic-syntax" className="mb-16">
+                <h2 
+                  className="text-3xl font-semibold mb-6 tracking-tight"
+                  style={{ color: palette.primary }}
+                >
+                  Basic Syntax
+                </h2>
+                <p 
+                  className="text-lg leading-relaxed mb-6"
+                  style={{ color: palette.text }}
+                >
+                  Pine Lang uses a pipe-based syntax (<code>|</code>) to chain operations. Each operation
+                  transforms the query in some way. The basic format is:
+                </p>
+                <pre className="font-mono text-[15px] leading-relaxed">
+                  <code>table_name | operation1: args | operation2: args</code>
+                </pre>
+              </section>
+
+              <section id="select" className="mb-16">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                  Select Operation
+                </h2>
+                <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                  The select operation (<code>select:</code> or <code>s:</code>) specifies which columns to return in the query result.
+                </p>
+                <pre className="font-mono text-sm">
+                  <code>{`-- Select specific columns
 company | select: id, name
 
 -- Select with alias
@@ -173,18 +295,18 @@ company as c | employee as e | s: c.id, e.name
 
 -- Select all columns from a table
 company as c | s: c.*`}</code>
-              </pre>
-            </section>
+                </pre>
+              </section>
 
-            <section id="where" className="mb-16">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
-                Where Operation
-              </h2>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
-                The where operation (<code>where:</code> or <code>w:</code>) filters the results based on conditions.
-              </p>
-              <pre className="font-mono text-sm">
-                <code>{`-- Basic equality
+              <section id="where" className="mb-16">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                  Where Operation
+                </h2>
+                <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                  The where operation (<code>where:</code> or <code>w:</code>) filters the results based on conditions.
+                </p>
+                <pre className="font-mono text-sm">
+                  <code>{`-- Basic equality
 company | where: name = 'Acme Inc.'
 
 -- Multiple conditions
@@ -198,19 +320,19 @@ company | where: country in ('US', 'UK', 'CA')
 
 -- Column comparison
 company | where: created_at = updated_at`}</code>
-              </pre>
-            </section>
+                </pre>
+              </section>
 
-            <section id="table" className="mb-16">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
-                Table Operation
-              </h2>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
-                Tables can be referenced directly or with schema qualification. They can also use aliases
-                and relationship indicators.
-              </p>
-              <pre className="font-mono text-sm">
-                <code>{`-- Basic table reference
+              <section id="table" className="mb-16">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                  Table Operation
+                </h2>
+                <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                  Tables can be referenced directly or with schema qualification. They can also use aliases
+                  and relationship indicators.
+                </p>
+                <pre className="font-mono text-sm">
+                  <code>{`-- Basic table reference
 users
 
 -- Schema qualified
@@ -225,19 +347,19 @@ has: orders
 -- Parent relationship
 of: users
 users^`}</code>
-              </pre>
-            </section>
+                </pre>
+              </section>
 
-            <section id="join" className="mb-16">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
-                Join Operation
-              </h2>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
-                Pine Lang automatically handles joins based on foreign key relationships.
-                Simply pipe tables together to create joins.
-              </p>
-              <pre className="font-mono text-sm">
-                <code>{`-- Basic join
+              <section id="join" className="mb-16">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                  Join Operation
+                </h2>
+                <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                  Pine Lang automatically handles joins based on foreign key relationships.
+                  Simply pipe tables together to create joins.
+                </p>
+                <pre className="font-mono text-sm">
+                  <code>{`-- Basic join
 company | employee
 
 -- Multi-table join
@@ -248,50 +370,50 @@ x.company | y.employee | z.document
 
 -- Join with context
 company as c | employee | from: c | document`}</code>
-              </pre>
-            </section>
+                </pre>
+              </section>
 
-            <section id="group" className="mb-16">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
-                Group Operation
-              </h2>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
-                The group operation (<code>group:</code> or <code>g:</code>) groups results and performs aggregations.
-              </p>
-              <pre className="font-mono text-sm">
-                <code>{`-- Group by status and count
+              <section id="group" className="mb-16">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                  Group Operation
+                </h2>
+                <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                  The group operation (<code>group:</code> or <code>g:</code>) groups results and performs aggregations.
+                </p>
+                <pre className="font-mono text-sm">
+                  <code>{`-- Group by status and count
 email | group: status => count
 
 -- Multiple aggregations
 orders | group: status => count, sum`}</code>
-              </pre>
-            </section>
+                </pre>
+              </section>
 
-            <section id="limit" className="mb-16">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
-                Limit Operation
-              </h2>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
-                The limit operation (<code>limit:</code> or <code>l:</code>) restricts the number of returned rows.
-              </p>
-              <pre className="font-mono text-sm">
-                <code>{`-- Limit to 10 rows
+              <section id="limit" className="mb-16">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                  Limit Operation
+                </h2>
+                <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                  The limit operation (<code>limit:</code> or <code>l:</code>) restricts the number of returned rows.
+                </p>
+                <pre className="font-mono text-sm">
+                  <code>{`-- Limit to 10 rows
 company | limit: 10
 
 -- With other operations
 company | where: country = 'US' | limit: 5`}</code>
-              </pre>
-            </section>
+                </pre>
+              </section>
 
-            <section id="order" className="mb-16">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
-                Order Operation
-              </h2>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
-                The order operation (<code>order:</code> or <code>o:</code>) sorts the results.
-              </p>
-              <pre className="font-mono text-sm">
-                <code>{`-- Basic ordering
+              <section id="order" className="mb-16">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                  Order Operation
+                </h2>
+                <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                  The order operation (<code>order:</code> or <code>o:</code>) sorts the results.
+                </p>
+                <pre className="font-mono text-sm">
+                  <code>{`-- Basic ordering
 company | order: name
 
 -- Descending order
@@ -299,60 +421,61 @@ company | order: name desc
 
 -- Multiple columns
 company | order: country asc, name desc`}</code>
-              </pre>
-            </section>
+                </pre>
+              </section>
 
-            <section id="count" className="mb-16">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
-                Count Operation
-              </h2>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
-                The count operation (<code>count:</code>) returns the total number of rows.
-              </p>
-              <pre className="font-mono text-sm">
-                <code>{`-- Simple count
+              <section id="count" className="mb-16">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                  Count Operation
+                </h2>
+                <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                  The count operation (<code>count:</code>) returns the total number of rows.
+                </p>
+                <pre className="font-mono text-sm">
+                  <code>{`-- Simple count
 company | count:
 
 -- Count with conditions
 company | where: country = 'US' | count:`}</code>
-              </pre>
-            </section>
+                </pre>
+              </section>
 
-            <section id="delete" className="mb-16">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
-                Delete Operation
-              </h2>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
-                Pine Lang provides two delete operations:
-              </p>
-              <ul className="list-disc pl-6 mb-4" style={{ color: palette.text }}>
-                <li><code>delete:</code> or <code>d:</code> - Mark for deletion</li>
-                <li><code>delete!</code> or <code>d!</code> - Execute deletion</li>
-              </ul>
-              <pre className="font-mono text-sm">
-                <code>{`-- Mark for deletion
+              <section id="delete" className="mb-16">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                  Delete Operation
+                </h2>
+                <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                  Pine Lang provides two delete operations:
+                </p>
+                <ul className="list-disc pl-6 mb-4" style={{ color: palette.text }}>
+                  <li><code>delete:</code> or <code>d:</code> - Mark for deletion</li>
+                  <li><code>delete!</code> or <code>d!</code> - Execute deletion</li>
+                </ul>
+                <pre className="font-mono text-sm">
+                  <code>{`-- Mark for deletion
 company | where: status = 'inactive' | delete:
 
 -- Execute deletion
 company | where: status = 'inactive' | delete! .id`}</code>
-              </pre>
-            </section>
+                </pre>
+              </section>
 
-            <section id="from" className="mb-16">
-              <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
-                From Operation
-              </h2>
-              <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
-                The from operation (<code>from:</code> or <code>f:</code>) sets the context for subsequent operations.
-              </p>
-              <pre className="font-mono text-sm">
-                <code>{`-- Set context for joins
+              <section id="from" className="mb-16">
+                <h2 className="text-3xl font-bold mb-6" style={{ color: palette.primary }}>
+                  From Operation
+                </h2>
+                <p className="text-lg leading-relaxed mb-4" style={{ color: palette.text }}>
+                  The from operation (<code>from:</code> or <code>f:</code>) sets the context for subsequent operations.
+                </p>
+                <pre className="font-mono text-sm">
+                  <code>{`-- Set context for joins
 company as c | employee | from: c | document
 
 -- Multiple contexts
 company as c | employee as e | from: c | document | from: e | attachment`}</code>
-              </pre>
-            </section>
+                </pre>
+              </section>
+            </div>
           </div>
         </div>
       </div>

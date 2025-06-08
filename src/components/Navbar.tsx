@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useColorPalette } from '../contexts/ColorPaletteContext';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar: React.FC = () => {
   const location = useLocation();
   const palette = useColorPalette();
+  const [showMobileMessage, setShowMobileMessage] = useState(false);
 
   const navItems = [
     { path: '/', label: 'Home' },
@@ -16,6 +18,16 @@ const Navbar: React.FC = () => {
       return location.pathname === path;
     }
     return location.pathname.startsWith(path);
+  };
+
+  const handleTryItClick = (e: React.MouseEvent) => {
+    // Check if it's a mobile device
+    if (window.innerWidth < 768) { // md breakpoint in Tailwind
+      e.preventDefault();
+      setShowMobileMessage(true);
+      // Auto-hide the message after 5 seconds
+      setTimeout(() => setShowMobileMessage(false), 5000);
+    }
   };
 
   return (
@@ -40,14 +52,14 @@ const Navbar: React.FC = () => {
           {/* Logo */}
           <Link 
             to="/"
-            className="group flex items-center space-x-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded-lg px-2 py-1 -ml-2"
+            className="group flex items-center space-x-2 sm:space-x-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded-lg px-1 sm:px-2 py-1 -ml-1 sm:-ml-2"
             style={{ 
               color: palette.primary,
               '--tw-ring-color': palette.accent
             } as React.CSSProperties}
           >
             <svg 
-              className="w-7 h-7 transition-transform group-hover:scale-110" 
+              className="w-6 h-6 sm:w-7 sm:h-7 transition-transform group-hover:scale-110" 
               viewBox="0 0 32 32" 
               fill="none"
               style={{ color: palette.accent }}
@@ -57,16 +69,16 @@ const Navbar: React.FC = () => {
               <rect x="12" y="4" width="4" height="14" rx="1" fill="currentColor"/>
               <rect x="18" y="8" width="4" height="4" rx="1" fill="currentColor"/>
             </svg>
-            <span className="text-xl font-semibold tracking-tight font-mono">pine-lang</span>
+            <span className="text-lg sm:text-xl font-semibold tracking-tight font-mono">pine-lang</span>
           </Link>
 
           {/* Navigation Links */}
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-0.5 sm:space-x-1">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className="relative px-3 py-2 text-[15px] font-medium tracking-wide transition-colors duration-200 rounded-lg hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                className="relative px-2 sm:px-3 py-2 text-[14px] sm:text-[15px] font-medium tracking-wide transition-colors duration-200 rounded-lg hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                 style={{ 
                   color: isActive(item.path) ? palette.primary : palette.secondary,
                   '--tw-ring-color': palette.accent
@@ -75,7 +87,7 @@ const Navbar: React.FC = () => {
                 {item.label}
                 {isActive(item.path) && (
                   <span 
-                    className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full"
+                    className="absolute bottom-0 left-2 right-2 sm:left-3 sm:right-3 h-0.5 rounded-full"
                     style={{ backgroundColor: palette.accent }}
                   />
                 )}
@@ -83,21 +95,42 @@ const Navbar: React.FC = () => {
             ))}
             
             {/* Try It Button */}
-            <a
-              href="https://try.pine-lang.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-4 px-4 py-1.5 rounded-lg text-[15px] font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
-              style={{ 
-                color: 'white',
-                backgroundColor: palette.accent,
-                '--tw-ring-color': palette.accent,
-                boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)'
-              } as React.CSSProperties}
-            >
-              Try It
-              <span className="inline-block ml-1 transition-transform group-hover:translate-x-0.5">→</span>
-            </a>
+            <div className="relative">
+              <a
+                href="https://try.pine-lang.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleTryItClick}
+                className="ml-2 sm:ml-4 px-3 sm:px-4 py-1.5 rounded-lg text-[14px] sm:text-[15px] font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                style={{ 
+                  color: 'white',
+                  backgroundColor: palette.accent,
+                  '--tw-ring-color': palette.accent,
+                  boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)'
+                } as React.CSSProperties}
+              >
+                Try It
+                <span className="inline-block ml-1 transition-transform group-hover:translate-x-0.5">→</span>
+              </a>
+
+              {/* Mobile Message Popup */}
+              <AnimatePresence>
+                {showMobileMessage && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute right-0 top-full mt-2 p-3 rounded-lg shadow-lg bg-white text-left w-64 text-sm"
+                    style={{
+                      border: `1px solid ${palette.accent}20`,
+                      color: palette.primary
+                    }}
+                  >
+                    The Pine Lang playground requires a desktop environment to run the local server. Please visit on a desktop browser to try it out.
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </nav>
