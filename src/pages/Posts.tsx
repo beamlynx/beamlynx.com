@@ -7,6 +7,14 @@ const Posts: React.FC = () => {
 
   const posts = [
     {
+      title: "Insight, Simplicity, Delight",
+      description: "The three core principles that guide Pine's development: teaching through smart suggestions, enabling clear thinking with minimal syntax, and making database queries an enjoyable experience.",
+      date: "2024-03-19",
+      url: "https://open.substack.com/pub/pinelang/p/insight-simplicity-delight",
+      readTime: "1 min read",
+      preview: `Over time, I've come to expect three things from the systems I work with: they should teach me something, they should help me think clearly, and they should make the experience enjoyable. I am constantly refining Pine to meet that bar. Building for Insight: Teach me! I don't want to read the docs - the system should figure out my intent and show me the way. Building for Simplicity: Clarity of thought! I don't want to think about things that are not relevant to the problem at hand. Building for Delight: Fun! I don't want to feel like I am doing chores. The task of solving problems should be enjoyable.`
+    },
+    {
       title: "Discovering Pine-lang",
       description: "A journey from frustration with SQL complexity to the creation of Pine-lang, a domain-specific language that makes database queries as intuitive as Unix pipes.",
       date: "2024-05-25",
