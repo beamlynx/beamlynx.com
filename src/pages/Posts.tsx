@@ -7,8 +7,7 @@ const Posts: React.FC = () => {
 
   const posts = [
     {
-      title: "Insight, Simplicity, Delight",
-      description: "The three core principles that guide Pine's development: teaching through smart suggestions, enabling clear thinking with minimal syntax, and making database queries an enjoyable experience.",
+      title: "Insight. Simplicity. Delight.",
       date: "2025-06-15",
       url: "https://open.substack.com/pub/pinelang/p/insight-simplicity-delight",
       readTime: "1 min read",
@@ -16,7 +15,6 @@ const Posts: React.FC = () => {
     },
     {
       title: "Discovering Pine-lang",
-      description: "A journey from frustration with SQL complexity to the creation of Pine-lang, a domain-specific language that makes database queries as intuitive as Unix pipes.",
       date: "2024-05-25",
       url: "https://pinelang.substack.com/p/discovering-pine-lang-simplifying",
       readTime: "3 min read",
