@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, Suspense } from 'react';
+import React, { useEffect, useState, useCallback, Suspense, useRef } from 'react';
 import { useColorPalette } from '../contexts/ColorPaletteContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import documentationComponents from './documentation';
@@ -20,21 +20,38 @@ const Documentation: React.FC = () => {
   const palette = useColorPalette();
   const [activeSection, setActiveSection] = useState('introduction');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      const hash = window.location.hash;
-      if (hash) {
-        const id = hash.substring(1);
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-          setActiveSection(id);
-        }
-      }
-    }, 100);
+    const hash = window.location.hash.substring(1);
+    if (!hash) return;
 
-    return () => clearTimeout(timer);
+    const element = document.getElementById(hash);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(hash);
+      return;
+    }
+
+    const observer = new MutationObserver(() => {
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setActiveSection(hash);
+        observer.disconnect();
+      }
+    });
+
+    if (contentRef.current) {
+        observer.observe(contentRef.current, {
+            childList: true,
+            subtree: true,
+        });
+    }
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   // Simple scroll spy
@@ -207,7 +224,7 @@ const Documentation: React.FC = () => {
       <main className="pt-[calc(var(--navbar-height)+4rem)] md:pt-0 md:pl-72">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
           <div>
-            <div className="max-w-none">
+            <div className="max-w-none" ref={contentRef}>
               <style>
                 {`
                   section[id] {
