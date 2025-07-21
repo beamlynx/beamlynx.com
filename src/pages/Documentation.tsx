@@ -21,6 +21,22 @@ const Documentation: React.FC = () => {
   const [activeSection, setActiveSection] = useState('introduction');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const hash = window.location.hash;
+      if (hash) {
+        const id = hash.substring(1);
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+          setActiveSection(id);
+        }
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Simple scroll spy
   useEffect(() => {
     const handleScroll = () => {
@@ -48,10 +64,7 @@ const Documentation: React.FC = () => {
     e.preventDefault();
     const section = document.getElementById(sectionId);
     if (section) {
-      const sectionTop = section.offsetTop;
-      
-      window.scrollTo({
-        top: sectionTop,
+      section.scrollIntoView({
         behavior: 'smooth'
       });
       
