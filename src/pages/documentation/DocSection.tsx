@@ -13,9 +13,39 @@ const DocSection: React.FC<DocSectionProps> = ({ id, title, children }) => {
 
   const handleCopy = () => {
     const permalink = `${window.location.origin}${window.location.pathname}#${id}`;
-    navigator.clipboard.writeText(permalink);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(permalink).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      });
+    } else {
+      // Fallback for older browsers or insecure contexts
+      // 
+      // I'm trying to check if this works with domain forwarding with masking
+      const textArea = document.createElement('textarea');
+      textArea.value = permalink;
+      
+      textArea.style.position = 'fixed';
+      textArea.style.top = '-9999px';
+      textArea.style.left = '-9999px';
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        }
+      } catch (err) {
+        console.error('Fallback: Unable to copy', err);
+      }
+
+      document.body.removeChild(textArea);
+    }
   };
 
   return (
