@@ -2,7 +2,6 @@ import React, { useEffect, useState, useCallback, Suspense, useRef } from 'react
 import { useColorPalette } from '../contexts/ColorPaletteContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import documentationComponents from './documentation';
-import { Helmet } from 'react-helmet-async';
 
 const SECTIONS = Object.keys(documentationComponents).map(key => {
   const id = key
@@ -66,9 +65,6 @@ const Documentation: React.FC = () => {
           const { offsetTop, offsetHeight } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section.id);
-            // Update title based on active section
-            const activeLabel = SECTIONS.find(s => s.id === section.id)?.label || 'Docs';
-            document.title = `Pine Lang - ${activeLabel}`;
             break;
           }
         }
@@ -93,10 +89,6 @@ const Documentation: React.FC = () => {
       
       // Update URL without scrolling
       window.history.pushState(null, '', `#${sectionId}`);
-      
-      // Update title based on clicked section
-      const activeLabel = SECTIONS.find(s => s.id === sectionId)?.label || 'Docs';
-      document.title = `Pine Lang - ${activeLabel}`;
     }
   }, []);
 
@@ -215,24 +207,24 @@ const Documentation: React.FC = () => {
     </div>
   );
 
+  const activeLabel = SECTIONS.find(s => s.id === activeSection)?.label || 'Docs';
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-pine-50">
-      <Helmet>
-        <title>Pine Lang - Documentation</title>
-        <meta
-          name="description"
-          content="Explore the official Pine Lang documentation. Learn the syntax, features, and best practices for using Pine Lang to write clear and efficient database queries."
-        />
-        <meta property="og:title" content="Pine Lang - Documentation" />
-        <meta property="og:description" content="Explore the official Pine Lang documentation and learn how to write clear, efficient database queries." />
-        <meta property="og:type" content="article" />
-        <meta property="og:url" content="https://pine-lang.org/docs" />
-        <meta property="og:image" content="https://pine-lang.org/pine-social-preview.svg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Pine Lang - Documentation" />
-        <meta name="twitter:description" content="Explore the official Pine Lang documentation and learn how to write clear, efficient database queries." />
-        <meta name="twitter:image" content="https://pine-lang.org/pine-social-preview.svg" />
-      </Helmet>
+      <title>Pine Lang - {activeLabel}</title>
+      <meta
+        name="description"
+        content="Explore the official Pine Lang documentation. Learn the syntax, features, and best practices for using Pine Lang to write clear and efficient database queries."
+      />
+      <meta property="og:title" content="Pine Lang - Documentation" />
+      <meta property="og:description" content="Explore the official Pine Lang documentation and learn how to write clear, efficient database queries." />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="https://pine-lang.org/docs" />
+      <meta property="og:image" content="https://pine-lang.org/pine-social-preview.svg" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="Pine Lang - Documentation" />
+      <meta name="twitter:description" content="Explore the official Pine Lang documentation and learn how to write clear, efficient database queries." />
+      <meta name="twitter:image" content="https://pine-lang.org/pine-social-preview.svg" />
       {/* Mobile Header */}
       <MobileHeader />
 
