@@ -15,11 +15,11 @@ const Home = () => {
         <meta property="og:description" content="A simple, intuitive query language that makes database interactions delightful. Write queries while seeing your database relationships come to life." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://pine-lang.org" />
-        <meta property="og:image" content="https://pine-lang.org/pine-social-preview.png" />
+        <meta property="og:image" content="https://pine-lang.org/pine-social-preview.svg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Pine Lang - Visual & Intuitive Database Queries" />
         <meta name="twitter:description" content="A simple, intuitive query language that makes database interactions delightful." />
-        <meta name="twitter:image" content="https://pine-lang.org/pine-social-preview.png" />
+        <meta name="twitter:image" content="https://pine-lang.org/pine-social-preview.svg" />
       </Helmet>
       {/* Hero Section */}
       <section className="relative overflow-hidden flex-1 flex items-center justify-center py-16 sm:py-24">

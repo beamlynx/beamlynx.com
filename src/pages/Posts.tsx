@@ -36,11 +36,11 @@ const Posts: React.FC = () => {
         <meta property="og:description" content="The latest news, articles, and insights from the Pine Lang team." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://pine-lang.org/posts" />
-        <meta property="og:image" content="https://pine-lang.org/pine-social-preview.png" />
+        <meta property="og:image" content="https://pine-lang.org/pine-social-preview.svg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Pine Lang - Blog" />
         <meta name="twitter:description" content="The latest news, articles, and insights from the Pine Lang team." />
-        <meta name="twitter:image" content="https://pine-lang.org/pine-social-preview.png" />
+        <meta name="twitter:image" content="https://pine-lang.org/pine-social-preview.svg" />
       </Helmet>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

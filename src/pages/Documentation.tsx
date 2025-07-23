@@ -227,11 +227,11 @@ const Documentation: React.FC = () => {
         <meta property="og:description" content="Explore the official Pine Lang documentation and learn how to write clear, efficient database queries." />
         <meta property="og:type" content="article" />
         <meta property="og:url" content="https://pine-lang.org/docs" />
-        <meta property="og:image" content="https://pine-lang.org/pine-social-preview.png" />
+        <meta property="og:image" content="https://pine-lang.org/pine-social-preview.svg" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Pine Lang - Documentation" />
         <meta name="twitter:description" content="Explore the official Pine Lang documentation and learn how to write clear, efficient database queries." />
-        <meta name="twitter:image" content="https://pine-lang.org/pine-social-preview.png" />
+        <meta name="twitter:image" content="https://pine-lang.org/pine-social-preview.svg" />
       </Helmet>
       {/* Mobile Header */}
       <MobileHeader />
