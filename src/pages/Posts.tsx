@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useColorPalette } from '../contexts/ColorPaletteContext';
+import { Helmet } from 'react-helmet-async';
 
 const Posts: React.FC = () => {
   const palette = useColorPalette();
@@ -25,6 +26,22 @@ const Posts: React.FC = () => {
 
   return (
     <div className="min-h-screen py-12 sm:py-16 md:py-20">
+      <Helmet>
+        <title>Pine Lang - Blog</title>
+        <meta
+          name="description"
+          content="Read the latest news, articles, and insights from the Pine Lang team. Stay up-to-date with our development journey and discover the philosophy behind Pine."
+        />
+        <meta property="og:title" content="Pine Lang - Blog" />
+        <meta property="og:description" content="The latest news, articles, and insights from the Pine Lang team." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pine-lang.org/posts" />
+        <meta property="og:image" content="https://pine-lang.org/pine-social-preview.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Pine Lang - Blog" />
+        <meta name="twitter:description" content="The latest news, articles, and insights from the Pine Lang team." />
+        <meta name="twitter:image" content="https://pine-lang.org/pine-social-preview.png" />
+      </Helmet>
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

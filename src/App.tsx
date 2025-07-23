@@ -14,6 +14,21 @@ function ScrollToTop() {
   const location = useLocation();
   
   useEffect(() => {
+    // Update document title based on the path
+    switch (location.pathname) {
+      case '/':
+        document.title = 'Pine Lang - Visual & Intuitive Database Queries';
+        break;
+      case '/docs':
+        document.title = 'Pine Lang - Documentation';
+        break;
+      case '/posts':
+        document.title = 'Pine Lang - Blog';
+        break;
+      default:
+        document.title = 'Pine Lang';
+    }
+    
     window.scrollTo(0, 0);
   }, [location.pathname]);
   
