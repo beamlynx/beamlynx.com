@@ -1,18 +1,18 @@
 import { lazy } from 'react';
 
 const documentationComponents = {
+  Introduction: lazy(() => import('./Introduction')),
   BasicSyntax: lazy(() => import('./BasicSyntax')),
-  Count: lazy(() => import('./Count')),
-  Delete: lazy(() => import('./Delete')),
+  Table: lazy(() => import('./Table')),
+  Join: lazy(() => import('./Join')),
+  Where: lazy(() => import('./Where')),
+  Select: lazy(() => import('./Select')),
+  Order: lazy(() => import('./Order')),
+  Limit: lazy(() => import('./Limit')),
   From: lazy(() => import('./From')),
   Group: lazy(() => import('./Group')),
-  Introduction: lazy(() => import('./Introduction')),
-  Join: lazy(() => import('./Join')),
-  Limit: lazy(() => import('./Limit')),
-  Order: lazy(() => import('./Order')),
-  Select: lazy(() => import('./Select')),
-  Table: lazy(() => import('./Table')),
-  Where: lazy(() => import('./Where')),
+  Count: lazy(() => import('./Count')),
+  Delete: lazy(() => import('./Delete')),
 };
 
 export default documentationComponents;
