@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback, Suspense, useRef } from 'react
 import { useColorPalette } from '../contexts/ColorPaletteContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import documentationComponents from './documentation';
+import LoadingIndicator from '../components/LoadingIndicator';
 
 const SECTIONS = Object.keys(documentationComponents).map(key => {
   const id = key
@@ -287,7 +288,7 @@ const Documentation: React.FC = () => {
                 `}
               </style>
               
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<LoadingIndicator text="Loading docs..." />}>
                 {SECTIONS.map(({ id, component: Component }) => (
                   <Component key={id} />
                 ))}

@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import { AnimatePresence } from 'framer-motion';
 import Footer from './components/Footer';
 import { useEffect, lazy, Suspense } from 'react';
+import LoadingIndicator from './components/LoadingIndicator';
 
 const Home = lazy(() => import('./pages/Home'));
 const Posts = lazy(() => import('./pages/Posts'));
@@ -44,7 +45,7 @@ const AppContent = () => {
       <ScrollToTop />
       <main className="flex-1 relative">
         <AnimatePresence mode="wait">
-          <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+          <Suspense fallback={<LoadingIndicator className="h-screen" text="Loading page..." />}>
             <Routes location={location} key={location.pathname}>
               <Route path="/" element={<Home />} />
               <Route path="/docs" element={<Documentation />} />
