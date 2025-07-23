@@ -19,26 +19,22 @@ const SECTIONS = Object.keys(documentationComponents).map(key => {
 
 const Documentation: React.FC = () => {
   const palette = useColorPalette();
-  const [activeSection, setActiveSection] = useState('introduction');
+  const [activeSection, setActiveSection] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
+  const intersectionObserverRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
-    const hash = window.location.hash.substring(1);
-    if (!hash) return;
-
-    const element = document.getElementById(hash);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(hash);
-      return;
-    }
+    const targetId = window.location.hash.substring(1) || SECTIONS[0]?.id;
+    if (!targetId) return;
 
     const observer = new MutationObserver(() => {
-      const element = document.getElementById(hash);
+      const element = document.getElementById(targetId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        setActiveSection(hash);
+        if (window.location.hash) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+        setActiveSection(targetId);
         observer.disconnect();
       }
     });
@@ -50,46 +46,53 @@ const Documentation: React.FC = () => {
         });
     }
 
+    // Fallback check in case the content is already in the DOM
+    const element = document.getElementById(targetId);
+    if (element) {
+        if (window.location.hash) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+        setActiveSection(targetId);
+    }
+
     return () => {
       observer.disconnect();
     };
-  }, []);
-
-  // Simple scroll spy
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 100; // Offset for navbar
-
-      for (const section of SECTIONS) {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section.id);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   // Handle section link clicks
   const handleSectionClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     const section = document.getElementById(sectionId);
+
     if (section) {
+      // Disconnect any existing observer
+      if (intersectionObserverRef.current) {
+        intersectionObserverRef.current.disconnect();
+      }
+
       section.scrollIntoView({
         behavior: 'smooth'
       });
-      
-      setActiveSection(sectionId);
-      
-      // Update URL without scrolling
       window.history.pushState(null, '', `#${sectionId}`);
+
+      // Create a new observer to watch for the section to scroll into view
+      intersectionObserverRef.current = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(sectionId);
+            // Once it's visible, we don't need to watch it anymore
+            intersectionObserverRef.current?.disconnect();
+          }
+        },
+        {
+          // Adjust rootMargin to account for the sticky navbar
+          rootMargin: '-100px 0px -50% 0px',
+          threshold: 0,
+        }
+      );
+      
+      intersectionObserverRef.current.observe(section);
     }
   }, []);
 
