@@ -5,7 +5,7 @@ const From: React.FC = () => {
   return (
     <DocSection id="from" title="From Operation">
       <p>
-        The from operation (<code>from:</code> or f:) sets the context for subsequent operations.
+        The from operation (<code>from:</code> or <code>f:</code>) sets the context for subsequent operations.
       </p>
       <pre>
         <code>{`-- Set context for joins
