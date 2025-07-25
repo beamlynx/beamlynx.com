@@ -5,18 +5,19 @@ const Delete: React.FC = () => {
   return (
     <DocSection id="delete" title="Delete Operation">
       <p>
-        Pine Lang provides two delete operations:
+        Operations that have a side-effect are suffixed with <code>!</code>.
       </p>
-      <ul className="list-disc pl-6 mb-4">
-        <li><code>delete:</code> or <code>d:</code> - Mark for deletion</li>
-        <li><code>delete!</code> or <code>d!</code> - Execute deletion</li>
-      </ul>
+      <p>
+        Delete operation is a side-effect operation.
+      </p>
       <pre>
-        <code>{`-- Mark for deletion
-company | where: status = 'inactive' | delete:
-
--- Execute deletion
-company | where: status = 'inactive' | delete! .id`}</code>
+        <code>{`table_name | operation1: args | delete!`}</code>
+      </pre>
+      <p>
+        e.g. if you want to delete the user 'John Doe' from the <code>users</code> table, you can do:
+      </p>
+      <pre>
+        <code>{`users | where: name = 'John Doe' | delete!`}</code>
       </pre>
     </DocSection>
   );
