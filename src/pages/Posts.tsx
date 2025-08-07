@@ -9,14 +9,14 @@ const Posts: React.FC = () => {
     {
       title: "Insight. Simplicity. Delight.",
       date: "2025-06-15",
-      url: "https://open.substack.com/pub/pinelang/p/insight-simplicity-delight",
+      url: "https://open.substack.com/pub/beamlynx/p/insight-simplicity-delight",
       readTime: "1 min read",
       preview: `Over time, I've come to expect three things from the systems I work with: they should teach me something, they should help me think clearly, and they should make the experience enjoyable. I am constantly refining Pine to meet that bar. Building for Insight: Teach me! I don't want to read the docs - the system should figure out my intent and show me the way. Building for Simplicity: Clarity of thought! I don't want to think about things that are not relevant to the problem at hand. Building for Delight: Fun! I don't want to feel like I am doing chores. The task of solving problems should be enjoyable.`
     },
     {
       title: "Discovering Pine-lang",
       date: "2024-05-25",
-      url: "https://pinelang.substack.com/p/discovering-pine-lang-simplifying",
+      url: "https://beamlynx.substack.com/p/discovering-pine-lang-simplifying",
       readTime: "3 min read",
       preview: `It's 2017, and I'm working at Penneo. I've been with the company for a few years, but we're still in startup mode. The product isn't fully mature, and I often find myself diving into the data to fix bugs. Occasionally, I'm on the phone with a user, cramming the phone between my shoulder and ear—lacking decent headphones with a mic—trying to troubleshoot database issues on the fly...`
     },
@@ -25,20 +25,20 @@ const Posts: React.FC = () => {
 
   return (
     <div className="min-h-screen py-12 sm:py-16 md:py-20">
-      <title>Pine Lang - Blog</title>
+      <title>Beamlynx - Blog</title>
       <meta
         name="description"
-        content="Read the latest news, articles, and insights from the Pine Lang team. Stay up-to-date with our development journey and discover the philosophy behind Pine."
+        content="Read the latest news, articles, and insights from the Beamlynx team. Stay up-to-date with our development journey and discover the philosophy behind Beamlynx."
       />
-      <meta property="og:title" content="Pine Lang - Blog" />
-      <meta property="og:description" content="The latest news, articles, and insights from the Pine Lang team." />
+      <meta property="og:title" content="Beamlynx - Blog" />
+      <meta property="og:description" content="The latest news, articles, and insights from the Beamlynx team." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://pine-lang.org/posts" />
-      <meta property="og:image" content="https://pine-lang.org/pine-social-preview.svg" />
+      <meta property="og:url" content="https://beamlynx.org/posts" />
+      <meta property="og:image" content="https://beamlynx.org/pine-social-preview.svg" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Pine Lang - Blog" />
-      <meta name="twitter:description" content="The latest news, articles, and insights from the Pine Lang team." />
-      <meta name="twitter:image" content="https://pine-lang.org/pine-social-preview.svg" />
+      <meta name="twitter:title" content="Beamlynx - Blog" />
+      <meta name="twitter:description" content="The latest news, articles, and insights from the Beamlynx team." />
+      <meta name="twitter:image" content="https://beamlynx.org/pine-social-preview.svg" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

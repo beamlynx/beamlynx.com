@@ -18,16 +18,16 @@ function ScrollToTop() {
     // Update document title based on the path
     switch (location.pathname) {
       case '/':
-        document.title = 'Pine Lang - Visual & Intuitive Database Queries';
+        document.title = 'Beamlynx - Visual & Intuitive Database Queries';
         break;
       case '/docs':
-        document.title = 'Pine Lang - Documentation';
+        document.title = 'Beamlynx - Documentation';
         break;
       case '/posts':
-        document.title = 'Pine Lang - Blog';
+        document.title = 'Beamlynx - Blog';
         break;
       default:
-        document.title = 'Pine Lang';
+        document.title = 'Beamlynx';
     }
     
     window.scrollTo(0, 0);

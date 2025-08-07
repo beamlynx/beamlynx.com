@@ -4,20 +4,20 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div className="flex flex-col">
-      <title>Pine Lang - Visual & Intuitive Database Queries</title>
+      <title>Beamlynx - Visual & Intuitive Database Queries</title>
       <meta
         name="description"
-        content="Pine Lang is a simple, intuitive query language that makes database interactions delightful. Write queries while seeing your database relationships come to life."
+        content="Beamlynx is a visual database client that makes database interactions delightful. Explore and interact with your data using Pine-lang, a simple, intuitive query language."
       />
-      <meta property="og:title" content="Pine Lang - Visual & Intuitive Database Queries" />
-      <meta property="og:description" content="A simple, intuitive query language that makes database interactions delightful. Write queries while seeing your database relationships come to life." />
+      <meta property="og:title" content="Beamlynx - Visual & Intuitive Database Queries" />
+      <meta property="og:description" content="A visual database client that makes database interactions delightful. Explore and interact with your data using Pine-lang, a simple, intuitive query language." />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://pine-lang.org" />
-      <meta property="og:image" content="https://pine-lang.org/pine-social-preview.svg" />
+      <meta property="og:url" content="https://beamlynx.org" />
+      <meta property="og:image" content="https://beamlynx.org/pine-social-preview.svg" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Pine Lang - Visual & Intuitive Database Queries" />
-      <meta name="twitter:description" content="A simple, intuitive query language that makes database interactions delightful." />
-      <meta name="twitter:image" content="https://pine-lang.org/pine-social-preview.svg" />
+      <meta name="twitter:title" content="Beamlynx - Visual & Intuitive Database Queries" />
+      <meta name="twitter:description" content="A visual database client that makes database interactions delightful." />
+      <meta name="twitter:image" content="https://beamlynx.org/pine-social-preview.svg" />
       {/* Hero Section */}
       <section className="relative overflow-hidden flex-1 flex items-center justify-center py-16 sm:py-24">
         <motion.div
@@ -33,7 +33,7 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900"
             >
-              Query databases
+              Explore databases
               <span className="text-pine-600"> visually and intuitively</span>
             </motion.h1>
             <motion.p
@@ -42,8 +42,8 @@ const Home = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-600 max-w-3xl mx-auto px-4 sm:px-6"
             >
-              Pine Lang is a simple, intuitive query language that makes database interactions delightful.
-              Write queries while seeing your database relationships come to life.
+              Beamlynx is a visual database client that makes database interactions delightful.
+              Use Pine-lang, a simple, intuitive query language, while seeing your database relationships come to life.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -73,9 +73,9 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="card"
             >
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Visual Query Building</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Visual Database Client</h3>
               <p className="text-sm sm:text-base text-gray-600">
-                See your database relationships visualized in real-time as you write queries.
+                See your database relationships visualized in real-time as you write Pine-lang queries.
                 Visualizing relationships has never been easier.
               </p>
             </motion.div>
@@ -87,9 +87,9 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="card"
             >
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Intuitive Syntax</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Pine-lang DSL</h3>
               <p className="text-sm sm:text-base text-gray-600">
-                Write queries in a language that feels natural and converts seamlessly to SQL.
+                Write queries in Pine-lang, a language that feels natural and converts seamlessly to SQL.
                 This allows you to focus on the problem, not the syntax.
               </p>
             </motion.div>
@@ -101,7 +101,7 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="card"
             >
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Real-time Visualization</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Interactive Experience</h3>
               <p className="text-sm sm:text-base text-gray-600">
                 Watch your database relationships come to life as you type. See how tables connect 
                 and understand query paths through interactive visual feedback.

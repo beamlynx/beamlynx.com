@@ -5,7 +5,7 @@ const Join: React.FC = () => {
   return (
     <DocSection id="join" title="Join Operation">
       <p>
-        Pine Lang automatically handles joins based on foreign key relationships.
+        Pine-lang automatically handles joins based on foreign key relationships.
         Simply pipe tables together to create joins.
       </p>
       

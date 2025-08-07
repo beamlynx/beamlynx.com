@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pine-lang.org/sitemap.xml 
+Sitemap: https://beamlynx.org/sitemap.xml 

@@ -215,20 +215,20 @@ const Documentation: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-pine-50">
-      <title>Pine Lang - {activeLabel}</title>
+      <title>Beamlynx - {activeLabel}</title>
       <meta
         name="description"
-        content="Explore the official Pine Lang documentation. Learn the syntax, features, and best practices for using Pine Lang to write clear and efficient database queries."
+        content="Explore the official Beamlynx documentation. Learn the syntax, features, and best practices for using Pine-lang to write clear and efficient database queries."
       />
-      <meta property="og:title" content="Pine Lang - Documentation" />
-      <meta property="og:description" content="Explore the official Pine Lang documentation and learn how to write clear, efficient database queries." />
+      <meta property="og:title" content="Beamlynx - Documentation" />
+      <meta property="og:description" content="Explore the official Beamlynx documentation and learn how to write clear, efficient database queries with Pine-lang." />
       <meta property="og:type" content="article" />
-      <meta property="og:url" content="https://pine-lang.org/docs" />
-      <meta property="og:image" content="https://pine-lang.org/pine-social-preview.svg" />
+      <meta property="og:url" content="https://beamlynx.org/docs" />
+      <meta property="og:image" content="https://beamlynx.org/pine-social-preview.svg" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Pine Lang - Documentation" />
-      <meta name="twitter:description" content="Explore the official Pine Lang documentation and learn how to write clear, efficient database queries." />
-      <meta name="twitter:image" content="https://pine-lang.org/pine-social-preview.svg" />
+      <meta name="twitter:title" content="Beamlynx - Documentation" />
+      <meta name="twitter:description" content="Explore the official Beamlynx documentation and learn how to write clear, efficient database queries with Pine-lang." />
+      <meta name="twitter:image" content="https://beamlynx.org/pine-social-preview.svg" />
       {/* Mobile Header */}
       <MobileHeader />
 

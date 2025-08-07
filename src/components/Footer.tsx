@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
   const socialLinks = [
     {
       name: 'GitHub',
-      href: 'https://github.com/pine-lang',
+      href: 'https://github.com/beamlynx',
       icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
     },
     {
       name: 'Substack',
-      href: 'https://pinelang.substack.com',
+      href: 'https://beamlynx.substack.com',
       icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
           <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" />
@@ -78,7 +78,7 @@ const Footer: React.FC = () => {
               className="text-xs"
               style={{ color: `${palette.secondary}99` }}
             >
-              © {new Date().getFullYear()} Pine Lang. All rights reserved.
+              © {new Date().getFullYear()} Beamlynx. All rights reserved.
             </div>
           </div>
         </div>
