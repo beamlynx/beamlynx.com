@@ -21,7 +21,7 @@ function ScrollToTop() {
         document.title = 'Beamlynx - Visual & Intuitive Database Queries';
         break;
       case '/docs':
-        document.title = 'Beamlynx - Documentation';
+        document.title = 'Beamlynx - pine-lang';
         break;
       case '/posts':
         document.title = 'Beamlynx - Blog';

@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
 
   const navItems = [
     { path: '/', label: 'Home' },
-    { path: '/docs', label: 'Documentation' },
+    { path: '/docs', label: 'pine-lang' },
     { path: '/posts', label: 'Posts' }
   ];
 
@@ -208,7 +208,7 @@ const Navbar: React.FC = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className="relative px-2 sm:px-3 py-2 text-[14px] sm:text-[15px] font-medium tracking-wide transition-colors duration-200 rounded-lg hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+                  className="relative px-2 sm:px-3 py-2 text-[14px] sm:text-[15px] font-medium tracking-wide transition-colors duration-200 rounded-lg hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap"
                   style={{ 
                     color: isActive(item.path) ? palette.primary : palette.secondary,
                     '--tw-ring-color': palette.accent
