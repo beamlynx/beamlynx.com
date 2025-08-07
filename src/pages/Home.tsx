@@ -7,10 +7,10 @@ const Home = () => {
       <title>Beamlynx - Visual & Intuitive Database Queries</title>
       <meta
         name="description"
-        content="Beamlynx is a visual database client that makes database interactions delightful. Explore and interact with your data using Pine-lang, a simple, intuitive query language."
+        content="Beamlynx is a visual database client that makes database interactions delightful. Explore and interact with your data using pine-lang, a simple, intuitive query language."
       />
       <meta property="og:title" content="Beamlynx - Visual & Intuitive Database Queries" />
-      <meta property="og:description" content="A visual database client that makes database interactions delightful. Explore and interact with your data using Pine-lang, a simple, intuitive query language." />
+      <meta property="og:description" content="A visual database client that makes database interactions delightful. Explore and interact with your data using pine-lang, a simple, intuitive query language." />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://beamlynx.org" />
       <meta property="og:image" content="https://beamlynx.org/pine-social-preview.svg" />
@@ -43,7 +43,7 @@ const Home = () => {
               className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-600 max-w-3xl mx-auto px-4 sm:px-6"
             >
               Beamlynx is a visual database client that makes database interactions delightful.
-              Use Pine-lang, a simple, intuitive query language, while seeing your database relationships come to life.
+              Use pine-lang, a simple, intuitive query language, while seeing your database relationships come to life.
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -75,7 +75,7 @@ const Home = () => {
             >
               <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Visual Database Client</h3>
               <p className="text-sm sm:text-base text-gray-600">
-                See your database relationships visualized in real-time as you write Pine-lang queries.
+                See your database relationships visualized in real-time as you write pine-lang queries.
                 Visualizing relationships has never been easier.
               </p>
             </motion.div>
@@ -87,9 +87,9 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="card"
             >
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Pine-lang DSL</h3>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">pine-lang DSL</h3>
               <p className="text-sm sm:text-base text-gray-600">
-                Write queries in Pine-lang, a language that feels natural and converts seamlessly to SQL.
+                Write queries in pine-lang, a language that feels natural and converts seamlessly to SQL.
                 This allows you to focus on the problem, not the syntax.
               </p>
             </motion.div>

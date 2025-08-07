@@ -1,11 +1,11 @@
 # Beamlynx
 
-Beamlynx is a visual database client that makes database interactions delightful. It uses Pine-lang, a simple, intuitive query language, while providing real-time visualization of database relationships.
+Beamlynx is a visual database client that makes database interactions delightful. It uses pine-lang, a simple, intuitive query language, while providing real-time visualization of database relationships.
 
 ## Features
 
 - **Visual Database Client**: See your database relationships visualized in real-time
-- **Pine-lang DSL**: Write queries in a language that feels natural and converts seamlessly to SQL
+- **pine-lang DSL**: Write queries in a language that feels natural and converts seamlessly to SQL
 - **Interactive Experience**: Watch your database relationships come to life as you type
 
 ## Development

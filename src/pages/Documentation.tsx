@@ -218,16 +218,16 @@ const Documentation: React.FC = () => {
       <title>Beamlynx - {activeLabel}</title>
       <meta
         name="description"
-        content="Explore the official Beamlynx documentation. Learn the syntax, features, and best practices for using Pine-lang to write clear and efficient database queries."
+        content="Explore the official Beamlynx documentation. Learn the syntax, features, and best practices for using pine-lang to write clear and efficient database queries."
       />
               <meta property="og:title" content="Beamlynx - pine-lang" />
-        <meta property="og:description" content="Explore the official Pine-lang documentation and learn how to write clear, efficient database queries." />
+        <meta property="og:description" content="Explore the official pine-lang documentation and learn how to write clear, efficient database queries." />
       <meta property="og:type" content="article" />
       <meta property="og:url" content="https://beamlynx.org/docs" />
       <meta property="og:image" content="https://beamlynx.org/pine-social-preview.svg" />
       <meta name="twitter:card" content="summary_large_image" />
               <meta name="twitter:title" content="Beamlynx - pine-lang" />
-      <meta name="twitter:description" content="Explore the official Pine-lang documentation and learn how to write clear, efficient database queries." />
+      <meta name="twitter:description" content="Explore the official pine-lang documentation and learn how to write clear, efficient database queries." />
       <meta name="twitter:image" content="https://beamlynx.org/pine-social-preview.svg" />
       {/* Mobile Header */}
       <MobileHeader />
