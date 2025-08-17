@@ -7,6 +7,13 @@ const Posts: React.FC = () => {
 
   const posts = [
     {
+      title: "Introducing Beamlynx",
+      date: "2025-08-07",
+      url: "https://beamlynx.substack.com/p/introducing-beamlynx",
+      readTime: "2 min read",
+      preview: `Pine-lang has evolved into much more than a domain-specific language (DSL). What began as a way to simplify SQL has grown into a full-fledged database client - one that lets me explore and interact with data in a visual, interactive way. This new system deserves a new name and a distinct identity. I call it Beamlynx.`
+    },
+    {
       title: "Insight. Simplicity. Delight.",
       date: "2025-06-15",
       url: "https://open.substack.com/pub/beamlynx/p/insight-simplicity-delight",
