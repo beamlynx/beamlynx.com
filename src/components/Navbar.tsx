@@ -101,8 +101,8 @@ const Navbar: React.FC = () => {
                     boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)'
                   }}
                 >
-                  Try It
-                  <span className="inline-block ml-1">→</span>
+                 Playground 
+                  <span className="inline-block ml-1">↗</span>
                 </button>
 
                 <AnimatePresence>
@@ -224,10 +224,10 @@ const Navbar: React.FC = () => {
                 </Link>
               ))}
               
-              {/* Try It Button */}
+              {/* Playground Button */}
               <div className="relative">
                 <a
-                  href="https://try.pine-lang.org"
+                  href="https://playground.beamlynx.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleTryItClick}
@@ -239,8 +239,8 @@ const Navbar: React.FC = () => {
                     boxShadow: '0 1px 2px rgba(0, 0, 0, 0.05)'
                   } as React.CSSProperties}
                 >
-                  Try It
-                  <span className="inline-block ml-1 transition-transform group-hover:translate-x-0.5">→</span>
+                  Playground
+                  <span className="inline-block ml-1 transition-transform group-hover:translate-x-0.5">↗</span>
                 </a>
 
                 {/* Mobile Message Popup */}
