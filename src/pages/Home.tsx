@@ -4,7 +4,7 @@ import beamlynxScreenshot from '../assets/beamlynx-1.png';
 
 const Home = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <title>Beamlynx - Visual & Intuitive Database Queries</title>
       <meta
         name="description"
@@ -21,19 +21,19 @@ const Home = () => {
       <meta name="twitter:image" content="https://beamlynx.org/pine-social-preview.svg" />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden flex-1 flex items-center justify-center py-8 sm:py-12">
+      <section className="relative overflow-hidden flex-1 flex items-center justify-center px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+          className="mx-auto max-w-6xl w-full"
         >
           <div className="text-center">
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-700"
+              className="text-2xl font-bold tracking-tight text-gray-700 sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
             >
               Explore databases
               <span className="text-pine-600"> visually and intuitively</span>
@@ -42,7 +42,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-2 sm:mt-3 text-sm sm:text-base leading-6 sm:leading-7 text-gray-600 max-w-4xl mx-auto px-4 sm:px-6"
+              className="mx-auto mt-4 max-w-3xl text-base leading-7 text-gray-600 sm:mt-6 sm:text-lg sm:leading-8 lg:text-xl lg:leading-9"
             >
               Beamlynx is a visual database client that makes database interactions delightful.
               Use a simple, composable language to write queries while seeing your database relationships come to life.
@@ -53,12 +53,12 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-6 sm:mt-8"
+              className="mt-8 sm:mt-10 lg:mt-12"
             >
               <img
                 src={beamlynxScreenshot}
                 alt="Beamlynx visual database client interface showing pine-lang queries and database relationships"
-                className="w-full max-w-2xl mx-auto rounded-lg shadow-lg"
+                className="mx-auto w-full max-w-xs rounded-lg shadow-lg sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl"
               />
             </motion.div>
           </div>
@@ -66,9 +66,9 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="bg-white py-12 sm:py-16 md:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-8 sm:gap-12 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -76,8 +76,8 @@ const Home = () => {
               transition={{ duration: 0.5 }}
               className="card"
             >
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Visual Database Client</h3>
-              <p className="text-sm sm:text-base text-gray-600">
+              <h3 className="mb-4 text-xl font-semibold text-gray-900 sm:text-2xl">Visual Database Client</h3>
+              <p className="text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
                 See your database relationships visualized in real-time as you write pine-lang queries.
                 Visualizing relationships has never been easier.
               </p>
@@ -90,8 +90,8 @@ const Home = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="card"
             >
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">pine-lang DSL</h3>
-              <p className="text-sm sm:text-base text-gray-600">
+              <h3 className="mb-4 text-xl font-semibold text-gray-900 sm:text-2xl">pine-lang DSL</h3>
+              <p className="text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
                 Write queries in pine-lang, a language that feels natural and converts seamlessly to SQL.
                 This allows you to focus on the problem, not the syntax.
               </p>
@@ -102,10 +102,10 @@ const Home = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="card"
+              className="card md:col-span-2 lg:col-span-1"
             >
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-3 sm:mb-4">Interactive Experience</h3>
-              <p className="text-sm sm:text-base text-gray-600">
+              <h3 className="mb-4 text-xl font-semibold text-gray-900 sm:text-2xl">Interactive Experience</h3>
+              <p className="text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
                 Watch your database relationships come to life as you type. See how tables connect 
                 and understand query paths through interactive visual feedback.
               </p>
@@ -118,11 +118,11 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-center mt-12"
+            className="mt-16 text-center sm:mt-20 lg:mt-24"
           >
             <Link
               to="https://playground.beamlynx.com"
-              className="btn-primary"
+              className="btn-primary text-base px-6 py-3 sm:text-lg sm:px-8 sm:py-4"
               target="_blank"
               rel="noopener noreferrer"
             >
