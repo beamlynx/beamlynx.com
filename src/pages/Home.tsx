@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import beamlynxScreenshot from '../assets/beamlynx-1.png';
 
 const Home = () => {
   return (
@@ -18,8 +19,9 @@ const Home = () => {
       <meta name="twitter:title" content="Beamlynx - Visual & Intuitive Database Queries" />
       <meta name="twitter:description" content="A visual database client that makes database interactions delightful." />
       <meta name="twitter:image" content="https://beamlynx.org/pine-social-preview.svg" />
+      
       {/* Hero Section */}
-      <section className="relative overflow-hidden flex-1 flex items-center justify-center py-16 sm:py-24">
+      <section className="relative overflow-hidden flex-1 flex items-center justify-center py-8 sm:py-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -31,7 +33,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-700"
             >
               Explore databases
               <span className="text-pine-600"> visually and intuitively</span>
@@ -40,23 +42,24 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="mt-4 sm:mt-6 text-base sm:text-lg leading-7 sm:leading-8 text-gray-600 max-w-3xl mx-auto px-4 sm:px-6"
+              className="mt-2 sm:mt-3 text-sm sm:text-base leading-6 sm:leading-7 text-gray-600 max-w-4xl mx-auto px-4 sm:px-6"
             >
               Beamlynx is a visual database client that makes database interactions delightful.
-              Use pine-lang, a simple, intuitive query language, while seeing your database relationships come to life.
+              Use a simple, composable language to write queries while seeing your database relationships come to life.
             </motion.p>
+            
+            {/* Screenshot */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-8 sm:mt-10 flex items-center justify-center px-4 sm:px-6"
+              className="mt-6 sm:mt-8"
             >
-              <Link
-                to="/docs"
-                className="btn-primary"
-              >
-                Learn more <span aria-hidden="true">→</span>
-              </Link>
+              <img
+                src={beamlynxScreenshot}
+                alt="Beamlynx visual database client interface showing pine-lang queries and database relationships"
+                className="w-full max-w-2xl mx-auto rounded-lg shadow-lg"
+              />
             </motion.div>
           </div>
         </motion.div>
@@ -108,6 +111,24 @@ const Home = () => {
               </p>
             </motion.div>
           </div>
+          
+          {/* Call to Action */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-center mt-12"
+          >
+            <Link
+              to="https://playground.beamlynx.com"
+              className="btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Try it out <span aria-hidden="true">↗</span>
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>

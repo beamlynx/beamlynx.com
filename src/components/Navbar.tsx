@@ -55,7 +55,7 @@ const Navbar: React.FC = () => {
         <rect x="12" y="4" width="4" height="14" rx="1" fill="currentColor"/>
         <rect x="18" y="8" width="4" height="6" rx="1" fill="currentColor"/>
       </svg>
-      <span className="text-lg sm:text-xl font-semibold tracking-tight font-mono hidden md:inline whitespace-nowrap">Beamlynx</span>
+      <span className="text-lg sm:text-xl font-semibold tracking-tight hidden md:inline whitespace-nowrap">beamlynx</span>
     </Link>
   );
 
