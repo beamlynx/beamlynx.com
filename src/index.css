@@ -122,6 +122,122 @@ pre code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+/* Custom Prism.js SQL syntax highlighting */
+.language-sql .token.keyword {
+  color: #81A1C1; /* Blue for SQL keywords */
+  font-weight: 600;
+}
+
+.language-sql .token.string {
+  color: #A3BE8C; /* Green for strings */
+}
+
+.language-sql .token.number {
+  color: #B48EAD; /* Purple for numbers */
+}
+
+.language-sql .token.operator {
+  color: #ECEFF4; /* Light for operators */
+}
+
+.language-sql .token.punctuation {
+  color: #D8DEE9; /* Default text color for punctuation */
+}
+
+.language-sql .token.function {
+  color: #88C0D0; /* Light blue for functions */
+}
+
+.language-sql .token.comment {
+  color: #616E88; /* Muted for comments */
+  font-style: italic;
+}
+
+.language-sql .token.variable {
+  color: #D08770; /* Orange for variables */
+}
+
+/* Override default Prism theme for SQL blocks in documentation */
+.documentation-sql-block pre {
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #1e293b !important;
+  line-height: 1.6 !important;
+  white-space: pre-line !important;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.documentation-sql-block code {
+  color: #1e293b !important;
+  background: none !important;
+}
+
+/* SQL Keywords - Bright Blue */
+.documentation-sql-block .token.keyword,
+.documentation-sql-block .token.keyword.sql {
+  color: #1e40af !important; /* Bright blue for keywords */
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+/* SQL Strings - Bright Green */
+.documentation-sql-block .token.string,
+.documentation-sql-block .token.string.sql {
+  color: #059669 !important; /* Bright green for strings */
+  font-weight: 600 !important;
+}
+
+/* SQL Numbers - Bright Purple */
+.documentation-sql-block .token.number,
+.documentation-sql-block .token.number.sql {
+  color: #7c2d92 !important; /* Bright purple for numbers */
+  font-weight: 600 !important;
+}
+
+/* SQL Operators - Dark Gray */
+.documentation-sql-block .token.operator,
+.documentation-sql-block .token.operator.sql {
+  color: #374151 !important; /* Dark gray for operators */
+  font-weight: 700 !important;
+}
+
+/* SQL Punctuation - Very Dark */
+.documentation-sql-block .token.punctuation,
+.documentation-sql-block .token.punctuation.sql {
+  color: #111827 !important; /* Very dark for punctuation */
+  font-weight: 600 !important;
+}
+
+/* SQL Functions - Bright Teal */
+.documentation-sql-block .token.function,
+.documentation-sql-block .token.function.sql {
+  color: #0891b2 !important; /* Bright teal for functions */
+  font-weight: 700 !important;
+}
+
+/* SQL Comments - Medium Gray */
+.documentation-sql-block .token.comment,
+.documentation-sql-block .token.comment.sql {
+  color: #6b7280 !important; /* Medium gray for comments */
+  font-style: italic !important;
+  font-weight: 500 !important;
+}
+
+/* SQL Variables - Bright Orange */
+.documentation-sql-block .token.variable,
+.documentation-sql-block .token.variable.sql {
+  color: #ea580c !important; /* Bright orange for variables */
+  font-weight: 600 !important;
+}
+
+/* Additional SQL-specific tokens */
+.documentation-sql-block .token.boolean,
+.documentation-sql-block .token.null {
+  color: #dc2626 !important; /* Red for boolean/null */
+  font-weight: 600 !important;
+}
+
 /* Inline code styles */
 :not(pre) > code {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;

@@ -1,18 +1,25 @@
 import React from 'react';
-import DocSection from './DocSection';
+import DocumentationSection from '../../components/DocumentationSection';
+import type { DocumentationExample } from '../../components/DocumentationSection';
 
 const Group: React.FC = () => {
+  const examples: DocumentationExample[] = [
+    {
+      title: 'Basic grouping',
+      expression: 'users | group: age => count',
+      description: 'Group users by age and count the number of users in each age group'
+    }
+  ];
+
   return (
-    <DocSection id="group" title="Group Operation">
-      <p>
-        The group operation (<code>:group</code> or <code>g:</code>) is used to group the results of a query by a given column.
-      </p>
-      
-      <h3>Syntax</h3>
-      <pre>
-        <code>{`table_name | group: column_name => function`}</code>
-      </pre>
-      
+    <DocumentationSection
+      id="group"
+      title="Group Operation"
+      operations={['group:', 'g:']}
+      syntax="table_name | group: column_name => function"
+      description="Used to group the results of a query by a given column."
+      examples={examples}
+    >
       <h3>Example</h3>
       <p>
         If you want to group the results of the <code>users</code> table by the <code>age</code> column, you can do:
@@ -28,7 +35,7 @@ const Group: React.FC = () => {
       <p>
         This feature is new and being worked on. Your feedback is welcome.
       </p>
-    </DocSection>
+    </DocumentationSection>
   );
 };
 

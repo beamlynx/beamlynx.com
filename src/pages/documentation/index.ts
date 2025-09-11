@@ -2,7 +2,6 @@ import { lazy } from 'react';
 
 const documentationComponents = {
   Introduction: lazy(() => import('./Introduction')),
-  BasicSyntax: lazy(() => import('./BasicSyntax')),
   Table: lazy(() => import('./Table')),
   Join: lazy(() => import('./Join')),
   Where: lazy(() => import('./Where')),

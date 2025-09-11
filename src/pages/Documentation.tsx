@@ -21,9 +21,13 @@ const Documentation: React.FC = () => {
   const palette = useColorPalette();
   const [activeSection, setActiveSection] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolling, setIsScrolling] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const intersectionObserverRef = useRef<IntersectionObserver | null>(null);
+  const scrollObserverRef = useRef<IntersectionObserver | null>(null);
+  const scrollTimeoutRef = useRef<number | null>(null);
 
+  // Initial setup effect - handles hash navigation and initial active section
   useEffect(() => {
     const targetId = window.location.hash.substring(1) || SECTIONS[0]?.id;
     if (!targetId) return;
@@ -60,39 +64,156 @@ const Documentation: React.FC = () => {
     };
   }, []);
 
+  // Scroll tracking effect - sets up persistent IntersectionObserver for all sections
+  useEffect(() => {
+    const setupScrollObserver = () => {
+      // Clean up existing observer
+      if (scrollObserverRef.current) {
+        scrollObserverRef.current.disconnect();
+      }
+
+      const sectionElements = SECTIONS.map(({ id }) => document.getElementById(id)).filter(Boolean);
+      
+      if (sectionElements.length === 0) {
+        // Sections not ready yet, try again after a delay
+        setTimeout(setupScrollObserver, 100);
+        return;
+      }
+
+      scrollObserverRef.current = new IntersectionObserver(
+        (entries) => {
+          // Find the section with the highest intersection ratio that's actually visible
+          const visibleEntries = entries.filter(entry => entry.isIntersecting);
+          
+          if (visibleEntries.length > 0) {
+            // Sort by intersection ratio and position to get the most prominent section
+            const mostVisible = visibleEntries.reduce((prev, current) => {
+              // If intersection ratios are similar, prefer the one higher up on the page
+              if (Math.abs(current.intersectionRatio - prev.intersectionRatio) < 0.1) {
+                return current.boundingClientRect.top < prev.boundingClientRect.top ? current : prev;
+              }
+              return current.intersectionRatio > prev.intersectionRatio ? current : prev;
+            });
+
+            const sectionId = mostVisible.target.id;
+            if (sectionId && sectionId !== activeSection) {
+              setActiveSection(sectionId);
+              // Update URL hash without scrolling
+              if (window.location.hash !== `#${sectionId}`) {
+                window.history.replaceState(null, '', `#${sectionId}`);
+              }
+            }
+          }
+        },
+        {
+          // Adjust rootMargin to account for navbar and give some buffer
+          rootMargin: '-100px 0px -60% 0px',
+          threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5]
+        }
+      );
+
+      // Observe all section elements
+      sectionElements.forEach(element => {
+        if (element) {
+          scrollObserverRef.current!.observe(element);
+        }
+      });
+    };
+
+    // Set up the observer after content is loaded
+    if (contentRef.current) {
+      const mutationObserver = new MutationObserver(() => {
+        setupScrollObserver();
+      });
+
+      mutationObserver.observe(contentRef.current, {
+        childList: true,
+        subtree: true,
+      });
+
+      // Also try to set up immediately in case content is already loaded
+      setupScrollObserver();
+
+      return () => {
+        mutationObserver.disconnect();
+        if (scrollObserverRef.current) {
+          scrollObserverRef.current.disconnect();
+        }
+      };
+    }
+  }, [activeSection]);
+
+  // Scroll detection effect - tracks when user is scrolling to disable hover effects
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolling(true);
+      
+      // Clear existing timeout
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+      
+      // Set a timeout to detect when scrolling has stopped
+      scrollTimeoutRef.current = window.setTimeout(() => {
+        setIsScrolling(false);
+      }, 150); // 150ms after scrolling stops
+    };
+
+    // Listen for scroll events on the main content area
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      mainElement.addEventListener('scroll', handleScroll, { passive: true });
+    }
+    
+    // Also listen on window in case scrolling happens on the window
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      if (mainElement) {
+        mainElement.removeEventListener('scroll', handleScroll);
+      }
+      window.removeEventListener('scroll', handleScroll);
+      
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
+  }, []);
+
   // Handle section link clicks
   const handleSectionClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
     const section = document.getElementById(sectionId);
 
     if (section) {
-      // Disconnect any existing observer
-      if (intersectionObserverRef.current) {
-        intersectionObserverRef.current.disconnect();
+      // Temporarily disconnect scroll observer to prevent conflicts during smooth scrolling
+      if (scrollObserverRef.current) {
+        scrollObserverRef.current.disconnect();
       }
 
+      // Set scrolling state to disable hover effects during smooth scroll
+      setIsScrolling(true);
+
+      // Immediately update active section
+      setActiveSection(sectionId);
+      
       section.scrollIntoView({
         behavior: 'smooth'
       });
       window.history.pushState(null, '', `#${sectionId}`);
 
-      // Create a new observer to watch for the section to scroll into view
-      intersectionObserverRef.current = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActiveSection(sectionId);
-            // Once it's visible, we don't need to watch it anymore
-            intersectionObserverRef.current?.disconnect();
-          }
-        },
-        {
-          // Adjust rootMargin to account for the sticky navbar
-          rootMargin: '-100px 0px -50% 0px',
-          threshold: 0,
+      // Re-enable scroll observer and hover effects after smooth scroll completes
+      setTimeout(() => {
+        if (scrollObserverRef.current) {
+          const sectionElements = SECTIONS.map(({ id }) => document.getElementById(id)).filter(Boolean);
+          sectionElements.forEach(element => {
+            if (element) {
+              scrollObserverRef.current!.observe(element);
+            }
+          });
         }
-      );
-      
-      intersectionObserverRef.current.observe(section);
+        setIsScrolling(false);
+      }, 1000); // Wait for smooth scroll animation to complete
     }
   }, []);
 
@@ -192,7 +313,8 @@ const Documentation: React.FC = () => {
               }}
               className={`
                 block py-2 px-3 rounded-md transition-all duration-200 
-                text-[15px] leading-relaxed hover:bg-black/5
+                text-[15px] leading-relaxed
+                ${!isScrolling ? 'hover:bg-black/5' : ''}
                 ${activeSection === id ? 'bg-black/5 shadow-sm' : ''}
               `}
               style={{ 

@@ -1,26 +1,37 @@
 import React from 'react';
-import DocSection from './DocSection';
+import DocumentationSection from '../../components/DocumentationSection';
+import type { DocumentationExample } from '../../components/DocumentationSection';
 
 const Select: React.FC = () => {
+  const examples: DocumentationExample[] = [
+    {
+      title: 'Select specific columns',
+      expression: 'customers | select: id, email',
+      sql: 'SELECT id, email FROM customers',
+      description: 'Choose only the columns you need in the result'
+    },
+    {
+      title: 'Select with alias',
+      expression: 'customers | s: id as customer_id',
+      sql: 'SELECT id as customer_id FROM customers',
+      description: 'Rename columns in the output using aliases'
+    },
+    {
+      title: 'Select with table qualification',
+      expression: 'customers as c | orders as o | s: c.email, o.total_amount',
+      sql: 'SELECT c.id, o.total FROM customers as c JOIN orders as o ON c.id = o.customer_id',
+      description: 'Specify which table each column comes from in joins'
+    },
+  ];
+
   return (
-    <DocSection id="select" title="Select Operation">
-      <p>
-        The select operation (<code>select:</code> or <code>s:</code>) specifies which columns to return in the query result.
-      </p>
-      <pre>
-        <code>{`-- Select specific columns
-company | select: id, name
-
--- Select with alias
-company | s: id as company_id
-
--- Select with table qualification
-company as c | employee as e | s: c.id, e.name
-
--- Select all columns from a table
-company as c | s: c.*`}</code>
-      </pre>
-    </DocSection>
+    <DocumentationSection
+      id="select"
+      title="Select Operation"
+      description="Select columns to return in the query result."
+      operations={['select:', 's:']}
+      examples={examples}
+    />
   );
 };
 
