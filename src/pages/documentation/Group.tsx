@@ -6,9 +6,9 @@ const Group: React.FC = () => {
   const examples: DocumentationExample[] = [
     {
       title: 'Basic grouping',
-      expression: "customers as c | s: email | orders as o | group: c.email => count",
-      sql: "SELECT c.email, COUNT(1) FROM customers as c JOIN orders as o ON c.id = o.customer_id GROUP BY c.email",
-      description: 'Group customers by email and count the number of orders for each customer'
+      expression: "categories as c | products .category_id | order_items .product_id | group: c.name => count",
+      sql: "SELECT c.name, COUNT(1) FROM categories as c JOIN products ON c.id = products.category_id JOIN order_items ON products.id = order_items.product_id GROUP BY c.name",
+      description: 'Group products by category and count the number of order items for each category'
     }
   ];
 
