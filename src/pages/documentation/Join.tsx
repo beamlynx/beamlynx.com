@@ -49,21 +49,17 @@ const Join: React.FC = () => {
     <DocumentationSection
       id="join"
       title="Join Operation"
-      description="Pine-lang automatically handles joins based on foreign key relationships. Simply pipe tables together to create joins."
+      description="Join tables without having to think of the foreign key relationships. Simply pipe tables together to create joins. However, if you want to specify the join column or other aspects of the join, you can pass the relevant arguments. See examples below:"
       examples={examples}
     >
-      <h3>What about left / right joins?</h3>
       <p>
-        Pine-lang supports operation modifiers which can be appended to the arguments to change the behaviour of the join.
+        Supported modifiers:
       </p>
-      <p>
-        In order to specify the type of a join, you can append the <code>left</code> or <code>right</code> modifier to the join operation e.g. if you want all the documents along with the employees (if they exist) then you need a left join. Using the modified <code>:left</code> modifier, you can specify a left join.
-      </p>
-
-      <h3>What about parent child relationships?</h3>
-      <p>
-        Similar to using the modifier for type of join, you can use the <code>:parent</code> or <code>:child</code>. Imagine you want to find parent folders, you can do:
-      </p>
+      <ul>
+        <li><code>:left</code> - Performs a left outer join, keeping all records from the left table</li>
+        <li><code>:right</code> - Performs a right outer join, keeping all records from the right table</li>
+        <li><code>:parent</code> - Joins on the parent table (the one being referenced) instead of the child table (the one with the foreign key)</li>
+      </ul>
     </DocumentationSection>
   );
 };
