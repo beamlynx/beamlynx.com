@@ -12,8 +12,8 @@ const Join: React.FC = () => {
     },
     {
       title: 'Multi-table join',
-      expression: 'customers | orders | orders_items',
-      sql: 'SELECT * FROM customers JOIN orders ON customers.id = orders.customer_id JOIN orders_items ON orders.id = orders_items.order_id',
+      expression: 'customers | orders | order_items',
+      sql: 'SELECT * FROM customers JOIN orders ON customers.id = orders.customer_id JOIN order_items ON orders.id = order_items.order_id',
       description: 'Pipe multiple tables together for joining multiple tables'
     },
     {
