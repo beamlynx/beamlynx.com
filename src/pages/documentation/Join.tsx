@@ -13,13 +13,13 @@ const Join: React.FC = () => {
     {
       title: 'Multi-table join',
       expression: 'customers | orders | order_items',
-      sql: 'SELECT * FROM customers JOIN orders ON customers.id = orders.customer_id JOIN order_items ON orders.id = order_items.order_id',
+      sql: 'SELECT * FROM customers JOIN ordesrs ON customers.id = orders.customer_id JOIN order_items ON orders.id = order_items.order_id',
       description: 'Pipe multiple tables together for joining multiple tables'
     },
     {
       title: 'Schema qualified join',
       expression: 'customers | audit.order_status_changes',
-      sql: 'SELECT * FROM customers JOIN audit.order_status_changes ON customers.id = audit.order_status_changes.customer_id JOIN audit.users ON audit.order_status_changes.changed_by = audit.users.id',
+      sql: 'SELECT * FROM customers JOIN audit.order_status_changes ON customers.id = audit.order_status_changes.customer_id',
       description: 'Use schema qualification when joining across different schemas'
     },
     {
