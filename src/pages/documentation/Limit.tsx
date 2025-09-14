@@ -5,10 +5,11 @@ const Limit: React.FC = () => {
   return (
     <DocumentationSection
       id="limit"
-      title="Limit Operation"
+      title="Limit"
       description="The limit operation restricts the number of rows returned from a query. Use 'limit:' or the shorthand 'l:' to specify the maximum number of rows."
       operations={['limit:', 'l:']}
       syntax="table_name | limit: number"
+      isOperation={true}
       examples={[
         {
           title: "Limit",

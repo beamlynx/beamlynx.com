@@ -5,9 +5,10 @@ interface DocSectionProps {
   id: string;
   title: string;
   children: React.ReactNode;
+  isOperation?: boolean;
 }
 
-const DocSection: React.FC<DocSectionProps> = ({ id, title, children }) => {
+const DocSection: React.FC<DocSectionProps> = ({ id, title, children, isOperation = false }) => {
   const palette = useColorPalette();
   const [copied, setCopied] = useState(false);
 
@@ -18,31 +19,38 @@ const DocSection: React.FC<DocSectionProps> = ({ id, title, children }) => {
       navigator.clipboard.writeText(permalink).then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
+      }).catch(() => {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = permalink;
+        textArea.style.position = 'fixed';
+        textArea.style.left = '-999999px';
+        textArea.style.top = '-999999px';
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+          document.execCommand('copy');
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+          console.error('Failed to copy permalink', err);
+        }
+
+        document.body.removeChild(textArea);
       });
     } else {
-      // Fallback for older browsers or insecure contexts
-      // 
-      // I'm trying to check if this works with domain forwarding with masking
+      // Fallback for browsers without clipboard API
       const textArea = document.createElement('textarea');
       textArea.value = permalink;
-      
       textArea.style.position = 'fixed';
-      textArea.style.top = '-9999px';
-      textArea.style.left = '-9999px';
-
+      textArea.style.left = '-999999px';
+      textArea.style.top = '-999999px';
       document.body.appendChild(textArea);
       textArea.focus();
       textArea.select();
 
-      try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-          setCopied(true);
-          setTimeout(() => setCopied(false), 2000);
-        }
-      } catch (err) {
-        console.error('Fallback: Unable to copy', err);
-      }
 
       document.body.removeChild(textArea);
     }
@@ -51,12 +59,26 @@ const DocSection: React.FC<DocSectionProps> = ({ id, title, children }) => {
   return (
     <section id={id} className="mb-16">
       <div className="relative group -ml-8 pl-8">
-        <h2
-          className="text-3xl font-bold mb-6 tracking-tight"
-          style={{ color: palette.primary }}
-        >
-          {title}
-        </h2>
+        <div className="flex items-center gap-2 mb-6">
+          <h2
+            className="text-3xl font-bold tracking-tight flex items-center gap-3"
+            style={{ color: palette.primary }}
+          >
+            {title}
+            {isOperation && (
+              <span 
+                className="inline-flex items-center text-sm font-medium px-2 py-0.5 rounded-md"
+                style={{
+                  backgroundColor: `${palette.accent}12`,
+                  color: `${palette.accent}90`,
+                  fontSize: '0.75rem',
+                }}
+              >
+                OPERATION
+              </span>
+            )}
+          </h2>
+        </div>
         <a
           href={`#${id}`}
           onClick={(e) => {
@@ -64,7 +86,7 @@ const DocSection: React.FC<DocSectionProps> = ({ id, title, children }) => {
             handleCopy();
             window.history.pushState(null, '', `#${id}`);
           }}
-          className="absolute left-0 top-0 p-1 mt-1 rounded-md transition-opacity duration-200 opacity-0 group-hover:opacity-100"
+          className="absolute left-0 top-0 p-1 mt-1.5 rounded-md transition-opacity duration-200 opacity-0 group-hover:opacity-100"
           style={{ color: palette.secondary }}
           aria-label="Copy permalink"
         >

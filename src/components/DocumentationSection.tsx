@@ -113,6 +113,7 @@ interface DocumentationSectionProps {
   operations?: string[];
   syntax?: string;
   children?: React.ReactNode;
+  isOperation?: boolean;
 }
 
 const DocumentationSection: React.FC<DocumentationSectionProps> = ({
@@ -123,13 +124,14 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
   operations = [],
   syntax,
   children,
+  isOperation = false,
 }) => {
   const palette = useColorPalette();
 
 
 
   return (
-    <DocSection id={id} title={title}>
+    <DocSection id={id} title={title} isOperation={isOperation}>
       {/* Operations badges with improved design */}
       {operations.length > 0 && (
         <div className="mb-8 -mt-2">

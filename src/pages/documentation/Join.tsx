@@ -6,29 +6,26 @@ const Join: React.FC = () => {
   const examples: DocumentationExample[] = [
     {
       title: 'Join',
-      expression: 'company | employee',
-      sql: 'SELECT * FROM company JOIN employee ON company.id = employee.company_id',
-      description: 'Two tables based using the foreing key.'
+      expression: 'customers | orders',
+      sql: 'SELECT * FROM customers JOIN orders ON customers.id = orders.customer_id',
+      description: 'Two tables based using the foreign key.'
     },
     {
       title: 'Multi-table join',
-      expression: 'company | employee | document',
+      expression: 'customers | orders | orders_items',
+      sql: 'SELECT * FROM customers JOIN orders ON customers.id = orders.customer_id JOIN orders_items ON orders.id = orders_items.order_id',
       description: 'Pipe multiple tables together for joining multiple tables'
     },
     {
       title: 'Schema qualified join',
-      expression: 'x.company | y.employee | z.document',
+      expression: 'customers | audit.order_status_changes',
+      sql: 'SELECT * FROM customers JOIN audit.order_status_changes ON customers.id = audit.order_status_changes.customer_id JOIN audit.users ON audit.order_status_changes.changed_by = audit.users.id',
       description: 'Use schema qualification when joining across different schemas'
     },
     {
-      title: 'Join with context',
-      expression: 'company as c | employee | from: c | document',
-      description: 'Use aliases and context references for complex join scenarios'
-    },
-    {
       title: 'Left join',
-      expression: 'document | employee :left',
-      sql: 'SELECT * FROM document LEFT JOIN employee ON document.employee_id = employee.id',
+      expression: 'customers | orders :left',
+      sql: 'SELECT * FROM customers LEFT JOIN orders ON customers.id = orders.customer_id',
       description: 'Use the :left modifier to specify a left join'
     },
     {
@@ -48,9 +45,10 @@ const Join: React.FC = () => {
   return (
     <DocumentationSection
       id="join"
-      title="Join Operation"
+      title="Join"
       description="Join tables without having to think of the foreign key relationships. Simply pipe tables together to create joins. However, if you want to specify the join column or other aspects of the join, you can pass the relevant arguments. See examples below:"
       examples={examples}
+      isOperation={true}
     >
       <p>
         Supported modifiers:

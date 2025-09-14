@@ -27,10 +27,11 @@ const Select: React.FC = () => {
   return (
     <DocumentationSection
       id="select"
-      title="Select Operation"
+      title="Select"
       description="Select columns to return in the query result."
       operations={['select:', 's:']}
       examples={examples}
+      isOperation={true}
     />
   );
 };

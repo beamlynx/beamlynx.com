@@ -15,11 +15,12 @@ const Group: React.FC = () => {
   return (
     <DocumentationSection
       id="group"
-      title="Group Operation"
+      title="Group"
       operations={['group:', 'g:']}
       syntax="table_name | group: column_name => function"
       description="Used to group the results of a query by a given column."
       examples={examples}
+      isOperation={true}
     >
     </DocumentationSection>
   );

@@ -5,10 +5,11 @@ const Count: React.FC = () => {
   return (
     <DocumentationSection
       id="count"
-      title="Count Operation"
+      title="Count"
       description="The count operation returns the total number of rows in a result set. Use 'count:' to get the row count of your query results."
       operations={['count:']}
       syntax="table_name | [operations...] | count:"
+      isOperation={true}
       examples={[
         {
           title: "Simple Count",

@@ -27,6 +27,7 @@ const Table: React.FC = () => {
       title="Table"
       description="This is as simple as it gets! You want to get data from a table? Just write the table name."
       examples={examples}
+      isOperation={true}
     />
   );
 };

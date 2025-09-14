@@ -27,10 +27,11 @@ const Order: React.FC = () => {
   return (
     <DocumentationSection
       id="order"
-      title="Order Operation"
+      title="Order"
       description="Sort the results by one or more columns."
       operations={['order:', 'o:']}
       examples={examples}
+      isOperation={true}
     />
   );
 };

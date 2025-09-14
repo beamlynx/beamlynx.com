@@ -23,7 +23,6 @@ const Documentation: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
-  const intersectionObserverRef = useRef<IntersectionObserver | null>(null);
   const scrollObserverRef = useRef<IntersectionObserver | null>(null);
   const scrollTimeoutRef = useRef<number | null>(null);
 

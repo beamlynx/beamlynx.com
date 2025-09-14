@@ -45,10 +45,11 @@ const Where: React.FC = () => {
   return (
     <DocumentationSection
       id="where"
-      title="Where Operation"
+      title="Where"
       description="Filters the results based on conditions."
       operations={['where:', 'w:']}
       examples={examples}
+      isOperation={true}
     />
   );
 };
