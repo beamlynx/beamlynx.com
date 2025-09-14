@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useColorPalette } from "../contexts/ColorPaletteContext";
 import { motion, AnimatePresence } from "framer-motion";
+import { openInPlayground, DEFAULT_EXAMPLE_QUERY } from "../utils/playground";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
@@ -64,8 +65,6 @@ const Navbar: React.FC = () => {
   );
 
   const MobileMenu = () => {
-    const [showMobileMessage, setShowMobileMessage] = useState(false);
-
     return (
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -100,8 +99,11 @@ const Navbar: React.FC = () => {
 
               <div>
                 <button
-                  onClick={() => setShowMobileMessage(true)}
-                  className="w-full px-3 py-2.5 rounded-lg text-[15px] font-medium text-white text-center transition-colors duration-200"
+                  onClick={() => {
+                    openInPlayground(DEFAULT_EXAMPLE_QUERY);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className="block w-full px-3 py-2.5 rounded-lg text-[15px] font-medium text-white text-center transition-colors duration-200"
                   style={{
                     backgroundColor: palette.accent,
                     boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
@@ -110,20 +112,6 @@ const Navbar: React.FC = () => {
                   Playground
                   <span className="inline-block ml-1">↗</span>
                 </button>
-
-                <AnimatePresence>
-                  {showMobileMessage && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="mt-2 px-3 py-2 text-[13px] rounded-lg bg-black/5"
-                      style={{ color: palette.secondary }}
-                    >
-                      Please visit from a desktop browser to try the playground.
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </div>
             </nav>
           </motion.div>
@@ -234,11 +222,13 @@ const Navbar: React.FC = () => {
 
               {/* Playground Button */}
               <div className="relative">
-                <a
-                  href="https://playground.beamlynx.com?query=customers | select: first_name, last_name, | public.orders .customer_id | public.order_items .order_id | public.products .product_id :parent | select: name, price | limit: 10"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={handleTryItClick}
+                <button
+                  onClick={(e) => {
+                    handleTryItClick(e);
+                    if (window.innerWidth >= 768) {
+                      openInPlayground(DEFAULT_EXAMPLE_QUERY);
+                    }
+                  }}
                   className="ml-1 sm:ml-4 px-2 sm:px-4 py-1.5 rounded-lg text-[14px] sm:text-[15px] font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap flex items-center"
                   style={
                     {
@@ -253,7 +243,7 @@ const Navbar: React.FC = () => {
                   <span className="inline-block ml-1 transition-transform group-hover:translate-x-0.5">
                     ↗
                   </span>
-                </a>
+                </button>
 
                 {/* Mobile Message Popup */}
                 <AnimatePresence>

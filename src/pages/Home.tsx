@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import beamlynxScreenshot from "../assets/beamlynx-1.png";
+import { openInPlayground, DEFAULT_EXAMPLE_QUERY } from "../utils/playground";
 
 const Home = () => {
   return (
@@ -149,14 +150,12 @@ const Home = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="mt-16 text-center sm:mt-20 lg:mt-24"
           >
-            <Link
-              to="https://playground.beamlynx.com?query=customers | select: first_name, last_name, | public.orders .customer_id | public.order_items .order_id | public.products .product_id :parent | select: name, price | limit: 10"
+            <button
+              onClick={() => openInPlayground(DEFAULT_EXAMPLE_QUERY)}
               className="btn-primary text-base px-6 py-3 sm:text-lg sm:px-8 sm:py-4"
-              target="_blank"
-              rel="noopener noreferrer"
             >
               Try it out <span aria-hidden="true">↗</span>
-            </Link>
+            </button>
           </motion.div>
         </div>
       </section>
