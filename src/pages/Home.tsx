@@ -1,12 +1,11 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import beamlynxScreenshot from "../assets/beamlynx-1.png";
-import { openInPlayground, DEFAULT_EXAMPLE_QUERY } from "../utils/playground";
+import { DEFAULT_EXAMPLE_QUERY, openInPlayground } from "../utils/playground";
 
 const Home = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      <title>Beamlynx - Visual & Intuitive Database Queries</title>
+      <title>beamlynx - Visual & Intuitive Database Queries</title>
       <meta
         name="description"
         content="Beamlynx is a visual database client that makes database interactions delightful. Explore and interact with your data using pine-lang, a simple, intuitive query language."

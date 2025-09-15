@@ -7,24 +7,27 @@ const Posts: React.FC = () => {
 
   const posts = [
     {
+      title: "Beamlynx gets a playground",
+      date: "2025-09-15",
+      url: "https://beamlynx.substack.com/p/beamlynx-gets-a-playground",
+      preview: `Until now, the only way to try beamlynx was to set it up locally. And that kills curiosity fast. No one wants to do work for no apparent reason. There is no incentive. People need to see what is it it for them first. So I built the beamlynx playground. No setup. Just open it in your browser and play.`
+    },
+    {
       title: "Introducing Beamlynx",
       date: "2025-08-07",
       url: "https://beamlynx.substack.com/p/introducing-beamlynx",
-      readTime: "2 min read",
       preview: `Pine-lang has evolved into much more than a domain-specific language (DSL). What began as a way to simplify SQL has grown into a full-fledged database client - one that lets me explore and interact with data in a visual, interactive way. This new system deserves a new name and a distinct identity. I call it Beamlynx.`
     },
     {
       title: "Insight. Simplicity. Delight.",
       date: "2025-06-15",
       url: "https://open.substack.com/pub/beamlynx/p/insight-simplicity-delight",
-      readTime: "1 min read",
       preview: `Over time, I've come to expect three things from the systems I work with: they should teach me something, they should help me think clearly, and they should make the experience enjoyable. I am constantly refining Pine to meet that bar. Building for Insight: Teach me! I don't want to read the docs - the system should figure out my intent and show me the way. Building for Simplicity: Clarity of thought! I don't want to think about things that are not relevant to the problem at hand. Building for Delight: Fun! I don't want to feel like I am doing chores. The task of solving problems should be enjoyable.`
     },
     {
       title: "Discovering pine-lang",
       date: "2024-05-25",
       url: "https://beamlynx.substack.com/p/discovering-pine-lang-simplifying",
-      readTime: "3 min read",
       preview: `It's 2017, and I'm working at Penneo. I've been with the company for a few years, but we're still in startup mode. The product isn't fully mature, and I often find myself diving into the data to fix bugs. Occasionally, I'm on the phone with a user, cramming the phone between my shoulder and ear—lacking decent headphones with a mic—trying to troubleshoot database issues on the fly...`
     },
     // Add more posts as they come
@@ -32,12 +35,12 @@ const Posts: React.FC = () => {
 
   return (
     <div className="min-h-screen py-12 sm:py-16 md:py-20">
-      <title>Beamlynx - Blog</title>
+      <title>beamlynx - Blog</title>
       <meta
         name="description"
         content="Read the latest news, articles, and insights from the Beamlynx team. Stay up-to-date with our development journey and discover the philosophy behind Beamlynx."
       />
-      <meta property="og:title" content="Beamlynx - Blog" />
+      <meta property="og:title" content="beamlynx - Blog" />
       <meta property="og:description" content="The latest news, articles, and insights from the Beamlynx team." />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://beamlynx.org/posts" />
@@ -87,12 +90,6 @@ const Posts: React.FC = () => {
                       })}
                     </time>
                     <span style={{ color: `${palette.secondary}99` }}>•</span>
-                    <span 
-                      className="text-sm font-medium"
-                      style={{ color: `${palette.secondary}99` }}
-                    >
-                      {post.readTime}
-                    </span>
                   </div>
 
                   <h2 

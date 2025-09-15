@@ -15,7 +15,7 @@ SQL has been the foundation of data work for decades. It's powerful, expressive,
           <li>SQL blurs the lines between <i>what</i> you want and <i>how</i> to get it.</li>
           <li>Composability isn't its focus.</li>
           <li>
-            Results don't help you discover relationships or contenxt in your
+            Results don't help you discover relationships or context in your
             schema.
           </li>
           <li>SQL wasn't designed with visual exploration in mind.</li>

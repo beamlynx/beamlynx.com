@@ -336,7 +336,7 @@ const Documentation: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-pine-50">
-      <title>Beamlynx - {activeLabel}</title>
+      <title>beamlynx - {activeLabel}</title>
       <meta
         name="description"
         content="Explore the official Beamlynx documentation. Learn the syntax, features, and best practices for using pine-lang to write clear and efficient database queries."
