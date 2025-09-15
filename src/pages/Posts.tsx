@@ -73,7 +73,7 @@ const Posts: React.FC = () => {
                 style={{ borderColor: `${palette.accent}20` }}
               >
                 <a 
-                  href={post.url}
+                  href={`${post.url}?ref=beamlynx.com`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block group"
@@ -89,7 +89,6 @@ const Posts: React.FC = () => {
                         day: 'numeric'
                       })}
                     </time>
-                    <span style={{ color: `${palette.secondary}99` }}>•</span>
                   </div>
 
                   <h2 
