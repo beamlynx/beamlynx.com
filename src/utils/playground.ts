@@ -1,9 +1,10 @@
 /**
  * Opens a query in the BeamLynx playground
- * @param query The query string to open in the playground
+ * @param expression The expression to open in the playground
  */
-export const openInPlayground = (query: string): void => {
-  const url = `https://playground.beamlynx.com?query=${encodeURIComponent(query)}`;
+export const openInPlayground = (expression: string): void => {
+  const data = { expression  };
+  const url = `https://playground.beamlynx.com?data=${encodeURIComponent(JSON.stringify(data))}`;
   window.open(url, '_blank');
 };
 
