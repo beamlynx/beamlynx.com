@@ -6,20 +6,20 @@ const Where: React.FC = () => {
   const examples: DocumentationExample[] = [
     {
       title: 'Condition',
-      expression: 'customers | where: name = \'John Doe\'',
-      sql: 'SELECT * FROM customers WHERE name = \'John Doe\'',
+      expression: 'customers | where: first_name = \'John\'',
+      sql: 'SELECT * FROM customers WHERE first_name = \'John\'',
       description: 'Filter records where a column equals a specific value'
     },
     {
       title: 'Multiple conditions',
-      expression: 'customers | where: name like \'John%\' | where: last_name = \'Doe\'',
-      sql: 'SELECT * FROM customers WHERE name LIKE \'John%\' AND last_name = \'Doe\'',
+      expression: 'customers | where: first_name like \'John%\' | where: last_name = \'Doe\'',
+      sql: 'SELECT * FROM customers WHERE first_name LIKE \'John%\' AND last_name = \'Doe\'',
       description: 'Apply multiple filter conditions with comma separation'
     },
     {
       title: 'NULL',
-      expression: 'customers | where: deleted_at is null',
-      sql: 'SELECT * FROM customers WHERE deleted_at IS NULL',
+      expression: 'customers | where: created_at is null',
+      sql: 'SELECT * FROM customers WHERE created_at IS NULL',
       description: 'Filter for records with NULL values in a column'
     },
     {
@@ -43,13 +43,13 @@ const Where: React.FC = () => {
     {
       title: 'LIKE',
       expression: 'customers | where: first_name like \'Jo%\'',
-      sql: 'SELECT * FROM customers WHERE first_name LIKE \'John%\'',
+      sql: 'SELECT * FROM customers WHERE first_name LIKE \'Jo%\'',
       description: 'Filter for records using the LIKE operator'
     },
     {
       title: 'ILIKE',
-      expression: 'customers | where: first_name ilike \'Jo%\'',
-      sql: 'SELECT * FROM customers WHERE first_name ILIKE \'Jo%\'',
+      expression: 'customers | where: first_name ilike \'jo%\'',
+      sql: 'SELECT * FROM customers WHERE first_name ILIKE \'jo%\'',
       description: 'Filter for records using the ILIKE operator'
     }
   ];
