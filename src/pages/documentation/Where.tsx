@@ -39,6 +39,18 @@ const Where: React.FC = () => {
       expression: 'customers | where: created_at < updated_at',
       sql: 'SELECT * FROM customers WHERE created_at < updated_at',
       description: 'Compare values between different columns'
+    },
+    {
+      title: 'LIKE',
+      expression: 'customers | where: first_name like \'Jo%\'',
+      sql: 'SELECT * FROM customers WHERE first_name LIKE \'John%\'',
+      description: 'Filter for records using the LIKE operator'
+    },
+    {
+      title: 'ILIKE',
+      expression: 'customers | where: first_name ilike \'Jo%\'',
+      sql: 'SELECT * FROM customers WHERE first_name ILIKE \'Jo%\'',
+      description: 'Filter for records using the ILIKE operator'
     }
   ];
 
