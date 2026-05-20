@@ -7,6 +7,12 @@ const Posts: React.FC = () => {
 
   const posts = [
     {
+      title: "The Road Ahead for Beamlynx",
+      date: "2026-05-19",
+      url: "https://beamlynx.substack.com/p/the-road-ahead-for-beamlynx",
+      preview: `Beamlynx turned into a surprisingly useful database client. I've saved a significant amount of time writing queries - although I might have spent even more time building it… but who's counting.`
+    },
+    {
       title: "Beamlynx gets a playground",
       date: "2025-09-15",
       url: "https://beamlynx.substack.com/p/beamlynx-gets-a-playground",
