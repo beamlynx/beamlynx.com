@@ -10,54 +10,21 @@ export interface DocumentationExample {
   description?: string;
 }
 
-// Function to format SQL with proper line breaks and indentation
-const formatSQL = (sql: string): string => {
-  return sql
-    // Normalize keywords to uppercase
-    .replace(/\bSELECT\b/gi, 'SELECT')
-    .replace(/\bFROM\b/gi, '\nFROM')
-    .replace(/\bWHERE\b/gi, '\nWHERE')
-    .replace(/\bAND\b/gi, '\n  AND')
-    .replace(/\bOR\b/gi, '\n  OR')
-    // Handle different types of JOINs
-    .replace(/\bLEFT\s+JOIN\b/gi, '\nLEFT JOIN')
-    .replace(/\bRIGHT\s+JOIN\b/gi, '\nRIGHT JOIN')
-    .replace(/\bINNER\s+JOIN\b/gi, '\nINNER JOIN')
-    .replace(/\bFULL\s+OUTER\s+JOIN\b/gi, '\nFULL OUTER JOIN')
-    .replace(/\bJOIN\b/gi, '\nJOIN')
-    .replace(/\bON\b/gi, '\n  ON')
-    // Other clauses
-    .replace(/\bORDER\s+BY\b/gi, '\nORDER BY')
-    .replace(/\bGROUP\s+BY\b/gi, '\nGROUP BY')
-    .replace(/\bHAVING\b/gi, '\nHAVING')
-    .replace(/\bLIMIT\b/gi, '\nLIMIT')
-    .replace(/\bOFFSET\b/gi, '\nOFFSET')
-    // Handle subqueries and CASE statements
-    .replace(/\bCASE\b/gi, '\nCASE')
-    .replace(/\bWHEN\b/gi, '\n  WHEN')
-    .replace(/\bTHEN\b/gi, ' THEN')
-    .replace(/\bELSE\b/gi, '\n  ELSE')
-    .replace(/\bEND\b/gi, '\nEND')
-    // Clean up extra whitespace and trim
-    .replace(/\n\s*\n/g, '\n')
-    .trim();
-};
-
 // SQL syntax highlighter component that returns React elements
 const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
   const keywords = ['SELECT', 'FROM', 'WHERE', 'AND', 'OR', 'JOIN', 'LEFT', 'RIGHT', 'INNER', 'FULL', 'OUTER', 'ON', 'ORDER', 'BY', 'GROUP', 'HAVING', 'LIMIT', 'OFFSET', 'AS', 'IS', 'NULL', 'NOT', 'LIKE', 'IN', 'BETWEEN', 'EXISTS', 'CASE', 'WHEN', 'THEN', 'ELSE', 'END', 'ASC', 'DESC'];
-  
+
   // Split by whitespace and punctuation while preserving them
   const parts = sql.split(/(\s+|[().,;=<>!])/);
-  
+
   return (
     <>
       {parts.map((part, index) => {
         const trimmedPart = part.trim().toUpperCase();
-        
+
         // Skip empty parts
         if (!part) return null;
-        
+
         // Check if it's a keyword
         if (keywords.includes(trimmedPart)) {
           return (
@@ -66,7 +33,7 @@ const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
             </span>
           );
         }
-        
+
         // Check if it's a string (starts and ends with quotes)
         if (part.match(/^'.*'$/)) {
           return (
@@ -75,7 +42,7 @@ const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
             </span>
           );
         }
-        
+
         // Check if it's a number
         if (part.match(/^\d+$/)) {
           return (
@@ -84,7 +51,7 @@ const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
             </span>
           );
         }
-        
+
         // Check if it's an operator
         if (part.match(/^[=<>!]+$/)) {
           return (
@@ -93,7 +60,7 @@ const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
             </span>
           );
         }
-        
+
         // Default styling for other text (including punctuation and whitespace)
         return (
           <span key={index} style={{ color: '#1e293b' }}>
@@ -312,7 +279,7 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
                               lineHeight: '1.6'
                             }}
                           >
-                            <HighlightedSQL sql={formatSQL(example.sql)} />
+                            <HighlightedSQL sql={example.sql} />
                           </code>
                         </pre>
                       </div>
