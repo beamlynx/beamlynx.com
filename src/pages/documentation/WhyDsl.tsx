@@ -5,7 +5,7 @@ const WhyDsl: React.FC = () => {
   return (
     <DocumentationSection
       id="why-dsl"
-      title="Why a DSL?"
+      title="Why?"
       description={`
 SQL has been the foundation of data work for decades. It's powerful, expressive, and universal. But for some tasks, it can get in the way.
       `}
@@ -25,7 +25,7 @@ SQL has been the foundation of data work for decades. It's powerful, expressive,
         </ul>
       </p>
 
-      SQL is great - but we can improve the experience with a DSL.
+      SQL is great - but we can improve the experience with a domain-specific language (DSL).
     </DocumentationSection>
   );
 };

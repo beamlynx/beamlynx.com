@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 
 const documentationComponents = {
-  'Why a PSL?': lazy(() => import('./WhyDsl')),
+  'Why?': lazy(() => import('./WhyDsl')),
   'Intro': lazy(() => import('./PineLang')),
   Table: lazy(() => import('./Table')),
   Join: lazy(() => import('./Join')),

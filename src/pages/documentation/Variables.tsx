@@ -27,6 +27,18 @@ const Variables: React.FC = () => {
       expression: 'company | where: active = true |= active_companies\n\nactive_companies | l: 10 |= small_active\n\nsmall_active',
       sql: 'WITH active_companies AS ( SELECT * FROM company WHERE active = true ), small_active AS ( SELECT * FROM active_companies LIMIT 10 ) SELECT * FROM small_active',
       description: 'Each expression builds on the previous. Separate expressions with a blank line.'
+    },
+    {
+      title: 'Only explicitly selected id columns stay joinable',
+      expression: 'company | select: id, name |= x\n\nx | employee',
+      sql: 'WITH x AS ( SELECT id, name FROM company ) SELECT * FROM x JOIN employee ON x.id = employee.company_id',
+      description: 'Once a variable is used, its underlying tables are no longer visible — only its own output columns are. A table stays a valid join source through the variable only if its id was explicitly selected. select: name alone (no id) would make x unjoinable to anything.'
+    },
+    {
+      title: 'Automatic checkpoints after group: or limit:',
+      expression: 'company | limit: 10 | employee',
+      sql: 'WITH __pine_0__ AS ( SELECT * FROM company LIMIT 10 ) SELECT * FROM __pine_0__ JOIN employee ON __pine_0__.id = employee.company_id',
+      description: 'group: and limit: produce a final, bounded result. Piping into another table after one of them automatically wraps the preceding query in an anonymous CTE first, so the join applies on top of the limited/grouped result instead of corrupting it. Name that CTE yourself with |= placed right after the group:/limit: step.'
     }
   ];
 
