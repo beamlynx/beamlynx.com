@@ -85,7 +85,7 @@ const Posts: React.FC = () => {
                 style={{ borderColor: `${palette.accent}20` }}
               >
                 <a 
-                  href={`${post.url}?ref=beamlynx.com`}
+                  href={post.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block group"

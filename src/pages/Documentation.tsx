@@ -25,6 +25,11 @@ const Documentation: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const scrollObserverRef = useRef<IntersectionObserver | null>(null);
   const scrollTimeoutRef = useRef<number | null>(null);
+  const activeSectionRef = useRef(activeSection);
+
+  useEffect(() => {
+    activeSectionRef.current = activeSection;
+  }, [activeSection]);
 
   // Initial setup effect - handles hash navigation and initial active section
   useEffect(() => {
@@ -95,7 +100,7 @@ const Documentation: React.FC = () => {
             });
 
             const sectionId = mostVisible.target.id;
-            if (sectionId && sectionId !== activeSection) {
+            if (sectionId && sectionId !== activeSectionRef.current) {
               setActiveSection(sectionId);
               // Update URL hash without scrolling
               if (window.location.hash !== `#${sectionId}`) {
@@ -140,7 +145,7 @@ const Documentation: React.FC = () => {
         }
       };
     }
-  }, [activeSection]);
+  }, []);
 
   // Scroll detection effect - tracks when user is scrolling to disable hover effects
   useEffect(() => {
