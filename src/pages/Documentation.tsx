@@ -26,10 +26,15 @@ const Documentation: React.FC = () => {
   const scrollObserverRef = useRef<IntersectionObserver | null>(null);
   const scrollTimeoutRef = useRef<number | null>(null);
   const activeSectionRef = useRef(activeSection);
+  const isScrollingRef = useRef(isScrolling);
 
   useEffect(() => {
     activeSectionRef.current = activeSection;
   }, [activeSection]);
+
+  useEffect(() => {
+    isScrollingRef.current = isScrolling;
+  }, [isScrolling]);
 
   // Initial setup effect - handles hash navigation and initial active section
   useEffect(() => {
@@ -68,8 +73,42 @@ const Documentation: React.FC = () => {
     };
   }, []);
 
+  const commitMostVisibleRef = useRef<() => void>(() => {});
+
   // Scroll tracking effect - sets up persistent IntersectionObserver for all sections
   useEffect(() => {
+    // Position-based scrollspy: pick the last section (in document order) whose
+    // top has crossed into the top ~40% of the viewport. We deliberately don't use
+    // intersectionRatio here - it's relative to each section's own height, so a
+    // long section (like Variables, with many examples) barely peeking into view
+    // reports a tiny ratio and loses out to a short section just above it that's
+    // almost entirely scrolled past. Position doesn't have that bias.
+    const commitMostVisible = () => {
+      const triggerLine = window.innerHeight * 0.4;
+      let candidateId: string | null = null;
+
+      for (const { id } of SECTIONS) {
+        const element = document.getElementById(id);
+        if (element && element.getBoundingClientRect().top <= triggerLine) {
+          candidateId = id;
+        }
+      }
+
+      // Above the first section (e.g. page just loaded, not yet scrolled), default to it.
+      if (!candidateId) {
+        candidateId = SECTIONS[0]?.id ?? null;
+      }
+
+      if (candidateId && candidateId !== activeSectionRef.current) {
+        setActiveSection(candidateId);
+        // Update URL hash without scrolling
+        if (window.location.hash !== `#${candidateId}`) {
+          window.history.replaceState(null, '', `#${candidateId}`);
+        }
+      }
+    };
+    commitMostVisibleRef.current = commitMostVisible;
+
     const setupScrollObserver = () => {
       // Clean up existing observer
       if (scrollObserverRef.current) {
@@ -77,37 +116,23 @@ const Documentation: React.FC = () => {
       }
 
       const sectionElements = SECTIONS.map(({ id }) => document.getElementById(id)).filter(Boolean);
-      
+
       if (sectionElements.length === 0) {
         // Sections not ready yet, try again after a delay
         setTimeout(setupScrollObserver, 100);
         return;
       }
 
+      // The observer is just a cheap "something moved, please recheck" trigger -
+      // the actual section choice is (re)computed live in commitMostVisible above.
       scrollObserverRef.current = new IntersectionObserver(
-        (entries) => {
-          // Find the section with the highest intersection ratio that's actually visible
-          const visibleEntries = entries.filter(entry => entry.isIntersecting);
-          
-          if (visibleEntries.length > 0) {
-            // Sort by intersection ratio and position to get the most prominent section
-            const mostVisible = visibleEntries.reduce((prev, current) => {
-              // If intersection ratios are similar, prefer the one higher up on the page
-              if (Math.abs(current.intersectionRatio - prev.intersectionRatio) < 0.1) {
-                return current.boundingClientRect.top < prev.boundingClientRect.top ? current : prev;
-              }
-              return current.intersectionRatio > prev.intersectionRatio ? current : prev;
-            });
+        () => {
+          // While the page is actively scrolling (including our own smooth-scroll
+          // from a sidebar click), positions are mid-flight - defer to the
+          // settle-triggered commit instead (see the scroll detection effect below).
+          if (isScrollingRef.current) return;
 
-            const sectionId = mostVisible.target.id;
-            if (sectionId && sectionId !== activeSectionRef.current) {
-              setActiveSection(sectionId);
-              // Update URL hash without scrolling
-              if (window.location.hash !== `#${sectionId}`) {
-                window.history.replaceState(null, '', `#${sectionId}`);
-              }
-            }
-          }
+          commitMostVisible();
         },
         {
           // Adjust rootMargin to account for navbar and give some buffer
@@ -148,18 +173,24 @@ const Documentation: React.FC = () => {
   }, []);
 
   // Scroll detection effect - tracks when user is scrolling to disable hover effects
+  // and to gate live selection updates while mid-flight (see scroll tracking effect).
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolling(true);
-      
+
       // Clear existing timeout
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
-      
+
       // Set a timeout to detect when scrolling has stopped
       scrollTimeoutRef.current = window.setTimeout(() => {
         setIsScrolling(false);
+        // Force one authoritative recheck against the latest known intersection
+        // data - the observer may have already delivered the settled state while
+        // still marked as scrolling, and nothing will otherwise re-trigger it now
+        // that the page has actually stopped moving.
+        commitMostVisibleRef.current();
       }, 150); // 150ms after scrolling stops
     };
 
@@ -168,7 +199,7 @@ const Documentation: React.FC = () => {
     if (mainElement) {
       mainElement.addEventListener('scroll', handleScroll, { passive: true });
     }
-    
+
     // Also listen on window in case scrolling happens on the window
     window.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -177,7 +208,7 @@ const Documentation: React.FC = () => {
         mainElement.removeEventListener('scroll', handleScroll);
       }
       window.removeEventListener('scroll', handleScroll);
-      
+
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
@@ -190,34 +221,19 @@ const Documentation: React.FC = () => {
     const section = document.getElementById(sectionId);
 
     if (section) {
-      // Temporarily disconnect scroll observer to prevent conflicts during smooth scrolling
-      if (scrollObserverRef.current) {
-        scrollObserverRef.current.disconnect();
-      }
-
-      // Set scrolling state to disable hover effects during smooth scroll
+      // Mark as scrolling immediately so the IntersectionObserver ignores the
+      // mid-flight ratios of the smooth scroll and doesn't fight this selection.
+      // The real scroll-end detection below (driven by actual scroll events)
+      // clears this once the animation settles, however long it takes.
       setIsScrolling(true);
 
       // Immediately update active section
       setActiveSection(sectionId);
-      
+
       section.scrollIntoView({
         behavior: 'smooth'
       });
       window.history.pushState(null, '', `#${sectionId}`);
-
-      // Re-enable scroll observer and hover effects after smooth scroll completes
-      setTimeout(() => {
-        if (scrollObserverRef.current) {
-          const sectionElements = SECTIONS.map(({ id }) => document.getElementById(id)).filter(Boolean);
-          sectionElements.forEach(element => {
-            if (element) {
-              scrollObserverRef.current!.observe(element);
-            }
-          });
-        }
-        setIsScrolling(false);
-      }, 1000); // Wait for smooth scroll animation to complete
     }
   }, []);
 
