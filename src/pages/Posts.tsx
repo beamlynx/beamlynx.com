@@ -7,6 +7,12 @@ const Posts: React.FC = () => {
 
   const posts = [
     {
+      title: "Where is the AI in Beamlynx?",
+      date: "2026-07-24",
+      url: "https://beamlynx.substack.com/p/where-is-the-ai-in-beamlynx",
+      preview: `Beamlynx doesn't have any AI features. Many people have asked me "Why not use AI to generate SQL?" - valid question! It has made me question my choice… and every time I have decided against it. This is to protect the user experience I desperately want for Beamlynx.`
+    },
+    {
       title: "The Road Ahead for Beamlynx",
       date: "2026-05-19",
       url: "https://beamlynx.substack.com/p/the-road-ahead-for-beamlynx",

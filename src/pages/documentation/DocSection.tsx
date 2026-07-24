@@ -6,9 +6,10 @@ interface DocSectionProps {
   title: string;
   children: React.ReactNode;
   isOperation?: boolean;
+  badge?: string;
 }
 
-const DocSection: React.FC<DocSectionProps> = ({ id, title, children, isOperation = false }) => {
+const DocSection: React.FC<DocSectionProps> = ({ id, title, children, isOperation = false, badge }) => {
   const palette = useColorPalette();
   const [copied, setCopied] = useState(false);
 
@@ -75,6 +76,18 @@ const DocSection: React.FC<DocSectionProps> = ({ id, title, children, isOperatio
                 }}
               >
                 OPERATION
+              </span>
+            )}
+            {badge && (
+              <span
+                className="inline-flex items-center text-sm font-medium px-2 py-0.5 rounded-md"
+                style={{
+                  backgroundColor: '#f59e0b1f',
+                  color: '#b45309',
+                  fontSize: '0.75rem',
+                }}
+              >
+                {badge.toUpperCase()}
               </span>
             )}
           </h2>

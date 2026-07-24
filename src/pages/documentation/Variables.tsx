@@ -51,6 +51,7 @@ const Variables: React.FC = () => {
       description="Name an intermediate result and use it as a table in later expressions. Variables let you build up queries in readable steps instead of nesting subqueries."
       examples={examples}
       isOperation={true}
+      badge="Coming Soon"
     >
     </DocumentationSection>
   );

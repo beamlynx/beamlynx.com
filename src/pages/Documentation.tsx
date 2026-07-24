@@ -311,12 +311,12 @@ const Documentation: React.FC = () => {
                 if (isMobile) setIsMobileMenuOpen(false);
               }}
               className={`
-                block py-2 px-3 rounded-md transition-all duration-200 
+                flex items-center justify-between gap-2 py-2 px-3 rounded-md transition-all duration-200
                 text-[15px] leading-relaxed
                 ${!isScrolling ? 'hover:bg-black/5' : ''}
                 ${activeSection === id ? 'bg-black/5 shadow-sm' : ''}
               `}
-              style={{ 
+              style={{
                 color: activeSection === id ? palette.primary : palette.secondary,
                 ...(activeSection === id && {
                   transform: 'translateX(2px)',
@@ -324,7 +324,15 @@ const Documentation: React.FC = () => {
                 })
               }}
             >
-              {label}
+              <span>{label}</span>
+              {id === 'variables' && (
+                <span
+                  className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium tracking-wide"
+                  style={{ backgroundColor: '#f59e0b1f', color: '#b45309' }}
+                >
+                  SOON
+                </span>
+              )}
             </a>
           ))}
         </nav>

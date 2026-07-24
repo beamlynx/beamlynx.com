@@ -81,6 +81,7 @@ interface DocumentationSectionProps {
   syntax?: string;
   children?: React.ReactNode;
   isOperation?: boolean;
+  badge?: string;
 }
 
 const DocumentationSection: React.FC<DocumentationSectionProps> = ({
@@ -92,13 +93,14 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
   syntax,
   children,
   isOperation = false,
+  badge,
 }) => {
   const palette = useColorPalette();
 
 
 
   return (
-    <DocSection id={id} title={title} isOperation={isOperation}>
+    <DocSection id={id} title={title} isOperation={isOperation} badge={badge}>
       {/* Operations badges with improved design */}
       {operations.length > 0 && (
         <div className="mb-8 -mt-2">
