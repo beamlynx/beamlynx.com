@@ -39,6 +39,11 @@ const Variables: React.FC = () => {
       expression: 'company | limit: 10 | employee',
       sql: 'WITH __pine_0__ AS ( SELECT * FROM company LIMIT 10 ) SELECT * FROM __pine_0__ JOIN employee ON __pine_0__.id = employee.company_id',
       description: 'group: and limit: produce a final, bounded result. Piping into another table after one of them automatically wraps the preceding query in an anonymous CTE first, so the join applies on top of the limited/grouped result instead of corrupting it. Name that CTE yourself with |= placed right after the group:/limit: step.'
+    },
+    {
+      title: 'Combine multiple aggregates per row',
+      expression: 'customers as c | orders .customer_id | group: c.id, c.email | select: id, count as order_count | order: count desc |= x\n\ncustomers as c | audit.order_status_changes .customer_id | group: c.id, c.email | select: id, count as status_change_count |= y\n\ncustomers | select: email | x | select: order_count | y | select: status_change_count',
+      description: 'x and y each aggregate a different related table down to one row per customer, exposing just their own count column. The final expression starts from customers again and joins both variables in, producing one row per customer with email, order_count, and status_change_count side by side — without nesting subqueries or repeating the customers join in each branch.'
     }
   ];
 
