@@ -110,7 +110,7 @@ const Setup = () => {
                 </h3>
               </div>
               <p className="text-base leading-7 text-gray-600 sm:text-lg sm:leading-8 mb-4">
-                Install it like any other desktop app and launch beamlynx. No Docker, no server to run &mdash; everything's bundled in.
+                Install it like any other desktop app and launch beamlynx.
               </p>
             </motion.div>
 
