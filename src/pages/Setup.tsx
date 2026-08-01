@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import InstallTabs from "../components/InstallTabs";
 
 const Setup = () => {
   return (
@@ -76,21 +77,9 @@ const Setup = () => {
                 </h3>
               </div>
               <p className="text-base leading-7 text-gray-600 sm:text-lg sm:leading-8 mb-4">
-                Grab the latest release for your platform &mdash; macOS (.dmg), Windows (.exe), or Linux (.AppImage / .deb):
+                Grab the latest release for your platform:
               </p>
-              <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
-                <a
-                  href="https://github.com/beamlynx/beamlynx-desktop/releases/latest"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-lg font-mono text-pine-600 hover:text-pine-800 hover:underline inline-flex items-center transition-colors duration-200"
-                >
-                  github.com/beamlynx/beamlynx-desktop/releases
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              </div>
+              <InstallTabs />
             </motion.div>
 
             {/* Step 2 */}
