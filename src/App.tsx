@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Documentation from './pages/Documentation';
 import { ColorPaletteProvider } from './contexts/ColorPaletteContext';
 import Navbar from './components/Navbar';
@@ -9,7 +9,7 @@ import LoadingIndicator from './components/LoadingIndicator';
 
 const Home = lazy(() => import('./pages/Home'));
 const Posts = lazy(() => import('./pages/Posts'));
-const Setup = lazy(() => import('./pages/Setup'));
+const Download = lazy(() => import('./pages/Download'));
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -27,8 +27,8 @@ function ScrollToTop() {
       case '/posts':
         document.title = 'Beamlynx - Blog';
         break;
-      case '/setup':
-        document.title = 'Beamlynx - Getting Started';
+      case '/download':
+        document.title = 'Beamlynx - Download';
         break;
       default:
         document.title = 'Beamlynx';
@@ -54,7 +54,9 @@ const AppContent = () => {
               <Route path="/" element={<Home />} />
               <Route path="/docs" element={<Documentation />} />
               <Route path="/posts" element={<Posts />} />
-              <Route path="/setup" element={<Setup />} />
+              <Route path="/download" element={<Download />} />
+              {/* Old URL from before the "Getting Started" -> "Download" rename */}
+              <Route path="/setup" element={<Navigate to="/download" replace />} />
             </Routes>
           </Suspense>
         </AnimatePresence>
