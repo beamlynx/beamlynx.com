@@ -144,7 +144,7 @@ const InstallTabs = () => {
             <ReleasesLink>Download the .AppImage</ReleasesLink> (works on most
             distros, no installation needed):
           </p>
-          <CopyCommand command="chmod +x beamlynx-*.AppImage && ./beamlynx-*.AppImage" />
+          <CopyCommand command="chmod +x beamlynx.AppImage && ./beamlynx.AppImage" />
           <p className="text-sm text-gray-500">
             Or, on Debian/Ubuntu, <ReleasesLink>download the .deb</ReleasesLink> and
             install it with your usual package manager.
