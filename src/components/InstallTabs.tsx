@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
-import { detectOS, type DetectedOS } from "../utils/detectOS";
+import { detectOS, isMobileDevice, type DetectedOS } from "../utils/detectOS";
 
 const RELEASES_URL = "https://github.com/beamlynx/beamlynx-desktop/releases/latest";
 
@@ -26,7 +26,13 @@ function CopyCommand({ command }: { command: string }) {
   };
 
   return (
-    <div className="flex items-center justify-between gap-4 rounded-lg bg-[#2E3440] px-4 py-3 font-mono text-sm text-[#D8DEE9] shadow-sm">
+    // A real <pre>, not a styled <div> -- reuses the site's existing dark
+    // code-block theme (index.css's `pre`/`pre code` rules) instead of
+    // fighting it. A <div> here would make this <code> match the global
+    // `:not(pre) > code` inline-code-chip rule, which sets color to
+    // --color-primary (#2E3440) -- the exact same navy as the intended
+    // background, i.e. invisible text on identically-colored background.
+    <pre className="flex items-center justify-between gap-4 !my-0">
       <code className="overflow-x-auto">{command}</code>
       <button
         type="button"
@@ -35,7 +41,7 @@ function CopyCommand({ command }: { command: string }) {
       >
         {copied ? "Copied!" : "Copy"}
       </button>
-    </div>
+    </pre>
   );
 }
 
@@ -73,9 +79,21 @@ function ReleasesLink({ children }: { children: React.ReactNode }) {
 
 const InstallTabs = () => {
   const [selectedIndex, setSelectedIndex] = useState(() => TABS.findIndex(t => t.key === detectOS()));
+  // Android's own UA string contains "Linux" (it's Linux-kernel-based), so
+  // without this it would auto-select the Linux *desktop* tab -- actively
+  // wrong, since beamlynx-desktop has no mobile build at all. Still show
+  // the tabs (e.g. useful for grabbing the brew command to send to a
+  // colleague), just don't pretend a phone is a supported install target.
+  const [isMobile] = useState(isMobileDevice);
 
   return (
     <TabGroup selectedIndex={selectedIndex} onChange={setSelectedIndex}>
+      {isMobile && (
+        <p className="mb-4 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3 text-sm text-amber-800">
+          beamlynx is a desktop app for macOS, Windows, and Linux. Visit this
+          page on your computer to install it.
+        </p>
+      )}
       <TabList className="flex gap-1 rounded-lg bg-gray-100 p-1 mb-4 w-fit">
         {TABS.map(tab => (
           <Tab

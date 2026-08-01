@@ -58,71 +58,12 @@ const Setup = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 gap-8 lg:gap-12"
+            className="card"
           >
-            {/* Step 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="card"
-            >
-              <div className="flex items-center mb-4">
-                <div className="w-8 h-8 rounded-full bg-pine-600 flex items-center justify-center text-white font-semibold mr-4">
-                  1
-                </div>
-                <h3 className="mb-0 text-xl font-semibold text-gray-900 sm:text-2xl">
-                  Download the App
-                </h3>
-              </div>
-              <p className="text-base leading-7 text-gray-600 sm:text-lg sm:leading-8 mb-4">
-                Grab the latest release for your platform:
-              </p>
-              <InstallTabs />
-            </motion.div>
-
-            {/* Step 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="card"
-            >
-              <div className="flex items-center mb-4">
-                <div className="w-8 h-8 rounded-full bg-pine-600 flex items-center justify-center text-white font-semibold mr-4">
-                  2
-                </div>
-                <h3 className="mb-0 text-xl font-semibold text-gray-900 sm:text-2xl">
-                  Install and Open
-                </h3>
-              </div>
-              <p className="text-base leading-7 text-gray-600 sm:text-lg sm:leading-8 mb-4">
-                Install it like any other desktop app and launch beamlynx.
-              </p>
-            </motion.div>
-
-            {/* Step 3 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="card"
-            >
-              <div className="flex items-center mb-4">
-                <div className="w-8 h-8 rounded-full bg-pine-600 flex items-center justify-center text-white font-semibold mr-4">
-                  3
-                </div>
-                <h3 className="mb-0 text-xl font-semibold text-gray-900 sm:text-2xl">
-                  Connect to Your Database
-                </h3>
-              </div>
-              <p className="text-base leading-7 text-gray-600 sm:text-lg sm:leading-8 mb-4">
-                In the app, you'll be prompted to enter your database credentials to establish a connection.
-              </p>
-            </motion.div>
+            <h3 className="mb-4 text-xl font-semibold text-gray-900 sm:text-2xl">
+              Download the App
+            </h3>
+            <InstallTabs />
           </motion.div>
         </div>
       </section>
