@@ -346,14 +346,6 @@ const Documentation: React.FC = () => {
               }}
             >
               <span>{label}</span>
-              {id === 'variables' && (
-                <span
-                  className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium tracking-wide"
-                  style={{ backgroundColor: '#f59e0b1f', color: '#b45309' }}
-                >
-                  SOON
-                </span>
-              )}
             </a>
           ))}
         </nav>
