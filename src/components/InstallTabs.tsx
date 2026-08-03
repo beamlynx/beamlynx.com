@@ -120,10 +120,13 @@ const InstallTabs = () => {
             Or <ReleasesLink>download the .dmg directly</ReleasesLink>.
           </p>
           <p className="text-sm text-gray-500">
-            This build isn't code-signed yet, so macOS may warn that it's from an
-            unidentified developer. Right-click the app in Finder and choose{" "}
-            <span className="font-medium">Open</span> to launch it anyway.
+            This build isn't notarized by Apple yet, so recent macOS versions
+            block it outright with a message that it "contains malware" --
+            that's Gatekeeper being unable to vouch for it, not an actual
+            detection. To open it anyway, run this in Terminal (adjust the
+            path if you moved the app), then launch beamlynx normally:
           </p>
+          <CopyCommand command="xattr -cr /Applications/beamlynx.app" />
         </TabPanel>
 
         {/* Windows */}
