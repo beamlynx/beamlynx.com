@@ -120,9 +120,8 @@ const InstallTabs = () => {
             Or <ReleasesLink>download the .dmg directly</ReleasesLink>.
           </p>
           <p className="text-sm text-gray-500">
-            This build isn't code-signed yet, so macOS may warn that it's from an
-            unidentified developer. Right-click the app in Finder and choose{" "}
-            <span className="font-medium">Open</span> to launch it anyway.
+            This build isn't notarized by Apple yet. macOS currently blocks it
+            on first launch -- we're working on a fix.
           </p>
         </TabPanel>
 
