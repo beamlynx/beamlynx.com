@@ -120,8 +120,17 @@ const InstallTabs = () => {
             Or <ReleasesLink>download the .dmg directly</ReleasesLink>.
           </p>
           <p className="text-sm text-gray-500">
-            This build isn't notarized by Apple yet. macOS currently blocks it
-            on first launch -- we're working on a fix.
+            This build isn't signed yet, so macOS will block it on first
+            launch -- we're working on a fix. If you'd like to try it anyway,
+            you can self-sign it and clear the quarantine flag from Terminal:
+          </p>
+          <CopyCommand command="codesign --force --deep --sign - /Applications/beamlynx.app && xattr -cr /Applications/beamlynx.app" />
+          <p className="text-sm text-gray-500">
+            That's a self-applied signature, not one from us, so it may not
+            get past Gatekeeper on every macOS version. Auto-update also
+            doesn't work yet on macOS -- you'll need to re-download and
+            re-run these commands for each new version until signing is
+            fixed.
           </p>
         </TabPanel>
 
