@@ -119,10 +119,6 @@ const InstallTabs = () => {
           <p className="text-sm text-gray-500">
             Or <ReleasesLink>download the .dmg directly</ReleasesLink>.
           </p>
-          <p className="text-sm text-gray-500">
-            Signed and notarized by Apple as of 0.2.2 -- no Gatekeeper
-            warning, no manual steps needed.
-          </p>
         </TabPanel>
 
         {/* Windows */}
