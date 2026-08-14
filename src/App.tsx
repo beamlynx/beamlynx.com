@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'r
 import Documentation from './pages/Documentation';
 import { ColorPaletteProvider } from './contexts/ColorPaletteContext';
 import Navbar from './components/Navbar';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, MotionConfig } from 'framer-motion';
 import Footer from './components/Footer';
 import { useEffect, lazy, Suspense } from 'react';
 import LoadingIndicator from './components/LoadingIndicator';
@@ -68,11 +68,16 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <ColorPaletteProvider>
-      <Router>
-        <AppContent />
-      </Router>
-    </ColorPaletteProvider>
+    // reducedMotion="user" makes every motion.* component honor the OS-level
+    // prefers-reduced-motion setting automatically, rather than each usage
+    // needing its own check.
+    <MotionConfig reducedMotion="user">
+      <ColorPaletteProvider>
+        <Router>
+          <AppContent />
+        </Router>
+      </ColorPaletteProvider>
+    </MotionConfig>
   );
 };
 

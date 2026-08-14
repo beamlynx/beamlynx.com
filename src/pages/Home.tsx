@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
-import beamlynxScreenshot from "../assets/beamlynx-1.png";
 import { DEFAULT_EXAMPLE_QUERY, openInPlayground } from "../utils/playground";
 
 const Home = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="bp-page flex flex-col min-h-screen">
       <title>beamlynx - Visual & Intuitive Database Queries</title>
       <meta
         name="description"
@@ -39,123 +38,240 @@ const Home = () => {
       />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden flex-1 flex items-center justify-center px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mx-auto max-w-6xl w-full"
-        >
-          <div className="text-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-2xl font-bold tracking-tight text-gray-700 sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
-            >
-              Explore databases
-              <span className="text-pine-600"> visually and intuitively</span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="mx-auto mt-4 max-w-3xl text-base leading-7 text-gray-600 sm:mt-6 sm:text-lg sm:leading-8 lg:text-xl lg:leading-9"
-            >
-              Beamlynx is a visual database client that makes database
-              interactions delightful. Use a simple, composable language to
-              write queries while seeing your database relationships come to
-              life.
-            </motion.p>
-
-            {/* Screenshot */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mt-8 sm:mt-10 lg:mt-12"
-            >
-              <img
-                src={beamlynxScreenshot}
-                alt="Beamlynx visual database client interface showing pine-lang queries and database relationships"
-                className="mx-auto w-full max-w-xs rounded-lg shadow-lg sm:max-w-lg md:max-w-xl lg:max-w-2xl xl:max-w-3xl"
-              />
-            </motion.div>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Features Section */}
-      <section className="bg-white px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="card"
-            >
-              <h3 className="mb-4 text-xl font-semibold text-gray-900 sm:text-2xl">
-                Visual Database Client
-              </h3>
-              <p className="text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
-                See your database relationships visualized in real-time as you
-                write pine-lang queries. Visualizing relationships has never
-                been easier.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="card"
-            >
-              <h3 className="mb-4 text-xl font-semibold text-gray-900 sm:text-2xl">
-                pine-lang DSL
-              </h3>
-              <p className="text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
-                Write queries in pine-lang, a language that feels natural and
-                converts seamlessly to SQL. This allows you to focus on the
-                problem, not the syntax.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="card md:col-span-2 lg:col-span-1"
-            >
-              <h3 className="mb-4 text-xl font-semibold text-gray-900 sm:text-2xl">
-                Interactive Experience
-              </h3>
-              <p className="text-base leading-7 text-gray-600 sm:text-lg sm:leading-8">
-                Watch your database relationships come to life as you type. See
-                how tables connect and understand query paths through
-                interactive visual feedback.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Call to Action */}
+      <section className="px-4 pt-16 pb-14 sm:px-6 sm:pt-20 lg:px-8 lg:pt-24">
+        <div className="mx-auto max-w-6xl w-full grid grid-cols-1 lg:grid-cols-[0.92fr_1.08fr] gap-12 lg:gap-10 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-16 text-center sm:mt-20 lg:mt-24"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <button
-              onClick={() => openInPlayground(DEFAULT_EXAMPLE_QUERY)}
-              className="btn-primary text-base px-6 py-3 sm:text-lg sm:px-8 sm:py-4"
+            <p className="bp-eyebrow mb-5">Visual database client</p>
+            <h1 className="text-[28px] sm:text-4xl lg:text-[46px] leading-[1.15] tracking-tight max-w-[15ch]">
+              Explore databases
+              <br />
+              <span style={{ color: "var(--bp-trace)" }}>
+                visually and intuitively
+              </span>
+            </h1>
+            <p
+              className="mt-6 max-w-[46ch] text-[17px] leading-relaxed"
+              style={{ color: "var(--bp-text-dim)" }}
             >
-              Try it out <span aria-hidden="true">↗</span>
-            </button>
+              Write queries in <code>pine-lang</code>, a simple, composable
+              language that converts seamlessly to SQL — while your
+              database's relationships render live as a schematic you can
+              click through.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3.5">
+              <button
+                onClick={() => openInPlayground(DEFAULT_EXAMPLE_QUERY)}
+                className="bp-btn bp-btn-primary"
+              >
+                Try it in the Playground <span aria-hidden="true">↗</span>
+              </button>
+              <a href="/download" className="bp-btn bp-btn-ghost">
+                Download for desktop
+              </a>
+            </div>
           </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+          >
+            <div className="bp-viewport">
+              <span className="bp-vp-bl"></span>
+              <span className="bp-vp-br"></span>
+              <svg
+                className="bp-diagram"
+                viewBox="0 0 620 280"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-label="Schematic diagram of the customers, orders, order_items and products tables joined in sequence"
+              >
+                {/* traces */}
+                <path
+                  d="M 148 68 H 158 V 204 H 168"
+                  fill="none"
+                  stroke="#4fd1ff"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M 300 204 H 310 V 68 H 320"
+                  fill="none"
+                  stroke="#4fd1ff"
+                  strokeWidth="2"
+                />
+                <path
+                  d="M 452 68 H 462 V 204 H 472"
+                  fill="none"
+                  stroke="#4fd1ff"
+                  strokeWidth="2"
+                />
+                <circle cx="158" cy="68" r="2.5" fill="#4fd1ff" />
+                <circle cx="310" cy="204" r="2.5" fill="#4fd1ff" />
+                <circle cx="462" cy="68" r="2.5" fill="#4fd1ff" />
+
+                {/* customers - the query's start node, solid header */}
+                <g>
+                  <rect x="16" y="36" width="132" height="64" rx="3" fill="#123554" stroke="#4fd1ff" strokeWidth="1.5" />
+                  <rect x="16" y="36" width="132" height="20" rx="3" fill="#4fd1ff" />
+                  <text x="82" y="50" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="10.5" fontWeight="600" fill="#06131f">customers</text>
+                  <text x="28" y="76" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#dbeeff">id</text>
+                  <text x="28" y="90" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#7ba3c2">first_name</text>
+                  <rect x="144.5" y="64.5" width="7" height="7" fill="#4fd1ff" />
+                </g>
+
+                {/* orders */}
+                <g>
+                  <rect x="168" y="172" width="132" height="64" rx="3" fill="#0f2337" stroke="#4fd1ff" strokeWidth="1.5" />
+                  <rect x="168" y="172" width="132" height="20" rx="3" fill="#1c3b57" />
+                  <text x="234" y="186" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="10.5" fontWeight="600" fill="#dbeeff">orders</text>
+                  <text x="180" y="212" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#dbeeff">customer_id</text>
+                  <text x="180" y="226" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#7ba3c2">id</text>
+                  <rect x="164.5" y="200.5" width="7" height="7" fill="#4fd1ff" />
+                  <rect x="296.5" y="200.5" width="7" height="7" fill="#4fd1ff" />
+                </g>
+
+                {/* order_items */}
+                <g>
+                  <rect x="320" y="36" width="132" height="64" rx="3" fill="#0f2337" stroke="#4fd1ff" strokeWidth="1.5" />
+                  <rect x="320" y="36" width="132" height="20" rx="3" fill="#1c3b57" />
+                  <text x="386" y="50" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="10.5" fontWeight="600" fill="#dbeeff">order_items</text>
+                  <text x="332" y="76" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#dbeeff">order_id</text>
+                  <text x="332" y="90" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#dbeeff">product_id</text>
+                  <rect x="316.5" y="64.5" width="7" height="7" fill="#4fd1ff" />
+                  <rect x="448.5" y="64.5" width="7" height="7" fill="#4fd1ff" />
+                </g>
+
+                {/* products */}
+                <g>
+                  <rect x="472" y="172" width="132" height="64" rx="3" fill="#0f2337" stroke="#4fd1ff" strokeWidth="1.5" />
+                  <rect x="472" y="172" width="132" height="20" rx="3" fill="#1c3b57" />
+                  <text x="538" y="186" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="10.5" fontWeight="600" fill="#dbeeff">products</text>
+                  <text x="484" y="212" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#dbeeff">id</text>
+                  <text x="484" y="226" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#7ba3c2">name, price</text>
+                  <rect x="468.5" y="200.5" width="7" height="7" fill="#4fd1ff" />
+                </g>
+              </svg>
+
+              <div className="bp-query">
+                customers <span className="tk-pipe">|</span>{" "}
+                <span className="tk-kw">select:</span> first_name, last_name,{" "}
+                <span className="tk-pipe">|</span> public.orders
+                .customer_id <span className="tk-pipe">|</span>{" "}
+                public.order_items .order_id{" "}
+                <span className="tk-pipe">|</span> public.products
+                .product_id <span className="tk-kw">:parent</span>{" "}
+                <span className="tk-pipe">|</span>{" "}
+                <span className="tk-kw">select:</span> name, price{" "}
+                <span className="tk-pipe">|</span>{" "}
+                <span className="tk-kw">limit:</span> 10
+              </div>
+
+              <div className="bp-caption">
+                <span>Fig. 01 — canvas mode</span>
+                <strong>customers → orders → order_items → products</strong>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl w-full px-4 sm:px-6 lg:px-8 bp-divider" aria-hidden="true">
+        <svg viewBox="0 0 1124 34" preserveAspectRatio="none">
+          <path
+            d="M 0 17 H 480 L 500 3 H 624 L 644 17 H 1124"
+            fill="none"
+            stroke="#22496b"
+            strokeWidth="1.5"
+          />
+          <circle cx="500" cy="3" r="2.5" fill="#4fd1ff" />
+          <circle cx="644" cy="17" r="2.5" fill="#4fd1ff" />
+        </svg>
+      </div>
+
+      {/* Features Section */}
+      <section className="px-4 py-14 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="bp-legend-head">
+            <h2>What's on this sheet</h2>
+            <span>03 components</span>
+          </div>
+
+          <div className="flex flex-col">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="bp-legend-row"
+            >
+              <span className="bp-pin"></span>
+              <div>
+                <h3>Visual database client</h3>
+                <p>
+                  See your database's relationships rendered live, as a
+                  graph, while you write — no separate ERD tool to keep in
+                  sync.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="bp-legend-row"
+            >
+              <span className="bp-pin amber"></span>
+              <div>
+                <h3>pine-lang DSL</h3>
+                <p>
+                  A composable query language that converts straight to
+                  SQL. Focus on the shape of the question, not the syntax.
+                </p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="bp-legend-row"
+            >
+              <span className="bp-pin dim"></span>
+              <div>
+                <h3>Interactive canvas</h3>
+                <p>
+                  Click through tables in a live graph and watch the query
+                  build itself — join paths light up as you go.
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="bp-closing px-4 sm:px-6 lg:px-8">
+        <p className="bp-eyebrow" style={{ justifyContent: "center" }}>
+          No account. No setup.
+        </p>
+        <h2>Point it at a database and start exploring.</h2>
+        <div className="flex flex-wrap gap-3.5 justify-center">
+          <button
+            onClick={() => openInPlayground(DEFAULT_EXAMPLE_QUERY)}
+            className="bp-btn bp-btn-primary"
+          >
+            Try it in the Playground <span aria-hidden="true">↗</span>
+          </button>
+          <a href="/download" className="bp-btn bp-btn-ghost">
+            Download for desktop
+          </a>
         </div>
       </section>
     </div>
