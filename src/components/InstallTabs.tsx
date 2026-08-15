@@ -114,9 +114,19 @@ const InstallTabs = () => {
         ))}
       </TabList>
 
-      <TabPanels>
+      {/* `grid` + each panel on `[grid-area:1/1]` stacks all three in the same
+          cell, so the row sizes to the TALLEST panel's content regardless of
+          which one is showing - `static` keeps every panel actually rendered
+          (not unmounted/collapsed to a 0-height placeholder, which is
+          Headless UI's default for an inactive panel) so its height still
+          counts toward that. Without this, switching to Windows - the
+          shortest panel, no copy-command block - shrank the card and moved
+          everything below it. `invisible` (visibility, not display) hides
+          the non-selected panels visually and from the accessibility tree
+          while still occupying their layout box. */}
+      <TabPanels className="grid">
         {/* macOS */}
-        <TabPanel className="space-y-3">
+        <TabPanel static className={({ selected }) => `[grid-area:1/1] space-y-3 ${selected ? 'visible' : 'invisible'}`}>
           <p className="text-base leading-7" style={{ color: 'var(--bp-text-dim)' }}>
             Via Homebrew (Apple Silicon only for now):
           </p>
@@ -127,7 +137,7 @@ const InstallTabs = () => {
         </TabPanel>
 
         {/* Windows */}
-        <TabPanel className="space-y-3">
+        <TabPanel static className={({ selected }) => `[grid-area:1/1] space-y-3 ${selected ? 'visible' : 'invisible'}`}>
           <p className="text-base leading-7" style={{ color: 'var(--bp-text-dim)' }}>
             <ReleasesLink>Download the .exe installer</ReleasesLink> and run it.
           </p>
@@ -139,7 +149,7 @@ const InstallTabs = () => {
         </TabPanel>
 
         {/* Linux */}
-        <TabPanel className="space-y-3">
+        <TabPanel static className={({ selected }) => `[grid-area:1/1] space-y-3 ${selected ? 'visible' : 'invisible'}`}>
           <p className="text-base leading-7" style={{ color: 'var(--bp-text-dim)' }}>
             <ReleasesLink>Download the .AppImage</ReleasesLink> (works on most
             distros, no installation needed):
