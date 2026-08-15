@@ -74,11 +74,20 @@ const Footer: React.FC = () => {
               </span>
               {' '}in Denmark
             </div>
-            <div 
+            <div
               className="text-xs"
               style={{ color: `${palette.secondary}99` }}
             >
-              © {new Date().getFullYear()} Beamlynx. All rights reserved.
+              Beamlynx is supported by{' '}
+              <a
+                href="https://github.com/beamlynx/beamlynx-desktop/blob/main/LICENSE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-dotted underline-offset-2 hover:no-underline"
+              >
+                Grephyte ApS
+              </a>
+              , CVR 37931535 · <a href="mailto:contact@grephyte.com" className="underline decoration-dotted underline-offset-2 hover:no-underline">contact@grephyte.com</a>
             </div>
           </div>
         </div>
