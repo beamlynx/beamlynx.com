@@ -219,7 +219,7 @@ const Home = () => {
             >
               <span className="bp-pin"></span>
               <div>
-                <h3>Visual database client</h3>
+                <h3>Visual</h3>
                 <p>
                   See your database's relationships rendered live, as a
                   graph, while you write — no separate ERD tool to keep in
@@ -237,10 +237,11 @@ const Home = () => {
             >
               <span className="bp-pin amber"></span>
               <div>
-                <h3>pine-lang DSL</h3>
+                <h3>Composable</h3>
                 <p>
-                  A composable query language that converts straight to
-                  SQL. Focus on the shape of the question, not the syntax.
+                  <code>pine-lang</code> is a composable domain-specific
+                  language that converts straight to SQL. Focus on the
+                  shape of the question, not the syntax.
                 </p>
               </div>
             </motion.div>
@@ -254,7 +255,7 @@ const Home = () => {
             >
               <span className="bp-pin dim"></span>
               <div>
-                <h3>Interactive canvas</h3>
+                <h3>Interactive</h3>
                 <p>
                   Click through tables in a live graph and watch the query
                   build itself — join paths light up as you go.
