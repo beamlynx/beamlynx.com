@@ -85,74 +85,72 @@ const Home = () => {
               <span className="bp-vp-br"></span>
               <svg
                 className="bp-diagram"
-                viewBox="0 0 620 280"
+                viewBox="0 0 680 330"
                 xmlns="http://www.w3.org/2000/svg"
                 role="img"
-                aria-label="Schematic diagram of the customers, orders, order_items and products tables joined in sequence"
+                aria-label="Canvas mode diagram of the customers, orders, order_items and products tables joined in sequence, matching the query below"
               >
-                {/* traces */}
-                <path
-                  d="M 148 68 H 158 V 204 H 168"
-                  fill="none"
-                  stroke="#4fd1ff"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M 300 204 H 310 V 68 H 320"
-                  fill="none"
-                  stroke="#4fd1ff"
-                  strokeWidth="2"
-                />
-                <path
-                  d="M 452 68 H 462 V 204 H 472"
-                  fill="none"
-                  stroke="#4fd1ff"
-                  strokeWidth="2"
-                />
-                <circle cx="158" cy="68" r="2.5" fill="#4fd1ff" />
-                <circle cx="310" cy="204" r="2.5" fill="#4fd1ff" />
-                <circle cx="462" cy="68" r="2.5" fill="#4fd1ff" />
+                {/* traces - the same right-angle "circuit trace" routing canvas mode's edges use */}
+                <path d="M 166 80 H 176 V 216 H 182" fill="none" stroke="#4fd1ff" strokeWidth="1.5" />
+                <path d="M 332 216 H 340 V 80 H 348" fill="none" stroke="#4fd1ff" strokeWidth="1.5" />
+                <path d="M 498 80 H 506 V 216 H 514" fill="none" stroke="#4fd1ff" strokeWidth="1.5" />
 
-                {/* customers - the query's start node, solid header */}
+                {/* customers - the current/start node: thicker border + lighter fill, same treatment canvas mode gives the node you're actively editing */}
                 <g>
-                  <rect x="16" y="36" width="132" height="64" rx="3" fill="#123554" stroke="#4fd1ff" strokeWidth="1.5" />
-                  <rect x="16" y="36" width="132" height="20" rx="3" fill="#4fd1ff" />
-                  <text x="82" y="50" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="10.5" fontWeight="600" fill="#06131f">customers</text>
-                  <text x="28" y="76" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#dbeeff">id</text>
-                  <text x="28" y="90" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#7ba3c2">first_name</text>
-                  <rect x="144.5" y="64.5" width="7" height="7" fill="#4fd1ff" />
+                  <path d="M 16 40 L 166 40 L 166 152 L 24 152 L 16 144 Z" fill="#123554" stroke="#4fd1ff" strokeWidth="2.5" />
+                  <rect x="7" y="31" width="18" height="18" rx="3" fill="#4fd1ff" />
+                  <text x="16" y="44.5" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="11" fontWeight="700" fill="#06131f">1</text>
+                  <text x="28" y="60" fontFamily="IBM Plex Mono, monospace" fontSize="12" fontWeight="500" fill="#dbeeff">customers</text>
+                  <rect x="162.5" y="76.5" width="7" height="7" rx="1" fill="#5c86a8" />
+                  <text x="154" y="84" textAnchor="end" fontFamily="IBM Plex Mono, monospace" fontSize="8.5" fill="#7ba3c2">id</text>
+                  <text x="28" y="106" fontFamily="IBM Plex Mono, monospace" fontSize="7.5" fontWeight="700" letterSpacing="0.3" fill="#7ba3c2">SEL</text>
+                  <rect x="54" y="98" width="66" height="16" rx="3" fill="#132a41" stroke="#28577c" />
+                  <circle cx="61" cy="106" r="2" fill="#5c86a8" />
+                  <text x="67" y="109" fontFamily="IBM Plex Mono, monospace" fontSize="8" fill="#dbeeff">first_name</text>
+                  <rect x="54" y="122" width="60" height="16" rx="3" fill="#132a41" stroke="#28577c" />
+                  <circle cx="61" cy="130" r="2" fill="#5c86a8" />
+                  <text x="67" y="133" fontFamily="IBM Plex Mono, monospace" fontSize="8" fill="#dbeeff">last_name</text>
                 </g>
 
                 {/* orders */}
                 <g>
-                  <rect x="168" y="172" width="132" height="64" rx="3" fill="#0f2337" stroke="#4fd1ff" strokeWidth="1.5" />
-                  <rect x="168" y="172" width="132" height="20" rx="3" fill="#1c3b57" />
-                  <text x="234" y="186" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="10.5" fontWeight="600" fill="#dbeeff">orders</text>
-                  <text x="180" y="212" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#dbeeff">customer_id</text>
-                  <text x="180" y="226" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#7ba3c2">id</text>
-                  <rect x="164.5" y="200.5" width="7" height="7" fill="#4fd1ff" />
-                  <rect x="296.5" y="200.5" width="7" height="7" fill="#4fd1ff" />
+                  <path d="M 182 176 L 332 176 L 332 288 L 190 288 L 182 280 Z" fill="#0f2337" stroke="#2c5578" strokeWidth="1.5" />
+                  <rect x="173" y="167" width="18" height="18" rx="3" fill="#4fd1ff" />
+                  <text x="182" y="180.5" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="11" fontWeight="700" fill="#06131f">2</text>
+                  <text x="194" y="196" fontFamily="IBM Plex Mono, monospace" fontSize="12" fontWeight="500" fill="#dbeeff">orders</text>
+                  <rect x="178.5" y="212.5" width="7" height="7" rx="1" fill="#5c86a8" />
+                  <text x="196" y="220" fontFamily="IBM Plex Mono, monospace" fontSize="8.5" fill="#7ba3c2">customer_id</text>
+                  <rect x="328.5" y="212.5" width="7" height="7" rx="1" fill="#5c86a8" />
+                  <text x="318" y="220" textAnchor="end" fontFamily="IBM Plex Mono, monospace" fontSize="8.5" fill="#7ba3c2">id</text>
                 </g>
 
                 {/* order_items */}
                 <g>
-                  <rect x="320" y="36" width="132" height="64" rx="3" fill="#0f2337" stroke="#4fd1ff" strokeWidth="1.5" />
-                  <rect x="320" y="36" width="132" height="20" rx="3" fill="#1c3b57" />
-                  <text x="386" y="50" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="10.5" fontWeight="600" fill="#dbeeff">order_items</text>
-                  <text x="332" y="76" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#dbeeff">order_id</text>
-                  <text x="332" y="90" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#dbeeff">product_id</text>
-                  <rect x="316.5" y="64.5" width="7" height="7" fill="#4fd1ff" />
-                  <rect x="448.5" y="64.5" width="7" height="7" fill="#4fd1ff" />
+                  <path d="M 348 40 L 498 40 L 498 152 L 356 152 L 348 144 Z" fill="#0f2337" stroke="#2c5578" strokeWidth="1.5" />
+                  <rect x="339" y="31" width="18" height="18" rx="3" fill="#4fd1ff" />
+                  <text x="348" y="44.5" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="11" fontWeight="700" fill="#06131f">3</text>
+                  <text x="360" y="60" fontFamily="IBM Plex Mono, monospace" fontSize="12" fontWeight="500" fill="#dbeeff">order_items</text>
+                  <rect x="344.5" y="76.5" width="7" height="7" rx="1" fill="#5c86a8" />
+                  <text x="362" y="84" fontFamily="IBM Plex Mono, monospace" fontSize="8.5" fill="#7ba3c2">order_id</text>
+                  <rect x="494.5" y="76.5" width="7" height="7" rx="1" fill="#5c86a8" />
+                  <text x="484" y="84" textAnchor="end" fontFamily="IBM Plex Mono, monospace" fontSize="8.5" fill="#7ba3c2">product_id</text>
                 </g>
 
                 {/* products */}
                 <g>
-                  <rect x="472" y="172" width="132" height="64" rx="3" fill="#0f2337" stroke="#4fd1ff" strokeWidth="1.5" />
-                  <rect x="472" y="172" width="132" height="20" rx="3" fill="#1c3b57" />
-                  <text x="538" y="186" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="10.5" fontWeight="600" fill="#dbeeff">products</text>
-                  <text x="484" y="212" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#dbeeff">id</text>
-                  <text x="484" y="226" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fill="#7ba3c2">name, price</text>
-                  <rect x="468.5" y="200.5" width="7" height="7" fill="#4fd1ff" />
+                  <path d="M 514 176 L 664 176 L 664 288 L 522 288 L 514 280 Z" fill="#0f2337" stroke="#2c5578" strokeWidth="1.5" />
+                  <rect x="505" y="167" width="18" height="18" rx="3" fill="#4fd1ff" />
+                  <text x="514" y="180.5" textAnchor="middle" fontFamily="IBM Plex Mono, monospace" fontSize="11" fontWeight="700" fill="#06131f">4</text>
+                  <text x="526" y="196" fontFamily="IBM Plex Mono, monospace" fontSize="12" fontWeight="500" fill="#dbeeff">products</text>
+                  <rect x="509.5" y="212.5" width="7" height="7" rx="1" fill="#5c86a8" />
+                  <text x="527" y="220" fontFamily="IBM Plex Mono, monospace" fontSize="8.5" fill="#7ba3c2">id</text>
+                  <text x="526" y="242" fontFamily="IBM Plex Mono, monospace" fontSize="7.5" fontWeight="700" letterSpacing="0.3" fill="#7ba3c2">SEL</text>
+                  <rect x="526" y="248" width="46" height="16" rx="3" fill="#132a41" stroke="#28577c" />
+                  <circle cx="533" cy="256" r="2" fill="#5c86a8" />
+                  <text x="539" y="259" fontFamily="IBM Plex Mono, monospace" fontSize="8" fill="#dbeeff">name</text>
+                  <rect x="576" y="248" width="44" height="16" rx="3" fill="#132a41" stroke="#28577c" />
+                  <circle cx="583" cy="256" r="2" fill="#5c86a8" />
+                  <text x="589" y="259" fontFamily="IBM Plex Mono, monospace" fontSize="8" fill="#dbeeff">price</text>
                 </g>
               </svg>
 
@@ -168,11 +166,6 @@ const Home = () => {
                 <span className="tk-kw">select:</span> name, price{" "}
                 <span className="tk-pipe">|</span>{" "}
                 <span className="tk-kw">limit:</span> 10
-              </div>
-
-              <div className="bp-caption">
-                <span>Fig. 01 — canvas mode</span>
-                <strong>customers → orders → order_items → products</strong>
               </div>
             </div>
           </motion.div>

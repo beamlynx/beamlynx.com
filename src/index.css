@@ -234,11 +234,13 @@ pre code {
   color: #D08770; /* Orange for variables */
 }
 
-/* Override default Prism theme for SQL blocks in documentation */
+/* Override default Prism theme for SQL blocks in documentation - dark
+   blueprint panel now that every page using this (Documentation's "becomes
+   SQL" blocks) is dark, not the light card it was originally written for. */
 .documentation-sql-block pre {
-  background-color: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #1e293b !important;
+  background-color: var(--bp-panel) !important;
+  border: 1px solid var(--bp-border-soft) !important;
+  color: var(--bp-text) !important;
   line-height: 1.6 !important;
   white-space: pre-line !important;
   word-wrap: break-word;
@@ -246,7 +248,7 @@ pre code {
 }
 
 .documentation-sql-block code {
-  color: #1e293b !important;
+  color: var(--bp-text) !important;
   background: none !important;
 }
 
@@ -315,15 +317,13 @@ pre code {
   font-weight: 600 !important;
 }
 
-/* Inline code styles - kept on its own literal (not --color-primary, which
-   now drives the dark chrome/scaffold via ColorPaletteContext) since this
-   renders inside light-background prose on the still-unconverted docs/blog
-   pages and needs to stay dark-on-light regardless of that migration. */
+/* Inline code styles - light-on-dark now that every page (Home, docs,
+   download, posts) is on the dark blueprint background. */
 :not(pre) > code {
   font-family: var(--font-mono);
   font-size: 0.9em;
-  color: #2E3440;
-  background-color: rgba(28, 111, 168, 0.1);
+  color: var(--bp-text);
+  background-color: rgba(79, 209, 255, 0.14);
   padding: 0.2em 0.4em;
   border-radius: 0.25em;
   white-space: nowrap;
@@ -348,9 +348,12 @@ pre code {
            disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
+  /* Download.tsx's install-instructions panel - its only remaining consumer
+     now that Home has its own .bp-* components (see below). */
   .card {
-    @apply p-6 bg-white rounded-lg shadow-sm border border-gray-100
-           hover:shadow-md transition-shadow duration-200;
+    @apply p-6 rounded-lg shadow-sm border transition-shadow duration-200;
+    background-color: var(--bp-panel);
+    border-color: var(--bp-border-soft);
   }
 }
 
@@ -441,19 +444,6 @@ pre code {
 }
 .bp-query .tk-pipe { color: var(--bp-trace); }
 .bp-query .tk-kw { color: var(--bp-amber); }
-
-.bp-caption {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-top: 12px;
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--bp-text-faint);
-}
-.bp-caption strong { color: var(--bp-text-dim); font-weight: 500; }
 
 .bp-divider { height: 34px; }
 .bp-divider svg { display: block; width: 100%; height: 100%; }

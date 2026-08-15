@@ -89,18 +89,23 @@ const InstallTabs = () => {
   return (
     <TabGroup selectedIndex={selectedIndex} onChange={setSelectedIndex}>
       {isMobile && (
-        <p className="mb-4 rounded-lg bg-amber-50 border border-amber-200 px-4 py-3 text-sm text-amber-800">
+        <p
+          className="mb-4 rounded-lg border px-4 py-3 text-sm"
+          style={{ backgroundColor: 'var(--bp-panel-raised)', borderColor: 'var(--bp-amber)', color: '#f0c887' }}
+        >
           beamlynx is a desktop app for macOS, Windows, and Linux. Visit this
           page on your computer to install it.
         </p>
       )}
-      <TabList className="flex gap-1 rounded-lg bg-gray-100 p-1 mb-4 w-fit">
+      <TabList className="flex gap-1 rounded-lg p-1 mb-4 w-fit" style={{ backgroundColor: 'var(--bp-panel-raised)' }}>
         {TABS.map(tab => (
           <Tab
             key={tab.key}
             className={({ selected }) =>
               `rounded-md px-4 py-1.5 text-sm font-semibold transition-colors duration-200 focus:outline-none ${
-                selected ? "bg-white text-pine-700 shadow-sm" : "text-gray-500 hover:text-gray-700"
+                selected
+                  ? "shadow-sm bg-[var(--bp-trace)] text-[var(--bp-on-trace)]"
+                  : "text-[var(--bp-text-dim)] hover:text-[var(--bp-text)]"
               }`
             }
           >
@@ -112,21 +117,21 @@ const InstallTabs = () => {
       <TabPanels>
         {/* macOS */}
         <TabPanel className="space-y-3">
-          <p className="text-base leading-7 text-gray-600">
+          <p className="text-base leading-7" style={{ color: 'var(--bp-text-dim)' }}>
             Via Homebrew (Apple Silicon only for now):
           </p>
           <CopyCommand command="brew install --cask beamlynx/tap/beamlynx" />
-          <p className="text-sm text-gray-500">
+          <p className="text-sm" style={{ color: 'var(--bp-text-faint)' }}>
             Or <ReleasesLink>download the .dmg directly</ReleasesLink>.
           </p>
         </TabPanel>
 
         {/* Windows */}
         <TabPanel className="space-y-3">
-          <p className="text-base leading-7 text-gray-600">
+          <p className="text-base leading-7" style={{ color: 'var(--bp-text-dim)' }}>
             <ReleasesLink>Download the .exe installer</ReleasesLink> and run it.
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm" style={{ color: 'var(--bp-text-faint)' }}>
             This build isn't code-signed yet, so Windows SmartScreen may warn you.
             Click <span className="font-medium">More info</span> then{" "}
             <span className="font-medium">Run anyway</span> to launch it.
@@ -135,12 +140,12 @@ const InstallTabs = () => {
 
         {/* Linux */}
         <TabPanel className="space-y-3">
-          <p className="text-base leading-7 text-gray-600">
+          <p className="text-base leading-7" style={{ color: 'var(--bp-text-dim)' }}>
             <ReleasesLink>Download the .AppImage</ReleasesLink> (works on most
             distros, no installation needed):
           </p>
           <CopyCommand command="chmod +x beamlynx.AppImage && ./beamlynx.AppImage" />
-          <p className="text-sm text-gray-500">
+          <p className="text-sm" style={{ color: 'var(--bp-text-faint)' }}>
             Or, on Debian/Ubuntu, <ReleasesLink>download the .deb</ReleasesLink> and
             install it with your usual package manager.
           </p>

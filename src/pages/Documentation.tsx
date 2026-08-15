@@ -313,7 +313,7 @@ const Documentation: React.FC = () => {
             </h2>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
-              className="p-1 rounded-lg hover:bg-black/5"
+              className="p-1 rounded-lg hover:bg-white/5"
               style={{ color: palette.secondary }}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -334,8 +334,8 @@ const Documentation: React.FC = () => {
               className={`
                 flex items-center justify-between gap-2 py-2 px-3 rounded-md transition-all duration-200
                 text-[15px] leading-relaxed
-                ${!isScrolling ? 'hover:bg-black/5' : ''}
-                ${activeSection === id ? 'bg-black/5 shadow-sm' : ''}
+                ${!isScrolling ? 'hover:bg-white/5' : ''}
+                ${activeSection === id ? 'bg-white/10 shadow-sm' : ''}
               `}
               style={{
                 color: activeSection === id ? palette.primary : palette.secondary,
@@ -356,7 +356,7 @@ const Documentation: React.FC = () => {
   const activeLabel = SECTIONS.find(s => s.id === activeSection)?.label || 'Docs';
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-pine-50">
+    <div className="bp-page min-h-screen">
       <title>beamlynx - {activeLabel}</title>
       <meta
         name="description"
