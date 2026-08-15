@@ -28,7 +28,7 @@ const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
         // Check if it's a keyword
         if (keywords.includes(trimmedPart)) {
           return (
-            <span key={index} style={{ color: '#1e40af', fontWeight: 700 }}>
+            <span key={index} style={{ color: '#4fd1ff', fontWeight: 700 }}>
               {part}
             </span>
           );
@@ -37,7 +37,7 @@ const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
         // Check if it's a string (starts and ends with quotes)
         if (part.match(/^'.*'$/)) {
           return (
-            <span key={index} style={{ color: '#059669', fontWeight: 600 }}>
+            <span key={index} style={{ color: '#7ee2a8', fontWeight: 600 }}>
               {part}
             </span>
           );
@@ -46,7 +46,7 @@ const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
         // Check if it's a number
         if (part.match(/^\d+$/)) {
           return (
-            <span key={index} style={{ color: '#7c2d92', fontWeight: 600 }}>
+            <span key={index} style={{ color: '#d9a9ff', fontWeight: 600 }}>
               {part}
             </span>
           );
@@ -55,7 +55,7 @@ const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
         // Check if it's an operator
         if (part.match(/^[=<>!]+$/)) {
           return (
-            <span key={index} style={{ color: '#374151', fontWeight: 700 }}>
+            <span key={index} style={{ color: '#dbeeff', fontWeight: 700 }}>
               {part}
             </span>
           );
@@ -63,7 +63,7 @@ const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
 
         // Default styling for other text (including punctuation and whitespace)
         return (
-          <span key={index} style={{ color: '#1e293b' }}>
+          <span key={index} style={{ color: '#a9c3d8' }}>
             {part}
           </span>
         );
@@ -133,7 +133,10 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
       {syntax && (
         <div className="mb-10">
           <div className="relative">
-            <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-gray-100 to-transparent rounded-xl opacity-50"></div>
+            <div
+              className="absolute -inset-1 rounded-xl opacity-50"
+              style={{ background: 'linear-gradient(to right, transparent, var(--bp-panel-raised), transparent)' }}
+            ></div>
             <div className="relative">
               <div className="flex items-center justify-between mb-3">
                 <h3 
@@ -187,10 +190,10 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
 
           <div className="grid gap-6">
             {examples.map((example, index) => (
-              <div 
-                key={index} 
-                className="group relative bg-white rounded-xl border shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
-                style={{ borderColor: `${palette.secondary}10` }}
+              <div
+                key={index}
+                className="group relative rounded-xl border shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden"
+                style={{ backgroundColor: 'var(--bp-panel)', borderColor: `${palette.secondary}10` }}
               >
                 {/* Example header */}
                 <div className="p-6 pb-4">

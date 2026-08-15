@@ -8,36 +8,40 @@ interface ColorPalette {
   text: string;
 }
 
-const nordicMinimal: ColorPalette = {
-  primary: '#2E3440',
-  secondary: '#4C566A',
-  accent: '#5E81AC',
-  background: '#ECEFF4',
-  text: '#2E3440'
+// Beamlynx's "schematic/blueprint" identity - beamlynx-ui's own dark
+// --canvas-* palette, reused verbatim here so the marketing site's chrome
+// (nav, footer, this context's body color/bg) reads as the same brand as
+// the app rather than a second palette invented for the site alone.
+const blueprint: ColorPalette = {
+  primary: '#dbeeff',
+  secondary: '#6f97b5',
+  accent: '#4fd1ff',
+  background: '#0a1826',
+  text: '#dbeeff'
 };
 
-const ColorPaletteContext = createContext<ColorPalette>(nordicMinimal);
+const ColorPaletteContext = createContext<ColorPalette>(blueprint);
 
 export const useColorPalette = () => useContext(ColorPaletteContext);
 
 export const ColorPaletteProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const applyColors = useCallback(() => {
     const root = document.documentElement;
-    root.style.setProperty('--color-primary', nordicMinimal.primary);
-    root.style.setProperty('--color-secondary', nordicMinimal.secondary);
-    root.style.setProperty('--color-accent', nordicMinimal.accent);
-    root.style.setProperty('--color-background', nordicMinimal.background);
-    root.style.setProperty('--color-text', nordicMinimal.text);
-    
-    document.body.style.backgroundColor = nordicMinimal.background;
-    document.body.style.color = nordicMinimal.text;
+    root.style.setProperty('--color-primary', blueprint.primary);
+    root.style.setProperty('--color-secondary', blueprint.secondary);
+    root.style.setProperty('--color-accent', blueprint.accent);
+    root.style.setProperty('--color-background', blueprint.background);
+    root.style.setProperty('--color-text', blueprint.text);
+
+    document.body.style.backgroundColor = blueprint.background;
+    document.body.style.color = blueprint.text;
   }, []);
 
   React.useEffect(() => {
     applyColors();
   }, [applyColors]);
 
-  const value = useMemo(() => nordicMinimal, []);
+  const value = useMemo(() => blueprint, []);
 
   return (
     <ColorPaletteContext.Provider value={value}>

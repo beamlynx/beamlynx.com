@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer 
-      className="mt-24 border-t py-12 bg-gradient-to-b from-transparent to-pine-50/30"
+      className="mt-24 border-t py-12 bg-gradient-to-b from-transparent to-[#0f2337]/50"
       style={{ 
         borderColor: `${palette.accent}20`,
       }}
@@ -52,9 +52,9 @@ const Footer: React.FC = () => {
                 } as React.CSSProperties}
                 aria-label={item.name}
               >
-                <item.icon 
-                  className="w-7 h-7 transition-colors group-hover:text-pine-600" 
-                  aria-hidden="true" 
+                <item.icon
+                  className="w-7 h-7 transition-colors group-hover:text-[#4fd1ff]"
+                  aria-hidden="true"
                 />
               </a>
             ))}
@@ -68,17 +68,26 @@ const Footer: React.FC = () => {
               Made with{' '}
               <span 
                 className="mx-1 transform hover:scale-110 transition-transform"
-                style={{ color: '#0052A5' }} // Nordic blue from Danish flag
+                style={{ color: '#5b9bd5' }} // Nordic blue from Danish flag, lightened for the dark footer
               >
                 ♥
               </span>
               {' '}in Denmark
             </div>
-            <div 
+            <div
               className="text-xs"
               style={{ color: `${palette.secondary}99` }}
             >
-              © {new Date().getFullYear()} Beamlynx. All rights reserved.
+              Beamlynx is supported by{' '}
+              <a
+                href="https://github.com/beamlynx/beamlynx-desktop/blob/main/LICENSE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-dotted underline-offset-2 hover:no-underline"
+              >
+                Grephyte ApS
+              </a>
+              , CVR 37931535 · <a href="mailto:contact@grephyte.com" className="underline decoration-dotted underline-offset-2 hover:no-underline">contact@grephyte.com</a>
             </div>
           </div>
         </div>

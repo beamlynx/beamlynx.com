@@ -46,7 +46,7 @@ const Posts: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen py-12 sm:py-16 md:py-20">
+    <div className="bp-page min-h-screen py-12 sm:py-16 md:py-20">
       <title>beamlynx - Blog</title>
       <meta
         name="description"
@@ -81,8 +81,8 @@ const Posts: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-sm border p-6 hover:shadow-md transition-shadow duration-200"
-                style={{ borderColor: `${palette.accent}20` }}
+                className="rounded-xl shadow-sm border p-6 hover:shadow-md transition-shadow duration-200"
+                style={{ backgroundColor: 'var(--bp-panel)', borderColor: `${palette.accent}20` }}
               >
                 <a 
                   href={post.url}

@@ -105,10 +105,11 @@ const Navbar: React.FC = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="absolute top-[calc(var(--navbar-height)-0.5rem)] left-0 right-0 bg-white shadow-lg rounded-b-lg overflow-hidden"
+            className="absolute top-[calc(var(--navbar-height)-0.5rem)] left-0 right-0 overflow-hidden"
             style={{
               backgroundColor: palette.background,
               borderBottom: `1px solid ${palette.accent}20`,
+              boxShadow: "0 8px 24px rgba(0, 0, 0, 0.35)",
             }}
           >
             <nav className="px-4 py-2 space-y-1">
@@ -118,7 +119,7 @@ const Navbar: React.FC = () => {
                   to={item.path}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block w-full px-3 py-2.5 rounded-lg text-[15px] font-medium transition-colors duration-200 ${
-                    isActive(item.path) ? "bg-black/5" : "hover:bg-black/5"
+                    isActive(item.path) ? "bg-white/10" : "hover:bg-white/5"
                   }`}
                   style={{
                     color: isActive(item.path)
@@ -139,8 +140,9 @@ const Navbar: React.FC = () => {
                     openInPlayground(DEFAULT_EXAMPLE_QUERY);
                     setIsMobileMenuOpen(false);
                   }}
-                  className="block w-full px-3 py-2.5 rounded-lg text-[15px] font-medium text-white text-center transition-colors duration-200"
+                  className="block w-full px-3 py-2.5 rounded-lg text-[15px] font-medium text-center transition-colors duration-200"
                   style={{
+                    color: "#06131f",
                     backgroundColor: palette.accent,
                     boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
                   }}
@@ -201,7 +203,7 @@ const Navbar: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg md:hidden hover:bg-black/5 transition-colors duration-200"
+              className="p-2 rounded-lg md:hidden hover:bg-white/5 transition-colors duration-200"
               aria-label="Toggle menu"
               aria-expanded={isMobileMenuOpen}
               style={{ color: palette.secondary }}
@@ -236,7 +238,7 @@ const Navbar: React.FC = () => {
                 <Link
                   key={item.path}
                   to={item.path}
-                  className="relative px-2 sm:px-3 py-2 text-[14px] sm:text-[15px] font-medium tracking-wide transition-colors duration-200 rounded-lg hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap"
+                  className="relative px-2 sm:px-3 py-2 text-[14px] sm:text-[15px] font-medium tracking-wide transition-colors duration-200 rounded-lg hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap"
                   style={
                     {
                       color: isActive(item.path)
@@ -271,7 +273,10 @@ const Navbar: React.FC = () => {
                   className="ml-1 sm:ml-4 px-2 sm:px-4 py-1.5 rounded-lg text-[14px] sm:text-[15px] font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap flex items-center"
                   style={
                     {
-                      color: "white",
+                      // Dark text on the bright cyan accent, not white - the
+                      // accent itself is too light for white text to read
+                      // against (matches beamlynx-ui's own --canvas-accent-text).
+                      color: "#06131f",
                       backgroundColor: palette.accent,
                       "--tw-ring-color": palette.accent,
                       boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
@@ -291,9 +296,11 @@ const Navbar: React.FC = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="absolute right-0 top-full mt-2 p-3 rounded-lg shadow-lg bg-white text-left w-64 text-sm"
+                      className="absolute right-0 top-full mt-2 p-3 rounded-lg text-left w-64 text-sm"
                       style={{
+                        backgroundColor: palette.background,
                         border: `1px solid ${palette.accent}20`,
+                        boxShadow: "0 8px 24px rgba(0, 0, 0, 0.35)",
                         color: palette.primary,
                       }}
                     >

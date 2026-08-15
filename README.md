@@ -42,4 +42,4 @@ npm run lint
 
 ## License
 
-© 2024 Beamlynx. All rights reserved.
+[PolyForm Noncommercial License 1.0.0](LICENSE) - free for noncommercial use. For commercial licensing, contact contact@grephyte.com.

@@ -2,15 +2,79 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Base styles */
+/* Self-hosted IBM Plex - matches beamlynx-ui's own signature type (see
+   styles/app-font.ts there), so the site and the app read as one brand.
+   Self-hosted rather than a Google Fonts CDN link for the same reason:
+   no runtime request, no third-party dependency. */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-mono-700.woff2') format('woff2');
+}
+@font-face {
+  /* Variable font (weight axis 300-700 in one file) - a single @font-face
+     with a weight range, not four static files like the mono above. */
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('/fonts/ibm-plex-sans-variable.woff2') format('woff2');
+}
+
+/* Base styles - the "schematic/blueprint" identity, reused verbatim from
+   beamlynx-ui's dark --canvas-* tokens (see that repo's styles/colors.ts)
+   rather than invented fresh for the site. Home/Navbar/Footer are the
+   surfaces built against these so far; Documentation/Download/Posts are
+   still on the original light palette below (--color-*) as a deliberate,
+   called-out follow-up rather than a half-finished sweep. */
 :root {
-  --color-primary: #2E3440;
-  --color-secondary: #4C566A;
-  --color-accent: #5E81AC;
-  --color-background: #ECEFF4;
-  --color-text: #2E3440;
+  --color-primary: #dbeeff;
+  --color-secondary: #6f97b5;
+  --color-accent: #4fd1ff;
+  --color-background: #0a1826;
+  --color-text: #dbeeff;
   --navbar-height: 64px;
-  
+
+  --bp-bg: #0a1826;
+  --bp-grid-dot: #17324b;
+  --bp-panel: #0f2337;
+  --bp-panel-raised: #123554;
+  --bp-border: #22496b;
+  --bp-border-soft: #1a3552;
+  --bp-trace: #4fd1ff;
+  --bp-trace-dim: #2f7fa3;
+  --bp-amber: #f5a623;
+  --bp-text: #dbeeff;
+  --bp-text-dim: #6f97b5;
+  --bp-text-faint: #4a6883;
+  --bp-on-trace: #06131f;
+
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-sans: 'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
+
   /* Typography scale */
   --font-size-xs: 0.75rem;    /* 12px */
   --font-size-sm: 0.875rem;   /* 14px */
@@ -44,6 +108,18 @@ body {
   overflow-x: hidden;
   color: var(--color-text);
   font-size: var(--font-size-base);
+  font-family: var(--font-sans);
+  /* Just the flat token here - ColorPaletteContext sets this same color as
+     an inline style on mount, which would otherwise silently win over any
+     background declared here. The dot-grid texture itself lives on Home's
+     own wrapper (.bp-page below), not globally on body. */
+  background: var(--bp-bg);
+}
+
+.bp-page {
+  background:
+    radial-gradient(circle at 1px 1px, var(--bp-grid-dot) 1.4px, transparent 0) 0 0/28px 28px,
+    var(--bp-bg);
 }
 
 #root {
@@ -54,6 +130,7 @@ body {
 
 /* Typography styles */
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mono);
   font-weight: 600;
   line-height: var(--line-height-tight);
   margin-bottom: 1em;
@@ -105,13 +182,13 @@ section[id] h2 {
 pre {
   margin: 1.5rem 0;
   padding: 1.5rem;
-  background-color: #2E3440;
-  border-radius: 0.5rem;
+  background-color: var(--bp-panel);
+  border: 1px solid var(--bp-border);
+  border-radius: 3px;
   overflow-x: auto;
-  color: #D8DEE9;
+  color: var(--bp-text);
   font-size: var(--font-size-sm);
   line-height: var(--line-height-relaxed);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 pre code {
@@ -119,7 +196,7 @@ pre code {
   color: inherit;
   font-size: inherit;
   padding: 0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: var(--font-mono);
 }
 
 /* Custom Prism.js SQL syntax highlighting */
@@ -157,11 +234,13 @@ pre code {
   color: #D08770; /* Orange for variables */
 }
 
-/* Override default Prism theme for SQL blocks in documentation */
+/* Override default Prism theme for SQL blocks in documentation - dark
+   blueprint panel now that every page using this (Documentation's "becomes
+   SQL" blocks) is dark, not the light card it was originally written for. */
 .documentation-sql-block pre {
-  background-color: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #1e293b !important;
+  background-color: var(--bp-panel) !important;
+  border: 1px solid var(--bp-border-soft) !important;
+  color: var(--bp-text) !important;
   line-height: 1.6 !important;
   white-space: pre-line !important;
   word-wrap: break-word;
@@ -169,7 +248,7 @@ pre code {
 }
 
 .documentation-sql-block code {
-  color: #1e293b !important;
+  color: var(--bp-text) !important;
   background: none !important;
 }
 
@@ -238,12 +317,13 @@ pre code {
   font-weight: 600 !important;
 }
 
-/* Inline code styles */
+/* Inline code styles - light-on-dark now that every page (Home, docs,
+   download, posts) is on the dark blueprint background. */
 :not(pre) > code {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: var(--font-mono);
   font-size: 0.9em;
-  color: var(--color-primary);
-  background-color: rgba(94, 129, 172, 0.1);
+  color: var(--bp-text);
+  background-color: rgba(79, 209, 255, 0.14);
   padding: 0.2em 0.4em;
   border-radius: 0.25em;
   white-space: nowrap;
@@ -252,7 +332,7 @@ pre code {
 /* Tailwind layer customizations */
 @layer base {
   body {
-    @apply bg-gradient-to-br from-white to-pine-50 text-base antialiased;
+    @apply text-base antialiased;
   }
 }
 
@@ -268,8 +348,166 @@ pre code {
            disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
+  /* Download.tsx's install-instructions panel - its only remaining consumer
+     now that Home has its own .bp-* components (see below). */
   .card {
-    @apply p-6 bg-white rounded-lg shadow-sm border border-gray-100 
-           hover:shadow-md transition-shadow duration-200;
+    @apply p-6 rounded-lg shadow-sm border transition-shadow duration-200;
+    background-color: var(--bp-panel);
+    border-color: var(--bp-border-soft);
   }
+}
+
+/* ---------------------------------------------------------------------
+   Blueprint/schematic components - new dark chrome for Home, distinct
+   from the .nav-link/.btn-primary/.card set above, which stay untouched
+   for Download.tsx's still-unconverted card. Namespaced .bp- so nothing
+   here can collide with an existing class. See beamlynx-plans/pending
+   for the app-side pass this is unifying the site with.
+   --------------------------------------------------------------------- */
+.bp-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bp-trace);
+}
+.bp-eyebrow::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: var(--bp-trace);
+  box-shadow: 0 0 0 3px rgba(79, 209, 255, 0.18);
+}
+
+.bp-btn {
+  font-family: var(--font-mono);
+  font-size: 14.5px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+.bp-btn-primary { background: var(--bp-trace); color: var(--bp-on-trace); font-weight: 600; }
+.bp-btn-primary:hover { background: #6fdcff; transform: translateY(-1px); }
+.bp-btn-ghost { background: transparent; color: var(--bp-text); border: 1px solid var(--bp-border); }
+.bp-btn-ghost:hover { border-color: var(--bp-trace-dim); color: var(--bp-trace); }
+
+.bp-viewport {
+  position: relative;
+  padding: 22px;
+  border: 1px solid var(--bp-border);
+  background: linear-gradient(180deg, rgba(18, 53, 84, 0.55), rgba(15, 35, 55, 0.35));
+}
+.bp-viewport::before,
+.bp-viewport::after,
+.bp-viewport .bp-vp-bl,
+.bp-viewport .bp-vp-br {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--bp-trace);
+}
+.bp-viewport::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+.bp-viewport::after { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+.bp-viewport .bp-vp-bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+.bp-viewport .bp-vp-br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+
+.bp-diagram {
+  display: block;
+  width: 100%;
+  height: auto;
+  background:
+    radial-gradient(circle at 1px 1px, var(--bp-border-soft) 1.2px, transparent 0) 0 0/22px 22px,
+    var(--bp-panel);
+}
+
+.bp-query {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  background: var(--bp-panel);
+  border: 1px solid var(--bp-border-soft);
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--bp-text-dim);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.bp-query .tk-pipe { color: var(--bp-trace); }
+.bp-query .tk-kw { color: var(--bp-amber); }
+
+.bp-divider { height: 34px; }
+.bp-divider svg { display: block; width: 100%; height: 100%; }
+
+.bp-legend-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--bp-border-soft);
+}
+.bp-legend-head h2 {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bp-text-dim);
+  margin: 0;
+  font-weight: 500;
+}
+.bp-legend-head span {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--bp-text-faint);
+}
+
+.bp-legend-row {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 20px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--bp-border-soft);
+}
+.bp-legend-row:first-child { padding-top: 0; }
+.bp-pin {
+  width: 14px;
+  height: 14px;
+  margin-top: 5px;
+  border-radius: 2px;
+  border: 1.5px solid var(--bp-trace);
+  background: rgba(79, 209, 255, 0.12);
+}
+.bp-pin.amber { border-color: var(--bp-amber); background: rgba(245, 166, 35, 0.14); }
+.bp-pin.dim { border-color: var(--bp-text-dim); background: rgba(111, 151, 181, 0.14); }
+.bp-legend-row h3 {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: var(--bp-text);
+  letter-spacing: 0.01em;
+}
+.bp-legend-row p { margin: 0; color: var(--bp-text-dim); font-size: 15px; max-width: 60ch; }
+
+.bp-closing {
+  border-top: 1px solid var(--bp-border-soft);
+  padding: 64px 0 80px;
+  text-align: center;
+}
+.bp-closing .bp-eyebrow { margin: 0 0 14px; }
+.bp-closing h2 {
+  font-size: clamp(22px, 3vw, 30px);
+  margin: 0 0 26px;
+  text-wrap: balance;
 }

@@ -16,7 +16,7 @@ const LoadingIndicator: React.FC<LoadingIndicatorProps> = ({ text = 'Loading...'
         animate={{ opacity: [0.5, 1, 0.5] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
       />
-      <p className="text-gray-500 mt-4">{text}</p>
+      <p className="mt-4" style={{ color: 'var(--color-secondary)' }}>{text}</p>
     </div>
   );
 };
