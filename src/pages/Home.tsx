@@ -1,6 +1,28 @@
 import { motion } from "framer-motion";
 import { DEFAULT_EXAMPLE_QUERY, openInPlayground } from "../utils/playground";
 
+// Matches how the app itself prettifies a Pine expression (see
+// DocumentationSection.tsx's `expression.split('|').join('\n|')`): every
+// pipe-delimited step after the first starts its own line, pipe-first.
+const formatPineQuery = (expression: string): string[] =>
+  expression.split("|").map(part => part.trim());
+
+const PINE_KEYWORDS = ["select:", "limit:", "where:", "order:", "group:", ":parent"];
+const PINE_KEYWORD_RE = new RegExp(`(${PINE_KEYWORDS.join("|")})`, "g");
+
+const highlightPineKeywords = (line: string) =>
+  line
+    .split(PINE_KEYWORD_RE)
+    .map((part, i) =>
+      PINE_KEYWORDS.includes(part) ? (
+        <span key={i} className="tk-kw">
+          {part}
+        </span>
+      ) : (
+        part
+      ),
+    );
+
 const Home = () => {
   return (
     <div className="bp-page flex flex-col min-h-screen">
@@ -155,17 +177,12 @@ const Home = () => {
               </svg>
 
               <div className="bp-query">
-                customers <span className="tk-pipe">|</span>{" "}
-                <span className="tk-kw">select:</span> first_name, last_name,{" "}
-                <span className="tk-pipe">|</span> public.orders
-                .customer_id <span className="tk-pipe">|</span>{" "}
-                public.order_items .order_id{" "}
-                <span className="tk-pipe">|</span> public.products
-                .product_id <span className="tk-kw">:parent</span>{" "}
-                <span className="tk-pipe">|</span>{" "}
-                <span className="tk-kw">select:</span> name, price{" "}
-                <span className="tk-pipe">|</span>{" "}
-                <span className="tk-kw">limit:</span> 10
+                {formatPineQuery(DEFAULT_EXAMPLE_QUERY).map((line, i) => (
+                  <div key={i}>
+                    {i > 0 && <span className="tk-pipe">| </span>}
+                    {highlightPineKeywords(line)}
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
@@ -189,8 +206,7 @@ const Home = () => {
       <section className="px-4 py-14 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="bp-legend-head">
-            <h2>What's on this sheet</h2>
-            <span>03 components</span>
+            <h2>Why beamlynx</h2>
           </div>
 
           <div className="flex flex-col">
