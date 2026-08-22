@@ -6,6 +6,7 @@ import { AnimatePresence, MotionConfig } from 'framer-motion';
 import Footer from './components/Footer';
 import { useEffect, lazy, Suspense } from 'react';
 import LoadingIndicator from './components/LoadingIndicator';
+import { trackPageview } from './utils/analytics';
 
 const Home = lazy(() => import('./pages/Home'));
 const Posts = lazy(() => import('./pages/Posts'));
@@ -35,6 +36,7 @@ function ScrollToTop() {
     }
     
     window.scrollTo(0, 0);
+    trackPageview(location.pathname);
   }, [location.pathname]);
   
   return null;
