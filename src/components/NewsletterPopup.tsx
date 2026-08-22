@@ -25,10 +25,30 @@ const NewsletterPopup = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const [visible, setVisible] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
+  const footerSeenRef = useRef(false);
+
+  // The footer has its own copy of this same form -- once it's on screen,
+  // showing the popup too would just be the same ask twice. Hide it (and
+  // don't bother showing it later) once that happens.
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        footerSeenRef.current = true;
+        setVisible(false);
+        observer.disconnect();
+      }
+    });
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (isSubscribed() || isDismissed()) return;
-    const timer = setTimeout(() => setVisible(true), SHOW_DELAY_MS);
+    const timer = setTimeout(() => {
+      if (!footerSeenRef.current) setVisible(true);
+    }, SHOW_DELAY_MS);
     return () => clearTimeout(timer);
   }, []);
 

@@ -112,9 +112,9 @@ body {
   /* Just the flat token here - ColorPaletteContext sets this same color as
      an inline style on mount, which would otherwise silently win over any
      background declared here. The dot-grid texture itself lives on each
-     page's own wrapper (.bp-page below), not globally on body -- Footer
-     deliberately stays flat/gradient so it reads as a distinct region
-     rather than a continuation of the page content above it. */
+     page's own wrapper (.bp-page below), not globally on body -- Footer's
+     own background stays flat/gradient on purpose (see Footer.tsx), so it
+     reads as a distinct region rather than a continuation of the page. */
   background: var(--bp-bg);
 }
 
@@ -122,6 +122,10 @@ body {
   background:
     radial-gradient(circle at 1px 1px, var(--bp-grid-dot) 1.4px, transparent 0) 0 0/28px 28px,
     var(--bp-bg);
+  /* Breathing room before Footer, kept here (inside the dotted area) rather
+     than as a margin on Footer itself, so the dots reach all the way down
+     to it instead of leaving a flat, undotted gap above it. */
+  padding-bottom: 6rem;
 }
 
 #root {

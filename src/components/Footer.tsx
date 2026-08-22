@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer 
-      className="mt-24 border-t py-12 bg-gradient-to-b from-transparent to-[#0f2337]/50"
+      className="border-t py-12 bg-gradient-to-b from-transparent to-[#0f2337]/50"
       style={{ 
         borderColor: `${palette.accent}20`,
       }}
