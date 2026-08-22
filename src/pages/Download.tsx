@@ -3,24 +3,24 @@ import InstallTabs from "../components/InstallTabs";
 
 const Download = () => {
   return (
-    <div className="bp-page flex flex-col min-h-screen">
+    <div className="bp-page flex flex-col">
       <title>beamlynx - Download</title>
       <meta
         name="description"
-        content="Download beamlynx, the desktop app for exploring your databases with visual, intuitive queries."
+        content="Download beamlynx, the intuitive, visual database client."
       />
       <meta property="og:title" content="Beamlynx - Download" />
-      <meta property="og:description" content="Download beamlynx, the desktop app for exploring your databases with visual, intuitive queries." />
+      <meta property="og:description" content="Download beamlynx, the intuitive, visual database client." />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://beamlynx.org/download" />
       <meta property="og:image" content="https://beamlynx.org/pine-social-preview.svg" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content="Beamlynx - Download" />
-      <meta name="twitter:description" content="Download beamlynx, the desktop app for exploring your databases with visual, intuitive queries." />
+      <meta name="twitter:description" content="Download beamlynx, the intuitive, visual database client." />
       <meta name="twitter:image" content="https://beamlynx.org/pine-social-preview.svg" />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden flex-1 flex items-center justify-center px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+      <section className="relative overflow-hidden px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -45,8 +45,7 @@ const Download = () => {
               className="mx-auto mt-4 max-w-3xl text-base leading-7 sm:mt-6 sm:text-lg sm:leading-8 lg:text-xl lg:leading-9"
               style={{ color: 'var(--bp-text-dim)' }}
             >
-              The desktop app for exploring your databases with visual,
-              intuitive queries.
+              The intuitive, visual database client.
             </motion.p>
           </div>
         </motion.div>

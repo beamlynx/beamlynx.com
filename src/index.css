@@ -111,8 +111,10 @@ body {
   font-family: var(--font-sans);
   /* Just the flat token here - ColorPaletteContext sets this same color as
      an inline style on mount, which would otherwise silently win over any
-     background declared here. The dot-grid texture itself lives on Home's
-     own wrapper (.bp-page below), not globally on body. */
+     background declared here. The dot-grid texture itself lives on each
+     page's own wrapper (.bp-page below), not globally on body -- Footer
+     deliberately stays flat/gradient so it reads as a distinct region
+     rather than a continuation of the page content above it. */
   background: var(--bp-bg);
 }
 
@@ -477,9 +479,9 @@ pre code {
   grid-template-columns: 28px 1fr;
   gap: 20px;
   padding: 22px 0;
-  border-bottom: 1px solid var(--bp-border-soft);
 }
 .bp-legend-row:first-child { padding-top: 0; }
+.bp-legend-row + .bp-legend-row { border-top: 1px solid var(--bp-border-soft); }
 .bp-pin {
   width: 14px;
   height: 14px;
