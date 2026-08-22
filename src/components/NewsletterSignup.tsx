@@ -20,7 +20,7 @@ const NewsletterSignup = () => {
 
       {subscribed ? (
         <p className="mt-1 text-sm" style={{ color: "var(--bp-text)" }}>
-          Subscribed — you'll hear from us when there's something new.
+          You're in — we'll email you when there's something new.
         </p>
       ) : (
         <>
@@ -42,7 +42,7 @@ const NewsletterSignup = () => {
               }}
             />
             <button type="submit" className="bp-btn bp-btn-primary justify-center">
-              Subscribe
+              Count me in
             </button>
           </form>
         </>
