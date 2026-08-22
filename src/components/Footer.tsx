@@ -1,5 +1,6 @@
 import React from 'react';
 import { useColorPalette } from '../contexts/ColorPaletteContext';
+import NewsletterSignup from './NewsletterSignup';
 
 const Footer: React.FC = () => {
   const palette = useColorPalette();
@@ -59,9 +60,11 @@ const Footer: React.FC = () => {
               </a>
             ))}
           </div>
-          
+
+          <NewsletterSignup />
+
           <div className="flex flex-col items-center gap-2 text-center">
-            <div 
+            <div
               className="text-sm font-medium tracking-wide flex items-center"
               style={{ color: palette.secondary }}
             >

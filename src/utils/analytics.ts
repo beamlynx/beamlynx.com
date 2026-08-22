@@ -26,3 +26,12 @@ export function trackEvent(name: string, properties?: Record<string, unknown>) {
 
   posthog.capture(name, properties);
 }
+
+// Attaches a real identity to this visitor's existing anonymous PostHog
+// history (past pageviews, download clicks, etc. all merge into this person)
+// -- call once we actually know who they are, e.g. a newsletter signup.
+export function identifyPerson(email: string) {
+  if (!apiKey) return;
+
+  posthog.identify(email, { email });
+}
