@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
 import { detectOS, isMobileDevice, type DetectedOS } from "../utils/detectOS";
+import { trackEvent } from "../utils/analytics";
 
 const RELEASES_URL = "https://github.com/beamlynx/beamlynx-desktop/releases/latest";
 
@@ -10,7 +11,7 @@ const TABS: { key: DetectedOS; label: string }[] = [
   { key: "linux", label: "Linux" },
 ];
 
-function CopyCommand({ command }: { command: string }) {
+function CopyCommand({ command, os, format }: { command: string; os: DetectedOS; format: string }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -18,6 +19,7 @@ function CopyCommand({ command }: { command: string }) {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     };
+    trackEvent("download_clicked", { os, format });
     if (navigator.clipboard) {
       navigator.clipboard.writeText(command).then(onCopied).catch(() => fallbackCopy(command, onCopied));
     } else {
@@ -64,12 +66,13 @@ function fallbackCopy(text: string, onDone: () => void) {
   document.body.removeChild(textArea);
 }
 
-function ReleasesLink({ children }: { children: React.ReactNode }) {
+function ReleasesLink({ os, format, children }: { os: DetectedOS; format: string; children: React.ReactNode }) {
   return (
     <a
       href={RELEASES_URL}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackEvent("download_clicked", { os, format })}
       className="text-pine-600 hover:text-pine-800 hover:underline font-medium transition-colors duration-200"
     >
       {children}
@@ -130,16 +133,16 @@ const InstallTabs = () => {
           <p className="text-base leading-7" style={{ color: 'var(--bp-text-dim)' }}>
             Via Homebrew (Apple Silicon only for now):
           </p>
-          <CopyCommand command="brew install --cask beamlynx/tap/beamlynx" />
+          <CopyCommand command="brew install --cask beamlynx/tap/beamlynx" os="mac" format="brew" />
           <p className="text-sm" style={{ color: 'var(--bp-text-faint)' }}>
-            Or <ReleasesLink>download the .dmg directly</ReleasesLink>.
+            Or <ReleasesLink os="mac" format="dmg">download the .dmg directly</ReleasesLink>.
           </p>
         </TabPanel>
 
         {/* Windows */}
         <TabPanel static className={({ selected }) => `[grid-area:1/1] space-y-3 ${selected ? 'visible' : 'invisible'}`}>
           <p className="text-base leading-7" style={{ color: 'var(--bp-text-dim)' }}>
-            <ReleasesLink>Download the .exe installer</ReleasesLink> and run it.
+            <ReleasesLink os="windows" format="exe">Download the .exe installer</ReleasesLink> and run it.
           </p>
           <p className="text-sm" style={{ color: 'var(--bp-text-faint)' }}>
             This build isn't code-signed yet, so Windows SmartScreen may warn you.
@@ -151,12 +154,12 @@ const InstallTabs = () => {
         {/* Linux */}
         <TabPanel static className={({ selected }) => `[grid-area:1/1] space-y-3 ${selected ? 'visible' : 'invisible'}`}>
           <p className="text-base leading-7" style={{ color: 'var(--bp-text-dim)' }}>
-            <ReleasesLink>Download the .AppImage</ReleasesLink> (works on most
+            <ReleasesLink os="linux" format="appimage">Download the .AppImage</ReleasesLink> (works on most
             distros, no installation needed):
           </p>
-          <CopyCommand command="chmod +x beamlynx.AppImage && ./beamlynx.AppImage" />
+          <CopyCommand command="chmod +x beamlynx.AppImage && ./beamlynx.AppImage" os="linux" format="appimage-chmod" />
           <p className="text-sm" style={{ color: 'var(--bp-text-faint)' }}>
-            Or, on Debian/Ubuntu, <ReleasesLink>download the .deb</ReleasesLink> and
+            Or, on Debian/Ubuntu, <ReleasesLink os="linux" format="deb">download the .deb</ReleasesLink> and
             install it with your usual package manager.
           </p>
         </TabPanel>

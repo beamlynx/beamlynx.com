@@ -20,3 +20,9 @@ export function trackPageview(path: string) {
 
   posthog.capture('$pageview', { $current_url: window.location.origin + path });
 }
+
+export function trackEvent(name: string, properties?: Record<string, unknown>) {
+  if (!apiKey) return;
+
+  posthog.capture(name, properties);
+}
