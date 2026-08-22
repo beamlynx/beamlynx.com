@@ -48,9 +48,7 @@ const NewsletterSignup = () => {
         </>
       )}
 
-      {/* Substack's response renders in here, invisibly -- we never read it.
-          Rendered once here (Footer is on every page) and shared by
-          NewsletterPopup, which targets the same iframe by name. */}
+      {/* Substack's response renders in here, invisibly -- we never read it. */}
       <iframe name={NEWSLETTER_RELAY_IFRAME_NAME} title="" style={{ display: "none" }} />
     </div>
   );
