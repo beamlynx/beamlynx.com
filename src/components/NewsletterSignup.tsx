@@ -1,40 +1,16 @@
 import { useRef, useState } from "react";
-import { identifyPerson, trackEvent } from "../utils/analytics";
-
-const SUBSTACK_ENDPOINT = "https://beamlynx.substack.com/api/v1/free?nojs=true";
-const RELAY_IFRAME_NAME = "substack-relay";
+import { NEWSLETTER_RELAY_IFRAME_NAME, isSubscribed, subscribeToNewsletter } from "../utils/newsletter";
 
 const NewsletterSignup = () => {
   const emailRef = useRef<HTMLInputElement>(null);
-  const [subscribed, setSubscribed] = useState(false);
+  const [subscribed, setSubscribed] = useState(isSubscribed);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const email = emailRef.current?.value.trim();
     if (!email) return;
 
-    identifyPerson(email);
-    trackEvent("newsletter_subscribed");
-
-    // Substack has no public API for adding a subscriber from our own form,
-    // so this posts straight to the same endpoint its own embed widget uses.
-    // A throwaway <form> targeting the hidden iframe below -- rather than
-    // fetch() -- since a form POST isn't subject to CORS (only reading a
-    // cross-origin fetch response is), and it doesn't depend on our visible
-    // form still being mounted by the time the browser sends it.
-    const relay = document.createElement("form");
-    relay.action = SUBSTACK_ENDPOINT;
-    relay.method = "POST";
-    relay.target = RELAY_IFRAME_NAME;
-    const field = document.createElement("input");
-    field.type = "hidden";
-    field.name = "email";
-    field.value = email;
-    relay.appendChild(field);
-    document.body.appendChild(relay);
-    relay.submit();
-    relay.remove();
-
+    subscribeToNewsletter(email);
     setSubscribed(true);
   };
 
@@ -72,8 +48,10 @@ const NewsletterSignup = () => {
         </>
       )}
 
-      {/* Substack's response renders in here, invisibly -- we never read it. */}
-      <iframe name={RELAY_IFRAME_NAME} title="" style={{ display: "none" }} />
+      {/* Substack's response renders in here, invisibly -- we never read it.
+          Rendered once here (Footer is on every page) and shared by
+          NewsletterPopup, which targets the same iframe by name. */}
+      <iframe name={NEWSLETTER_RELAY_IFRAME_NAME} title="" style={{ display: "none" }} />
     </div>
   );
 };

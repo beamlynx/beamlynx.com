@@ -4,6 +4,7 @@ import { ColorPaletteProvider } from './contexts/ColorPaletteContext';
 import Navbar from './components/Navbar';
 import { AnimatePresence, MotionConfig } from 'framer-motion';
 import Footer from './components/Footer';
+import NewsletterPopup from './components/NewsletterPopup';
 import { useEffect, lazy, Suspense } from 'react';
 import LoadingIndicator from './components/LoadingIndicator';
 import { trackPageview } from './utils/analytics';
@@ -64,6 +65,7 @@ const AppContent = () => {
         </AnimatePresence>
       </main>
       <Footer />
+      <NewsletterPopup />
     </div>
   );
 };
