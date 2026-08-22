@@ -79,7 +79,7 @@ const NewsletterPopup = () => {
           ) : (
             <>
               <p className="mt-2 mb-3 text-sm pr-4" style={{ color: "var(--bp-text-dim)" }}>
-                New releases and posts, straight to your inbox.
+                New releases and posts. No spam.
               </p>
               <form onSubmit={handleSubmit} className="flex gap-2">
                 <input

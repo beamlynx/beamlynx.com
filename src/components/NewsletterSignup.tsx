@@ -25,7 +25,7 @@ const NewsletterSignup = () => {
       ) : (
         <>
           <p className="mt-1 mb-3 text-sm" style={{ color: "var(--bp-text-dim)" }}>
-            New releases and posts, straight to your inbox. No spam, unsubscribe anytime.
+            New releases and posts. No spam, unsubscribe anytime.
           </p>
           <form onSubmit={handleSubmit} className="w-full max-w-sm flex flex-col sm:flex-row gap-3">
             <input
