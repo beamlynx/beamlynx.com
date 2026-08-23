@@ -479,13 +479,21 @@ pre code {
 }
 
 .bp-legend-row {
+  position: relative;
   display: grid;
   grid-template-columns: 28px 1fr;
   gap: 20px;
   padding: 22px 0;
 }
 .bp-legend-row:first-child { padding-top: 0; }
-.bp-legend-row + .bp-legend-row { border-top: 1px solid var(--bp-border-soft); }
+.bp-legend-row + .bp-legend-row::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 48px;
+  right: 0;
+  border-top: 1px solid var(--bp-border-soft);
+}
 .bp-pin {
   width: 14px;
   height: 14px;
