@@ -485,7 +485,6 @@ pre code {
   padding: 22px 0;
 }
 .bp-legend-row:first-child { padding-top: 0; }
-.bp-legend-row + .bp-legend-row { border-top: 1px solid var(--bp-border-soft); }
 .bp-pin {
   width: 14px;
   height: 14px;
