@@ -460,8 +460,6 @@ pre code {
   justify-content: space-between;
   gap: 24px;
   margin-bottom: 30px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--bp-border-soft);
 }
 .bp-legend-head h2 {
   font-family: var(--font-mono);
