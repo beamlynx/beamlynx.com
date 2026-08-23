@@ -12,6 +12,9 @@ export function initAnalytics() {
     // since PostHog's automatic pageview capture only fires once on initial load
     // and doesn't know about client-side (SPA) navigation.
     capture_pageview: false,
+    // capture_pageleave defaults to 'if_capture_pageview', so with automatic
+    // pageview capture off above, $pageleave would silently never fire too.
+    capture_pageleave: true,
   });
 }
 
