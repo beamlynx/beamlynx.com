@@ -215,7 +215,7 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
                     
                     {/* Try it button */}
                     <button
-                      onClick={() => openInPlayground(example.expression)}
+                      onClick={() => openInPlayground(example.expression, 'docs_example')}
                       className="ml-4 inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2"
                       style={{
                         backgroundColor: `${palette.accent}10`,
@@ -239,7 +239,7 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
                       borderColor: `${palette.secondary}15`,
                       '--tw-ring-color': palette.accent,
                     } as React.CSSProperties}
-                    onClick={() => openInPlayground(example.expression)}
+                    onClick={() => openInPlayground(example.expression, 'docs_example')}
                   >
                     {/* Pine expression - highlighted */}
                     <pre className="p-4 m-0 rounded-lg overflow-x-auto border-2 shadow-md" 

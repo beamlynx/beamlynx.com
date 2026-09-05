@@ -1,7 +1,23 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
+import { useSearchParams } from "react-router-dom";
 import InstallTabs from "../components/InstallTabs";
+import { trackEvent } from "../utils/analytics";
 
 const Download = () => {
+  const [searchParams] = useSearchParams();
+  const playgroundDisabled = searchParams.get("playground") === "disabled";
+
+  useEffect(() => {
+    // Backstop for playground_clicked: also covers a visitor landing here
+    // directly (an old bookmark/link to the playground itself redirecting
+    // here) rather than via one of this site's own "Playground" buttons.
+    if (playgroundDisabled) {
+      trackEvent('playground_redirect_landed', { source: searchParams.get('source') ?? 'unknown' });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="bp-page flex flex-col">
       <title>beamlynx - Download</title>
@@ -47,6 +63,22 @@ const Download = () => {
             >
               The intuitive, visual database client.
             </motion.p>
+            {playgroundDisabled && (
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="mx-auto mt-6 max-w-2xl rounded-lg border px-4 py-3 text-sm sm:text-base"
+                style={{
+                  color: 'var(--bp-text-dim)',
+                  borderColor: 'var(--bp-trace)',
+                  backgroundColor: 'color-mix(in srgb, var(--bp-trace) 10%, transparent)',
+                }}
+              >
+                The hosted playground is currently disabled. Download the app
+                below to try beamlynx.
+              </motion.p>
+            )}
           </div>
         </motion.div>
       </section>

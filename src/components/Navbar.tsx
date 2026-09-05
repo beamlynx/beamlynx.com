@@ -7,7 +7,6 @@ import { openInPlayground, DEFAULT_EXAMPLE_QUERY } from "../utils/playground";
 const Navbar: React.FC = () => {
   const location = useLocation();
   const palette = useColorPalette();
-  const [showMobileMessage, setShowMobileMessage] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
@@ -59,14 +58,6 @@ const Navbar: React.FC = () => {
   const getCurrentPageTitle = () => {
     const currentItem = navItems.find((item) => isActive(item.path));
     return currentItem?.label || "";
-  };
-
-  const handleTryItClick = (e: React.MouseEvent) => {
-    if (window.innerWidth < 768) {
-      e.preventDefault();
-      setShowMobileMessage(true);
-      setTimeout(() => setShowMobileMessage(false), 5000);
-    }
   };
 
   const Logo = () => (
@@ -137,7 +128,7 @@ const Navbar: React.FC = () => {
               <div>
                 <button
                   onClick={() => {
-                    openInPlayground(DEFAULT_EXAMPLE_QUERY);
+                    openInPlayground(DEFAULT_EXAMPLE_QUERY, 'navbar_mobile_menu');
                     setIsMobileMenuOpen(false);
                   }}
                   className="block w-full px-3 py-2.5 rounded-lg text-[15px] font-medium text-center transition-colors duration-200"
@@ -264,12 +255,7 @@ const Navbar: React.FC = () => {
               {/* Playground Button */}
               <div className="relative">
                 <button
-                  onClick={(e) => {
-                    handleTryItClick(e);
-                    if (window.innerWidth >= 768) {
-                      openInPlayground(DEFAULT_EXAMPLE_QUERY);
-                    }
-                  }}
+                  onClick={() => openInPlayground(DEFAULT_EXAMPLE_QUERY, 'navbar_desktop')}
                   className="ml-1 sm:ml-4 px-2 sm:px-4 py-1.5 rounded-lg text-[14px] sm:text-[15px] font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap flex items-center"
                   style={
                     {
@@ -288,28 +274,6 @@ const Navbar: React.FC = () => {
                     ↗
                   </span>
                 </button>
-
-                {/* Mobile Message Popup */}
-                <AnimatePresence>
-                  {showMobileMessage && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      className="absolute right-0 top-full mt-2 p-3 rounded-lg text-left w-64 text-sm"
-                      style={{
-                        backgroundColor: palette.background,
-                        border: `1px solid ${palette.accent}20`,
-                        boxShadow: "0 8px 24px rgba(0, 0, 0, 0.35)",
-                        color: palette.primary,
-                      }}
-                    >
-                      The Beamlynx playground requires a desktop environment to
-                      run the local server. Please visit on a desktop browser to
-                      try it out.
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </div>
             </div>
           </div>

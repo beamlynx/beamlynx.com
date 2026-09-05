@@ -86,7 +86,7 @@ const Home = () => {
             </p>
             <div className="mt-8 flex flex-wrap gap-3.5">
               <button
-                onClick={() => openInPlayground(DEFAULT_EXAMPLE_QUERY)}
+                onClick={() => openInPlayground(DEFAULT_EXAMPLE_QUERY, 'home_hero')}
                 className="bp-btn bp-btn-primary"
               >
                 Try it in the Playground <span aria-hidden="true">↗</span>
@@ -274,7 +274,7 @@ const Home = () => {
         <h2>Point it at a database and start exploring.</h2>
         <div className="flex flex-wrap gap-3.5 justify-center">
           <button
-            onClick={() => openInPlayground(DEFAULT_EXAMPLE_QUERY)}
+            onClick={() => openInPlayground(DEFAULT_EXAMPLE_QUERY, 'home_closing_cta')}
             className="bp-btn bp-btn-primary"
           >
             Try it in the Playground <span aria-hidden="true">↗</span>
