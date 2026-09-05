@@ -7,6 +7,12 @@ const Posts: React.FC = () => {
 
   const posts = [
     {
+      title: "Killing the core feature in Beamlynx",
+      date: "2026-09-05",
+      url: "https://beamlynx.substack.com/p/killing-the-core-feature-in-beamlynx",
+      preview: `Beamlynx is opinionated. Either you love it - or you hate it with all your might. The reason why it is so polarizing is that it asks the users to use a DSL instead of SQL as the main query language.`
+    },
+    {
       title: "Where is the AI in Beamlynx?",
       date: "2026-07-24",
       url: "https://beamlynx.substack.com/p/where-is-the-ai-in-beamlynx",
