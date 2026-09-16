@@ -5,6 +5,7 @@ const documentationComponents = {
   'Intro': lazy(() => import('./PineLang')),
   Table: lazy(() => import('./Table')),
   Join: lazy(() => import('./Join')),
+  Paths: lazy(() => import('./Paths')),
   Where: lazy(() => import('./Where')),
   Select: lazy(() => import('./Select')),
   Order: lazy(() => import('./Order')),
