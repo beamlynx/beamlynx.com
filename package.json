@@ -12,10 +12,12 @@
   "dependencies": {
     "@headlessui/react": "^2.2.4",
     "framer-motion": "^12.16.0",
+    "i18next": "^26.4.2",
     "posthog-js": "^1.418.10",
     "prismjs": "^1.30.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-i18next": "^17.0.14",
     "react-router-dom": "^7.6.2"
   },
   "devDependencies": {

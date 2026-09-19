@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "title": "beamlynx - 可视化直观的数据库查询",
+    "description": "Beamlynx 是一款可视化数据库客户端，让数据库操作变得轻松愉悦。使用 pine-lang——一种简单直观的查询语言——探索并操作你的数据。",
+    "ogTitle": "Beamlynx - 可视化直观的数据库查询",
+    "ogDescription": "一款可视化数据库客户端，让数据库操作变得轻松愉悦。使用 pine-lang 探索并操作你的数据，它是一种简单直观的查询语言。",
+    "twitterTitle": "Beamlynx - 可视化直观的数据库查询",
+    "twitterDescription": "一款可视化数据库客户端，让数据库操作变得轻松愉悦。"
+  },
+  "cta": {
+    "tryPlayground": "在演练场中试用",
+    "downloadDesktop": "下载桌面版"
+  },
+  "hero": {
+    "eyebrow": "可视化数据库客户端",
+    "titleLine1": "探索数据库",
+    "titleLine2": "可视化，且直观",
+    "description": "使用 <1>pine-lang</1> 编写查询——一种简单、可组合、能无缝转换为 SQL 的语言——同时你数据库中的关联关系会实时渲染为可点击浏览的示意图。",
+    "diagramAriaLabel": "画布模式示意图：customers、orders、order_items 和 products 四张表按顺序连接，对应下方的查询语句"
+  },
+  "features": {
+    "heading": "为什么选择 beamlynx",
+    "visual": {
+      "title": "可视化",
+      "description": "数据库表之间的关联关系会以图形方式实时渲染——无需额外维护一份 ERD 工具。"
+    },
+    "composable": {
+      "title": "可组合",
+      "description": "<1>pine-lang</1> 是一种可组合的领域特定语言（DSL），可直接转换为 SQL。让你专注于问题本身的结构，而不是语法细节。"
+    },
+    "interactive": {
+      "title": "可交互",
+      "description": "在实时关系图中点击表即可自动构建查询——连接路径会随之高亮显示。"
+    }
+  },
+  "closing": {
+    "eyebrow": "无需账号，无需配置。",
+    "heading": "指向一个数据库，即可开始探索。"
+  }
+}

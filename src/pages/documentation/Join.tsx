@@ -1,65 +1,68 @@
 import React from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import DocumentationSection from '../../components/DocumentationSection';
 import type { DocumentationExample } from '../../components/DocumentationSection';
 
 const Join: React.FC = () => {
+  const { t } = useTranslation('docsContent');
+
   const examples: DocumentationExample[] = [
     {
-      title: 'Join',
+      title: t('join.examples.0.title'),
       expression: 'customers | orders',
       sql: 'SELECT * FROM customers JOIN orders ON customers.id = orders.customer_id',
-      description: 'Two tables based using the foreign key.'
+      description: t('join.examples.0.description')
     },
     {
-      title: 'Multi-table join',
+      title: t('join.examples.1.title'),
       expression: 'customers | orders | order_items',
       sql: 'SELECT * FROM customers JOIN ordesrs ON customers.id = orders.customer_id JOIN order_items ON orders.id = order_items.order_id',
-      description: 'Pipe multiple tables together for joining multiple tables'
+      description: t('join.examples.1.description')
     },
     {
-      title: 'Schema qualified join',
+      title: t('join.examples.2.title'),
       expression: 'customers | audit.order_status_changes',
       sql: 'SELECT * FROM customers JOIN audit.order_status_changes ON customers.id = audit.order_status_changes.customer_id',
-      description: 'Use schema qualification when joining across different schemas'
+      description: t('join.examples.2.description')
     },
     {
-      title: 'Left join',
+      title: t('join.examples.3.title'),
       expression: 'customers | orders :left',
       sql: 'SELECT * FROM customers LEFT JOIN orders ON customers.id = orders.customer_id',
-      description: 'Use the :left modifier to specify a left join'
+      description: t('join.examples.3.description')
     },
     {
-      title: 'Self join',
+      title: t('join.examples.4.title'),
       expression: 'categories as p | categories as c',
       sql: 'SELECT c.* FROM categories as p JOIN categories as c ON p.id = c.parent_id',
-      description: 'Join a table with itself'
+      description: t('join.examples.4.description')
     },
     {
-      title: 'Self join with direction / Parent-child relationship',
+      title: t('join.examples.5.title'),
       expression: 'categories as p | categories as c :parent',
       sql: 'SELECT p.* FROM categories as c JOIN categories as p ON c.parent_id = p.id',
-      description: 'By default, the child table is picked for the join i.e. the one that holds the foreing key. If you want to join on the parent table i.e. the one being referenced, then use the :parent modifier. Aliases are used for demonstration purposes.'
+      description: t('join.examples.5.description')
     }
   ];
 
   return (
     <DocumentationSection
       id="join"
-      title="Join"
-      description="Join tables without having to think of the foreign key relationships. Simply pipe tables together to create joins. However, if you want to specify the join column or other aspects of the join, you can pass the relevant arguments. See examples below:"
+      title={t('join.title')}
+      description={t('join.description')}
       examples={examples}
       isOperation={true}
     >
       <p>
-        Supported modifiers:
+        {t('join.modifiersIntro')}
       </p>
       <ul>
-        <li><code>:left</code> - Performs a left outer join, keeping all records from the left table</li>
-        <li><code>:right</code> - Performs a right outer join, keeping all records from the right table</li>
-        <li><code>:parent</code> - Joins on the parent table (the one being referenced) instead of the child table (the one with the foreign key)</li>
+        <li><Trans i18nKey="join.modifiers.0" ns="docsContent" components={{ 1: <code /> }} /></li>
+        <li><Trans i18nKey="join.modifiers.1" ns="docsContent" components={{ 1: <code /> }} /></li>
+        <li><Trans i18nKey="join.modifiers.2" ns="docsContent" components={{ 1: <code /> }} /></li>
       </ul>
     </DocumentationSection>
   );
 };
 
-export default Join; 
+export default Join;

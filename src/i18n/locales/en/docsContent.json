@@ -1,0 +1,143 @@
+{
+  "whyDsl": {
+    "title": "Why?",
+    "description": "SQL has been the foundation of data work for decades. It's powerful, expressive, and universal. But for some tasks, it can get in the way.",
+    "bullets": [
+      "SQL blurs the lines between <1>what</1> you want and <3>how</3> to get it.",
+      "Composability isn't its focus.",
+      "Results don't help you discover relationships or context in your schema.",
+      "SQL wasn't designed with visual exploration in mind.",
+      "SQL can be unnecessarily verbose."
+    ],
+    "closing": "SQL is great - but we can improve the experience with a domain-specific language (DSL)."
+  },
+  "pineLang": {
+    "title": "Introducing Pine-lang",
+    "description": "Beamlynx uses pine-lang which is an intuitive query language that transpiles to SQL. Pine-lang uses a pipe-based syntax inspired by Unix pipes, making queries readable and composable. As you write queries, you see a real-time visualization of table relationships."
+  },
+  "table": {
+    "title": "Table",
+    "description": "This is as simple as it gets! You want to get data from a table? Just write the table name.",
+    "examples": [
+      { "title": "Select all" },
+      { "title": "Table in a schema" },
+      { "title": "Table with alias" }
+    ]
+  },
+  "join": {
+    "title": "Join",
+    "description": "Join tables without having to think of the foreign key relationships. Simply pipe tables together to create joins. However, if you want to specify the join column or other aspects of the join, you can pass the relevant arguments. See examples below:",
+    "examples": [
+      { "title": "Join", "description": "Two tables based using the foreign key." },
+      { "title": "Multi-table join", "description": "Pipe multiple tables together for joining multiple tables" },
+      { "title": "Schema qualified join", "description": "Use schema qualification when joining across different schemas" },
+      { "title": "Left join", "description": "Use the :left modifier to specify a left join" },
+      { "title": "Self join", "description": "Join a table with itself" },
+      { "title": "Self join with direction / Parent-child relationship", "description": "By default, the child table is picked for the join i.e. the one that holds the foreing key. If you want to join on the parent table i.e. the one being referenced, then use the :parent modifier. Aliases are used for demonstration purposes." }
+    ],
+    "modifiersIntro": "Supported modifiers:",
+    "modifiers": [
+      "<1>:left</1> - Performs a left outer join, keeping all records from the left table",
+      "<1>:right</1> - Performs a right outer join, keeping all records from the right table",
+      "<1>:parent</1> - Joins on the parent table (the one being referenced) instead of the child table (the one with the foreign key)"
+    ]
+  },
+  "paths": {
+    "title": "Paths",
+    "description": "Ask Pine how two tables connect, and it searches for every join chain between them - not just the direct next hop. Useful the moment you know you need data from another table but not how to get there.",
+    "examples": [
+      { "title": "Direct and multi-hop", "description": "Returns every route from company to document, not just the next hop. If employee sits in between (company → employee → document) as well as a direct company_id column on document, both come back - ordered so the genuine relationship ranks above the denormalized shortcut." },
+      { "title": "Composed on top of an existing expression", "description": "The search starts from wherever the pipe left off, not from a bare table name - everything before the ? is an ordinary, fully composable Pine expression." }
+    ],
+    "intro1": "A single pipe (<1>customers | orders</1>) already shows what a table can join to next. <3>?</3> answers a different question: how would you even get from one table to another, when the real connection is two or three hops away through a table you hadn't thought to name.",
+    "intro2": "Each result is a real Pine expression, ready to drop in place of the <1>? table</1> segment - not a query result. A few things to know:",
+    "notes": [
+      "Routes are ranked by how meaningful the connection is, not by hop count alone - a shortcut column that only duplicates a longer, more direct relationship ranks behind the real one, even when it's shorter.",
+      "<1>?</1> is terminal - nothing meaningful follows it in the same pipe, the same as <3>count:</3> or bare <5>delete:</5>.",
+      "It has no table modifiers of its own (no <1>as alias</1>, no <3>.hint_column</3>, no <5>:parent</5>) - the named table is a search destination, not something being joined directly.",
+      "Results are capped so a densely-connected schema can't turn a lookup into a long-running search."
+    ]
+  },
+  "where": {
+    "title": "Where",
+    "description": "Filters the results based on conditions.",
+    "examples": [
+      { "title": "Condition", "description": "Filter records where a column equals a specific value" },
+      { "title": "Multiple conditions", "description": "Apply multiple filter conditions with comma separation" },
+      { "title": "NULL", "description": "Filter for records with NULL values in a column" },
+      { "title": "NOT NULL", "description": "Filter for records with NOT NULL values in a column" },
+      { "title": "IN clause", "description": "Filter for records where column value matches any in a list" },
+      { "title": "Column comparison", "description": "Compare values between different columns" },
+      { "title": "LIKE", "description": "Filter for records using the LIKE operator" },
+      { "title": "ILIKE", "description": "Filter for records using the ILIKE operator" }
+    ]
+  },
+  "select": {
+    "title": "Select",
+    "description": "Select columns to return in the query result.",
+    "examples": [
+      { "title": "Select specific columns", "description": "Choose only the columns you need in the result" },
+      { "title": "Select with alias", "description": "Rename columns in the output using aliases" },
+      { "title": "Select with table qualification", "description": "Specify which table each column comes from in joins" }
+    ]
+  },
+  "order": {
+    "title": "Order",
+    "description": "Sort the results by one or more columns.",
+    "examples": [
+      { "title": "Basic ordering", "description": "Sort results by a single column in ascending order" },
+      { "title": "Descending order", "description": "Sort results in descending order using the desc keyword" },
+      { "title": "Multiple columns", "description": "Sort by multiple columns with different sort directions" }
+    ]
+  },
+  "limit": {
+    "title": "Limit",
+    "description": "The limit operation restricts the number of rows returned from a query. Use 'limit:' or the shorthand 'l:' to specify the maximum number of rows.",
+    "examples": [
+      { "title": "Limit", "description": "Get the first 10 rows from the customers table" },
+      { "title": "Limit with filter", "description": "Filter customers and limit to 5 results" },
+      { "title": "Limit after join", "description": "Join customers and orders, filter by total amount, then limit results" }
+    ]
+  },
+  "from": {
+    "title": "From",
+    "description": "The from operation sets the context for subsequent operations in complex queries. Use 'from:' or the shorthand 'f:' to specify which table or alias to use as the source for the next operations.",
+    "examples": [
+      { "title": "Context switch with status tracking", "description": "Get order status history by joining order items and status changes, using from to maintain order context" }
+    ]
+  },
+  "group": {
+    "title": "Group",
+    "description": "Used to group the results of a query by a given column.",
+    "examples": [
+      { "title": "Basic grouping", "description": "Group products by category and count the number of order items for each category" }
+    ]
+  },
+  "count": {
+    "title": "Count",
+    "description": "The count operation returns the total number of rows in a result set. Use 'count:' to get the row count of your query results.",
+    "examples": [
+      { "title": "Simple Count", "description": "Count all rows in the categories table" }
+    ]
+  },
+  "delete": {
+    "title": "Delete",
+    "description": "The delete operation removes rows from a table. All side-effect operations in pine-lang are suffixed with '!' to indicate they modify data. Use delete! to permanently remove records that match your filter conditions.",
+    "examples": [
+      { "title": "Delete Specific Record", "description": "Delete the customer with the email 'john.doe@email.com' from the customers table" }
+    ]
+  },
+  "variables": {
+    "title": "Variables",
+    "description": "Name an intermediate result and use it as a table in later expressions. Variables let you build up queries in readable steps instead of nesting subqueries.",
+    "examples": [
+      { "title": "Name a result and reuse it", "description": "Assign the filtered company result to active_companies, then use it as a table in the next expression." },
+      { "title": "Mid-pipeline assign", "description": "Place |= anywhere in the pipe chain. The snapshot is taken at that point — all_companies is the full unfiltered company set, while the current expression still returns only active companies." },
+      { "title": "Reference variable columns", "description": "After |= c, use c as a column qualifier in the same expression. c.id refers to the company table's id column." },
+      { "title": "Chain multiple steps", "description": "Each expression builds on the previous. Separate expressions with a blank line." },
+      { "title": "Only explicitly selected id columns stay joinable", "description": "Once a variable is used, its underlying tables are no longer visible — only its own output columns are. A table stays a valid join source through the variable only if its id was explicitly selected. select: name alone (no id) would make x unjoinable to anything." },
+      { "title": "Automatic checkpoints after group: or limit:", "description": "group: and limit: produce a final, bounded result. Piping into another table after one of them automatically wraps the preceding query in an anonymous CTE first, so the join applies on top of the limited/grouped result instead of corrupting it. Name that CTE yourself with |= placed right after the group:/limit: step." },
+      { "title": "Combine multiple aggregates per row", "description": "x and y each aggregate a different related table down to one row per customer, exposing just their own count column. The final expression starts from customers again and joins both variables in, producing one row per customer with email, order_count, and status_change_count side by side — without nesting subqueries or repeating the customers join in each branch." }
+    ]
+  }
+}

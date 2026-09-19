@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "beamlynx - Descargar",
+    "description": "Descarga beamlynx, el cliente de bases de datos visual e intuitivo.",
+    "ogTitle": "Beamlynx - Descargar",
+    "ogDescription": "Descarga beamlynx, el cliente de bases de datos visual e intuitivo.",
+    "twitterTitle": "Beamlynx - Descargar",
+    "twitterDescription": "Descarga beamlynx, el cliente de bases de datos visual e intuitivo."
+  },
+  "heading": "Descargar",
+  "headingBrand": " beamlynx",
+  "subheading": "El cliente de bases de datos visual e intuitivo.",
+  "playgroundDisabled": "El playground alojado está desactivado por el momento. Descarga la aplicación a continuación para probar beamlynx.",
+  "install": {
+    "mobileWarning": "beamlynx es una aplicación de escritorio para macOS, Windows y Linux. Visita esta página desde tu computadora para instalarla.",
+    "tabs": {
+      "mac": "macOS",
+      "windows": "Windows",
+      "linux": "Linux"
+    },
+    "copy": "Copiar",
+    "copied": "¡Copiado!",
+    "mac": {
+      "viaBrew": "A través de Homebrew (por ahora, solo Apple Silicon):",
+      "orDownload": "O <1>descarga el .dmg directamente</1>."
+    },
+    "windows": {
+      "download": "<1>Descarga el instalador .exe</1> y ejecútalo.",
+      "smartScreenWarning": "Esta versión aún no está firmada digitalmente, por lo que Windows SmartScreen puede mostrar una advertencia. Haz clic en <1>Más información</1> y luego en <3>Ejecutar de todas formas</3> para iniciarla."
+    },
+    "linux": {
+      "download": "<1>Descarga el .AppImage</1> (funciona en la mayoría de las distribuciones, sin necesidad de instalación):",
+      "orDeb": "O, en Debian/Ubuntu, <1>descarga el .deb</1> e instálalo con tu gestor de paquetes habitual."
+    }
+  }
+}

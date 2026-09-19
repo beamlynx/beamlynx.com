@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "titlePrefix": "beamlynx - ",
+    "description": "Udforsk den officielle Beamlynx-dokumentation. Lær syntaksen, funktionerne og best practice for at skrive klare og effektive databaseforespørgsler med pine-lang.",
+    "ogTitle": "Beamlynx - pine-lang",
+    "ogDescription": "Udforsk den officielle pine-lang-dokumentation, og lær at skrive klare, effektive databaseforespørgsler.",
+    "twitterTitle": "Beamlynx - pine-lang",
+    "twitterDescription": "Udforsk den officielle pine-lang-dokumentation, og lær at skrive klare, effektive databaseforespørgsler.",
+    "fallbackTitle": "Docs"
+  },
+  "sidebar": {
+    "navigation": "Navigation"
+  },
+  "section": {
+    "operationBadge": "OPERATION",
+    "copyPermalink": "Kopiér permalink",
+    "syntax": "Syntaks",
+    "examples": "Eksempler",
+    "tryIt": "Prøv det",
+    "tryInPlayground": "Prøv i playground",
+    "becomes": "bliver til"
+  }
+}

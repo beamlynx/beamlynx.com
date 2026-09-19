@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useColorPalette } from '../../contexts/ColorPaletteContext';
 
 interface DocSectionProps {
@@ -11,6 +12,7 @@ interface DocSectionProps {
 
 const DocSection: React.FC<DocSectionProps> = ({ id, title, children, isOperation = false, badge }) => {
   const palette = useColorPalette();
+  const { t } = useTranslation('docs');
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -75,7 +77,7 @@ const DocSection: React.FC<DocSectionProps> = ({ id, title, children, isOperatio
                   fontSize: '0.75rem',
                 }}
               >
-                OPERATION
+                {t('section.operationBadge')}
               </span>
             )}
             {badge && (
@@ -101,7 +103,7 @@ const DocSection: React.FC<DocSectionProps> = ({ id, title, children, isOperatio
           }}
           className="absolute left-0 top-0 p-1 mt-1.5 rounded-md transition-opacity duration-200 opacity-0 group-hover:opacity-100"
           style={{ color: palette.secondary }}
-          aria-label="Copy permalink"
+          aria-label={t('section.copyPermalink')}
         >
           {copied ? (
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">

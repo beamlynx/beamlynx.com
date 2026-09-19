@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "dsl": "DSL",
+    "download": "Descargar",
+    "posts": "Publicaciones",
+    "playground": "Playground",
+    "toggleMenu": "Alternar menú",
+    "mainNavigation": "Navegación principal"
+  },
+  "footer": {
+    "madeIn": "Hecho con <1>♥</1> en Dinamarca",
+    "supportedBy": "Beamlynx cuenta con el respaldo de"
+  },
+  "newsletter": {
+    "eyebrow": "Recibe novedades",
+    "subscribedMessage": "Ya estás dentro — te avisaremos por correo cuando haya algo nuevo.",
+    "description": "Nuevas versiones y publicaciones. Sin spam, cancela tu suscripción cuando quieras.",
+    "emailPlaceholder": "tu@empresa.com",
+    "submit": "Quiero recibirlas"
+  },
+  "loading": {
+    "default": "Cargando...",
+    "page": "Cargando página...",
+    "docs": "Cargando documentación..."
+  },
+  "languageSwitcher": {
+    "label": "Idioma",
+    "en": "English",
+    "es": "Español",
+    "zh": "中文",
+    "da": "Dansk"
+  }
+}

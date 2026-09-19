@@ -1,0 +1,143 @@
+{
+  "whyDsl": {
+    "title": "为什么？",
+    "description": "几十年来，SQL 一直是数据工作的基石。它强大、表达力丰富且通用。但在某些任务中，它反而会成为阻碍。",
+    "bullets": [
+      "SQL 模糊了你<1>想要什么</1>和<3>如何实现</3>之间的界限。",
+      "可组合性并非它的设计重点。",
+      "查询结果无法帮助你发现表结构中的关联关系或上下文。",
+      "SQL 从设计之初就没有考虑可视化探索。",
+      "SQL 有时会显得不必要地冗长。"
+    ],
+    "closing": "SQL 很棒——但我们可以通过一种领域特定语言（DSL）来改善这种体验。"
+  },
+  "pineLang": {
+    "title": "Pine-lang 简介",
+    "description": "Beamlynx 使用 pine-lang——一种可转译为 SQL 的直观查询语言。pine-lang 采用受 Unix 管道启发的管道式语法，让查询既易读又可组合。在编写查询的同时，你还能实时看到表关系的可视化呈现。"
+  },
+  "table": {
+    "title": "Table",
+    "description": "这就是最简单的用法！想从某张表中获取数据？直接写出表名即可。",
+    "examples": [
+      { "title": "查询所有列" },
+      { "title": "带 schema 的表" },
+      { "title": "带别名的表" }
+    ]
+  },
+  "join": {
+    "title": "Join",
+    "description": "无需考虑外键关系即可连接表。只需将多张表通过管道符连接在一起即可创建连接。不过，如果你想指定连接列或连接的其他细节，也可以传入相应的参数。参见下方示例：",
+    "examples": [
+      { "title": "连接", "description": "基于外键连接两张表。" },
+      { "title": "多表连接", "description": "将多张表依次通过管道符连接，实现多表连接。" },
+      { "title": "跨 schema 连接", "description": "在跨不同 schema 连接时使用 schema 限定。" },
+      { "title": "左连接", "description": "使用 :left 修饰符指定左连接。" },
+      { "title": "自连接", "description": "将一张表与自身连接。" },
+      { "title": "带方向的自连接 / 父子关系", "description": "默认情况下，连接会选择子表，即持有外键的那一方。如果你想连接到父表，即被引用的那一方，可以使用 :parent 修饰符。示例中使用别名仅用于演示。" }
+    ],
+    "modifiersIntro": "支持的修饰符：",
+    "modifiers": [
+      "<1>:left</1> —— 执行左外连接，保留左表的全部记录",
+      "<1>:right</1> —— 执行右外连接，保留右表的全部记录",
+      "<1>:parent</1> —— 连接到父表（被引用的一方），而不是子表（持有外键的一方）"
+    ]
+  },
+  "paths": {
+    "title": "Paths",
+    "description": "让 Pine 找出两张表之间的连接方式，它会搜索它们之间的每一条连接链路——而不仅仅是最直接的下一跳。当你知道需要另一张表的数据，却不知道该如何连接过去时非常有用。",
+    "examples": [
+      { "title": "直接与多跳连接", "description": "返回从 company 到 document 的每一条路径，而不仅仅是下一跳。如果 employee 位于两者之间（company → employee → document），并且 document 上还存在一个直接的 company_id 列，两条路径都会返回——排序会让真实的关联关系排在这个冗余快捷方式之前。" },
+      { "title": "在已有表达式基础上组合", "description": "搜索会从管道当前所处的位置开始，而不是从一个裸表名开始——? 之前的部分是一个普通的、完全可组合的 Pine 表达式。" }
+    ],
+    "intro1": "单个管道（<1>customers | orders</1>）已经能展示一张表接下来可以连接到哪些表。<3>?</3> 回答的是另一个问题：当真正的关联关系相隔两三跳、需要经过一张你根本没想到要指定的表时，你要如何从一张表到达另一张表。",
+    "intro2": "每一个结果都是一个真正的 Pine 表达式，可以直接替换掉 <1>? table</1> 这一段——而不是一个查询结果。有几点需要了解：",
+    "notes": [
+      "路径的排序依据是关联关系的意义大小，而不仅仅是跳数——一个只是复制了更长、更直接关系的快捷列，即使跳数更少，排序也会排在真实关系之后。",
+      "<1>?</1> 是终止操作——在同一管道中它后面不能再跟有意义的操作，这与 <3>count:</3> 或裸露的 <5>delete:</5> 相同。",
+      "它没有自己的表修饰符（不支持 <1>as alias</1>、<3>.hint_column</3>，也不支持 <5>:parent</5>）——被指定的表是搜索目标，而不是被直接连接的对象。",
+      "结果数量有上限，避免在高度关联的 schema 中，一次查找演变成一次长时间运行的搜索。"
+    ]
+  },
+  "where": {
+    "title": "Where",
+    "description": "根据条件过滤查询结果。",
+    "examples": [
+      { "title": "条件", "description": "筛选某一列等于指定值的记录" },
+      { "title": "多个条件", "description": "使用逗号分隔应用多个筛选条件" },
+      { "title": "NULL", "description": "筛选某一列的值为 NULL 的记录" },
+      { "title": "NOT NULL", "description": "筛选某一列的值不为 NULL 的记录" },
+      { "title": "IN 子句", "description": "筛选某一列的值匹配列表中任意一项的记录" },
+      { "title": "列间比较", "description": "比较不同列之间的值" },
+      { "title": "LIKE", "description": "使用 LIKE 运算符筛选记录" },
+      { "title": "ILIKE", "description": "使用 ILIKE 运算符筛选记录" }
+    ]
+  },
+  "select": {
+    "title": "Select",
+    "description": "选择要在查询结果中返回的列。",
+    "examples": [
+      { "title": "选择指定列", "description": "只在结果中保留你需要的列" },
+      { "title": "带别名的选择", "description": "使用别名重命名输出中的列" },
+      { "title": "带表限定的选择", "description": "指定每一列在连接中来自哪张表" }
+    ]
+  },
+  "order": {
+    "title": "Order",
+    "description": "按一个或多个列对结果进行排序。",
+    "examples": [
+      { "title": "基本排序", "description": "按单个列进行升序排序" },
+      { "title": "降序排序", "description": "使用 desc 关键字进行降序排序" },
+      { "title": "多列排序", "description": "按多个列排序，且可分别指定不同的排序方向" }
+    ]
+  },
+  "limit": {
+    "title": "Limit",
+    "description": "limit 操作用于限制查询返回的行数。使用 'limit:' 或简写 'l:' 来指定返回的最大行数。",
+    "examples": [
+      { "title": "限制行数", "description": "获取 customers 表中的前 10 行" },
+      { "title": "带筛选的限制", "description": "筛选 customers 并将结果限制为 5 条" },
+      { "title": "连接后的限制", "description": "连接 customers 和 orders，按总金额筛选，然后限制结果数量" }
+    ]
+  },
+  "from": {
+    "title": "From",
+    "description": "from 操作用于在复杂查询中为后续操作设置上下文。使用 'from:' 或简写 'f:' 来指定后续操作应以哪张表或别名作为数据源。",
+    "examples": [
+      { "title": "带状态追踪的上下文切换", "description": "通过连接订单项和状态变更记录来获取订单状态历史，并使用 from 维持订单上下文" }
+    ]
+  },
+  "group": {
+    "title": "Group",
+    "description": "用于按指定列对查询结果进行分组。",
+    "examples": [
+      { "title": "基本分组", "description": "按类别对商品分组，并统计每个类别下的订单项数量" }
+    ]
+  },
+  "count": {
+    "title": "Count",
+    "description": "count 操作返回结果集中的总行数。使用 'count:' 获取查询结果的行数。",
+    "examples": [
+      { "title": "简单计数", "description": "统计 categories 表中的所有行数" }
+    ]
+  },
+  "delete": {
+    "title": "Delete",
+    "description": "delete 操作用于从表中删除行。pine-lang 中所有具有副作用的操作都以 '!' 结尾，表示它们会修改数据。使用 delete! 永久删除匹配筛选条件的记录。",
+    "examples": [
+      { "title": "删除指定记录", "description": "从 customers 表中删除邮箱为 'john.doe@email.com' 的客户" }
+    ]
+  },
+  "variables": {
+    "title": "Variables",
+    "description": "为中间结果命名，并在之后的表达式中将其作为表使用。变量让你可以用可读的步骤逐步构建查询，而不必嵌套子查询。",
+    "examples": [
+      { "title": "命名结果并复用", "description": "将筛选后的 company 结果赋值给 active_companies，然后在下一个表达式中将其作为表使用。" },
+      { "title": "管道中途赋值", "description": "|= 可以放在管道链的任意位置。快照会在该位置被捕获——all_companies 是未经筛选的完整 company 集合，而当前表达式仍然只返回处于活跃状态的公司。" },
+      { "title": "引用变量列", "description": "在 |= c 之后，可以在同一个表达式中使用 c 作为列限定符。c.id 指向的是 company 表的 id 列。" },
+      { "title": "串联多个步骤", "description": "每个表达式都基于前一个构建。使用空行分隔各个表达式。" },
+      { "title": "只有显式选择的 id 列才能继续用于连接", "description": "变量一旦被使用，其底层的表就不再可见——只有它自身输出的列是可见的。只有当某张表的 id 被显式选择时，该表才能继续通过该变量作为有效的连接来源。仅 select: name（不包含 id）会导致 x 无法与任何表连接。" },
+      { "title": "group: 或 limit: 之后的自动检查点", "description": "group: 和 limit: 会生成一个最终的、有边界的结果。在它们之后再连接另一张表时，会自动先将前面的查询包装成一个匿名 CTE，这样连接就作用在这个已限制/已分组的结果之上，而不会破坏它。你可以在 group:/limit: 步骤之后紧跟 |= 来自己为这个 CTE 命名。" },
+      { "title": "每行合并多个聚合结果", "description": "x 和 y 各自将一张不同的关联表聚合为每位客户一行，并分别暴露各自的计数列。最终的表达式重新从 customers 开始，并将两个变量都连接进来，生成每位客户一行、并排展示 email、order_count 和 status_change_count 的结果——无需嵌套子查询，也无需在每个分支中重复 customers 的连接。" }
+    ]
+  }
+}

@@ -1,33 +1,36 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import DocumentationSection from '../../components/DocumentationSection';
 
 const Limit: React.FC = () => {
+  const { t } = useTranslation('docsContent');
+
   return (
     <DocumentationSection
       id="limit"
-      title="Limit"
-      description="The limit operation restricts the number of rows returned from a query. Use 'limit:' or the shorthand 'l:' to specify the maximum number of rows."
+      title={t('limit.title')}
+      description={t('limit.description')}
       operations={['limit:', 'l:']}
       syntax="table_name | limit: number"
       isOperation={true}
       examples={[
         {
-          title: "Limit",
+          title: t('limit.examples.0.title'),
           expression: "customers | limit: 10",
           sql: "SELECT * FROM customers LIMIT 10",
-          description: "Get the first 10 rows from the customers table"
+          description: t('limit.examples.0.description')
         },
         {
-          title: "Limit with filter",
+          title: t('limit.examples.1.title'),
           expression: "customers | where: is_active = true | limit: 5",
           sql: "SELECT * FROM customers WHERE is_active = true LIMIT 5",
-          description: "Filter customers and limit to 5 results"
+          description: t('limit.examples.1.description')
         },
         {
-          title: "Limit after join",
+          title: t('limit.examples.2.title'),
           expression: "customers | orders | where: total_amount > 100 | limit: 1",
           sql: "SELECT * FROM customers JOIN orders ON customers.id = orders.customer_id WHERE orders.total > 100 LIMIT 1",
-          description: "Join customers and orders, filter by total amount, then limit results"
+          description: t('limit.examples.2.description')
         }
       ]}
     >
@@ -35,4 +38,4 @@ const Limit: React.FC = () => {
   );
 };
 
-export default Limit; 
+export default Limit;

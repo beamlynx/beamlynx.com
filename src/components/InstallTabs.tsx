@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { Tab, TabGroup, TabList, TabPanel, TabPanels } from "@headlessui/react";
+import { Trans, useTranslation } from "react-i18next";
 import { detectOS, isMobileDevice, type DetectedOS } from "../utils/detectOS";
 import { trackEvent } from "../utils/analytics";
 
 const RELEASES_URL = "https://github.com/beamlynx/beamlynx-desktop/releases/latest";
 
-const TABS: { key: DetectedOS; label: string }[] = [
-  { key: "mac", label: "macOS" },
-  { key: "windows", label: "Windows" },
-  { key: "linux", label: "Linux" },
-];
+const TAB_KEYS: DetectedOS[] = ["mac", "windows", "linux"];
 
 function CopyCommand({ command, os, format }: { command: string; os: DetectedOS; format: string }) {
+  const { t } = useTranslation("download");
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -41,7 +39,7 @@ function CopyCommand({ command, os, format }: { command: string; os: DetectedOS;
         onClick={handleCopy}
         className="shrink-0 rounded-md bg-white/10 px-2.5 py-1 text-xs font-semibold text-white hover:bg-white/20 transition-colors duration-200"
       >
-        {copied ? "Copied!" : "Copy"}
+        {copied ? t("install.copied") : t("install.copy")}
       </button>
     </pre>
   );
@@ -81,7 +79,8 @@ function ReleasesLink({ os, format, children }: { os: DetectedOS; format: string
 }
 
 const InstallTabs = () => {
-  const [selectedIndex, setSelectedIndex] = useState(() => TABS.findIndex(t => t.key === detectOS()));
+  const { t } = useTranslation("download");
+  const [selectedIndex, setSelectedIndex] = useState(() => TAB_KEYS.findIndex(key => key === detectOS()));
   // Android's own UA string contains "Linux" (it's Linux-kernel-based), so
   // without this it would auto-select the Linux *desktop* tab -- actively
   // wrong, since beamlynx-desktop has no mobile build at all. Still show
@@ -96,14 +95,13 @@ const InstallTabs = () => {
           className="mb-4 rounded-lg border px-4 py-3 text-sm"
           style={{ backgroundColor: 'var(--bp-panel-raised)', borderColor: 'var(--bp-amber)', color: '#f0c887' }}
         >
-          beamlynx is a desktop app for macOS, Windows, and Linux. Visit this
-          page on your computer to install it.
+          {t("install.mobileWarning")}
         </p>
       )}
       <TabList className="flex gap-1 rounded-lg p-1 mb-4 w-fit" style={{ backgroundColor: 'var(--bp-panel-raised)' }}>
-        {TABS.map(tab => (
+        {TAB_KEYS.map(key => (
           <Tab
-            key={tab.key}
+            key={key}
             className={({ selected }) =>
               `rounded-md px-4 py-1.5 text-sm font-semibold transition-colors duration-200 focus:outline-none ${
                 selected
@@ -112,7 +110,7 @@ const InstallTabs = () => {
               }`
             }
           >
-            {tab.label}
+            {t(`install.tabs.${key}`)}
           </Tab>
         ))}
       </TabList>
@@ -131,36 +129,52 @@ const InstallTabs = () => {
         {/* macOS */}
         <TabPanel static className={({ selected }) => `[grid-area:1/1] space-y-3 ${selected ? 'visible' : 'invisible'}`}>
           <p className="text-base leading-7" style={{ color: 'var(--bp-text-dim)' }}>
-            Via Homebrew (Apple Silicon only for now):
+            {t("install.mac.viaBrew")}
           </p>
           <CopyCommand command="brew install --cask beamlynx/tap/beamlynx" os="mac" format="brew" />
           <p className="text-sm" style={{ color: 'var(--bp-text-faint)' }}>
-            Or <ReleasesLink os="mac" format="dmg">download the .dmg directly</ReleasesLink>.
+            <Trans
+              i18nKey="install.mac.orDownload"
+              ns="download"
+              components={{ 1: <ReleasesLink os="mac" format="dmg">{""}</ReleasesLink> }}
+            />
           </p>
         </TabPanel>
 
         {/* Windows */}
         <TabPanel static className={({ selected }) => `[grid-area:1/1] space-y-3 ${selected ? 'visible' : 'invisible'}`}>
           <p className="text-base leading-7" style={{ color: 'var(--bp-text-dim)' }}>
-            <ReleasesLink os="windows" format="exe">Download the .exe installer</ReleasesLink> and run it.
+            <Trans
+              i18nKey="install.windows.download"
+              ns="download"
+              components={{ 1: <ReleasesLink os="windows" format="exe">{""}</ReleasesLink> }}
+            />
           </p>
           <p className="text-sm" style={{ color: 'var(--bp-text-faint)' }}>
-            This build isn't code-signed yet, so Windows SmartScreen may warn you.
-            Click <span className="font-medium">More info</span> then{" "}
-            <span className="font-medium">Run anyway</span> to launch it.
+            <Trans
+              i18nKey="install.windows.smartScreenWarning"
+              ns="download"
+              components={{ 1: <span className="font-medium" />, 3: <span className="font-medium" /> }}
+            />
           </p>
         </TabPanel>
 
         {/* Linux */}
         <TabPanel static className={({ selected }) => `[grid-area:1/1] space-y-3 ${selected ? 'visible' : 'invisible'}`}>
           <p className="text-base leading-7" style={{ color: 'var(--bp-text-dim)' }}>
-            <ReleasesLink os="linux" format="appimage">Download the .AppImage</ReleasesLink> (works on most
-            distros, no installation needed):
+            <Trans
+              i18nKey="install.linux.download"
+              ns="download"
+              components={{ 1: <ReleasesLink os="linux" format="appimage">{""}</ReleasesLink> }}
+            />
           </p>
           <CopyCommand command="chmod +x beamlynx.AppImage && ./beamlynx.AppImage" os="linux" format="appimage-chmod" />
           <p className="text-sm" style={{ color: 'var(--bp-text-faint)' }}>
-            Or, on Debian/Ubuntu, <ReleasesLink os="linux" format="deb">download the .deb</ReleasesLink> and
-            install it with your usual package manager.
+            <Trans
+              i18nKey="install.linux.orDeb"
+              ns="download"
+              components={{ 1: <ReleasesLink os="linux" format="deb">{""}</ReleasesLink> }}
+            />
           </p>
         </TabPanel>
       </TabPanels>

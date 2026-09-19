@@ -1,26 +1,29 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import DocumentationSection from '../../components/DocumentationSection';
 
 const Delete: React.FC = () => {
+  const { t } = useTranslation('docsContent');
+
   return (
     <DocumentationSection
       id="delete"
-      title="Delete"
-      description="The delete operation removes rows from a table. All side-effect operations in pine-lang are suffixed with '!' to indicate they modify data. Use delete! to permanently remove records that match your filter conditions."
+      title={t('delete.title')}
+      description={t('delete.description')}
       operations={['delete!']}
       syntax="table_name | [conditions...] | delete! .id_column_name"
       isOperation={true}
       examples={[
         {
-          title: "Delete Specific Record",
+          title: t('delete.examples.0.title'),
           expression: "customers | where: email = 'john.doe@email.com' | delete! .id",
-          sql: `DELETE FROM "customers" 
+          sql: `DELETE FROM "customers"
     WHERE "id" IN (
-             SELECT "c_0"."id" 
+             SELECT "c_0"."id"
                FROM "customers" AS "c_0"
               WHERE "c_0"."email" = 'john.doe@email.com'
           )`,
-          description: "Delete the customer with the email 'john.doe@email.com' from the customers table"
+          description: t('delete.examples.0.description')
         },
       ]}
     >
@@ -28,4 +31,4 @@ const Delete: React.FC = () => {
   );
 };
 
-export default Delete; 
+export default Delete;

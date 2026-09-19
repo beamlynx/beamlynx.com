@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "titlePrefix": "beamlynx - ",
+    "description": "Explora la documentación oficial de Beamlynx. Aprende la sintaxis, las funciones y las mejores prácticas para usar pine-lang y escribir consultas de bases de datos claras y eficientes.",
+    "ogTitle": "Beamlynx - pine-lang",
+    "ogDescription": "Explora la documentación oficial de pine-lang y aprende a escribir consultas de bases de datos claras y eficientes.",
+    "twitterTitle": "Beamlynx - pine-lang",
+    "twitterDescription": "Explora la documentación oficial de pine-lang y aprende a escribir consultas de bases de datos claras y eficientes.",
+    "fallbackTitle": "Documentación"
+  },
+  "sidebar": {
+    "navigation": "Navegación"
+  },
+  "section": {
+    "operationBadge": "OPERACIÓN",
+    "copyPermalink": "Copiar enlace permanente",
+    "syntax": "Sintaxis",
+    "examples": "Ejemplos",
+    "tryIt": "Probarlo",
+    "tryInPlayground": "Probar en el playground",
+    "becomes": "se convierte en"
+  }
+}

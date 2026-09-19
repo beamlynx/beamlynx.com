@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "titlePrefix": "beamlynx - ",
+    "description": "浏览 Beamlynx 官方文档，学习 pine-lang 的语法、功能特性，以及编写清晰高效数据库查询的最佳实践。",
+    "ogTitle": "Beamlynx - pine-lang",
+    "ogDescription": "浏览 pine-lang 官方文档，学习如何编写清晰高效的数据库查询。",
+    "twitterTitle": "Beamlynx - pine-lang",
+    "twitterDescription": "浏览 pine-lang 官方文档，学习如何编写清晰高效的数据库查询。",
+    "fallbackTitle": "文档"
+  },
+  "sidebar": {
+    "navigation": "导航"
+  },
+  "section": {
+    "operationBadge": "操作",
+    "copyPermalink": "复制永久链接",
+    "syntax": "语法",
+    "examples": "示例",
+    "tryIt": "试一试",
+    "tryInPlayground": "在演练场中试用",
+    "becomes": "转换为"
+  }
+}

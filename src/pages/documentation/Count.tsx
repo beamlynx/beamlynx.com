@@ -1,20 +1,23 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import DocumentationSection from '../../components/DocumentationSection';
 
 const Count: React.FC = () => {
+  const { t } = useTranslation('docsContent');
+
   return (
     <DocumentationSection
       id="count"
-      title="Count"
-      description="The count operation returns the total number of rows in a result set. Use 'count:' to get the row count of your query results."
+      title={t('count.title')}
+      description={t('count.description')}
       operations={['count:']}
       syntax="table_name | [operations...] | count:"
       isOperation={true}
       examples={[
         {
-          title: "Simple Count",
+          title: t('count.examples.0.title'),
           expression: "categories | count:",
-          description: "Count all rows in the categories table"
+          description: t('count.examples.0.description')
         },
       ]}
     >
@@ -22,4 +25,4 @@ const Count: React.FC = () => {
   );
 };
 
-export default Count; 
+export default Count;

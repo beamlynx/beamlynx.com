@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import DocSection from "../pages/documentation/DocSection";
 import { useColorPalette } from "../contexts/ColorPaletteContext";
 import { openInPlayground } from "../utils/playground";
@@ -96,8 +97,7 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
   badge,
 }) => {
   const palette = useColorPalette();
-
-
+  const { t } = useTranslation('docs');
 
   return (
     <DocSection id={id} title={title} isOperation={isOperation} badge={badge}>
@@ -143,7 +143,7 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
                   className="text-sm font-semibold tracking-wide uppercase"
                   style={{ color: palette.primary }}
                 >
-                  Syntax
+                  {t('section.syntax')}
                 </h3>
                 <div className="flex items-center space-x-1">
                   <div className="w-2 h-2 rounded-full bg-red-400"></div>
@@ -184,7 +184,7 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              Examples
+              {t('section.examples')}
             </h3>
           </div>
 
@@ -221,9 +221,9 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
                         backgroundColor: `${palette.accent}10`,
                         color: palette.accent,
                       }}
-                      title="Try in playground"
+                      title={t('section.tryInPlayground')}
                     >
-                      <span>Try it</span>
+                      <span>{t('section.tryIt')}</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
@@ -268,7 +268,7 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
                     <>
                       <div className="flex items-center justify-center py-2">
                         <div className="text-sm font-medium" style={{ color: palette.secondary }}>
-                          becomes
+                          {t('section.becomes')}
                         </div>
                       </div>
                       <div 

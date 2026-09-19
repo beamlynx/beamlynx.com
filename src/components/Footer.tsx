@@ -1,9 +1,11 @@
 import React from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import { useColorPalette } from '../contexts/ColorPaletteContext';
 import NewsletterSignup from './NewsletterSignup';
 
 const Footer: React.FC = () => {
   const palette = useColorPalette();
+  const { t } = useTranslation('common');
 
   const socialLinks = [
     {
@@ -68,20 +70,24 @@ const Footer: React.FC = () => {
               className="text-sm font-medium tracking-wide flex items-center"
               style={{ color: palette.secondary }}
             >
-              Made with{' '}
-              <span 
-                className="mx-1 transform hover:scale-110 transition-transform"
-                style={{ color: '#5b9bd5' }} // Nordic blue from Danish flag, lightened for the dark footer
-              >
-                ♥
-              </span>
-              {' '}in Denmark
+              <Trans
+                i18nKey="footer.madeIn"
+                ns="common"
+                components={{
+                  1: (
+                    <span
+                      className="mx-1 transform hover:scale-110 transition-transform"
+                      style={{ color: '#5b9bd5' }} // Nordic blue from Danish flag, lightened for the dark footer
+                    />
+                  ),
+                }}
+              />
             </div>
             <div
               className="text-xs"
               style={{ color: `${palette.secondary}99` }}
             >
-              Beamlynx is supported by{' '}
+              {t('footer.supportedBy')}{' '}
               <a
                 href="https://github.com/beamlynx/beamlynx-desktop/blob/main/LICENSE"
                 target="_blank"

@@ -1,0 +1,13 @@
+{
+  "meta": {
+    "title": "beamlynx - Blog",
+    "description": "Læs de seneste nyheder, artikler og indsigter fra Beamlynx-teamet. Følg med i vores udviklingsrejse, og opdag filosofien bag Beamlynx.",
+    "ogTitle": "beamlynx - Blog",
+    "ogDescription": "De seneste nyheder, artikler og indsigter fra Beamlynx-teamet.",
+    "twitterTitle": "Beamlynx - Blog",
+    "twitterDescription": "De seneste nyheder, artikler og indsigter fra Beamlynx-teamet."
+  },
+  "heading": "Seneste indlæg",
+  "readMore": "Læs mere",
+  "englishOnlyNote": "Indlæg er skrevet på engelsk."
+}

@@ -1,0 +1,143 @@
+{
+  "whyDsl": {
+    "title": "Hvorfor?",
+    "description": "SQL har været fundamentet for datarelateret arbejde i årtier. Det er kraftfuldt, udtryksfuldt og universelt. Men til nogle opgaver kan det stå i vejen.",
+    "bullets": [
+      "SQL slører grænsen mellem <1>hvad</1> du vil have, og <3>hvordan</3> du får det.",
+      "Sammensætbarhed er ikke dets fokus.",
+      "Resultater hjælper dig ikke med at opdage relationer eller kontekst i dit skema.",
+      "SQL blev ikke designet med visuel udforskning for øje.",
+      "SQL kan være unødvendigt ordrigt."
+    ],
+    "closing": "SQL er godt - men vi kan forbedre oplevelsen med et domænespecifikt sprog (DSL)."
+  },
+  "pineLang": {
+    "title": "Introduktion til Pine-lang",
+    "description": "Beamlynx bruger pine-lang, som er et intuitivt forespørgselssprog, der oversættes til SQL. Pine-lang bruger en pipe-baseret syntaks inspireret af Unix-pipes, hvilket gør forespørgsler letlæselige og sammensættelige. Mens du skriver forespørgsler, ser du en visualisering af tabelrelationerne i realtid."
+  },
+  "table": {
+    "title": "Table",
+    "description": "Det bliver ikke meget enklere! Vil du hente data fra en tabel? Skriv bare tabelnavnet.",
+    "examples": [
+      { "title": "Vælg alt" },
+      { "title": "Tabel i et skema" },
+      { "title": "Tabel med alias" }
+    ]
+  },
+  "join": {
+    "title": "Join",
+    "description": "Join tabeller uden at skulle tænke på fremmednøgle-relationerne. Sammenkæd blot tabeller med pipes for at oprette joins. Hvis du vil angive join-kolonnen eller andre aspekter af joinet, kan du dog angive de relevante argumenter. Se eksemplerne nedenfor:",
+    "examples": [
+      { "title": "Join", "description": "To tabeller joinet ved hjælp af fremmednøglen." },
+      { "title": "Multi-tabel join", "description": "Sammenkæd flere tabeller med pipes for at joine flere tabeller" },
+      { "title": "Skemakvalificeret join", "description": "Brug skemakvalifikation, når du joiner på tværs af forskellige skemaer" },
+      { "title": "Left join", "description": "Brug modifikatoren :left til at angive et left join" },
+      { "title": "Self join", "description": "Join en tabel med sig selv" },
+      { "title": "Self join med retning / forælder-barn-relation", "description": "Som standard vælges børnetabellen til joinet, dvs. den der har fremmednøglen. Hvis du vil joine på forældretabellen, dvs. den der refereres til, så brug modifikatoren :parent. Aliasser bruges her i demonstrationsøjemed." }
+    ],
+    "modifiersIntro": "Understøttede modifikatorer:",
+    "modifiers": [
+      "<1>:left</1> - Udfører et left outer join, som beholder alle rækker fra venstre tabel",
+      "<1>:right</1> - Udfører et right outer join, som beholder alle rækker fra højre tabel",
+      "<1>:parent</1> - Joiner på forældretabellen (den der refereres til) i stedet for børnetabellen (den med fremmednøglen)"
+    ]
+  },
+  "paths": {
+    "title": "Paths",
+    "description": "Spørg Pine, hvordan to tabeller hænger sammen, og den søger efter alle join-kæder mellem dem - ikke kun det direkte næste hop. Nyttigt i det øjeblik du ved, du skal bruge data fra en anden tabel, men ikke hvordan du kommer derhen.",
+    "examples": [
+      { "title": "Direkte og multi-hop", "description": "Returnerer alle ruter fra company til document, ikke kun næste hop. Hvis employee ligger imellem (company → employee → document), samt at der findes en direkte company_id-kolonne på document, kommer begge tilbage - sorteret så den reelle relation rangerer over den denormaliserede genvej." },
+      { "title": "Sammensat oven på et eksisterende udtryk", "description": "Søgningen starter, der hvor pipen slap, ikke fra et rent tabelnavn - alt før ? er et almindeligt, fuldt sammensætteligt Pine-udtryk." }
+    ],
+    "intro1": "En enkelt pipe (<1>customers | orders</1>) viser allerede, hvad en tabel kan joine til som det næste. <3>?</3> besvarer et andet spørgsmål: hvordan kommer du overhovedet fra én tabel til en anden, når den reelle forbindelse er to eller tre hop væk gennem en tabel, du ikke havde tænkt på at nævne.",
+    "intro2": "Hvert resultat er et rigtigt Pine-udtryk, klar til at indsætte i stedet for <1>? table</1>-segmentet - ikke et forespørgselsresultat. Et par ting, du bør vide:",
+    "notes": [
+      "Ruter rangeres efter, hvor meningsfuld forbindelsen er, ikke kun efter antal hop - en genvejskolonne, der blot gentager en længere, mere direkte relation, rangerer under den reelle, selv når den er kortere.",
+      "<1>?</1> er terminal - intet meningsfuldt følger efter den i samme pipe, ligesom <3>count:</3> eller et enkeltstående <5>delete:</5>.",
+      "Den har ingen egne tabelmodifikatorer (intet <1>as alias</1>, intet <3>.hint_column</3>, intet <5>:parent</5>) - den navngivne tabel er et søgemål, ikke noget der joines direkte på.",
+      "Resultater er begrænsede, så et tæt forbundet skema ikke kan gøre et simpelt opslag til en langvarig søgning."
+    ]
+  },
+  "where": {
+    "title": "Where",
+    "description": "Filtrerer resultaterne baseret på betingelser.",
+    "examples": [
+      { "title": "Betingelse", "description": "Filtrer rækker, hvor en kolonne er lig med en bestemt værdi" },
+      { "title": "Flere betingelser", "description": "Anvend flere filterbetingelser adskilt med komma" },
+      { "title": "NULL", "description": "Filtrer rækker med NULL-værdier i en kolonne" },
+      { "title": "NOT NULL", "description": "Filtrer rækker med NOT NULL-værdier i en kolonne" },
+      { "title": "IN-sætning", "description": "Filtrer rækker, hvor kolonneværdien matcher en af værdierne i en liste" },
+      { "title": "Sammenligning af kolonner", "description": "Sammenlign værdier mellem forskellige kolonner" },
+      { "title": "LIKE", "description": "Filtrer rækker ved hjælp af LIKE-operatoren" },
+      { "title": "ILIKE", "description": "Filtrer rækker ved hjælp af ILIKE-operatoren" }
+    ]
+  },
+  "select": {
+    "title": "Select",
+    "description": "Vælg de kolonner, der skal returneres i forespørgselsresultatet.",
+    "examples": [
+      { "title": "Vælg specifikke kolonner", "description": "Vælg kun de kolonner, du har brug for i resultatet" },
+      { "title": "Vælg med alias", "description": "Omdøb kolonner i output ved hjælp af aliasser" },
+      { "title": "Vælg med tabelkvalifikation", "description": "Angiv, hvilken tabel hver kolonne kommer fra ved joins" }
+    ]
+  },
+  "order": {
+    "title": "Order",
+    "description": "Sortér resultaterne efter en eller flere kolonner.",
+    "examples": [
+      { "title": "Grundlæggende sortering", "description": "Sortér resultater efter én kolonne i stigende rækkefølge" },
+      { "title": "Faldende rækkefølge", "description": "Sortér resultater i faldende rækkefølge ved hjælp af nøgleordet desc" },
+      { "title": "Flere kolonner", "description": "Sortér efter flere kolonner med forskellige sorteringsretninger" }
+    ]
+  },
+  "limit": {
+    "title": "Limit",
+    "description": "Limit-operationen begrænser antallet af rækker, der returneres fra en forespørgsel. Brug 'limit:' eller den korte form 'l:' til at angive det maksimale antal rækker.",
+    "examples": [
+      { "title": "Limit", "description": "Hent de første 10 rækker fra tabellen customers" },
+      { "title": "Limit med filter", "description": "Filtrér kunder, og begræns til 5 resultater" },
+      { "title": "Limit efter join", "description": "Join customers og orders, filtrér efter totalbeløb, og begræns derefter resultaterne" }
+    ]
+  },
+  "from": {
+    "title": "From",
+    "description": "From-operationen sætter konteksten for de efterfølgende operationer i komplekse forespørgsler. Brug 'from:' eller den korte form 'f:' til at angive, hvilken tabel eller alias der skal bruges som kilde for de næste operationer.",
+    "examples": [
+      { "title": "Kontekstskift med statussporing", "description": "Hent ordrestatushistorik ved at joine order items og statusændringer, med from til at bevare ordrekonteksten" }
+    ]
+  },
+  "group": {
+    "title": "Group",
+    "description": "Bruges til at gruppere resultaterne af en forespørgsel efter en given kolonne.",
+    "examples": [
+      { "title": "Grundlæggende gruppering", "description": "Gruppér produkter efter kategori, og tæl antallet af ordrelinjer for hver kategori" }
+    ]
+  },
+  "count": {
+    "title": "Count",
+    "description": "Count-operationen returnerer det samlede antal rækker i et resultatsæt. Brug 'count:' til at få antallet af rækker i dine forespørgselsresultater.",
+    "examples": [
+      { "title": "Simpel optælling", "description": "Tæl alle rækker i tabellen categories" }
+    ]
+  },
+  "delete": {
+    "title": "Delete",
+    "description": "Delete-operationen fjerner rækker fra en tabel. Alle sideeffekt-operationer i pine-lang har suffikset '!' for at angive, at de ændrer data. Brug delete! til permanent at fjerne rækker, der matcher dine filterbetingelser.",
+    "examples": [
+      { "title": "Slet specifik record", "description": "Slet kunden med e-mailen 'john.doe@email.com' fra tabellen customers" }
+    ]
+  },
+  "variables": {
+    "title": "Variables",
+    "description": "Navngiv et mellemresultat, og brug det som en tabel i senere udtryk. Variabler lader dig bygge forespørgsler op i letlæselige trin i stedet for at indlejre underforespørgsler.",
+    "examples": [
+      { "title": "Navngiv et resultat, og genbrug det", "description": "Tildel det filtrerede company-resultat til active_companies, og brug det derefter som en tabel i næste udtryk." },
+      { "title": "Tildeling midt i pipen", "description": "Placér |= hvor som helst i pipe-kæden. Øjebliksbilledet tages på det tidspunkt — all_companies er hele det ufiltrerede company-sæt, mens det aktuelle udtryk stadig kun returnerer aktive companies." },
+      { "title": "Reference til variabelkolonner", "description": "Efter |= c kan du bruge c som kolonnekvalifikator i det samme udtryk. c.id refererer til id-kolonnen i company-tabellen." },
+      { "title": "Kæd flere trin sammen", "description": "Hvert udtryk bygger videre på det forrige. Adskil udtryk med en tom linje." },
+      { "title": "Kun eksplicit valgte id-kolonner forbliver joinbare", "description": "Når en variabel først er brugt, er dens underliggende tabeller ikke længere synlige — kun dens egne output-kolonner er. En tabel forbliver kun en gyldig join-kilde gennem variablen, hvis dens id blev eksplicit valgt. select: name alene (uden id) ville gøre x ikke-joinbar til noget som helst." },
+      { "title": "Automatiske checkpoints efter group: eller limit:", "description": "group: og limit: producerer et endeligt, afgrænset resultat. At pipe ind i en anden tabel efter en af dem pakker automatisk den foregående forespørgsel ind i en anonym CTE først, så joinet anvendes oven på det begrænsede/grupperede resultat i stedet for at ødelægge det. Navngiv selv den CTE ved at placere |= lige efter group:/limit:-trinnet." },
+      { "title": "Kombinér flere aggregater pr. række", "description": "x og y aggregerer hver især en forskellig relateret tabel ned til én række pr. kunde og eksponerer kun deres egen count-kolonne. Det endelige udtryk starter fra customers igen og joiner begge variabler ind, hvilket giver én række pr. kunde med email, order_count og status_change_count side om side — uden at indlejre underforespørgsler eller gentage customers-joinet i hver gren." }
+    ]
+  }
+}

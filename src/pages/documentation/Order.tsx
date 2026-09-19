@@ -1,34 +1,37 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import DocumentationSection from '../../components/DocumentationSection';
 import type { DocumentationExample } from '../../components/DocumentationSection';
 
 const Order: React.FC = () => {
+  const { t } = useTranslation('docsContent');
+
   const examples: DocumentationExample[] = [
     {
-      title: 'Basic ordering',
+      title: t('order.examples.0.title'),
       expression: 'customers | order: email',
       sql: 'SELECT * FROM customers ORDER BY email',
-      description: 'Sort results by a single column in ascending order'
+      description: t('order.examples.0.description')
     },
     {
-      title: 'Descending order',
+      title: t('order.examples.1.title'),
       expression: 'customers | order: email desc',
       sql: 'SELECT * FROM customers ORDER BY email DESC',
-      description: 'Sort results in descending order using the desc keyword'
+      description: t('order.examples.1.description')
     },
     {
-      title: 'Multiple columns',
+      title: t('order.examples.2.title'),
       expression: 'customers | order: first_name asc, last_name desc',
       sql: 'SELECT * FROM customers ORDER BY first_name ASC, last_name DESC',
-      description: 'Sort by multiple columns with different sort directions'
+      description: t('order.examples.2.description')
     }
   ];
 
   return (
     <DocumentationSection
       id="order"
-      title="Order"
-      description="Sort the results by one or more columns."
+      title={t('order.title')}
+      description={t('order.description')}
       operations={['order:', 'o:']}
       examples={examples}
       isOperation={true}
@@ -36,4 +39,4 @@ const Order: React.FC = () => {
   );
 };
 
-export default Order; 
+export default Order;

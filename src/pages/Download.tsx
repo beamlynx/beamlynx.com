@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import InstallTabs from "../components/InstallTabs";
 import { trackEvent } from "../utils/analytics";
 
 const Download = () => {
+  const { t } = useTranslation("download");
   const [searchParams] = useSearchParams();
   const playgroundDisabled = searchParams.get("playground") === "disabled";
 
@@ -20,19 +22,16 @@ const Download = () => {
 
   return (
     <div className="bp-page flex flex-col">
-      <title>beamlynx - Download</title>
-      <meta
-        name="description"
-        content="Download beamlynx, the intuitive, visual database client."
-      />
-      <meta property="og:title" content="Beamlynx - Download" />
-      <meta property="og:description" content="Download beamlynx, the intuitive, visual database client." />
+      <title>{t("meta.title")}</title>
+      <meta name="description" content={t("meta.description")} />
+      <meta property="og:title" content={t("meta.ogTitle")} />
+      <meta property="og:description" content={t("meta.ogDescription")} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://beamlynx.org/download" />
       <meta property="og:image" content="https://beamlynx.org/pine-social-preview.svg" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Beamlynx - Download" />
-      <meta name="twitter:description" content="Download beamlynx, the intuitive, visual database client." />
+      <meta name="twitter:title" content={t("meta.twitterTitle")} />
+      <meta name="twitter:description" content={t("meta.twitterDescription")} />
       <meta name="twitter:image" content="https://beamlynx.org/pine-social-preview.svg" />
 
       {/* Hero Section */}
@@ -51,8 +50,8 @@ const Download = () => {
               className="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl"
               style={{ color: 'var(--bp-text)' }}
             >
-              Download
-              <span className="text-pine-600"> beamlynx</span>
+              {t("heading")}
+              <span className="text-pine-600">{t("headingBrand")}</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -61,7 +60,7 @@ const Download = () => {
               className="mx-auto mt-4 max-w-3xl text-base leading-7 sm:mt-6 sm:text-lg sm:leading-8 lg:text-xl lg:leading-9"
               style={{ color: 'var(--bp-text-dim)' }}
             >
-              The intuitive, visual database client.
+              {t("subheading")}
             </motion.p>
             {playgroundDisabled && (
               <motion.p
@@ -75,8 +74,7 @@ const Download = () => {
                   backgroundColor: 'color-mix(in srgb, var(--bp-trace) 10%, transparent)',
                 }}
               >
-                The hosted playground is currently disabled. Download the app
-                below to try beamlynx.
+                {t("playgroundDisabled")}
               </motion.p>
             )}
           </div>

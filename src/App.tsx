@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useParams, Navigate } from 'react-router-dom';
+import { getLangFromPathname } from './i18n/paths';
 import Documentation from './pages/Documentation';
 import { ColorPaletteProvider } from './contexts/ColorPaletteContext';
 import Navbar from './components/Navbar';
@@ -7,43 +8,41 @@ import Footer from './components/Footer';
 import { useEffect, lazy, Suspense } from 'react';
 import LoadingIndicator from './components/LoadingIndicator';
 import { trackPageview } from './utils/analytics';
+import RootLocaleRedirect from './components/RootLocaleRedirect';
+import EnglishLayout from './components/EnglishLayout';
+import LocaleLayout from './components/LocaleLayout';
+import { useHreflangTags } from './i18n/useHreflangTags';
+import { useTranslation } from 'react-i18next';
 
 const Home = lazy(() => import('./pages/Home'));
 const Posts = lazy(() => import('./pages/Posts'));
 const Download = lazy(() => import('./pages/Download'));
 
-// Scroll to top on route change
+// Old URL from before the "Getting Started" -> "Download" rename, locale-aware.
+const LocaleSetupRedirect = () => {
+  const { lang } = useParams<{ lang: string }>();
+  return <Navigate to={`/${lang}/download`} replace />;
+};
+
+// Scroll to top and refresh cross-language SEO tags on route change. Page
+// <title> is set declaratively by each page component (React 19 hoists it) --
+// this must not also set document.title imperatively, or the two fight.
 function ScrollToTop() {
   const location = useLocation();
-  
+  const lang = getLangFromPathname(location.pathname);
+  useHreflangTags(location.pathname, lang);
+
   useEffect(() => {
-    // Update document title based on the path
-    switch (location.pathname) {
-      case '/':
-        document.title = 'Beamlynx - Visual & Intuitive Database Queries';
-        break;
-      case '/docs':
-        document.title = 'Beamlynx - pine-lang';
-        break;
-      case '/posts':
-        document.title = 'Beamlynx - Blog';
-        break;
-      case '/download':
-        document.title = 'Beamlynx - Download';
-        break;
-      default:
-        document.title = 'Beamlynx';
-    }
-    
     window.scrollTo(0, 0);
     trackPageview(location.pathname);
   }, [location.pathname]);
-  
+
   return null;
 }
 
 const AppContent = () => {
   const location = useLocation();
+  const { t } = useTranslation('common');
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden">
@@ -51,14 +50,24 @@ const AppContent = () => {
       <ScrollToTop />
       <main className="flex-1 relative">
         <AnimatePresence mode="wait">
-          <Suspense fallback={<LoadingIndicator className="h-screen" text="Loading page..." />}>
+          <Suspense fallback={<LoadingIndicator className="h-screen" text={t('loading.page')} />}>
             <Routes location={location} key={location.pathname}>
-              <Route path="/" element={<Home />} />
-              <Route path="/docs" element={<Documentation />} />
-              <Route path="/posts" element={<Posts />} />
-              <Route path="/download" element={<Download />} />
-              {/* Old URL from before the "Getting Started" -> "Download" rename */}
-              <Route path="/setup" element={<Navigate to="/download" replace />} />
+              <Route element={<EnglishLayout />}>
+                <Route path="/" element={<RootLocaleRedirect><Home /></RootLocaleRedirect>} />
+                <Route path="/docs" element={<Documentation />} />
+                <Route path="/posts" element={<Posts />} />
+                <Route path="/download" element={<Download />} />
+                {/* Old URL from before the "Getting Started" -> "Download" rename */}
+                <Route path="/setup" element={<Navigate to="/download" replace />} />
+              </Route>
+
+              <Route path="/:lang" element={<LocaleLayout />}>
+                <Route index element={<Home />} />
+                <Route path="docs" element={<Documentation />} />
+                <Route path="posts" element={<Posts />} />
+                <Route path="download" element={<Download />} />
+                <Route path="setup" element={<LocaleSetupRedirect />} />
+              </Route>
             </Routes>
           </Suspense>
         </AnimatePresence>

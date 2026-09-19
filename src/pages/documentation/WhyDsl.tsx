@@ -1,31 +1,29 @@
 import React from "react";
+import { Trans, useTranslation } from "react-i18next";
 import DocumentationSection from "../../components/DocumentationSection";
 
 const WhyDsl: React.FC = () => {
+  const { t } = useTranslation('docsContent');
+
   return (
     <DocumentationSection
       id="why-dsl"
-      title="Why?"
-      description={`
-SQL has been the foundation of data work for decades. It's powerful, expressive, and universal. But for some tasks, it can get in the way.
-      `}
+      title={t('whyDsl.title')}
+      description={t('whyDsl.description')}
     >
-      <p className="mb-6">
-        <ul className="mb-6 space-y-2">
-          <li>SQL blurs the lines between <i>what</i> you want and <i>how</i> to get it.</li>
-          <li>Composability isn't its focus.</li>
-          <li>
-            Results don't help you discover relationships or context in your
-            schema.
-          </li>
-          <li>SQL wasn't designed with visual exploration in mind.</li>
-          <li>
-            SQL can be unnecessarily verbose.
-          </li>
-        </ul>
-      </p>
+      <ul className="mb-6 space-y-2">
+        <li><Trans i18nKey="whyDsl.bullets.0" ns="docsContent" components={{ 1: <i />, 3: <i /> }} /></li>
+        <li>{t('whyDsl.bullets.1')}</li>
+        <li>
+          {t('whyDsl.bullets.2')}
+        </li>
+        <li>{t('whyDsl.bullets.3')}</li>
+        <li>
+          {t('whyDsl.bullets.4')}
+        </li>
+      </ul>
 
-      SQL is great - but we can improve the experience with a domain-specific language (DSL).
+      {t('whyDsl.closing')}
     </DocumentationSection>
   );
 };

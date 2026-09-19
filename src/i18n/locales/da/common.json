@@ -1,0 +1,34 @@
+{
+  "nav": {
+    "home": "Hjem",
+    "dsl": "DSL",
+    "download": "Download",
+    "posts": "Indlæg",
+    "playground": "Playground",
+    "toggleMenu": "Skift menu",
+    "mainNavigation": "Hovednavigation"
+  },
+  "footer": {
+    "madeIn": "Lavet med <1>♥</1> i Danmark",
+    "supportedBy": "Beamlynx understøttes af"
+  },
+  "newsletter": {
+    "eyebrow": "Følg opdateringer",
+    "subscribedMessage": "Du er med — vi sender dig en mail, når der er noget nyt.",
+    "description": "Nye udgivelser og indlæg. Ingen spam, afmeld når som helst.",
+    "emailPlaceholder": "du@firma.dk",
+    "submit": "Jeg er med"
+  },
+  "loading": {
+    "default": "Indlæser...",
+    "page": "Indlæser side...",
+    "docs": "Indlæser dokumentation..."
+  },
+  "languageSwitcher": {
+    "label": "Sprog",
+    "en": "English",
+    "es": "Español",
+    "zh": "中文",
+    "da": "Dansk"
+  }
+}

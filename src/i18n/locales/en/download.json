@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "beamlynx - Download",
+    "description": "Download beamlynx, the intuitive, visual database client.",
+    "ogTitle": "Beamlynx - Download",
+    "ogDescription": "Download beamlynx, the intuitive, visual database client.",
+    "twitterTitle": "Beamlynx - Download",
+    "twitterDescription": "Download beamlynx, the intuitive, visual database client."
+  },
+  "heading": "Download",
+  "headingBrand": " beamlynx",
+  "subheading": "The intuitive, visual database client.",
+  "playgroundDisabled": "The hosted playground is currently disabled. Download the app below to try beamlynx.",
+  "install": {
+    "mobileWarning": "beamlynx is a desktop app for macOS, Windows, and Linux. Visit this page on your computer to install it.",
+    "tabs": {
+      "mac": "macOS",
+      "windows": "Windows",
+      "linux": "Linux"
+    },
+    "copy": "Copy",
+    "copied": "Copied!",
+    "mac": {
+      "viaBrew": "Via Homebrew (Apple Silicon only for now):",
+      "orDownload": "Or <1>download the .dmg directly</1>."
+    },
+    "windows": {
+      "download": "<1>Download the .exe installer</1> and run it.",
+      "smartScreenWarning": "This build isn't code-signed yet, so Windows SmartScreen may warn you. Click <1>More info</1> then <3>Run anyway</3> to launch it."
+    },
+    "linux": {
+      "download": "<1>Download the .AppImage</1> (works on most distros, no installation needed):",
+      "orDeb": "Or, on Debian/Ubuntu, <1>download the .deb</1> and install it with your usual package manager."
+    }
+  }
+}

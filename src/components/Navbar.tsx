@@ -1,27 +1,35 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useColorPalette } from "../contexts/ColorPaletteContext";
 import { motion, AnimatePresence } from "framer-motion";
 import { openInPlayground, DEFAULT_EXAMPLE_QUERY } from "../utils/playground";
+import { getLangFromPathname, localizedPath, stripLocalePrefix } from "../i18n/paths";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Navbar: React.FC = () => {
   const location = useLocation();
   const palette = useColorPalette();
+  const { t } = useTranslation("common");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const lang = getLangFromPathname(location.pathname);
+  const currentBasePath = stripLocalePrefix(location.pathname, lang);
+  const withLocale = (basePath: string) => localizedPath(lang ?? "en", basePath);
+
   const navItems = [
-    { 
-      path: "/", 
-      label: "Home",
+    {
+      path: "/",
+      label: t("nav.home"),
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
         </svg>
       )
     },
-    { 
-      path: "/docs", 
-      label: "DSL",
+    {
+      path: "/docs",
+      label: t("nav.dsl"),
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
@@ -30,16 +38,16 @@ const Navbar: React.FC = () => {
     },
     {
       path: "/download",
-      label: "Download",
+      label: t("nav.download"),
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
         </svg>
       )
     },
-    { 
-      path: "/posts", 
-      label: "Posts",
+    {
+      path: "/posts",
+      label: t("nav.posts"),
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
@@ -50,9 +58,9 @@ const Navbar: React.FC = () => {
 
   const isActive = (path: string) => {
     if (path === "/") {
-      return location.pathname === path;
+      return currentBasePath === path;
     }
-    return location.pathname.startsWith(path);
+    return currentBasePath.startsWith(path);
   };
 
   const getCurrentPageTitle = () => {
@@ -62,7 +70,7 @@ const Navbar: React.FC = () => {
 
   const Logo = () => (
     <Link
-      to="/"
+      to={withLocale("/")}
       className="group flex items-center space-x-2 sm:space-x-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded-lg px-1 sm:px-2 py-1 -ml-1 sm:-ml-2"
       style={
         {
@@ -82,7 +90,7 @@ const Navbar: React.FC = () => {
         <rect x="12" y="4" width="4" height="14" rx="1" fill="currentColor" />
         <rect x="18" y="8" width="4" height="6" rx="1" fill="currentColor" />
       </svg>
-      <span className="text-lg sm:text-xl font-semibold tracking-tight hidden md:inline whitespace-nowrap">
+      <span className="text-lg sm:text-xl font-semibold tracking-tight hidden lg:inline whitespace-nowrap">
         beamlynx
       </span>
     </Link>
@@ -107,7 +115,7 @@ const Navbar: React.FC = () => {
               {navItems.map((item) => (
                 <Link
                   key={item.path}
-                  to={item.path}
+                  to={withLocale(item.path)}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block w-full px-3 py-2.5 rounded-lg text-[15px] font-medium transition-colors duration-200 ${
                     isActive(item.path) ? "bg-white/10" : "hover:bg-white/5"
@@ -138,10 +146,12 @@ const Navbar: React.FC = () => {
                     boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
                   }}
                 >
-                  Playground
+                  {t("nav.playground")}
                   <span className="inline-block ml-1">↗</span>
                 </button>
               </div>
+
+              <LanguageSwitcher variant="mobile" onNavigate={() => setIsMobileMenuOpen(false)} />
             </nav>
           </motion.div>
         )}
@@ -165,16 +175,16 @@ const Navbar: React.FC = () => {
       <nav
         className="max-w-7xl mx-auto h-[var(--navbar-height)] px-4 sm:px-6 lg:px-8"
         role="navigation"
-        aria-label="Main navigation"
+        aria-label={t("nav.mainNavigation")}
       >
         <div className="flex items-center justify-between h-full">
           {/* Left: Logo */}
-          <div className="w-32 md:w-48">
+          <div className="w-32 lg:w-48">
             <Logo />
           </div>
 
           {/* Center: Current Page Title - Mobile Only */}
-          <div className="flex-1 md:hidden text-center">
+          <div className="flex-1 lg:hidden text-center">
             <div className="relative inline-block">
               <h1
                 className="text-[14px] sm:text-[15px] font-medium tracking-wide truncate px-2"
@@ -189,13 +199,19 @@ const Navbar: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: Menu Button (Mobile) or Navigation (Desktop) */}
-          <div className="w-20 flex justify-end">
+          {/* Right: Menu Button (Mobile) or Navigation (Desktop). Fixed width
+              only applies below `lg` (sized for the hamburger button) --
+              past `lg` it must hug the full nav's content width instead of
+              lying about an 80px box, or the nav creeps left into the logo
+              at exactly the switch-over breakpoint (see git history for the
+              overlap bug this caused once translated labels made the nav
+              wider than English). */}
+          <div className="w-20 lg:w-auto flex justify-end">
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg md:hidden hover:bg-white/5 transition-colors duration-200"
-              aria-label="Toggle menu"
+              className="p-2 rounded-lg lg:hidden hover:bg-white/5 transition-colors duration-200"
+              aria-label={t("nav.toggleMenu")}
               aria-expanded={isMobileMenuOpen}
               style={{ color: palette.secondary }}
             >
@@ -224,11 +240,11 @@ const Navbar: React.FC = () => {
             </button>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-0.5 sm:space-x-1">
+            <div className="hidden lg:flex items-center space-x-0.5 sm:space-x-1">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
-                  to={item.path}
+                  to={withLocale(item.path)}
                   className="relative px-2 sm:px-3 py-2 text-[14px] sm:text-[15px] font-medium tracking-wide transition-colors duration-200 rounded-lg hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap"
                   style={
                     {
@@ -269,12 +285,14 @@ const Navbar: React.FC = () => {
                     } as React.CSSProperties
                   }
                 >
-                  Playground
+                  {t("nav.playground")}
                   <span className="inline-block ml-1 transition-transform group-hover:translate-x-0.5">
                     ↗
                   </span>
                 </button>
               </div>
+
+              <LanguageSwitcher variant="desktop" />
             </div>
           </div>
         </div>

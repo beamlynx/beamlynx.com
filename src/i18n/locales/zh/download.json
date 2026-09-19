@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "beamlynx - 下载",
+    "description": "下载 beamlynx，直观易用的可视化数据库客户端。",
+    "ogTitle": "Beamlynx - 下载",
+    "ogDescription": "下载 beamlynx，直观易用的可视化数据库客户端。",
+    "twitterTitle": "Beamlynx - 下载",
+    "twitterDescription": "下载 beamlynx，直观易用的可视化数据库客户端。"
+  },
+  "heading": "下载",
+  "headingBrand": " beamlynx",
+  "subheading": "直观易用的可视化数据库客户端。",
+  "playgroundDisabled": "在线演练场目前已关闭。请在下方下载客户端以试用 beamlynx。",
+  "install": {
+    "mobileWarning": "beamlynx 是一款面向 macOS、Windows 和 Linux 的桌面应用。请在电脑上访问此页面进行安装。",
+    "tabs": {
+      "mac": "macOS",
+      "windows": "Windows",
+      "linux": "Linux"
+    },
+    "copy": "复制",
+    "copied": "已复制！",
+    "mac": {
+      "viaBrew": "通过 Homebrew 安装（目前仅支持 Apple Silicon）：",
+      "orDownload": "或<1>直接下载 .dmg 安装包</1>。"
+    },
+    "windows": {
+      "download": "<1>下载 .exe 安装程序</1>并运行。",
+      "smartScreenWarning": "该安装包尚未进行代码签名，因此 Windows SmartScreen 可能会发出警告。请点击<1>更多信息</1>，然后选择<3>仍要运行</3>以启动程序。"
+    },
+    "linux": {
+      "download": "<1>下载 .AppImage 文件</1>（适用于大多数发行版，无需安装）：",
+      "orDeb": "或者，在 Debian/Ubuntu 上，可<1>下载 .deb 安装包</1>，用你常用的包管理器进行安装。"
+    }
+  }
+}

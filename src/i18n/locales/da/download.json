@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "beamlynx - Download",
+    "description": "Download beamlynx, den intuitive, visuelle databaseklient.",
+    "ogTitle": "Beamlynx - Download",
+    "ogDescription": "Download beamlynx, den intuitive, visuelle databaseklient.",
+    "twitterTitle": "Beamlynx - Download",
+    "twitterDescription": "Download beamlynx, den intuitive, visuelle databaseklient."
+  },
+  "heading": "Download",
+  "headingBrand": " beamlynx",
+  "subheading": "Den intuitive, visuelle databaseklient.",
+  "playgroundDisabled": "Den hostede playground er midlertidigt deaktiveret. Download appen nedenfor for at prøve beamlynx.",
+  "install": {
+    "mobileWarning": "beamlynx er et desktop-program til macOS, Windows og Linux. Besøg denne side på din computer for at installere det.",
+    "tabs": {
+      "mac": "macOS",
+      "windows": "Windows",
+      "linux": "Linux"
+    },
+    "copy": "Kopiér",
+    "copied": "Kopieret!",
+    "mac": {
+      "viaBrew": "Via Homebrew (kun Apple Silicon indtil videre):",
+      "orDownload": "Eller <1>download .dmg-filen direkte</1>."
+    },
+    "windows": {
+      "download": "<1>Download .exe-installationsprogrammet</1>, og kør det.",
+      "smartScreenWarning": "Denne build er endnu ikke kodesigneret, så Windows SmartScreen kan advare dig. Klik på <1>Flere oplysninger</1> og derefter <3>Kør alligevel</3> for at starte det."
+    },
+    "linux": {
+      "download": "<1>Download .AppImage-filen</1> (fungerer på de fleste distroer, ingen installation nødvendig):",
+      "orDeb": "Eller, på Debian/Ubuntu, <1>download .deb-filen</1>, og installér den med din sædvanlige pakkehåndtering."
+    }
+  }
+}

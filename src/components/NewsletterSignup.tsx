@@ -1,7 +1,9 @@
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { NEWSLETTER_RELAY_IFRAME_NAME, isSubscribed, subscribeToNewsletter } from "../utils/newsletter";
 
 const NewsletterSignup = () => {
+  const { t } = useTranslation("common");
   const emailRef = useRef<HTMLInputElement>(null);
   const [subscribed, setSubscribed] = useState(isSubscribed);
 
@@ -16,16 +18,16 @@ const NewsletterSignup = () => {
 
   return (
     <div className="flex flex-col items-center gap-2 text-center">
-      <span className="bp-eyebrow">Follow updates</span>
+      <span className="bp-eyebrow">{t("newsletter.eyebrow")}</span>
 
       {subscribed ? (
         <p className="mt-1 text-sm" style={{ color: "var(--bp-text)" }}>
-          You're in — we'll email you when there's something new.
+          {t("newsletter.subscribedMessage")}
         </p>
       ) : (
         <>
           <p className="mt-1 mb-3 text-sm" style={{ color: "var(--bp-text-dim)" }}>
-            New releases and posts. No spam, unsubscribe anytime.
+            {t("newsletter.description")}
           </p>
           <form onSubmit={handleSubmit} className="w-full max-w-sm flex flex-col sm:flex-row gap-3">
             <input
@@ -33,7 +35,7 @@ const NewsletterSignup = () => {
               type="email"
               name="email"
               required
-              placeholder="you@company.com"
+              placeholder={t("newsletter.emailPlaceholder")}
               className="flex-1 rounded-md px-3.5 py-2 text-sm focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--bp-trace)]"
               style={{
                 backgroundColor: "var(--bp-panel-raised)",
@@ -42,7 +44,7 @@ const NewsletterSignup = () => {
               }}
             />
             <button type="submit" className="bp-btn bp-btn-primary justify-center">
-              Count me in
+              {t("newsletter.submit")}
             </button>
           </form>
         </>

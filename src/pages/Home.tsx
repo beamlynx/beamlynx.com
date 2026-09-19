@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
+import { Link, useLocation } from "react-router-dom";
+import { Trans, useTranslation } from "react-i18next";
 import { DEFAULT_EXAMPLE_QUERY, openInPlayground } from "../utils/playground";
+import { getLangFromPathname, localizedPath } from "../i18n/paths";
 
 // Matches how the app itself prettifies a Pine expression (see
 // DocumentationSection.tsx's `expression.split('|').join('\n|')`): every
@@ -24,21 +27,16 @@ const highlightPineKeywords = (line: string) =>
     );
 
 const Home = () => {
+  const { t } = useTranslation("home");
+  const location = useLocation();
+  const downloadHref = localizedPath(getLangFromPathname(location.pathname) ?? "en", "/download");
+
   return (
     <div className="bp-page flex flex-col min-h-screen">
-      <title>beamlynx - Visual & Intuitive Database Queries</title>
-      <meta
-        name="description"
-        content="Beamlynx is a visual database client that makes database interactions delightful. Explore and interact with your data using pine-lang, a simple, intuitive query language."
-      />
-      <meta
-        property="og:title"
-        content="Beamlynx - Visual & Intuitive Database Queries"
-      />
-      <meta
-        property="og:description"
-        content="A visual database client that makes database interactions delightful. Explore and interact with your data using pine-lang, a simple, intuitive query language."
-      />
+      <title>{t("meta.title")}</title>
+      <meta name="description" content={t("meta.description")} />
+      <meta property="og:title" content={t("meta.ogTitle")} />
+      <meta property="og:description" content={t("meta.ogDescription")} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://beamlynx.org" />
       <meta
@@ -46,14 +44,8 @@ const Home = () => {
         content="https://beamlynx.org/pine-social-preview.svg"
       />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta
-        name="twitter:title"
-        content="Beamlynx - Visual & Intuitive Database Queries"
-      />
-      <meta
-        name="twitter:description"
-        content="A visual database client that makes database interactions delightful."
-      />
+      <meta name="twitter:title" content={t("meta.twitterTitle")} />
+      <meta name="twitter:description" content={t("meta.twitterDescription")} />
       <meta
         name="twitter:image"
         content="https://beamlynx.org/pine-social-preview.svg"
@@ -67,33 +59,30 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <p className="bp-eyebrow mb-5">Visual database client</p>
+            <p className="bp-eyebrow mb-5">{t("hero.eyebrow")}</p>
             <h1 className="text-[28px] sm:text-4xl lg:text-[46px] leading-[1.15] tracking-tight max-w-[15ch]">
-              Explore databases
+              {t("hero.titleLine1")}
               <br />
               <span style={{ color: "var(--bp-trace)" }}>
-                visually and intuitively
+                {t("hero.titleLine2")}
               </span>
             </h1>
             <p
               className="mt-6 max-w-[46ch] text-[17px] leading-relaxed"
               style={{ color: "var(--bp-text-dim)" }}
             >
-              Write queries in <code>pine-lang</code>, a simple, composable
-              language that converts seamlessly to SQL — while your
-              database's relationships render live as a schematic you can
-              click through.
+              <Trans i18nKey="hero.description" ns="home" components={{ 1: <code /> }} />
             </p>
             <div className="mt-8 flex flex-wrap gap-3.5">
               <button
                 onClick={() => openInPlayground(DEFAULT_EXAMPLE_QUERY, 'home_hero')}
                 className="bp-btn bp-btn-primary"
               >
-                Try it in the Playground <span aria-hidden="true">↗</span>
+                {t("cta.tryPlayground")} <span aria-hidden="true">↗</span>
               </button>
-              <a href="/download" className="bp-btn bp-btn-ghost">
-                Download for desktop
-              </a>
+              <Link to={downloadHref} className="bp-btn bp-btn-ghost">
+                {t("cta.downloadDesktop")}
+              </Link>
             </div>
           </motion.div>
 
@@ -110,7 +99,7 @@ const Home = () => {
                 viewBox="0 0 680 330"
                 xmlns="http://www.w3.org/2000/svg"
                 role="img"
-                aria-label="Canvas mode diagram of the customers, orders, order_items and products tables joined in sequence, matching the query below"
+                aria-label={t("hero.diagramAriaLabel")}
               >
                 {/* traces - the same right-angle "circuit trace" routing canvas mode's edges use */}
                 <path d="M 166 80 H 176 V 216 H 182" fill="none" stroke="#4fd1ff" strokeWidth="1.5" />
@@ -206,7 +195,7 @@ const Home = () => {
       <section className="px-4 py-14 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
           <div className="bp-legend-head">
-            <h2>Why beamlynx</h2>
+            <h2>{t("features.heading")}</h2>
           </div>
 
           <div className="flex flex-col">
@@ -219,12 +208,8 @@ const Home = () => {
             >
               <span className="bp-pin"></span>
               <div>
-                <h3>Visual</h3>
-                <p>
-                  See your database's relationships rendered live, as a
-                  graph, while you write — no separate ERD tool to keep in
-                  sync.
-                </p>
+                <h3>{t("features.visual.title")}</h3>
+                <p>{t("features.visual.description")}</p>
               </div>
             </motion.div>
 
@@ -237,11 +222,9 @@ const Home = () => {
             >
               <span className="bp-pin amber"></span>
               <div>
-                <h3>Composable</h3>
+                <h3>{t("features.composable.title")}</h3>
                 <p>
-                  <code>pine-lang</code> is a composable domain-specific
-                  language that converts straight to SQL. Focus on the
-                  shape of the question, not the syntax.
+                  <Trans i18nKey="features.composable.description" ns="home" components={{ 1: <code /> }} />
                 </p>
               </div>
             </motion.div>
@@ -255,11 +238,8 @@ const Home = () => {
             >
               <span className="bp-pin dim"></span>
               <div>
-                <h3>Interactive</h3>
-                <p>
-                  Click through tables in a live graph and watch the query
-                  build itself — join paths light up as you go.
-                </p>
+                <h3>{t("features.interactive.title")}</h3>
+                <p>{t("features.interactive.description")}</p>
               </div>
             </motion.div>
           </div>
@@ -269,19 +249,19 @@ const Home = () => {
       {/* Closing CTA */}
       <section className="bp-closing px-4 sm:px-6 lg:px-8">
         <p className="bp-eyebrow" style={{ justifyContent: "center" }}>
-          No account. No setup.
+          {t("closing.eyebrow")}
         </p>
-        <h2>Point it at a database and start exploring.</h2>
+        <h2>{t("closing.heading")}</h2>
         <div className="flex flex-wrap gap-3.5 justify-center">
           <button
             onClick={() => openInPlayground(DEFAULT_EXAMPLE_QUERY, 'home_closing_cta')}
             className="bp-btn bp-btn-primary"
           >
-            Try it in the Playground <span aria-hidden="true">↗</span>
+            {t("cta.tryPlayground")} <span aria-hidden="true">↗</span>
           </button>
-          <a href="/download" className="bp-btn bp-btn-ghost">
-            Download for desktop
-          </a>
+          <Link to={downloadHref} className="bp-btn bp-btn-ghost">
+            {t("cta.downloadDesktop")}
+          </Link>
         </div>
       </section>
     </div>

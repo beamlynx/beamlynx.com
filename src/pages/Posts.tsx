@@ -1,9 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { useColorPalette } from '../contexts/ColorPaletteContext';
+import { HTML_LANG, type Locale } from '../i18n/config';
 
 const Posts: React.FC = () => {
   const palette = useColorPalette();
+  const { t, i18n } = useTranslation('posts');
+  const currentLocale = i18n.language as Locale;
 
   const posts = [
     {
@@ -53,19 +57,16 @@ const Posts: React.FC = () => {
 
   return (
     <div className="bp-page min-h-screen py-12 sm:py-16 md:py-20">
-      <title>beamlynx - Blog</title>
-      <meta
-        name="description"
-        content="Read the latest news, articles, and insights from the Beamlynx team. Stay up-to-date with our development journey and discover the philosophy behind Beamlynx."
-      />
-      <meta property="og:title" content="beamlynx - Blog" />
-      <meta property="og:description" content="The latest news, articles, and insights from the Beamlynx team." />
+      <title>{t('meta.title')}</title>
+      <meta name="description" content={t('meta.description')} />
+      <meta property="og:title" content={t('meta.ogTitle')} />
+      <meta property="og:description" content={t('meta.ogDescription')} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://beamlynx.org/posts" />
       <meta property="og:image" content="https://beamlynx.org/pine-social-preview.svg" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content="Beamlynx - Blog" />
-      <meta name="twitter:description" content="The latest news, articles, and insights from the Beamlynx team." />
+      <meta name="twitter:title" content={t('meta.twitterTitle')} />
+      <meta name="twitter:description" content={t('meta.twitterDescription')} />
       <meta name="twitter:image" content="https://beamlynx.org/pine-social-preview.svg" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -73,13 +74,20 @@ const Posts: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 
-            className="text-3xl sm:text-4xl font-bold mb-8 sm:mb-12 tracking-tight"
-            style={{ color: palette.primary }}
-          >
-            Latest Posts
-          </h1>
-          
+          <div className="flex items-baseline justify-between flex-wrap gap-2 mb-8 sm:mb-12">
+            <h1
+              className="text-3xl sm:text-4xl font-bold tracking-tight"
+              style={{ color: palette.primary }}
+            >
+              {t('heading')}
+            </h1>
+            {currentLocale !== 'en' && (
+              <span className="text-sm" style={{ color: `${palette.secondary}99` }}>
+                {t('englishOnlyNote')}
+              </span>
+            )}
+          </div>
+
           <div className="space-y-8">
             {posts.map((post, index) => (
               <motion.article
@@ -97,11 +105,11 @@ const Posts: React.FC = () => {
                   className="block group"
                 >
                   <div className="flex items-center gap-2 mb-3">
-                    <time 
+                    <time
                       className="text-sm font-medium"
                       style={{ color: `${palette.secondary}99` }}
                     >
-                      {new Date(post.date).toLocaleDateString('en-US', {
+                      {new Date(post.date).toLocaleDateString(HTML_LANG[currentLocale] ?? 'en', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
@@ -128,7 +136,7 @@ const Posts: React.FC = () => {
                       className="text-sm font-medium group-hover:underline"
                       style={{ color: palette.accent }}
                     >
-                      Read more
+                      {t('readMore')}
                       <span className="ml-1 transition-transform group-hover:translate-x-0.5 inline-block">
                         →
                       </span>

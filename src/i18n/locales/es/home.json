@@ -1,0 +1,40 @@
+{
+  "meta": {
+    "title": "beamlynx - Consultas de bases de datos visuales e intuitivas",
+    "description": "Beamlynx es un cliente de bases de datos visual que hace que trabajar con datos sea un placer. Explora e interactúa con tus datos usando pine-lang, un lenguaje de consulta simple e intuitivo.",
+    "ogTitle": "Beamlynx - Consultas de bases de datos visuales e intuitivas",
+    "ogDescription": "Un cliente de bases de datos visual que hace que trabajar con datos sea un placer. Explora e interactúa con tus datos usando pine-lang, un lenguaje de consulta simple e intuitivo.",
+    "twitterTitle": "Beamlynx - Consultas de bases de datos visuales e intuitivas",
+    "twitterDescription": "Un cliente de bases de datos visual que hace que trabajar con datos sea un placer."
+  },
+  "cta": {
+    "tryPlayground": "Pruébalo en el Playground",
+    "downloadDesktop": "Descargar para escritorio"
+  },
+  "hero": {
+    "eyebrow": "Cliente de bases de datos visual",
+    "titleLine1": "Explora bases de datos",
+    "titleLine2": "de forma visual e intuitiva",
+    "description": "Escribe consultas en <1>pine-lang</1>, un lenguaje simple y componible que se convierte a SQL sin esfuerzo — mientras las relaciones de tu base de datos se muestran en vivo como un esquema que puedes recorrer con un clic.",
+    "diagramAriaLabel": "Diagrama en modo lienzo de las tablas customers, orders, order_items y products unidas en secuencia, correspondiente a la consulta que se muestra abajo"
+  },
+  "features": {
+    "heading": "Por qué beamlynx",
+    "visual": {
+      "title": "Visual",
+      "description": "Observa las relaciones de tu base de datos renderizadas en vivo, como un grafo, mientras escribes — sin necesidad de una herramienta ERD aparte que mantener sincronizada."
+    },
+    "composable": {
+      "title": "Componible",
+      "description": "<1>pine-lang</1> es un lenguaje específico de dominio y componible que se convierte directamente a SQL. Concéntrate en la forma de la pregunta, no en la sintaxis."
+    },
+    "interactive": {
+      "title": "Interactivo",
+      "description": "Recorre las tablas en un grafo en vivo y observa cómo se construye la consulta sola — las rutas de unión se iluminan a medida que avanzas."
+    }
+  },
+  "closing": {
+    "eyebrow": "Sin cuenta. Sin configuración.",
+    "heading": "Apunta a una base de datos y empieza a explorar."
+  }
+}

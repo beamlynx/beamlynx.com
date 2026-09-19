@@ -1,0 +1,23 @@
+{
+  "meta": {
+    "titlePrefix": "beamlynx - ",
+    "description": "Explore the official Beamlynx documentation. Learn the syntax, features, and best practices for using pine-lang to write clear and efficient database queries.",
+    "ogTitle": "Beamlynx - pine-lang",
+    "ogDescription": "Explore the official pine-lang documentation and learn how to write clear, efficient database queries.",
+    "twitterTitle": "Beamlynx - pine-lang",
+    "twitterDescription": "Explore the official pine-lang documentation and learn how to write clear, efficient database queries.",
+    "fallbackTitle": "Docs"
+  },
+  "sidebar": {
+    "navigation": "Navigation"
+  },
+  "section": {
+    "operationBadge": "OPERATION",
+    "copyPermalink": "Copy permalink",
+    "syntax": "Syntax",
+    "examples": "Examples",
+    "tryIt": "Try it",
+    "tryInPlayground": "Try in playground",
+    "becomes": "becomes"
+  }
+}

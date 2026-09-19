@@ -1,24 +1,51 @@
 import React, { useEffect, useState, useCallback, Suspense, useRef } from 'react';
 import { useColorPalette } from '../contexts/ColorPaletteContext';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import documentationComponents from './documentation';
 import LoadingIndicator from '../components/LoadingIndicator';
 
-const SECTIONS = Object.keys(documentationComponents).map(key => {
+// Anchor ids stay derived from the English object key and never change with
+// locale (shared/bookmarked #section links must keep working in every
+// language). The docsContent translation key is a separate, stable mapping
+// to the same canonical section -- see docsContent.json.
+const DOC_CONTENT_KEYS: Record<string, string> = {
+  'Why?': 'whyDsl',
+  'Intro': 'pineLang',
+  Table: 'table',
+  Join: 'join',
+  Paths: 'paths',
+  Where: 'where',
+  Select: 'select',
+  Order: 'order',
+  Limit: 'limit',
+  From: 'from',
+  Group: 'group',
+  Count: 'count',
+  Delete: 'delete',
+  Variables: 'variables',
+};
+
+const SECTION_KEYS = Object.keys(documentationComponents).map(key => {
   const id = key
     .replace(/([A-Z])/g, '-$1')
     .toLowerCase()
     .replace(/^-/, '');
-  const label = key.replace(/([A-Z])/g, ' $1').trim();
   return {
     id,
-    label,
+    contentKey: DOC_CONTENT_KEYS[key],
     component: documentationComponents[key as keyof typeof documentationComponents]
   };
 });
 
 const Documentation: React.FC = () => {
   const palette = useColorPalette();
+  const { t } = useTranslation(['docs', 'docsContent']);
+  const SECTIONS = SECTION_KEYS.map(({ id, contentKey, component }) => ({
+    id,
+    label: t(`docsContent:${contentKey}.title`),
+    component,
+  }));
   const [activeSection, setActiveSection] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolling, setIsScrolling] = useState(false);
@@ -309,7 +336,7 @@ const Documentation: React.FC = () => {
             style={{ borderColor: `${palette.accent}20` }}
           >
             <h2 className="text-lg font-semibold" style={{ color: palette.primary }}>
-              Navigation
+              {t('docs:sidebar.navigation')}
             </h2>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
@@ -353,23 +380,20 @@ const Documentation: React.FC = () => {
     </div>
   );
 
-  const activeLabel = SECTIONS.find(s => s.id === activeSection)?.label || 'Docs';
+  const activeLabel = SECTIONS.find(s => s.id === activeSection)?.label || t('docs:meta.fallbackTitle');
 
   return (
     <div className="bp-page min-h-screen">
-      <title>beamlynx - {activeLabel}</title>
-      <meta
-        name="description"
-        content="Explore the official Beamlynx documentation. Learn the syntax, features, and best practices for using pine-lang to write clear and efficient database queries."
-      />
-              <meta property="og:title" content="Beamlynx - pine-lang" />
-        <meta property="og:description" content="Explore the official pine-lang documentation and learn how to write clear, efficient database queries." />
+      <title>{t('docs:meta.titlePrefix')}{activeLabel}</title>
+      <meta name="description" content={t('docs:meta.description')} />
+      <meta property="og:title" content={t('docs:meta.ogTitle')} />
+      <meta property="og:description" content={t('docs:meta.ogDescription')} />
       <meta property="og:type" content="article" />
       <meta property="og:url" content="https://beamlynx.org/docs" />
       <meta property="og:image" content="https://beamlynx.org/pine-social-preview.svg" />
       <meta name="twitter:card" content="summary_large_image" />
-              <meta name="twitter:title" content="Beamlynx - pine-lang" />
-      <meta name="twitter:description" content="Explore the official pine-lang documentation and learn how to write clear, efficient database queries." />
+      <meta name="twitter:title" content={t('docs:meta.twitterTitle')} />
+      <meta name="twitter:description" content={t('docs:meta.twitterDescription')} />
       <meta name="twitter:image" content="https://beamlynx.org/pine-social-preview.svg" />
       {/* Mobile Header */}
       <MobileHeader />
@@ -433,7 +457,7 @@ const Documentation: React.FC = () => {
                 `}
               </style>
               
-              <Suspense fallback={<LoadingIndicator text="Loading docs..." />}>
+              <Suspense fallback={<LoadingIndicator text={t('common:loading.docs')} />}>
                 {SECTIONS.map(({ id, component: Component }) => (
                   <Component key={id} />
                 ))}

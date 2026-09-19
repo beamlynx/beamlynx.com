@@ -36,6 +36,15 @@ export function trackEvent(name: string, properties?: Record<string, unknown>) {
   posthog.capture(name, properties);
 }
 
+// Registered as a super property so every subsequent event (pageviews,
+// downloads, playground clicks) carries the visitor's resolved locale,
+// without threading it through every trackEvent call individually.
+export function setAnalyticsLocale(locale: string) {
+  if (!analyticsEnabled) return;
+
+  posthog.register({ locale });
+}
+
 // Attaches a real identity to this visitor's existing anonymous PostHog
 // history (past pageviews, download clicks, etc. all merge into this person)
 // -- call once we actually know who they are, e.g. a newsletter signup.

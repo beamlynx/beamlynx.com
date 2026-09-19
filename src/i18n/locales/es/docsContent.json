@@ -1,0 +1,143 @@
+{
+  "whyDsl": {
+    "title": "¿Por qué?",
+    "description": "SQL ha sido la base del trabajo con datos durante décadas. Es potente, expresivo y universal. Pero para algunas tareas, puede estorbar más que ayudar.",
+    "bullets": [
+      "SQL difumina la línea entre <1>qué</1> quieres obtener y <3>cómo</3> obtenerlo.",
+      "La componibilidad no es su fuerte.",
+      "Los resultados no te ayudan a descubrir relaciones ni contexto en tu esquema.",
+      "SQL no fue diseñado pensando en la exploración visual.",
+      "SQL puede ser innecesariamente verboso."
+    ],
+    "closing": "SQL es excelente - pero podemos mejorar la experiencia con un lenguaje específico de dominio (DSL)."
+  },
+  "pineLang": {
+    "title": "Presentando Pine-lang",
+    "description": "Beamlynx usa pine-lang, un lenguaje de consulta intuitivo que se transpila a SQL. Pine-lang utiliza una sintaxis basada en tuberías (pipes), inspirada en las tuberías de Unix, que hace que las consultas sean legibles y componibles. Mientras escribes consultas, ves una visualización en tiempo real de las relaciones entre tablas."
+  },
+  "table": {
+    "title": "Table",
+    "description": "¡Esto es lo más simple que hay! ¿Quieres obtener datos de una tabla? Simplemente escribe el nombre de la tabla.",
+    "examples": [
+      { "title": "Seleccionar todo" },
+      { "title": "Tabla en un esquema" },
+      { "title": "Tabla con alias" }
+    ]
+  },
+  "join": {
+    "title": "Join",
+    "description": "Une tablas sin tener que pensar en las relaciones de clave foránea. Simplemente conecta tablas con una tubería para crear uniones. Sin embargo, si quieres especificar la columna de unión u otros aspectos de la unión, puedes pasar los argumentos correspondientes. Consulta los ejemplos a continuación:",
+    "examples": [
+      { "title": "Unión (Join)", "description": "Dos tablas unidas usando la clave foránea." },
+      { "title": "Unión de varias tablas", "description": "Conecta varias tablas con tuberías para unir múltiples tablas" },
+      { "title": "Unión con esquema calificado", "description": "Usa la calificación de esquema al unir tablas de distintos esquemas" },
+      { "title": "Unión izquierda (left join)", "description": "Usa el modificador :left para especificar una unión izquierda" },
+      { "title": "Autounión (self join)", "description": "Une una tabla consigo misma" },
+      { "title": "Autounión con dirección / relación padre-hijo", "description": "Por defecto, se elige la tabla hija para la unión, es decir, la que contiene la clave foránea. Si quieres unir usando la tabla padre, es decir, la que es referenciada, usa el modificador :parent. Los alias se usan aquí con fines demostrativos." }
+    ],
+    "modifiersIntro": "Modificadores admitidos:",
+    "modifiers": [
+      "<1>:left</1> - Realiza una unión externa izquierda, conservando todos los registros de la tabla izquierda",
+      "<1>:right</1> - Realiza una unión externa derecha, conservando todos los registros de la tabla derecha",
+      "<1>:parent</1> - Une usando la tabla padre (la que es referenciada) en lugar de la tabla hija (la que tiene la clave foránea)"
+    ]
+  },
+  "paths": {
+    "title": "Paths",
+    "description": "Pregúntale a Pine cómo se conectan dos tablas, y buscará todas las cadenas de uniones posibles entre ellas - no solo el siguiente salto directo. Útil en el momento en que sabes que necesitas datos de otra tabla, pero no cómo llegar hasta ella.",
+    "examples": [
+      { "title": "Ruta directa y de varios saltos", "description": "Devuelve todas las rutas desde company hasta document, no solo el siguiente salto. Si employee se encuentra en medio (company → employee → document), además de una columna company_id directa en document, ambas aparecen - ordenadas para que la relación genuina quede por encima del atajo desnormalizado." },
+      { "title": "Compuesta sobre una expresión existente", "description": "La búsqueda comienza donde la tubería quedó, no desde un nombre de tabla suelto - todo lo que precede al ? es una expresión Pine ordinaria y totalmente componible." }
+    ],
+    "intro1": "Una sola tubería (<1>customers | orders</1>) ya muestra a qué tabla puede unirse otra a continuación. <3>?</3> responde una pregunta distinta: cómo llegarías siquiera de una tabla a otra, cuando la conexión real está a dos o tres saltos de distancia, a través de una tabla que ni se te había ocurrido nombrar.",
+    "intro2": "Cada resultado es una expresión Pine real, lista para colocarse en lugar del segmento <1>? table</1> - no es un resultado de consulta. Algunas cosas que debes saber:",
+    "notes": [
+      "Las rutas se clasifican según qué tan significativa es la conexión, no solo por la cantidad de saltos - una columna atajo que solo duplica una relación más larga y directa queda por detrás de la relación real, incluso cuando es más corta.",
+      "<1>?</1> es terminal - nada significativo puede seguirlo dentro de la misma tubería, igual que <3>count:</3> o un <5>delete:</5> sin más.",
+      "No tiene modificadores de tabla propios (ni <1>as alias</1>, ni <3>.hint_column</3>, ni <5>:parent</5>) - la tabla nombrada es un destino de búsqueda, no algo que se está uniendo directamente.",
+      "Los resultados tienen un límite, para que un esquema densamente conectado no convierta una búsqueda simple en una consulta de larga duración."
+    ]
+  },
+  "where": {
+    "title": "Where",
+    "description": "Filtra los resultados según condiciones.",
+    "examples": [
+      { "title": "Condición", "description": "Filtra los registros donde una columna es igual a un valor específico" },
+      { "title": "Múltiples condiciones", "description": "Aplica varias condiciones de filtro separándolas con comas" },
+      { "title": "NULL", "description": "Filtra los registros con valores NULL en una columna" },
+      { "title": "NOT NULL", "description": "Filtra los registros con valores NOT NULL en una columna" },
+      { "title": "Cláusula IN", "description": "Filtra los registros cuyo valor de columna coincide con alguno de una lista" },
+      { "title": "Comparación de columnas", "description": "Compara valores entre columnas distintas" },
+      { "title": "LIKE", "description": "Filtra los registros usando el operador LIKE" },
+      { "title": "ILIKE", "description": "Filtra los registros usando el operador ILIKE" }
+    ]
+  },
+  "select": {
+    "title": "Select",
+    "description": "Selecciona las columnas que se devolverán en el resultado de la consulta.",
+    "examples": [
+      { "title": "Seleccionar columnas específicas", "description": "Elige solo las columnas que necesitas en el resultado" },
+      { "title": "Seleccionar con alias", "description": "Renombra columnas en la salida usando alias" },
+      { "title": "Seleccionar con calificación de tabla", "description": "Especifica de qué tabla proviene cada columna en las uniones" }
+    ]
+  },
+  "order": {
+    "title": "Order",
+    "description": "Ordena los resultados por una o más columnas.",
+    "examples": [
+      { "title": "Ordenamiento básico", "description": "Ordena los resultados por una sola columna en orden ascendente" },
+      { "title": "Orden descendente", "description": "Ordena los resultados en orden descendente usando la palabra clave desc" },
+      { "title": "Múltiples columnas", "description": "Ordena por varias columnas con distintas direcciones de orden" }
+    ]
+  },
+  "limit": {
+    "title": "Limit",
+    "description": "La operación limit restringe el número de filas devueltas por una consulta. Usa 'limit:' o su forma abreviada 'l:' para especificar el número máximo de filas.",
+    "examples": [
+      { "title": "Límite", "description": "Obtén las primeras 10 filas de la tabla customers" },
+      { "title": "Límite con filtro", "description": "Filtra customers y limita el resultado a 5 registros" },
+      { "title": "Límite tras una unión", "description": "Une customers y orders, filtra por el monto total y luego limita los resultados" }
+    ]
+  },
+  "from": {
+    "title": "From",
+    "description": "La operación from establece el contexto para las operaciones siguientes en consultas complejas. Usa 'from:' o su forma abreviada 'f:' para especificar qué tabla o alias se usará como origen de las próximas operaciones.",
+    "examples": [
+      { "title": "Cambio de contexto con seguimiento de estado", "description": "Obtén el historial de estados de un pedido uniendo los ítems del pedido y los cambios de estado, usando from para mantener el contexto de order" }
+    ]
+  },
+  "group": {
+    "title": "Group",
+    "description": "Se usa para agrupar los resultados de una consulta según una columna dada.",
+    "examples": [
+      { "title": "Agrupación básica", "description": "Agrupa los productos por categoría y cuenta el número de ítems de pedido para cada categoría" }
+    ]
+  },
+  "count": {
+    "title": "Count",
+    "description": "La operación count devuelve el número total de filas en un conjunto de resultados. Usa 'count:' para obtener el número de filas de los resultados de tu consulta.",
+    "examples": [
+      { "title": "Conteo simple", "description": "Cuenta todas las filas de la tabla categories" }
+    ]
+  },
+  "delete": {
+    "title": "Delete",
+    "description": "La operación delete elimina filas de una tabla. Todas las operaciones con efectos secundarios en pine-lang llevan el sufijo '!' para indicar que modifican datos. Usa delete! para eliminar permanentemente los registros que coincidan con tus condiciones de filtro.",
+    "examples": [
+      { "title": "Eliminar un registro específico", "description": "Elimina de la tabla customers al cliente con el correo 'john.doe@email.com'" }
+    ]
+  },
+  "variables": {
+    "title": "Variables",
+    "description": "Asigna un nombre a un resultado intermedio y úsalo como tabla en expresiones posteriores. Las variables te permiten construir consultas en pasos legibles, en lugar de anidar subconsultas.",
+    "examples": [
+      { "title": "Nombrar un resultado y reutilizarlo", "description": "Asigna el resultado filtrado de company a active_companies, y luego úsalo como tabla en la siguiente expresión." },
+      { "title": "Asignación a mitad de la tubería", "description": "Coloca |= en cualquier punto de la cadena de tuberías. La instantánea se toma en ese punto — all_companies es el conjunto completo y sin filtrar de company, mientras que la expresión actual sigue devolviendo solo las empresas activas." },
+      { "title": "Referenciar columnas de una variable", "description": "Después de |= c, usa c como calificador de columna en la misma expresión. c.id se refiere a la columna id de la tabla company." },
+      { "title": "Encadenar varios pasos", "description": "Cada expresión se construye sobre la anterior. Separa las expresiones con una línea en blanco." },
+      { "title": "Solo las columnas id seleccionadas explícitamente siguen siendo uníbles", "description": "Una vez que se usa una variable, sus tablas subyacentes dejan de ser visibles — solo lo son sus propias columnas de salida. Una tabla sigue siendo una fuente de unión válida a través de la variable solo si su id fue seleccionado explícitamente. select: name por sí solo (sin id) haría que x no se pueda unir con nada." },
+      { "title": "Puntos de control automáticos tras group: o limit:", "description": "group: y limit: producen un resultado final y acotado. Encadenar hacia otra tabla después de uno de ellos envuelve automáticamente la consulta anterior en un CTE anónimo, de modo que la unión se aplica sobre el resultado ya limitado/agrupado en lugar de corromperlo. Nombra tú mismo ese CTE con |= justo después del paso group:/limit:." },
+      { "title": "Combinar varios agregados por fila", "description": "x e y agregan cada uno una tabla relacionada distinta hasta obtener una fila por cliente, exponiendo solo su propia columna de conteo. La expresión final vuelve a partir de customers y une ambas variables, produciendo una fila por cliente con email, order_count y status_change_count uno junto al otro — sin anidar subconsultas ni repetir la unión con customers en cada rama." }
+    ]
+  }
+}
