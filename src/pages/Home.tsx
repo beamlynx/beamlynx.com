@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { DEFAULT_EXAMPLE_QUERY, openInPlayground } from "../utils/playground";
 import { getLangFromPathname, localizedPath } from "../i18n/paths";
 
@@ -71,7 +71,7 @@ const Home = () => {
               className="mt-6 max-w-[46ch] text-[17px] leading-relaxed"
               style={{ color: "var(--bp-text-dim)" }}
             >
-              <Trans i18nKey="hero.description" ns="home" components={{ 1: <code /> }} />
+              {t("hero.description")}
             </p>
             <div className="mt-8 flex flex-wrap gap-3.5">
               <button
@@ -222,10 +222,8 @@ const Home = () => {
             >
               <span className="bp-pin amber"></span>
               <div>
-                <h3>{t("features.composable.title")}</h3>
-                <p>
-                  <Trans i18nKey="features.composable.description" ns="home" components={{ 1: <code /> }} />
-                </p>
+                <h3>{t("features.interactive.title")}</h3>
+                <p>{t("features.interactive.description")}</p>
               </div>
             </motion.div>
 
@@ -238,8 +236,8 @@ const Home = () => {
             >
               <span className="bp-pin dim"></span>
               <div>
-                <h3>{t("features.interactive.title")}</h3>
-                <p>{t("features.interactive.description")}</p>
+                <h3>{t("features.composable.title")}</h3>
+                <p>{t("features.composable.description")}</p>
               </div>
             </motion.div>
           </div>

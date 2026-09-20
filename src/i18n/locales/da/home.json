@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "beamlynx - Visuelle og intuitive databaseforespørgsler",
-    "description": "Beamlynx er en visuel databaseklient, der gør det en fornøjelse at arbejde med databaser. Udforsk og arbejd med dine data ved hjælp af pine-lang, et enkelt og intuitivt forespørgselssprog.",
+    "description": "Beamlynx er en visuel databaseklient. Klik dig fra den ene tabel til den næste, mens forespørgslen skriver sig selv. Ingen SQL at skrive i hånden.",
     "ogTitle": "Beamlynx - Visuelle og intuitive databaseforespørgsler",
-    "ogDescription": "En visuel databaseklient, der gør det en fornøjelse at arbejde med databaser. Udforsk og arbejd med dine data ved hjælp af pine-lang, et enkelt og intuitivt forespørgselssprog.",
+    "ogDescription": "En visuel databaseklient. Klik fra tabel til tabel, og lad forespørgslen skrive sig selv.",
     "twitterTitle": "Beamlynx - Visuelle og intuitive databaseforespørgsler",
-    "twitterDescription": "En visuel databaseklient, der gør det en fornøjelse at arbejde med databaser."
+    "twitterDescription": "En visuel databaseklient. Klik fra tabel til tabel, og lad forespørgslen skrive sig selv."
   },
   "cta": {
     "tryPlayground": "Prøv det i Playground",
@@ -13,28 +13,28 @@
   },
   "hero": {
     "eyebrow": "Visuel databaseklient",
-    "titleLine1": "Udforsk databaser",
-    "titleLine2": "visuelt og intuitivt",
-    "description": "Skriv forespørgsler i <1>pine-lang</1>, et enkelt, sammensætteligt sprog, der oversættes direkte til SQL — mens din databases relationer tegnes live som et skema, du kan klikke dig igennem.",
-    "diagramAriaLabel": "Canvas-tilstandsdiagram, der viser tabellerne customers, orders, order_items og products joinet i rækkefølge, svarende til forespørgslen nedenfor"
+    "titleLine1": "Din database,",
+    "titleLine2": "nem at følge",
+    "description": "Åbn en database, og begynd at klikke. Beamlynx tegner dine tabeller, og din forespørgsel skriver sig selv, mens du klikker dig vej igennem dem. Teksten står lige ved siden af diagrammet, hvis du hellere vil skrive.",
+    "diagramAriaLabel": "Diagram, der viser tabellerne customers, orders, order_items og products joinet i rækkefølge, svarende til forespørgslen nedenfor"
   },
   "features": {
     "heading": "Hvorfor beamlynx",
     "visual": {
       "title": "Visuel",
-      "description": "Se din databases relationer tegnet live, som en graf, mens du skriver — intet separat ERD-værktøj at holde synkroniseret."
-    },
-    "composable": {
-      "title": "Sammensætteligt",
-      "description": "<1>pine-lang</1> er et sammensætteligt domænespecifikt sprog, der oversættes direkte til SQL. Fokusér på selve spørgsmålet, ikke syntaksen."
+      "description": "Ingen mur af SQL. Din forespørgsel er et billede af dine tabeller, og hvordan de hænger sammen."
     },
     "interactive": {
       "title": "Interaktivt",
-      "description": "Klik dig igennem tabeller i en levende graf, og se forespørgslen bygge sig selv — join-stier lyser op, mens du går."
+      "description": "Hvert klik kører forespørgslen. Du ser svaret ændre sig, mens du arbejder."
+    },
+    "composable": {
+      "title": "Sammensætteligt",
+      "description": "Klik på en hvilken som helst del af forespørgslen, ikke kun det sidste trin du tilføjede. Resten bliver, som den er."
     }
   },
   "closing": {
     "eyebrow": "Ingen konto. Ingen opsætning.",
-    "heading": "Peg den på en database, og begynd at udforske."
+    "heading": "Forbind en database, og se hvad der er i den."
   }
 }
