@@ -49,7 +49,7 @@ const Home = () => {
       <meta property="og:title" content={t("meta.ogTitle")} />
       <meta property="og:description" content={t("meta.ogDescription")} />
       <meta property="og:type" content="website" />
-      <meta property="og:url" content="https://beamlynx.org" />
+      <meta property="og:url" content="https://beamlynx.com" />
       <meta property="og:image" content={OG_IMAGE} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
