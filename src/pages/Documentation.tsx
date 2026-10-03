@@ -390,11 +390,11 @@ const Documentation: React.FC = () => {
       <meta property="og:description" content={t('docs:meta.ogDescription')} />
       <meta property="og:type" content="article" />
       <meta property="og:url" content="https://beamlynx.org/docs" />
-      <meta property="og:image" content="https://beamlynx.org/pine-social-preview.svg" />
+      <meta property="og:image" content="https://beamlynx.org/og-image.png" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={t('docs:meta.twitterTitle')} />
       <meta name="twitter:description" content={t('docs:meta.twitterDescription')} />
-      <meta name="twitter:image" content="https://beamlynx.org/pine-social-preview.svg" />
+      <meta name="twitter:image" content="https://beamlynx.org/og-image.png" />
       {/* Mobile Header */}
       <MobileHeader />
 

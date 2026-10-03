@@ -9,24 +9,20 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Reuses beamlynx-ui's own "schematic/blueprint" palette (canvas mode's
-        // dark --canvas-* tokens) rather than a color invented for this site
-        // alone - one brand across the app and the marketing site. Every page
-        // is dark now (see the 2026-08-15 follow-up pass), so this scale is
-        // anchored on the app's DARK canvas values, not its light ones -
-        // higher numbers read as MORE emphasis/brighter (600 -> 900 = the
-        // hover/emphasis direction on a dark ground), the reverse of
+        // beamlynx-ui's own dark theme (styles/palette/themes.ts there), so
+        // the site and the app look like one product. Every page is dark, so
+        // higher numbers mean MORE emphasis (brighter), the reverse of
         // Tailwind's usual "bigger number = darker" convention.
         pine: {
-          50: '#0f2337',
-          100: '#132a41',
-          200: '#1c3b57',
-          300: '#28577c',
-          400: '#4d6d85',
-          500: '#7ba3c2',
-          600: '#4fd1ff',
-          700: '#6fdcff',
-          800: '#dbeeff',
+          50: '#1f2335',
+          100: '#24283b',
+          200: '#2a2f45',
+          300: '#3b4261',
+          400: '#565f89',
+          500: '#9aa5ce',
+          600: '#7aa2f7',
+          700: '#9ab8ff',
+          800: '#c0caf5',
           900: '#ffffff',
         },
       },
@@ -40,26 +36,26 @@ export default {
         // this is the DEFAULT theme itself, not a `-invert` variant bolted on.
         DEFAULT: {
           css: {
-            '--tw-prose-body': '#a9c3d8',
-            '--tw-prose-headings': '#dbeeff',
-            '--tw-prose-lead': '#a9c3d8',
-            '--tw-prose-links': '#4fd1ff',
-            '--tw-prose-bold': '#dbeeff',
-            '--tw-prose-counters': '#6f97b5',
-            '--tw-prose-bullets': '#2c5578',
-            '--tw-prose-hr': '#22496b',
-            '--tw-prose-quotes': '#dbeeff',
-            '--tw-prose-quote-borders': '#2c5578',
-            '--tw-prose-captions': '#6f97b5',
-            '--tw-prose-code': '#4fd1ff',
-            '--tw-prose-pre-code': '#dbeeff',
-            '--tw-prose-pre-bg': '#0f2337',
-            '--tw-prose-th-borders': '#2c5578',
-            '--tw-prose-td-borders': '#1a3552',
-            color: '#a9c3d8',
+            '--tw-prose-body': '#a9b1d6',
+            '--tw-prose-headings': '#c0caf5',
+            '--tw-prose-lead': '#a9b1d6',
+            '--tw-prose-links': '#7aa2f7',
+            '--tw-prose-bold': '#c0caf5',
+            '--tw-prose-counters': '#8890b5',
+            '--tw-prose-bullets': '#3b4261',
+            '--tw-prose-hr': '#363b58',
+            '--tw-prose-quotes': '#c0caf5',
+            '--tw-prose-quote-borders': '#3b4261',
+            '--tw-prose-captions': '#8890b5',
+            '--tw-prose-code': '#7aa2f7',
+            '--tw-prose-pre-code': '#c0caf5',
+            '--tw-prose-pre-bg': '#1f2335',
+            '--tw-prose-th-borders': '#3b4261',
+            '--tw-prose-td-borders': '#292e42',
+            color: '#a9b1d6',
             maxWidth: 'none',
             code: {
-              color: '#4fd1ff',
+              color: '#7aa2f7',
               '&::before': {
                 content: '""',
               },

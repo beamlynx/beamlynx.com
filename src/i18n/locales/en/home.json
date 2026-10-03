@@ -1,40 +1,74 @@
 {
   "meta": {
-    "title": "beamlynx - Visual & Intuitive Database Queries",
-    "description": "Beamlynx is a visual database client. Click from one table to the next and the query writes itself. No SQL to write by hand.",
-    "ogTitle": "Beamlynx - Visual & Intuitive Database Queries",
-    "ogDescription": "A visual database client. Click from table to table and let the query write itself.",
-    "twitterTitle": "Beamlynx - Visual & Intuitive Database Queries",
-    "twitterDescription": "A visual database client. Click from table to table and let the query write itself."
+    "title": "beamlynx - Click through your database",
+    "description": "Beamlynx is a visual database client for PostgreSQL and MySQL. Click from one table to the next and the query writes itself.",
+    "ogTitle": "beamlynx - Click through your database",
+    "ogDescription": "A visual database client. Click from table to table and the query writes itself.",
+    "twitterTitle": "beamlynx - Click through your database",
+    "twitterDescription": "A visual database client. Click from table to table and the query writes itself."
   },
   "cta": {
-    "tryPlayground": "Try it in the Playground",
-    "downloadDesktop": "Download for desktop"
+    "download": "Download beamlynx",
+    "downloadFor": {
+      "mac": "Download for macOS",
+      "windows": "Download for Windows",
+      "linux": "Download for Linux"
+    },
+    "tryHere": "Try it on this page"
   },
   "hero": {
-    "eyebrow": "Visual database client",
-    "titleLine1": "Your database,",
-    "titleLine2": "easy to follow",
-    "description": "Open a database and start clicking. Beamlynx draws your tables, and your query writes itself as you pick your way through them. The text sits right beside the diagram if you'd rather type.",
-    "diagramAriaLabel": "Diagram of the customers, orders, order_items and products tables joined in sequence, matching the query below"
+    "titleLine1": "Click through your database.",
+    "titleLine2": "The query writes itself.",
+    "description": "beamlynx draws your tables and how they connect. Pick a table, follow a link to the next one, and the rows appear as you go. The query sits beside the picture, in case you'd rather type.",
+    "facts": "macOS, Windows and Linux · PostgreSQL and MySQL · No account"
   },
-  "features": {
-    "heading": "Why beamlynx",
-    "visual": {
-      "title": "Visual",
-      "description": "Not a wall of SQL. Your query is a picture of your tables and how they join."
-    },
-    "interactive": {
-      "title": "Interactive",
-      "description": "Every click runs the query. You watch the answer change as you go."
-    },
-    "composable": {
-      "title": "Composable",
-      "description": "Click any part of the query, not just the last step you added. The rest stays as it is."
+  "showcase": {
+    "alt": "The beamlynx app. On the left, three tables (customers, orders and product_reviews) are drawn as boxes joined by lines, with the matching query underneath. On the right, a table of results.",
+    "caption": "The real app, on a sample shop database. Nothing here is mocked up.",
+    "themeLabel": "App theme",
+    "themes": {
+      "dark": "Dark",
+      "light": "Light",
+      "sepia": "Sepia"
     }
   },
+  "try": {
+    "heading": "Three clicks. No SQL.",
+    "description": "This works like the app, on the same sample data. Each click adds a step, and the results follow.",
+    "stepOf": "Step {{n}} of {{total}}",
+    "hintJoin": "Click {{to}} to join it to {{from}}.",
+    "hintFilter": "Click + rating = 5 to keep only the five-star reviews.",
+    "hintDone": "Done. Switch to SQL to see what beamlynx wrote for you.",
+    "reset": "Start over",
+    "joinLabel": "Join {{table}}",
+    "resultLabel": "Query result",
+    "queryLabel": "Query",
+    "rows_one": "{{count}} row",
+    "rows_other": "{{count}} rows",
+    "sqlWritten_one": "{{count}} character of SQL written for you",
+    "sqlWritten_other": "{{count}} characters of SQL written for you"
+  },
+  "agents": {
+    "heading": "Let an AI agent look around. Keep the keys.",
+    "description": "beamlynx has a built-in MCP server. Any AI agent that supports MCP can explore the databases you allow, the same way you do: one table at a time.",
+    "readOnly": {
+      "title": "It can only read.",
+      "description": "Updates and deletes are refused, by the server and by the app."
+    },
+    "approval": {
+      "title": "Hidden columns stay hidden.",
+      "description": "To see one, the agent has to ask, and you approve or decline in the app."
+    },
+    "visible": {
+      "title": "You see what it sees.",
+      "description": "Every query it runs opens in its own tab, with a note saying what it was looking for."
+    },
+    "cardLabel": "Example of a query an AI agent sent",
+    "cardTitle": "Agent tab",
+    "cardFoot": "3 rows · opened in beamlynx"
+  },
   "closing": {
-    "eyebrow": "No account. No setup.",
-    "heading": "Connect a database and see what's in there."
+    "heading": "Connect a database and see what's in there.",
+    "description": "No account and no server to set up. On a Mac, <1>Homebrew works too</1>."
   }
 }

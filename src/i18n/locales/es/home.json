@@ -1,40 +1,74 @@
 {
   "meta": {
-    "title": "beamlynx - Consultas de bases de datos visuales e intuitivas",
-    "description": "Beamlynx es un cliente de bases de datos visual. Haz clic de una tabla a la siguiente y la consulta se escribe sola. Nada de SQL a mano.",
-    "ogTitle": "Beamlynx - Consultas de bases de datos visuales e intuitivas",
-    "ogDescription": "Un cliente de bases de datos visual. Haz clic de tabla en tabla y deja que la consulta se escriba sola.",
-    "twitterTitle": "Beamlynx - Consultas de bases de datos visuales e intuitivas",
-    "twitterDescription": "Un cliente de bases de datos visual. Haz clic de tabla en tabla y deja que la consulta se escriba sola."
+    "title": "beamlynx - Recorre tu base de datos con clics",
+    "description": "Beamlynx es un cliente de bases de datos visual para PostgreSQL y MySQL. Haz clic de una tabla a la siguiente y la consulta se escribe sola.",
+    "ogTitle": "beamlynx - Recorre tu base de datos con clics",
+    "ogDescription": "Un cliente de bases de datos visual. Haz clic de tabla en tabla y la consulta se escribe sola.",
+    "twitterTitle": "beamlynx - Recorre tu base de datos con clics",
+    "twitterDescription": "Un cliente de bases de datos visual. Haz clic de tabla en tabla y la consulta se escribe sola."
   },
   "cta": {
-    "tryPlayground": "Pruébalo en el Playground",
-    "downloadDesktop": "Descargar para escritorio"
+    "download": "Descargar beamlynx",
+    "downloadFor": {
+      "mac": "Descargar para macOS",
+      "windows": "Descargar para Windows",
+      "linux": "Descargar para Linux"
+    },
+    "tryHere": "Pruébalo en esta página"
   },
   "hero": {
-    "eyebrow": "Cliente de bases de datos visual",
-    "titleLine1": "Tu base de datos,",
-    "titleLine2": "fácil de seguir",
-    "description": "Abre una base de datos y empieza a hacer clic. Beamlynx dibuja tus tablas, y tu consulta se escribe sola mientras te abres camino entre ellas. El texto está justo al lado del diagrama si prefieres escribirlo.",
-    "diagramAriaLabel": "Diagrama de las tablas customers, orders, order_items y products unidas en secuencia, correspondiente a la consulta que se muestra abajo"
+    "titleLine1": "Recorre tu base de datos con clics.",
+    "titleLine2": "La consulta se escribe sola.",
+    "description": "beamlynx dibuja tus tablas y cómo se relacionan. Elige una tabla, sigue un enlace a la siguiente y las filas aparecen a medida que avanzas. La consulta está al lado del dibujo, por si prefieres escribirla.",
+    "facts": "macOS, Windows y Linux · PostgreSQL y MySQL · Sin cuenta"
   },
-  "features": {
-    "heading": "Por qué beamlynx",
-    "visual": {
-      "title": "Visual",
-      "description": "Nada de un muro de SQL. Tu consulta es una imagen de tus tablas y de cómo se unen."
-    },
-    "interactive": {
-      "title": "Interactivo",
-      "description": "Cada clic ejecuta la consulta. Ves cómo cambia la respuesta a medida que avanzas."
-    },
-    "composable": {
-      "title": "Componible",
-      "description": "Haz clic en cualquier parte de la consulta, no solo en el último paso que añadiste. El resto se queda como está."
+  "showcase": {
+    "alt": "La aplicación beamlynx. A la izquierda, tres tablas (customers, orders y product_reviews) dibujadas como cajas unidas por líneas, con la consulta correspondiente debajo. A la derecha, una tabla de resultados.",
+    "caption": "La aplicación real, con una base de datos de ejemplo de una tienda. Nada aquí es un montaje.",
+    "themeLabel": "Tema de la aplicación",
+    "themes": {
+      "dark": "Oscuro",
+      "light": "Claro",
+      "sepia": "Sepia"
     }
   },
+  "try": {
+    "heading": "Tres clics. Nada de SQL.",
+    "description": "Funciona como la aplicación, con los mismos datos de ejemplo. Cada clic añade un paso y los resultados lo siguen.",
+    "stepOf": "Paso {{n}} de {{total}}",
+    "hintJoin": "Haz clic en {{to}} para unirla a {{from}}.",
+    "hintFilter": "Haz clic en + rating = 5 para quedarte solo con las reseñas de cinco estrellas.",
+    "hintDone": "Listo. Cambia a SQL para ver lo que beamlynx escribió por ti.",
+    "reset": "Empezar de nuevo",
+    "joinLabel": "Unir {{table}}",
+    "resultLabel": "Resultado de la consulta",
+    "queryLabel": "Consulta",
+    "rows_one": "{{count}} fila",
+    "rows_other": "{{count}} filas",
+    "sqlWritten_one": "{{count}} carácter de SQL escrito para ti",
+    "sqlWritten_other": "{{count}} caracteres de SQL escritos para ti"
+  },
+  "agents": {
+    "heading": "Deja que un agente de IA eche un vistazo. Tú te quedas con las llaves.",
+    "description": "beamlynx incluye un servidor MCP. Cualquier agente de IA compatible con MCP puede explorar las bases de datos que permitas, igual que tú: tabla a tabla.",
+    "readOnly": {
+      "title": "Solo puede leer.",
+      "description": "Las actualizaciones y los borrados se rechazan, en el servidor y en la aplicación."
+    },
+    "approval": {
+      "title": "Las columnas ocultas siguen ocultas.",
+      "description": "Para ver una, el agente tiene que pedirlo, y tú lo apruebas o lo rechazas en la aplicación."
+    },
+    "visible": {
+      "title": "Ves lo que ve.",
+      "description": "Cada consulta que ejecuta se abre en su propia pestaña, con una nota que dice qué buscaba."
+    },
+    "cardLabel": "Ejemplo de una consulta enviada por un agente de IA",
+    "cardTitle": "Pestaña del agente",
+    "cardFoot": "3 filas · abierto en beamlynx"
+  },
   "closing": {
-    "eyebrow": "Sin cuenta. Sin configuración.",
-    "heading": "Conecta una base de datos y mira qué hay dentro."
+    "heading": "Conecta una base de datos y mira qué hay dentro.",
+    "description": "Sin cuenta y sin servidor que configurar. En un Mac, <1>también funciona con Homebrew</1>."
   }
 }

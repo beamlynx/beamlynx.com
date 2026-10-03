@@ -29,7 +29,7 @@ const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
         // Check if it's a keyword
         if (keywords.includes(trimmedPart)) {
           return (
-            <span key={index} style={{ color: '#4fd1ff', fontWeight: 700 }}>
+            <span key={index} style={{ color: '#7aa2f7', fontWeight: 700 }}>
               {part}
             </span>
           );
@@ -56,7 +56,7 @@ const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
         // Check if it's an operator
         if (part.match(/^[=<>!]+$/)) {
           return (
-            <span key={index} style={{ color: '#dbeeff', fontWeight: 700 }}>
+            <span key={index} style={{ color: '#c0caf5', fontWeight: 700 }}>
               {part}
             </span>
           );
@@ -64,7 +64,7 @@ const HighlightedSQL: React.FC<{ sql: string }> = ({ sql }) => {
 
         // Default styling for other text (including punctuation and whitespace)
         return (
-          <span key={index} style={{ color: '#a9c3d8' }}>
+          <span key={index} style={{ color: '#a9b1d6' }}>
             {part}
           </span>
         );

@@ -1,40 +1,74 @@
 {
   "meta": {
-    "title": "beamlynx - Visuelle og intuitive databaseforespørgsler",
-    "description": "Beamlynx er en visuel databaseklient. Klik dig fra den ene tabel til den næste, mens forespørgslen skriver sig selv. Ingen SQL at skrive i hånden.",
-    "ogTitle": "Beamlynx - Visuelle og intuitive databaseforespørgsler",
-    "ogDescription": "En visuel databaseklient. Klik fra tabel til tabel, og lad forespørgslen skrive sig selv.",
-    "twitterTitle": "Beamlynx - Visuelle og intuitive databaseforespørgsler",
-    "twitterDescription": "En visuel databaseklient. Klik fra tabel til tabel, og lad forespørgslen skrive sig selv."
+    "title": "beamlynx - Klik dig gennem din database",
+    "description": "Beamlynx er en visuel databaseklient til PostgreSQL og MySQL. Klik dig fra den ene tabel til den næste, og forespørgslen skriver sig selv.",
+    "ogTitle": "beamlynx - Klik dig gennem din database",
+    "ogDescription": "En visuel databaseklient. Klik fra tabel til tabel, og forespørgslen skriver sig selv.",
+    "twitterTitle": "beamlynx - Klik dig gennem din database",
+    "twitterDescription": "En visuel databaseklient. Klik fra tabel til tabel, og forespørgslen skriver sig selv."
   },
   "cta": {
-    "tryPlayground": "Prøv det i Playground",
-    "downloadDesktop": "Download til desktop"
+    "download": "Download beamlynx",
+    "downloadFor": {
+      "mac": "Download til macOS",
+      "windows": "Download til Windows",
+      "linux": "Download til Linux"
+    },
+    "tryHere": "Prøv det her på siden"
   },
   "hero": {
-    "eyebrow": "Visuel databaseklient",
-    "titleLine1": "Din database,",
-    "titleLine2": "nem at følge",
-    "description": "Åbn en database, og begynd at klikke. Beamlynx tegner dine tabeller, og din forespørgsel skriver sig selv, mens du klikker dig vej igennem dem. Teksten står lige ved siden af diagrammet, hvis du hellere vil skrive.",
-    "diagramAriaLabel": "Diagram, der viser tabellerne customers, orders, order_items og products joinet i rækkefølge, svarende til forespørgslen nedenfor"
+    "titleLine1": "Klik dig gennem din database.",
+    "titleLine2": "Forespørgslen skriver sig selv.",
+    "description": "beamlynx tegner dine tabeller, og hvordan de hænger sammen. Vælg en tabel, følg et link til den næste, og rækkerne dukker op undervejs. Forespørgslen står ved siden af tegningen, hvis du hellere vil skrive.",
+    "facts": "macOS, Windows og Linux · PostgreSQL og MySQL · Ingen konto"
   },
-  "features": {
-    "heading": "Hvorfor beamlynx",
-    "visual": {
-      "title": "Visuel",
-      "description": "Ingen mur af SQL. Din forespørgsel er et billede af dine tabeller, og hvordan de hænger sammen."
-    },
-    "interactive": {
-      "title": "Interaktivt",
-      "description": "Hvert klik kører forespørgslen. Du ser svaret ændre sig, mens du arbejder."
-    },
-    "composable": {
-      "title": "Sammensætteligt",
-      "description": "Klik på en hvilken som helst del af forespørgslen, ikke kun det sidste trin du tilføjede. Resten bliver, som den er."
+  "showcase": {
+    "alt": "beamlynx-appen. Til venstre er tre tabeller (customers, orders og product_reviews) tegnet som bokse forbundet med linjer, med den tilhørende forespørgsel nedenunder. Til højre en tabel med resultater.",
+    "caption": "Den rigtige app, med en eksempeldatabase fra en webshop. Intet her er en mockup.",
+    "themeLabel": "Appens tema",
+    "themes": {
+      "dark": "Mørkt",
+      "light": "Lyst",
+      "sepia": "Sepia"
     }
   },
+  "try": {
+    "heading": "Tre klik. Ingen SQL.",
+    "description": "Det virker som i appen, med de samme eksempeldata. Hvert klik tilføjer et trin, og resultaterne følger med.",
+    "stepOf": "Trin {{n}} af {{total}}",
+    "hintJoin": "Klik på {{to}} for at joine den til {{from}}.",
+    "hintFilter": "Klik på + rating = 5 for kun at beholde anmeldelserne med fem stjerner.",
+    "hintDone": "Færdig. Skift til SQL for at se, hvad beamlynx skrev for dig.",
+    "reset": "Start forfra",
+    "joinLabel": "Join {{table}}",
+    "resultLabel": "Resultat af forespørgslen",
+    "queryLabel": "Forespørgsel",
+    "rows_one": "{{count}} række",
+    "rows_other": "{{count}} rækker",
+    "sqlWritten_one": "{{count}} tegn SQL skrevet for dig",
+    "sqlWritten_other": "{{count}} tegn SQL skrevet for dig"
+  },
+  "agents": {
+    "heading": "Lad en AI-agent kigge sig omkring. Behold selv nøglerne.",
+    "description": "beamlynx har en indbygget MCP-server. Enhver AI-agent, der understøtter MCP, kan udforske de databaser, du tillader, på samme måde som dig: én tabel ad gangen.",
+    "readOnly": {
+      "title": "Den kan kun læse.",
+      "description": "Opdateringer og sletninger bliver afvist, både af serveren og af appen."
+    },
+    "approval": {
+      "title": "Skjulte kolonner forbliver skjulte.",
+      "description": "For at se en skal agenten spørge, og du godkender eller afviser i appen."
+    },
+    "visible": {
+      "title": "Du ser, hvad den ser.",
+      "description": "Hver forespørgsel, den kører, åbner i sin egen fane med en note om, hvad den ledte efter."
+    },
+    "cardLabel": "Eksempel på en forespørgsel sendt af en AI-agent",
+    "cardTitle": "Agentens fane",
+    "cardFoot": "3 rækker · åbnet i beamlynx"
+  },
   "closing": {
-    "eyebrow": "Ingen konto. Ingen opsætning.",
-    "heading": "Forbind en database, og se hvad der er i den."
+    "heading": "Forbind en database, og se hvad der er i den.",
+    "description": "Ingen konto og ingen server at sætte op. På en Mac <1>virker Homebrew også</1>."
   }
 }

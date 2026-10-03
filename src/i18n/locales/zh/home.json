@@ -1,40 +1,72 @@
 {
   "meta": {
-    "title": "beamlynx - 可视化直观的数据库查询",
-    "description": "Beamlynx 是一款可视化数据库客户端。从一张表点到下一张表，查询语句自动写好，无需手写 SQL。",
-    "ogTitle": "Beamlynx - 可视化直观的数据库查询",
-    "ogDescription": "一款可视化数据库客户端。在表与表之间点击，让查询自动写好。",
-    "twitterTitle": "Beamlynx - 可视化直观的数据库查询",
-    "twitterDescription": "一款可视化数据库客户端。在表与表之间点击，让查询自动写好。"
+    "title": "beamlynx - 点一点，看遍你的数据库",
+    "description": "Beamlynx 是一款支持 PostgreSQL 和 MySQL 的可视化数据库客户端。从一张表点到下一张表，查询语句自动写好。",
+    "ogTitle": "beamlynx - 点一点，看遍你的数据库",
+    "ogDescription": "一款可视化数据库客户端。在表与表之间点击，查询自动写好。",
+    "twitterTitle": "beamlynx - 点一点，看遍你的数据库",
+    "twitterDescription": "一款可视化数据库客户端。在表与表之间点击，查询自动写好。"
   },
   "cta": {
-    "tryPlayground": "在演练场中试用",
-    "downloadDesktop": "下载桌面版"
+    "download": "下载 beamlynx",
+    "downloadFor": {
+      "mac": "下载 macOS 版",
+      "windows": "下载 Windows 版",
+      "linux": "下载 Linux 版"
+    },
+    "tryHere": "在本页试一试"
   },
   "hero": {
-    "eyebrow": "可视化数据库客户端",
-    "titleLine1": "你的数据库，",
-    "titleLine2": "一目了然",
-    "description": "打开一个数据库，直接开始点击。Beamlynx 会画出你的表，你一路点过去，查询就自动写好了。想手写也行，查询文本就在图的旁边。",
-    "diagramAriaLabel": "示意图：customers、orders、order_items 和 products 四张表按顺序连接，对应下方的查询语句"
+    "titleLine1": "点一点，看遍你的数据库。",
+    "titleLine2": "查询自动写好。",
+    "description": "beamlynx 会画出你的表，以及表与表之间的关系。选一张表，顺着关系点到下一张，数据随之出现。查询语句就在图的旁边，想手写也可以。",
+    "facts": "macOS、Windows 和 Linux · PostgreSQL 和 MySQL · 无需账号"
   },
-  "features": {
-    "heading": "为什么选择 beamlynx",
-    "visual": {
-      "title": "可视化",
-      "description": "不是一大段 SQL。你的查询就是一张图，画出你的表以及它们如何连接。"
-    },
-    "interactive": {
-      "title": "可交互",
-      "description": "每一次点击都会执行查询。结果随着你的操作实时变化。"
-    },
-    "composable": {
-      "title": "可组合",
-      "description": "查询的任何一处都能点，不只是你最后加的那一步。其余部分保持原样。"
+  "showcase": {
+    "alt": "beamlynx 应用界面。左侧是三张表（customers、orders 和 product_reviews），以方框和连线表示，下方是对应的查询。右侧是查询结果表格。",
+    "caption": "这是真实的应用，连接的是一个示例商店数据库。没有任何效果图。",
+    "themeLabel": "应用主题",
+    "themes": {
+      "dark": "深色",
+      "light": "浅色",
+      "sepia": "棕褐"
     }
   },
+  "try": {
+    "heading": "点三下，不写 SQL。",
+    "description": "和应用里的操作一样，用的也是同一份示例数据。每点一次就多一步，结果随之更新。",
+    "stepOf": "第 {{n}} 步，共 {{total}} 步",
+    "hintJoin": "点击 {{to}}，把它连接到 {{from}}。",
+    "hintFilter": "点击 + rating = 5，只保留五星评价。",
+    "hintDone": "完成。切换到 SQL，看看 beamlynx 替你写了什么。",
+    "reset": "重新开始",
+    "joinLabel": "连接 {{table}}",
+    "resultLabel": "查询结果",
+    "queryLabel": "查询",
+    "rows_other": "{{count}} 行",
+    "sqlWritten_other": "替你写了 {{count}} 个字符的 SQL"
+  },
+  "agents": {
+    "heading": "让 AI 智能体四处看看，钥匙留在你手里。",
+    "description": "beamlynx 内置 MCP 服务器。任何支持 MCP 的 AI 智能体都能浏览你允许的数据库，方式和你一样：一次一张表。",
+    "readOnly": {
+      "title": "它只能读取。",
+      "description": "更新和删除都会被拒绝，服务器和应用两层都会拦下。"
+    },
+    "approval": {
+      "title": "隐藏的列保持隐藏。",
+      "description": "想看某一列，智能体必须先申请，由你在应用里批准或拒绝。"
+    },
+    "visible": {
+      "title": "它看到的，你也看得到。",
+      "description": "它运行的每条查询都会在单独的标签页中打开，并附上一条说明，写明它在找什么。"
+    },
+    "cardLabel": "AI 智能体发送的查询示例",
+    "cardTitle": "智能体标签页",
+    "cardFoot": "3 行 · 已在 beamlynx 中打开"
+  },
   "closing": {
-    "eyebrow": "无需账号，无需配置。",
-    "heading": "连接一个数据库，看看里面有什么。"
+    "heading": "连上一个数据库，看看里面有什么。",
+    "description": "无需账号，也不用搭建服务器。在 Mac 上，<1>也可以用 Homebrew 安装</1>。"
   }
 }
