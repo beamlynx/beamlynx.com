@@ -59,10 +59,10 @@
     },
     "visible": {
       "title": "它看到的，你也看得到。",
-      "description": "它运行的每条查询都会在单独的标签页中打开，并附上一条说明，写明它在找什么。"
+      "description": "它运行的每条查询都会显示在 beamlynx 中，位于标有智能体图标的标签页里。智能体会被要求在每条查询开头写一句说明，讲清楚它在找什么。"
     },
     "cardLabel": "AI 智能体发送的查询示例",
-    "cardTitle": "智能体标签页",
+    "cardTitle": "智能体",
     "cardFoot": "3 行 · 已在 beamlynx 中打开"
   },
   "closing": {

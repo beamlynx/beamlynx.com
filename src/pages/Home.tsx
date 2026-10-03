@@ -8,7 +8,7 @@ import { trackEvent } from "../utils/analytics";
 import AppShowcase from "../components/home/AppShowcase";
 import TryIt from "../components/home/TryIt";
 
-const OG_IMAGE = "https://beamlynx.org/og-image.png";
+const OG_IMAGE = "https://beamlynx.com/og-image.png";
 
 // What an AI agent sends through beamlynx's MCP server: a doc comment saying
 // what it is looking for, then plain Pine. Verified against pine-lang 0.47.0.

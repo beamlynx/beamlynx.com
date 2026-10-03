@@ -61,10 +61,10 @@
     },
     "visible": {
       "title": "You see what it sees.",
-      "description": "Every query it runs opens in its own tab, with a note saying what it was looking for."
+      "description": "Every query it runs shows up in beamlynx, in a tab marked as the agent's. Agents are asked to start each one with a note on what they're looking for."
     },
     "cardLabel": "Example of a query an AI agent sent",
-    "cardTitle": "Agent tab",
+    "cardTitle": "Agent",
     "cardFoot": "3 rows · opened in beamlynx"
   },
   "closing": {

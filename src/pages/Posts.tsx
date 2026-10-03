@@ -63,11 +63,11 @@ const Posts: React.FC = () => {
       <meta property="og:description" content={t('meta.ogDescription')} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://beamlynx.org/posts" />
-      <meta property="og:image" content="https://beamlynx.org/og-image.png" />
+      <meta property="og:image" content="https://beamlynx.com/og-image.png" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={t('meta.twitterTitle')} />
       <meta name="twitter:description" content={t('meta.twitterDescription')} />
-      <meta name="twitter:image" content="https://beamlynx.org/og-image.png" />
+      <meta name="twitter:image" content="https://beamlynx.com/og-image.png" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

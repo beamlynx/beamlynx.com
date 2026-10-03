@@ -61,10 +61,10 @@
     },
     "visible": {
       "title": "Ves lo que ve.",
-      "description": "Cada consulta que ejecuta se abre en su propia pestaña, con una nota que dice qué buscaba."
+      "description": "Cada consulta que ejecuta aparece en beamlynx, en una pestaña marcada como del agente. Se pide a los agentes que empiecen cada una con una nota sobre lo que buscan."
     },
     "cardLabel": "Ejemplo de una consulta enviada por un agente de IA",
-    "cardTitle": "Pestaña del agente",
+    "cardTitle": "Agente",
     "cardFoot": "3 filas · abierto en beamlynx"
   },
   "closing": {

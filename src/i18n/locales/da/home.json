@@ -61,10 +61,10 @@
     },
     "visible": {
       "title": "Du ser, hvad den ser.",
-      "description": "Hver forespørgsel, den kører, åbner i sin egen fane med en note om, hvad den ledte efter."
+      "description": "Hver forespørgsel, den kører, vises i beamlynx i en fane markeret som agentens. Agenter bliver bedt om at starte hver forespørgsel med en note om, hvad de leder efter."
     },
     "cardLabel": "Eksempel på en forespørgsel sendt af en AI-agent",
-    "cardTitle": "Agentens fane",
+    "cardTitle": "Agent",
     "cardFoot": "3 rækker · åbnet i beamlynx"
   },
   "closing": {

@@ -28,11 +28,11 @@ const Download = () => {
       <meta property="og:description" content={t("meta.ogDescription")} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://beamlynx.org/download" />
-      <meta property="og:image" content="https://beamlynx.org/og-image.png" />
+      <meta property="og:image" content="https://beamlynx.com/og-image.png" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={t("meta.twitterTitle")} />
       <meta name="twitter:description" content={t("meta.twitterDescription")} />
-      <meta name="twitter:image" content="https://beamlynx.org/og-image.png" />
+      <meta name="twitter:image" content="https://beamlynx.com/og-image.png" />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">

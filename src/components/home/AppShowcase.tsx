@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-// Real screenshots of beamlynx-ui 0.64.0, one per built-in theme, taken
+// Real screenshots of beamlynx-ui (main, just after 0.64.0; none of the
+// unreleased changes are in frame), one per built-in theme, taken
 // against pine-lang's sample shop database (dev.docker-compose.yml). Only
 // the dev-build chip and version label were hidden before capture. To
 // retake them, see public/img/README.md.
@@ -16,7 +17,12 @@ const AppShowcase = () => {
     <figure className={`shot shot-${theme}`}>
       <div className="shot-frame">
         <picture>
-          <source media="(max-width: 640px)" srcSet={`/img/app-${theme}-crop.webp`} />
+          <source
+            media="(max-width: 640px)"
+            srcSet={`/img/app-${theme}-crop.webp`}
+            width={900}
+            height={975}
+          />
           <img
             src={`/img/app-${theme}.webp`}
             srcSet={`/img/app-${theme}.webp 1360w, /img/app-${theme}@2x.webp 2720w`}

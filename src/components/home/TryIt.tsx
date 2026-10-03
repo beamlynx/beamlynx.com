@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { DEMO_STEPS } from "./demoSteps";
@@ -82,12 +82,25 @@ const TryIt = () => {
   const [step, setStep] = useState(0);
   const [view, setView] = useState<"pine" | "sql">("pine");
 
+  // The button just clicked disappears with each step, which would drop
+  // keyboard focus to the page. After a click (never on first render), move
+  // focus to the next thing to click, or to "Start over" at the end.
+  const nextActionRef = useRef<HTMLButtonElement>(null);
+  const resetRef = useRef<HTMLButtonElement>(null);
+  const moveFocus = useRef(false);
+  useEffect(() => {
+    if (!moveFocus.current) return;
+    moveFocus.current = false;
+    (step === 3 ? resetRef : nextActionRef).current?.focus({ preventScroll: true });
+  }, [step]);
+
   const current = DEMO_STEPS[step];
   const visible = ORDER.slice(0, Math.min(step, 2) + 1);
   const nextTable = step < 2 ? ORDER[step + 1] : null;
   const filtered = step === 3;
 
   const advance = (to: number, what: string) => {
+    moveFocus.current = true;
     setStep(to);
     trackEvent("home_demo_step", { step: to, action: what });
   };
@@ -106,6 +119,7 @@ const TryIt = () => {
           {hint}
         </p>
         <button
+          ref={resetRef}
           type="button"
           className="ti-reset"
           onClick={() => advance(0, "reset")}
@@ -175,6 +189,7 @@ const TryIt = () => {
                       </motion.span>
                     ) : (
                       <button
+                        ref={nextActionRef}
                         type="button"
                         className="ti-chip ti-chip-candidate ti-pulse"
                         onClick={() => advance(3, "filter")}
@@ -194,6 +209,7 @@ const TryIt = () => {
               style={{ left: pct(NODES[nextTable].x, W), top: pct(NODES[nextTable].y, H), width: pct(NODE_W, W) }}
             >
               <button
+                ref={nextActionRef}
                 type="button"
                 className="ti-node ti-node-candidate ti-pulse"
                 style={{ height: `calc(${NODE_H} * var(--u))` }}
