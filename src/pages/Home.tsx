@@ -9,16 +9,6 @@ import TryIt from "../components/home/TryIt";
 
 const OG_IMAGE = "https://beamlynx.com/og-image.png";
 
-// What an AI agent sends through Beamlynx's MCP server: a doc comment saying
-// what it is looking for, then plain Pine. Verified against pine-lang 0.47.0.
-const AGENT_QUERY = [
-  "-- Which customers left five-star reviews?",
-  "customers",
-  "| public.orders .customer_id",
-  "| public.product_reviews .order_id",
-  "| where: rating = 5",
-];
-
 const Home = () => {
   const { t } = useTranslation(["home", "features"]);
   const location = useLocation();
@@ -95,41 +85,6 @@ const Home = () => {
         >
           <TryIt />
         </motion.div>
-      </section>
-
-      {/* Agents */}
-      <section className="home-section px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl home-agents">
-          <div>
-            <h2>{t("agents.heading")}</h2>
-            <p className="home-agents-lede">{t("agents.description")}</p>
-            <ul className="home-agents-list">
-              <li>
-                <strong>{t("agents.readOnly.title")}</strong> {t("agents.readOnly.description")}
-              </li>
-              <li>
-                <strong>{t("agents.approval.title")}</strong> {t("agents.approval.description")}
-              </li>
-              <li>
-                <strong>{t("agents.visible.title")}</strong> {t("agents.visible.description")}
-              </li>
-            </ul>
-          </div>
-          <div className="home-agent-card" aria-label={t("agents.cardLabel")}>
-            <div className="home-agent-card-head">
-              <span className="home-agent-dot" aria-hidden="true" />
-              {t("agents.cardTitle")}
-            </div>
-            <pre>
-              {AGENT_QUERY.map((line, i) => (
-                <div key={i} className={line.startsWith("--") ? "tk-comment" : undefined}>
-                  {line}
-                </div>
-              ))}
-            </pre>
-            <div className="home-agent-card-foot">{t("agents.cardFoot")}</div>
-          </div>
-        </div>
       </section>
 
       {/* More: a few features, each linking to its section on /features */}

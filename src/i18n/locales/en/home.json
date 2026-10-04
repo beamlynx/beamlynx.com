@@ -20,7 +20,7 @@
     "titleLine1": "The database client",
     "titleLine2": "that knows your schema.",
     "description": "Pick a table, and Beamlynx shows you every table it connects to. Click one to join it, and the rows appear as you go. There are no joins to write, and the query sits beside the picture if you'd rather type.",
-    "facts": "macOS, Windows and Linux · PostgreSQL and MySQL · Works with AI agents · No account"
+    "facts": "macOS, Windows and Linux · PostgreSQL and MySQL · No account"
   },
   "showcase": {
     "caption": "A working copy of the app's canvas. Its results were recorded from a sample shop database.",
@@ -59,25 +59,6 @@
     "showPanel": "Show the {{panel}} panel",
     "hidePanel": "Hide the {{panel}} panel"
   },
-  "agents": {
-    "heading": "Let an AI agent look around. Keep the keys.",
-    "description": "Beamlynx has a built-in MCP server. Any AI agent that supports MCP can explore the databases you allow, the same way you do: one table at a time.",
-    "readOnly": {
-      "title": "It can only read.",
-      "description": "Updates and deletes are refused, by the server and by the app."
-    },
-    "approval": {
-      "title": "Hidden columns stay hidden.",
-      "description": "To see one, the agent has to ask, and you approve or decline in the app."
-    },
-    "visible": {
-      "title": "You see what it sees.",
-      "description": "Every query it runs shows up in Beamlynx, in a tab marked as the agent's. Agents are asked to start each one with a note on what they're looking for."
-    },
-    "cardLabel": "Example of a query an AI agent sent",
-    "cardTitle": "Agent",
-    "cardFoot": "3 rows · opened in Beamlynx"
-  },
   "more": {
     "heading": "More in Beamlynx",
     "all": "See all features",
@@ -85,7 +66,7 @@
       "paths": "Name a table, and Beamlynx finds every chain of joins that reaches it.",
       "traverse": "Count everything that depends on a row, and get a delete script for it.",
       "edit": "Change values right in the results, even when they join several tables.",
-      "access": "Mask sensitive columns inside the query, for agents or for everyone."
+      "access": "Mask sensitive columns inside the query, so the real values never leave the database."
     }
   },
   "closing": {

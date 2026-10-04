@@ -20,7 +20,7 @@
     "titleLine1": "El cliente de bases de datos",
     "titleLine2": "que conoce tu esquema.",
     "description": "Elige una tabla y Beamlynx te muestra todas las tablas con las que se relaciona. Haz clic en una para unirla y las filas aparecen a medida que avanzas. No hay joins que escribir, y la consulta está al lado del dibujo por si prefieres escribirla.",
-    "facts": "macOS, Windows y Linux · PostgreSQL y MySQL · Funciona con agentes de IA · Sin cuenta"
+    "facts": "macOS, Windows y Linux · PostgreSQL y MySQL · Sin cuenta"
   },
   "showcase": {
     "caption": "Una copia funcional del lienzo de la aplicación. Sus resultados se grabaron de una base de datos de ejemplo de una tienda.",
@@ -59,25 +59,6 @@
     "showPanel": "Mostrar el panel {{panel}}",
     "hidePanel": "Ocultar el panel {{panel}}"
   },
-  "agents": {
-    "heading": "Deja que un agente de IA eche un vistazo. Tú te quedas con las llaves.",
-    "description": "Beamlynx incluye un servidor MCP. Cualquier agente de IA compatible con MCP puede explorar las bases de datos que permitas, igual que tú: tabla a tabla.",
-    "readOnly": {
-      "title": "Solo puede leer.",
-      "description": "Las actualizaciones y los borrados se rechazan, en el servidor y en la aplicación."
-    },
-    "approval": {
-      "title": "Las columnas ocultas siguen ocultas.",
-      "description": "Para ver una, el agente tiene que pedirlo, y tú lo apruebas o lo rechazas en la aplicación."
-    },
-    "visible": {
-      "title": "Ves lo que ve.",
-      "description": "Cada consulta que ejecuta aparece en Beamlynx, en una pestaña marcada como del agente. Se pide a los agentes que empiecen cada una con una nota sobre lo que buscan."
-    },
-    "cardLabel": "Ejemplo de una consulta enviada por un agente de IA",
-    "cardTitle": "Agente",
-    "cardFoot": "3 filas · abierto en Beamlynx"
-  },
   "more": {
     "heading": "Más en Beamlynx",
     "all": "Ver todas las funciones",
@@ -85,7 +66,7 @@
       "paths": "Indica una tabla y Beamlynx encuentra todas las cadenas de joins que llegan a ella.",
       "traverse": "Cuenta todo lo que depende de una fila y obtén un script para borrarlo.",
       "edit": "Cambia valores directamente en los resultados, aunque unan varias tablas.",
-      "access": "Enmascara columnas sensibles dentro de la consulta, para agentes o para todos."
+      "access": "Enmascara columnas sensibles dentro de la consulta, así los valores reales nunca salen de la base de datos."
     }
   },
   "closing": {

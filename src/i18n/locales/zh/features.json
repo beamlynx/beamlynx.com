@@ -57,5 +57,6 @@
   "closing": {
     "heading": "在你自己的数据库上试试。",
     "download": "下载 Beamlynx"
-  }
+  },
+  "experimental": "实验性"
 }

@@ -20,6 +20,9 @@ const OG_IMAGE = "https://beamlynx.com/og-image.png";
 const FEATURES = ["joins", "paths", "traverse", "edit", "agents", "access", "sql", "keyboard", "grid"] as const;
 type FeatureId = (typeof FEATURES)[number];
 
+// Shipped, but still changing. Marked on the page so it isn't oversold.
+const EXPERIMENTAL: FeatureId[] = ["agents"];
+
 // --- Drawings ---------------------------------------------------------------
 // Canvas drawings in the app's style (MiniCanvas), with as little text as
 // possible: the picture should carry the idea, the paragraph beside it the
@@ -388,6 +391,7 @@ const Features = () => {
                 transition={{ duration: 0.4 }}
               >
                 <div className="feat-text">
+                  {EXPERIMENTAL.includes(id) && <span className="feat-badge">{t("experimental")}</span>}
                   <h2>{t(`items.${id}.title`)}</h2>
                   <p>{t(`items.${id}.body`)}</p>
                 </div>
