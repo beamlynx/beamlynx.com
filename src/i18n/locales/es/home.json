@@ -1,40 +1,85 @@
 {
   "meta": {
-    "title": "beamlynx - Consultas de bases de datos visuales e intuitivas",
-    "description": "Beamlynx es un cliente de bases de datos visual. Haz clic de una tabla a la siguiente y la consulta se escribe sola. Nada de SQL a mano.",
-    "ogTitle": "Beamlynx - Consultas de bases de datos visuales e intuitivas",
-    "ogDescription": "Un cliente de bases de datos visual. Haz clic de tabla en tabla y deja que la consulta se escriba sola.",
-    "twitterTitle": "Beamlynx - Consultas de bases de datos visuales e intuitivas",
-    "twitterDescription": "Un cliente de bases de datos visual. Haz clic de tabla en tabla y deja que la consulta se escriba sola."
+    "title": "Beamlynx - El cliente de bases de datos que conoce tu esquema",
+    "description": "Beamlynx es un cliente de bases de datos para PostgreSQL y MySQL que conoce tu esquema. Elige una tabla y te muestra todas las tablas con las que se relaciona.",
+    "ogTitle": "Beamlynx - El cliente de bases de datos que conoce tu esquema",
+    "ogDescription": "El cliente de bases de datos que conoce tu esquema. Elige una tabla y te muestra todas las tablas con las que se relaciona.",
+    "twitterTitle": "Beamlynx - El cliente de bases de datos que conoce tu esquema",
+    "twitterDescription": "El cliente de bases de datos que conoce tu esquema. Elige una tabla y te muestra todas las tablas con las que se relaciona."
   },
   "cta": {
-    "tryPlayground": "Pruébalo en el Playground",
-    "downloadDesktop": "Descargar para escritorio"
+    "download": "Descargar Beamlynx",
+    "downloadFor": {
+      "mac": "Descargar para macOS",
+      "windows": "Descargar para Windows",
+      "linux": "Descargar para Linux"
+    },
+    "tryHere": "Pruébalo en esta página"
   },
   "hero": {
-    "eyebrow": "Cliente de bases de datos visual",
-    "titleLine1": "Tu base de datos,",
-    "titleLine2": "fácil de seguir",
-    "description": "Abre una base de datos y empieza a hacer clic. Beamlynx dibuja tus tablas, y tu consulta se escribe sola mientras te abres camino entre ellas. El texto está justo al lado del diagrama si prefieres escribirlo.",
-    "diagramAriaLabel": "Diagrama de las tablas customers, orders, order_items y products unidas en secuencia, correspondiente a la consulta que se muestra abajo"
+    "titleLine1": "El cliente de bases de datos",
+    "titleLine2": "que conoce tu esquema.",
+    "description": "Elige una tabla y Beamlynx te muestra todas las tablas con las que se relaciona. Haz clic en una para unirla y las filas aparecen a medida que avanzas. No hay joins que escribir, y la consulta está al lado del dibujo por si prefieres escribirla.",
+    "facts": "macOS, Windows y Linux · PostgreSQL y MySQL · Sin cuenta"
   },
-  "features": {
-    "heading": "Por qué beamlynx",
-    "visual": {
-      "title": "Visual",
-      "description": "Nada de un muro de SQL. Tu consulta es una imagen de tus tablas y de cómo se unen."
-    },
-    "interactive": {
-      "title": "Interactivo",
-      "description": "Cada clic ejecuta la consulta. Ves cómo cambia la respuesta a medida que avanzas."
-    },
-    "composable": {
-      "title": "Componible",
-      "description": "Haz clic en cualquier parte de la consulta, no solo en el último paso que añadiste. El resto se queda como está."
+  "showcase": {
+    "caption": "Una copia funcional del lienzo de la aplicación. Sus resultados se grabaron de una base de datos de ejemplo de una tienda.",
+    "themeLabel": "Tema de la aplicación",
+    "themes": {
+      "dark": "Oscuro",
+      "light": "Claro",
+      "sepia": "Sepia"
     }
   },
+  "try": {
+    "stepOf": "Paso {{n}} de {{total}}",
+    "hintJoin": "Haz clic en JOIN sobre {{table}} para ver las tablas con las que se relaciona.",
+    "hintDone": "Listo. Cambia a SQL para ver lo que Beamlynx escribió por ti, o empieza de nuevo.",
+    "reset": "Empezar de nuevo",
+    "resultLabel": "Resultado de la consulta",
+    "queryLabel": "Consulta",
+    "rows_one": "{{count}} fila",
+    "rows_other": "{{count}} filas",
+    "sqlWritten_one": "{{count}} carácter de SQL escrito para ti",
+    "sqlWritten_other": "{{count}} caracteres de SQL escritos para ti",
+    "hintPickTable": "Estas son las tablas que encontró Pine, y la aplicación puede unir cualquiera. Esta demo sigue {{table}}.",
+    "hintWhere": "Ahora haz clic en WHERE sobre {{table}} para filtrarla.",
+    "hintPickColumn": "Elige una columna para filtrar, por ejemplo unit_price.",
+    "hintValue": "unit_price > 500 ya está escrito. Pulsa Enter para aplicarlo, o cámbialo antes.",
+    "actionsLabel": "Acciones de {{table}}",
+    "filterPlaceholder": "filtrar...",
+    "close": "Cerrar",
+    "noMatch": "Sin resultados",
+    "columnNote": "Esta demo filtra columnas numéricas. La aplicación filtra cualquier columna.",
+    "operator": "Operador",
+    "value": "Valor",
+    "apply": "Aplicar",
+    "wholeNumber": "Usa un número entero, como 500. Pine lee un número sin comillas como un entero.",
+    "panelLabel": "Paneles",
+    "showPanel": "Mostrar el panel {{panel}}",
+    "hidePanel": "Ocultar el panel {{panel}}"
+  },
+  "agents": {
+    "heading": "Deja que un agente de IA eche un vistazo. Tú te quedas con las llaves.",
+    "description": "Beamlynx incluye un servidor MCP. Cualquier agente de IA compatible con MCP puede explorar las bases de datos que permitas, igual que tú: tabla a tabla.",
+    "readOnly": {
+      "title": "Solo puede leer.",
+      "description": "Las actualizaciones y los borrados se rechazan, en el servidor y en la aplicación."
+    },
+    "approval": {
+      "title": "Las columnas ocultas siguen ocultas.",
+      "description": "Para ver una, el agente tiene que pedirlo, y tú lo apruebas o lo rechazas en la aplicación."
+    },
+    "visible": {
+      "title": "Ves lo que ve.",
+      "description": "Cada consulta que ejecuta aparece en Beamlynx, en una pestaña marcada como del agente. Se pide a los agentes que empiecen cada una con una nota sobre lo que buscan."
+    },
+    "cardLabel": "Ejemplo de una consulta enviada por un agente de IA",
+    "cardTitle": "Agente",
+    "cardFoot": "3 filas · abierto en Beamlynx"
+  },
   "closing": {
-    "eyebrow": "Sin cuenta. Sin configuración.",
-    "heading": "Conecta una base de datos y mira qué hay dentro."
+    "heading": "Conecta una base de datos y mira qué hay dentro.",
+    "description": "Sin cuenta y sin servidor que configurar. En un Mac, <1>también funciona con Homebrew</1>."
   }
 }

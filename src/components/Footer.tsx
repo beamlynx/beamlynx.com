@@ -34,7 +34,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer 
-      className="border-t py-12 bg-gradient-to-b from-transparent to-[#0f2337]/50"
+      className="border-t py-12 bg-gradient-to-b from-transparent to-[#1f2335]/50"
       style={{ 
         borderColor: `${palette.accent}20`,
       }}
@@ -56,7 +56,7 @@ const Footer: React.FC = () => {
                 aria-label={item.name}
               >
                 <item.icon
-                  className="w-7 h-7 transition-colors group-hover:text-[#4fd1ff]"
+                  className="w-7 h-7 transition-colors group-hover:text-[#7aa2f7]"
                   aria-hidden="true"
                 />
               </a>

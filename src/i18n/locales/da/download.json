@@ -1,18 +1,18 @@
 {
   "meta": {
-    "title": "beamlynx - Download",
-    "description": "Download beamlynx, den intuitive, visuelle databaseklient.",
+    "title": "Beamlynx - Download",
+    "description": "Download Beamlynx, den intuitive, visuelle databaseklient.",
     "ogTitle": "Beamlynx - Download",
-    "ogDescription": "Download beamlynx, den intuitive, visuelle databaseklient.",
+    "ogDescription": "Download Beamlynx, den intuitive, visuelle databaseklient.",
     "twitterTitle": "Beamlynx - Download",
-    "twitterDescription": "Download beamlynx, den intuitive, visuelle databaseklient."
+    "twitterDescription": "Download Beamlynx, den intuitive, visuelle databaseklient."
   },
   "heading": "Download",
-  "headingBrand": " beamlynx",
+  "headingBrand": " Beamlynx",
   "subheading": "Den intuitive, visuelle databaseklient.",
   "playgroundDisabled": "Den hostede playground er midlertidigt deaktiveret. Download appen nedenfor for at prøve beamlynx.",
   "install": {
-    "mobileWarning": "beamlynx er et desktop-program til macOS, Windows og Linux. Besøg denne side på din computer for at installere det.",
+    "mobileWarning": "Beamlynx er et desktop-program til macOS, Windows og Linux. Besøg denne side på din computer for at installere det.",
     "tabs": {
       "mac": "macOS",
       "windows": "Windows",

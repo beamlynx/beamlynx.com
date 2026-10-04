@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { HTML_LANG, SUPPORTED_LOCALES } from "./config";
 import { stripLocalePrefix } from "./paths";
 
-const SITE_ORIGIN = "https://beamlynx.org";
+const SITE_ORIGIN = "https://beamlynx.com";
 
 // Points crawlers at the equivalent page in every language, including an
 // x-default fallback to English. This is a client-side-rendered SPA with no

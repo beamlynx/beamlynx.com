@@ -33,7 +33,9 @@ function ScrollToTop() {
   useHreflangTags(location.pathname, lang);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // A link with a hash (the navbar's "Try it" -> /#try) scrolls itself
+    // once its page has rendered; see Home.tsx.
+    if (!window.location.hash) window.scrollTo(0, 0);
     trackPageview(location.pathname);
   }, [location.pathname]);
 

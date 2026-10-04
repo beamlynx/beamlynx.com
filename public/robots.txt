@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://beamlynx.org/sitemap.xml 
+Sitemap: https://beamlynx.com/sitemap.xml 

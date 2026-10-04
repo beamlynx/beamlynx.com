@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useColorPalette } from "../contexts/ColorPaletteContext";
 import { motion, AnimatePresence } from "framer-motion";
-import { openInPlayground, DEFAULT_EXAMPLE_QUERY } from "../utils/playground";
+import { trackEvent } from "../utils/analytics";
 import { getLangFromPathname, localizedPath, stripLocalePrefix } from "../i18n/paths";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -16,6 +16,8 @@ const Navbar: React.FC = () => {
   const lang = getLangFromPathname(location.pathname);
   const currentBasePath = stripLocalePrefix(location.pathname, lang);
   const withLocale = (basePath: string) => localizedPath(lang ?? "en", basePath);
+  // The homepage's live demo - the hosted playground this used to open is shut down.
+  const tryItHref = { pathname: withLocale("/"), hash: "#try" };
 
   const navItems = [
     {
@@ -91,7 +93,7 @@ const Navbar: React.FC = () => {
         <rect x="18" y="8" width="4" height="6" rx="1" fill="currentColor" />
       </svg>
       <span className="text-lg sm:text-xl font-semibold tracking-tight hidden lg:inline whitespace-nowrap">
-        beamlynx
+        Beamlynx
       </span>
     </Link>
   );
@@ -134,21 +136,21 @@ const Navbar: React.FC = () => {
               ))}
 
               <div>
-                <button
+                <Link
+                  to={tryItHref}
                   onClick={() => {
-                    openInPlayground(DEFAULT_EXAMPLE_QUERY, 'navbar_mobile_menu');
+                    trackEvent('nav_try_it_clicked', { source: 'navbar_mobile_menu' });
                     setIsMobileMenuOpen(false);
                   }}
                   className="block w-full px-3 py-2.5 rounded-lg text-[15px] font-medium text-center transition-colors duration-200"
                   style={{
-                    color: "#06131f",
+                    color: "#1a1b26",
                     backgroundColor: palette.accent,
                     boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
                   }}
                 >
-                  {t("nav.playground")}
-                  <span className="inline-block ml-1">↗</span>
-                </button>
+                  {t("nav.tryIt")}
+                </Link>
               </div>
 
               <LanguageSwitcher variant="mobile" onNavigate={() => setIsMobileMenuOpen(false)} />
@@ -268,28 +270,25 @@ const Navbar: React.FC = () => {
                 </Link>
               ))}
 
-              {/* Playground Button */}
+              {/* Try it: links to the homepage demo */}
               <div className="relative">
-                <button
-                  onClick={() => openInPlayground(DEFAULT_EXAMPLE_QUERY, 'navbar_desktop')}
+                <Link
+                  to={tryItHref}
+                  onClick={() => trackEvent('nav_try_it_clicked', { source: 'navbar_desktop' })}
                   className="ml-1 sm:ml-4 px-2 sm:px-4 py-1.5 rounded-lg text-[14px] sm:text-[15px] font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap flex items-center"
                   style={
                     {
-                      // Dark text on the bright cyan accent, not white - the
-                      // accent itself is too light for white text to read
-                      // against (matches beamlynx-ui's own --canvas-accent-text).
-                      color: "#06131f",
+                      // Dark text on the accent, not white - the accent is too
+                      // light for white text (matches the app's --canvas-accent-text).
+                      color: "#1a1b26",
                       backgroundColor: palette.accent,
                       "--tw-ring-color": palette.accent,
                       boxShadow: "0 1px 2px rgba(0, 0, 0, 0.05)",
                     } as React.CSSProperties
                   }
                 >
-                  {t("nav.playground")}
-                  <span className="inline-block ml-1 transition-transform group-hover:translate-x-0.5">
-                    ↗
-                  </span>
-                </button>
+                  {t("nav.tryIt")}
+                </Link>
               </div>
 
               <LanguageSwitcher variant="desktop" />
