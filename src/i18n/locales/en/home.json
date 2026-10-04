@@ -1,14 +1,14 @@
 {
   "meta": {
-    "title": "beamlynx - Click through your database",
+    "title": "Beamlynx - Click through your database",
     "description": "Beamlynx is a visual database client for PostgreSQL and MySQL. Click from one table to the next and the query writes itself.",
-    "ogTitle": "beamlynx - Click through your database",
+    "ogTitle": "Beamlynx - Click through your database",
     "ogDescription": "A visual database client. Click from table to table and the query writes itself.",
-    "twitterTitle": "beamlynx - Click through your database",
+    "twitterTitle": "Beamlynx - Click through your database",
     "twitterDescription": "A visual database client. Click from table to table and the query writes itself."
   },
   "cta": {
-    "download": "Download beamlynx",
+    "download": "Download Beamlynx",
     "downloadFor": {
       "mac": "Download for macOS",
       "windows": "Download for Windows",
@@ -19,12 +19,11 @@
   "hero": {
     "titleLine1": "Click through your database.",
     "titleLine2": "The query writes itself.",
-    "description": "beamlynx draws your tables and how they connect. Pick a table, follow a link to the next one, and the rows appear as you go. The query sits beside the picture, in case you'd rather type.",
+    "description": "Beamlynx draws your tables and how they connect. Pick a table, follow a link to the next one, and the rows appear as you go. The query sits beside the picture, in case you'd rather type.",
     "facts": "macOS, Windows and Linux · PostgreSQL and MySQL · No account"
   },
   "showcase": {
-    "alt": "The beamlynx app. On the left, three tables (customers, orders and product_reviews) are drawn as boxes joined by lines, with the matching query underneath. On the right, a table of results.",
-    "caption": "The real app, on a sample shop database. Nothing here is mocked up.",
+    "caption": "A working copy of the app's canvas. Its results were recorded from a sample shop database.",
     "themeLabel": "App theme",
     "themes": {
       "dark": "Dark",
@@ -33,11 +32,9 @@
     }
   },
   "try": {
-    "heading": "Join, join, filter. No SQL.",
-    "description": "This works like the app, on the same sample data. Open JOIN on a table, pick what to join, and the results follow.",
     "stepOf": "Step {{n}} of {{total}}",
     "hintJoin": "Click JOIN above {{table}} to see the tables it connects to.",
-    "hintDone": "Done. Switch to SQL to see what beamlynx wrote for you.",
+    "hintDone": "Done. Switch to SQL to see what Beamlynx wrote for you, or start over.",
     "reset": "Start over",
     "resultLabel": "Query result",
     "queryLabel": "Query",
@@ -64,7 +61,7 @@
   },
   "agents": {
     "heading": "Let an AI agent look around. Keep the keys.",
-    "description": "beamlynx has a built-in MCP server. Any AI agent that supports MCP can explore the databases you allow, the same way you do: one table at a time.",
+    "description": "Beamlynx has a built-in MCP server. Any AI agent that supports MCP can explore the databases you allow, the same way you do: one table at a time.",
     "readOnly": {
       "title": "It can only read.",
       "description": "Updates and deletes are refused, by the server and by the app."
@@ -75,11 +72,11 @@
     },
     "visible": {
       "title": "You see what it sees.",
-      "description": "Every query it runs shows up in beamlynx, in a tab marked as the agent's. Agents are asked to start each one with a note on what they're looking for."
+      "description": "Every query it runs shows up in Beamlynx, in a tab marked as the agent's. Agents are asked to start each one with a note on what they're looking for."
     },
     "cardLabel": "Example of a query an AI agent sent",
     "cardTitle": "Agent",
-    "cardFoot": "3 rows · opened in beamlynx"
+    "cardFoot": "3 rows · opened in Beamlynx"
   },
   "closing": {
     "heading": "Connect a database and see what's in there.",

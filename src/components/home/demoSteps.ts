@@ -2,7 +2,7 @@
 // join candidate here is what pine-lang 0.47.0 returned for this demo's
 // queries against its own sample shop database
 // (pine-lang/docker/db/init/001_ecommerce_seed.sql). The SQL is shown exactly
-// as Pine built it, including the hidden id columns beamlynx adds so results
+// as Pine built it, including the hidden id columns Beamlynx adds so results
 // stay editable. To regenerate, see public/img/README.md.
 export type Cell = string | number | null;
 

@@ -32,7 +32,7 @@ const Posts: React.FC = () => {
       title: "Beamlynx gets a playground",
       date: "2025-09-15",
       url: "https://beamlynx.substack.com/p/beamlynx-gets-a-playground",
-      preview: `Until now, the only way to try beamlynx was to set it up locally. And that kills curiosity fast. No one wants to do work for no apparent reason. There is no incentive. People need to see what is it it for them first. So I built the beamlynx playground. No setup. Just open it in your browser and play.`
+      preview: `Until now, the only way to try Beamlynx was to set it up locally. And that kills curiosity fast. No one wants to do work for no apparent reason. There is no incentive. People need to see what is it it for them first. So I built the Beamlynx playground. No setup. Just open it in your browser and play.`
     },
     {
       title: "Introducing Beamlynx",

@@ -1,14 +1,14 @@
 {
   "meta": {
-    "title": "beamlynx - 点一点，看遍你的数据库",
+    "title": "Beamlynx - 点一点，看遍你的数据库",
     "description": "Beamlynx 是一款支持 PostgreSQL 和 MySQL 的可视化数据库客户端。从一张表点到下一张表，查询语句自动写好。",
-    "ogTitle": "beamlynx - 点一点，看遍你的数据库",
+    "ogTitle": "Beamlynx - 点一点，看遍你的数据库",
     "ogDescription": "一款可视化数据库客户端。在表与表之间点击，查询自动写好。",
-    "twitterTitle": "beamlynx - 点一点，看遍你的数据库",
+    "twitterTitle": "Beamlynx - 点一点，看遍你的数据库",
     "twitterDescription": "一款可视化数据库客户端。在表与表之间点击，查询自动写好。"
   },
   "cta": {
-    "download": "下载 beamlynx",
+    "download": "下载 Beamlynx",
     "downloadFor": {
       "mac": "下载 macOS 版",
       "windows": "下载 Windows 版",
@@ -19,12 +19,11 @@
   "hero": {
     "titleLine1": "点一点，看遍你的数据库。",
     "titleLine2": "查询自动写好。",
-    "description": "beamlynx 会画出你的表，以及表与表之间的关系。选一张表，顺着关系点到下一张，数据随之出现。查询语句就在图的旁边，想手写也可以。",
+    "description": "Beamlynx 会画出你的表，以及表与表之间的关系。选一张表，顺着关系点到下一张，数据随之出现。查询语句就在图的旁边，想手写也可以。",
     "facts": "macOS、Windows 和 Linux · PostgreSQL 和 MySQL · 无需账号"
   },
   "showcase": {
-    "alt": "beamlynx 应用界面。左侧是三张表（customers、orders 和 product_reviews），以方框和连线表示，下方是对应的查询。右侧是查询结果表格。",
-    "caption": "这是真实的应用，连接的是一个示例商店数据库。没有任何效果图。",
+    "caption": "这是应用画布的可操作副本。结果录制自一个示例商店数据库。",
     "themeLabel": "应用主题",
     "themes": {
       "dark": "深色",
@@ -33,11 +32,9 @@
     }
   },
   "try": {
-    "heading": "连接、连接、筛选。不写 SQL。",
-    "description": "和应用里的操作一样，用的也是同一份示例数据。在表上打开 JOIN，选要连接的表，结果随之更新。",
     "stepOf": "第 {{n}} 步，共 {{total}} 步",
     "hintJoin": "点击 {{table}} 上方的 JOIN，查看与它相关的表。",
-    "hintDone": "完成。切换到 SQL，看看 beamlynx 替你写了什么。",
+    "hintDone": "完成。切换到 SQL，看看 Beamlynx 替你写了什么，或者重新开始。",
     "reset": "重新开始",
     "resultLabel": "查询结果",
     "queryLabel": "查询",
@@ -62,7 +59,7 @@
   },
   "agents": {
     "heading": "让 AI 智能体四处看看，钥匙留在你手里。",
-    "description": "beamlynx 内置 MCP 服务器。任何支持 MCP 的 AI 智能体都能浏览你允许的数据库，方式和你一样：一次一张表。",
+    "description": "Beamlynx 内置 MCP 服务器。任何支持 MCP 的 AI 智能体都能浏览你允许的数据库，方式和你一样：一次一张表。",
     "readOnly": {
       "title": "它只能读取。",
       "description": "更新和删除都会被拒绝，服务器和应用两层都会拦下。"
@@ -73,11 +70,11 @@
     },
     "visible": {
       "title": "它看到的，你也看得到。",
-      "description": "它运行的每条查询都会显示在 beamlynx 中，位于标有智能体图标的标签页里。智能体会被要求在每条查询开头写一句说明，讲清楚它在找什么。"
+      "description": "它运行的每条查询都会显示在 Beamlynx 中，位于标有智能体图标的标签页里。智能体会被要求在每条查询开头写一句说明，讲清楚它在找什么。"
     },
     "cardLabel": "AI 智能体发送的查询示例",
     "cardTitle": "智能体",
-    "cardFoot": "3 行 · 已在 beamlynx 中打开"
+    "cardFoot": "3 行 · 已在 Beamlynx 中打开"
   },
   "closing": {
     "heading": "连上一个数据库，看看里面有什么。",

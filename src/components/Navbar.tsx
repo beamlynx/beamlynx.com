@@ -93,7 +93,7 @@ const Navbar: React.FC = () => {
         <rect x="18" y="8" width="4" height="6" rx="1" fill="currentColor" />
       </svg>
       <span className="text-lg sm:text-xl font-semibold tracking-tight hidden lg:inline whitespace-nowrap">
-        beamlynx
+        Beamlynx
       </span>
     </Link>
   );

@@ -5,7 +5,7 @@ import { DEMO_PATH, DEMO_STEPS, JOIN_CANDIDATES, WHERE_COLUMNS } from "./demoSte
 import type { Cell } from "./demoSteps";
 import { trackEvent } from "../../utils/analytics";
 
-// A small, working copy of beamlynx's canvas, driven the way the app is:
+// A small, working copy of Beamlynx's canvas, driven the way the app is:
 // the action bar above the current table (SELECT | WHERE | JOIN | +), a
 // picker listing what Pine says can come next, and for WHERE a column, an
 // operator and a value. Results, the Pine expression and the SQL all come
@@ -39,6 +39,7 @@ const OPERATORS = ["=", "!=", ">", "<"] as const;
 // Prefilled so a visitor only has to press Enter. The app starts empty.
 const DEFAULT_OP = ">";
 const DEFAULT_VALUE = "500";
+const SUGGESTED_COLUMN = "unit_price";
 type Operator = (typeof OPERATORS)[number];
 const compare: Record<Operator, (a: number, b: number) => boolean> = {
   "=": (a, b) => a === b,
@@ -46,6 +47,9 @@ const compare: Record<Operator, (a: number, b: number) => boolean> = {
   ">": (a, b) => a > b,
   "<": (a, b) => a < b,
 };
+
+const THEMES = ["dark", "light", "sepia"] as const;
+type Theme = (typeof THEMES)[number];
 
 type Picker = null | { kind: "join" } | { kind: "where-column" } | { kind: "where-value"; column: string };
 type Where = { column: string; op: Operator; value: string };
@@ -106,6 +110,8 @@ const TryIt = () => {
   const [valueError, setValueError] = useState(false);
   // The app's text panel under the canvas: Pine, SQL, or hidden.
   const [panel, setPanel] = useState<"pine" | "sql" | null>("pine");
+  // The app's three built-in themes, applied to this copy of its canvas.
+  const [theme, setTheme] = useState<Theme>("dark");
 
   const done = where !== null;
   const visible = ORDER.slice(0, step + 1);
@@ -234,6 +240,8 @@ const TryIt = () => {
           ]
         : [];
   const flat = listGroups.flatMap(g => g.items);
+  // The one row the hint asks for, highlighted the way JOIN and WHERE are.
+  const suggestedId = picker?.kind === "join" ? DEMO_PATH[step] : picker?.kind === "where-column" ? SUGGESTED_COLUMN : null;
   const enabledIdx = flat.map((it, i) => (it.enabled ? i : -1)).filter(i => i >= 0);
 
   const choose = (id: string) => (picker?.kind === "join" ? join(id) : pickColumn(id));
@@ -257,7 +265,9 @@ const TryIt = () => {
 
   // Keep the keyboard highlight on a row that exists and can be picked.
   useEffect(() => {
-    if (!flat[highlighted]?.enabled && enabledIdx.length) setHighlighted(enabledIdx[0]);
+    const suggested = flat.findIndex(it => it.id === suggestedId);
+    if (suggested >= 0) setHighlighted(suggested);
+    else if (!flat[highlighted]?.enabled && enabledIdx.length) setHighlighted(enabledIdx[0]);
   }, [filter, picker]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const hint = done
@@ -281,13 +291,20 @@ const TryIt = () => {
       : { left: `min(${pct(node.x, W)}, calc(100% - var(--picker-w) - 8px))`, top: pct(node.y + NODE_H + 8, H) };
 
   return (
-    <div className="ti">
+    <figure className="ti-figure">
+    <div className={`ti ti-theme-${theme}`}>
       <div className="ti-bar">
         <p className="ti-hint" aria-live="polite">
           <span className="ti-step">{t("try.stepOf", { n: done ? 4 : step + 1, total: 4 })}</span>
           {hint}
         </p>
-        <button ref={resetRef} type="button" className="ti-reset" onClick={reset} disabled={step === 0 && !picker}>
+        <button
+          ref={resetRef}
+          type="button"
+          className={`ti-reset${done ? " ti-pulse" : ""}`}
+          onClick={reset}
+          disabled={step === 0 && !picker}
+        >
           {t("try.reset")}
         </button>
       </div>
@@ -302,7 +319,7 @@ const TryIt = () => {
                 type="button"
                 aria-pressed={panel === v}
                 title={t(panel === v ? "try.hidePanel" : "try.showPanel", { panel: v === "pine" ? "Pine" : "SQL" })}
-                className={panel === v ? "is-active" : ""}
+                className={`${panel === v ? "is-active" : ""}${done && v === "sql" && panel !== "sql" ? " ti-pulse" : ""}`}
                 onClick={() => setPanel(panel === v ? null : v)}
               >
                 {v.toUpperCase()}
@@ -416,7 +433,7 @@ const TryIt = () => {
                             aria-selected={idx === highlighted}
                             aria-disabled={!it.enabled}
                             tabIndex={-1}
-                            className={`ti-picker-item${idx === highlighted ? " is-highlighted" : ""}${it.enabled ? " is-path" : ""}`}
+                            className={`ti-picker-item${idx === highlighted ? " is-highlighted" : ""}${it.enabled ? " is-path" : ""}${it.id === suggestedId ? " is-suggested ti-pulse" : ""}`}
                             onMouseEnter={() => it.enabled && setHighlighted(idx)}
                             onClick={() => it.enabled && choose(it.id)}
                           >
@@ -480,7 +497,7 @@ const TryIt = () => {
                     {t("try.wholeNumber")}
                   </p>
                 ) : (
-                  <button type="button" className="ti-apply" onClick={applyWhere}>
+                  <button type="button" className="ti-apply ti-pulse" onClick={applyWhere}>
                     {t("try.apply")} <span aria-hidden="true">↵</span>
                   </button>
                 )}
@@ -546,6 +563,25 @@ const TryIt = () => {
         </div>
       </div>
     </div>
+      <figcaption className="shot-caption">
+        <span>{t("showcase.caption")}</span>
+        <span className="shot-themes" role="radiogroup" aria-label={t("showcase.themeLabel")}>
+          {THEMES.map(th => (
+            <button
+              key={th}
+              type="button"
+              role="radio"
+              aria-checked={theme === th}
+              className={`shot-swatch shot-swatch-${th}${theme === th ? " is-active" : ""}`}
+              onClick={() => setTheme(th)}
+            >
+              <span aria-hidden="true" className="shot-dot" />
+              {t(`showcase.themes.${th}`)}
+            </button>
+          ))}
+        </span>
+      </figcaption>
+    </figure>
   );
 };
 

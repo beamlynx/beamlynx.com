@@ -439,19 +439,8 @@ pre code {
 @media (min-width: 900px) { .home-hero-actions { align-items: flex-end; } }
 .home-facts { margin: 0; font-size: 13.5px; color: var(--bp-text-dim); line-height: 1.5; }
 
-/* Real screenshot */
-.shot { margin: 0; }
-.shot-frame {
-  border-radius: 12px;
-  padding: 6px;
-  background: var(--bp-panel);
-  border: 1px solid var(--bp-border);
-  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.25);
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-.shot-light .shot-frame { background: #f2eee0; border-color: #ddd9ca; }
-.shot-sepia .shot-frame { background: #ece0c4; border-color: #e3d5b0; }
-.shot-frame img { display: block; width: 100%; height: auto; border-radius: 7px; }
+/* Caption and theme switch under the demo */
+.ti-figure { margin: 0; }
 .shot-caption {
   margin-top: 14px;
   display: flex;
@@ -546,6 +535,55 @@ pre code {
 .home-closing p a { color: var(--bp-trace); text-decoration: underline; text-underline-offset: 3px; }
 
 /* --- Interactive demo (TryIt.tsx) ----------------------------------- */
+/* The app's three themes (beamlynx-ui styles/palette/themes.ts), applied
+   by overriding the site tokens inside the demo only. */
+.ti {
+  --ti-current: #283457;
+  --ti-warn: #f7768e;
+  --ti-op: #7dcfff;
+  --ti-kw: #bb9af7;
+}
+.ti-theme-light {
+  --bp-bg: #fffcf0;
+  --bp-grid-dot: #e6e2d3;
+  --bp-panel: #ffffff;
+  --bp-panel-raised: #f2eee0;
+  --bp-border: #ddd9ca;
+  --bp-border-soft: #e6e2d3;
+  --bp-trace: #205ea6;
+  --bp-amber: #ad8301;
+  --bp-text: #100f0f;
+  --bp-text-body: #100f0f;
+  --bp-text-dim: #6f6e69;
+  --bp-text-faint: #9f9d96;
+  --bp-on-trace: #fffcf0;
+  --ti-current: #e4edf7;
+  --ti-warn: #af3029;
+  --ti-op: #205ea6;
+  --ti-kw: #a02f6f;
+}
+.ti-theme-sepia {
+  --bp-bg: #f4ecd8;
+  --bp-grid-dot: #e7d9b4;
+  --bp-panel: #fbf6ea;
+  --bp-panel-raised: #ece0c4;
+  --bp-border: #e3d5b0;
+  --bp-border-soft: #e0d0ac;
+  --bp-trace: #bf6e4e;
+  --bp-amber: #b0791c;
+  --bp-text: #4a3b2a;
+  --bp-text-body: #4a3b2a;
+  --bp-text-dim: #8a7a63;
+  --bp-text-faint: #a8977a;
+  --bp-on-trace: #fbf6ea;
+  --ti-current: #efe2c2;
+  --ti-warn: #b54a3f;
+  --ti-op: #bf6e4e;
+  --ti-kw: #8c5a82;
+}
+.ti { transition: background-color 0.25s ease, border-color 0.25s ease; }
+.ti-theme-light .ti-picker,
+.ti-theme-sepia .ti-picker { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
 .ti {
   border: 1px solid var(--bp-border);
   border-radius: 12px;
@@ -640,7 +678,7 @@ pre code {
   /* The app's dark theme notches each table's bottom-left corner. */
   clip-path: polygon(0 0, 100% 0, 100% 100%, 9px 100%, 0 calc(100% - 9px));
 }
-.ti-node.is-current { background: #283457; border-color: var(--bp-trace); box-shadow: inset 0 0 0 1px var(--bp-trace); }
+.ti-node.is-current { background: var(--ti-current); border-color: var(--bp-trace); box-shadow: inset 0 0 0 1px var(--bp-trace); }
 .ti-node-name,
 .ti-node-cols { flex-shrink: 0; line-height: 1.25; }
 .ti-node-name {
@@ -698,15 +736,15 @@ pre code {
 .ti-action { color: var(--bp-text-faint); padding: 1px 3px; border-radius: 3px; }
 .ti-action:disabled { cursor: default; }
 .ti-action.is-live { color: var(--bp-trace); }
-.ti-action.is-live:hover { background: rgba(122, 162, 247, 0.14); }
+.ti-action.is-live:hover { background: color-mix(in srgb, var(--bp-trace) 14%, transparent); }
 
 @media (prefers-reduced-motion: no-preference) {
   .ti-pulse { animation: ti-pulse 2.2s ease-out infinite; }
 }
 @keyframes ti-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(122, 162, 247, 0.5); }
-  70% { box-shadow: 0 0 0 7px rgba(122, 162, 247, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(122, 162, 247, 0); }
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--bp-trace) 50%, transparent); }
+  70% { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 
 /* Picker, modelled on beamlynx-ui's components/canvas/Picker.tsx */
@@ -775,6 +813,14 @@ pre code {
 }
 .ti-picker-item.is-path { color: var(--bp-text); cursor: pointer; }
 .ti-picker-item.is-highlighted { background: var(--bp-panel-raised); }
+/* The row the hint asks for: the accent, like the pulsing JOIN/WHERE. */
+.ti-picker-item.is-suggested {
+  color: var(--bp-trace);
+  /* A bar on the left. Not box-shadow, which the pulse animation uses. */
+  background-image: linear-gradient(var(--bp-trace), var(--bp-trace));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+}
 .ti-picker-row { display: flex; justify-content: space-between; gap: 8px; }
 .ti-picker-detail { opacity: 0.6; }
 .ti-picker-hint { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--bp-text-dim); }
@@ -792,7 +838,7 @@ pre code {
 .ti-value-row { display: flex; gap: 6px; }
 .ti-value-row select { flex: 0 0 auto; }
 .ti-value-row input { flex: 1; }
-.ti-value-row input[aria-invalid="true"] { border-color: #f7768e; }
+.ti-value-row input[aria-invalid="true"] { border-color: var(--ti-warn); }
 .ti-apply {
   align-self: flex-end;
   font-size: 12.5px;
@@ -802,7 +848,7 @@ pre code {
   background: var(--bp-trace);
   color: var(--bp-on-trace);
 }
-.ti-value-error { margin: 0; font-size: 12px; line-height: 1.4; color: #f7768e; }
+.ti-value-error { margin: 0; font-size: 12px; line-height: 1.4; color: var(--ti-warn); }
 .ti-result td.is-null { color: var(--bp-text-faint); font-style: italic; }
 
 .ti-side {
@@ -902,5 +948,5 @@ pre code {
 }
 .ti-sqlsize { margin: 0; padding: 2px 12px 8px; text-align: right; font-size: 11.5px; color: var(--bp-text-dim); }
 .ti-code .tk-pipe { color: var(--bp-text-dim); }
-.ti-code .tk-op { color: #7dcfff; }
-.ti-code .tk-kw { color: #bb9af7; }
+.ti-code .tk-op { color: var(--ti-op); }
+.ti-code .tk-kw { color: var(--ti-kw); }
