@@ -20,7 +20,7 @@
     "titleLine1": "Databaseklienten",
     "titleLine2": "der kender dit skema.",
     "description": "Vælg en tabel, og Beamlynx viser dig alle de tabeller, den hænger sammen med. Klik på en for at joine den, og rækkerne dukker op undervejs. Der er ingen joins at skrive, og forespørgslen står ved siden af tegningen, hvis du hellere vil skrive.",
-    "facts": "macOS, Windows og Linux · PostgreSQL og MySQL · Ingen konto"
+    "facts": "macOS, Windows og Linux · PostgreSQL og MySQL · Virker med AI-agenter · Ingen konto"
   },
   "showcase": {
     "caption": "En fungerende kopi af appens lærred. Resultaterne er optaget fra en eksempeldatabase fra en webshop.",
@@ -77,6 +77,16 @@
     "cardLabel": "Eksempel på en forespørgsel sendt af en AI-agent",
     "cardTitle": "Agent",
     "cardFoot": "3 rækker · åbnet i Beamlynx"
+  },
+  "more": {
+    "heading": "Mere i Beamlynx",
+    "all": "Se alle funktioner",
+    "items": {
+      "paths": "Angiv en tabel, og Beamlynx finder alle kæder af joins, der når den.",
+      "traverse": "Tæl alt, der afhænger af en række, og få et slettescript til det.",
+      "edit": "Ret værdier direkte i resultaterne, også når de samler flere tabeller.",
+      "access": "Maskér følsomme kolonner inde i forespørgslen, for agenter eller for alle."
+    }
   },
   "closing": {
     "heading": "Forbind en database, og se hvad der er i den.",

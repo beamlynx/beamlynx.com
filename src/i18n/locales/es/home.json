@@ -20,7 +20,7 @@
     "titleLine1": "El cliente de bases de datos",
     "titleLine2": "que conoce tu esquema.",
     "description": "Elige una tabla y Beamlynx te muestra todas las tablas con las que se relaciona. Haz clic en una para unirla y las filas aparecen a medida que avanzas. No hay joins que escribir, y la consulta está al lado del dibujo por si prefieres escribirla.",
-    "facts": "macOS, Windows y Linux · PostgreSQL y MySQL · Sin cuenta"
+    "facts": "macOS, Windows y Linux · PostgreSQL y MySQL · Funciona con agentes de IA · Sin cuenta"
   },
   "showcase": {
     "caption": "Una copia funcional del lienzo de la aplicación. Sus resultados se grabaron de una base de datos de ejemplo de una tienda.",
@@ -77,6 +77,16 @@
     "cardLabel": "Ejemplo de una consulta enviada por un agente de IA",
     "cardTitle": "Agente",
     "cardFoot": "3 filas · abierto en Beamlynx"
+  },
+  "more": {
+    "heading": "Más en Beamlynx",
+    "all": "Ver todas las funciones",
+    "items": {
+      "paths": "Indica una tabla y Beamlynx encuentra todas las cadenas de joins que llegan a ella.",
+      "traverse": "Cuenta todo lo que depende de una fila y obtén un script para borrarlo.",
+      "edit": "Cambia valores directamente en los resultados, aunque unan varias tablas.",
+      "access": "Enmascara columnas sensibles dentro de la consulta, para agentes o para todos."
+    }
   },
   "closing": {
     "heading": "Conecta una base de datos y mira qué hay dentro.",

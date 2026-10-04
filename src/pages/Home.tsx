@@ -20,9 +20,11 @@ const AGENT_QUERY = [
 ];
 
 const Home = () => {
-  const { t } = useTranslation("home");
+  const { t } = useTranslation(["home", "features"]);
   const location = useLocation();
-  const downloadHref = localizedPath(getLangFromPathname(location.pathname) ?? "en", "/download");
+  const lang = getLangFromPathname(location.pathname) ?? "en";
+  const downloadHref = localizedPath(lang, "/download");
+  const featuresHref = localizedPath(lang, "/features");
   const os = isMobileDevice() ? null : detectOS();
   const downloadLabel = os ? t(`cta.downloadFor.${os}`) : t("cta.download");
 
@@ -126,6 +128,26 @@ const Home = () => {
               ))}
             </pre>
             <div className="home-agent-card-foot">{t("agents.cardFoot")}</div>
+          </div>
+        </div>
+      </section>
+
+      {/* More: a few features, each linking to its section on /features */}
+      <section className="home-section px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="home-more-head">
+            <h2>{t("more.heading")}</h2>
+            <Link to={featuresHref} className="home-more-all">
+              {t("more.all")} <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+          <div className="home-more">
+            {(["paths", "traverse", "edit", "access"] as const).map(id => (
+              <Link key={id} to={{ pathname: featuresHref, hash: `#${id}` }} className="home-more-card">
+                <h3>{t(`features:items.${id}.title`)}</h3>
+                <p>{t(`more.items.${id}`)}</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

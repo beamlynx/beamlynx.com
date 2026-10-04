@@ -20,7 +20,7 @@
     "titleLine1": "The database client",
     "titleLine2": "that knows your schema.",
     "description": "Pick a table, and Beamlynx shows you every table it connects to. Click one to join it, and the rows appear as you go. There are no joins to write, and the query sits beside the picture if you'd rather type.",
-    "facts": "macOS, Windows and Linux · PostgreSQL and MySQL · No account"
+    "facts": "macOS, Windows and Linux · PostgreSQL and MySQL · Works with AI agents · No account"
   },
   "showcase": {
     "caption": "A working copy of the app's canvas. Its results were recorded from a sample shop database.",
@@ -77,6 +77,16 @@
     "cardLabel": "Example of a query an AI agent sent",
     "cardTitle": "Agent",
     "cardFoot": "3 rows · opened in Beamlynx"
+  },
+  "more": {
+    "heading": "More in Beamlynx",
+    "all": "See all features",
+    "items": {
+      "paths": "Name a table, and Beamlynx finds every chain of joins that reaches it.",
+      "traverse": "Count everything that depends on a row, and get a delete script for it.",
+      "edit": "Change values right in the results, even when they join several tables.",
+      "access": "Mask sensitive columns inside the query, for agents or for everyone."
+    }
   },
   "closing": {
     "heading": "Connect a database and see what's in there.",

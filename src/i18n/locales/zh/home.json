@@ -20,7 +20,7 @@
     "titleLine1": "数据库客户端，",
     "titleLine2": "懂你的表结构。",
     "description": "选一张表，Beamlynx 就会列出所有与它相关的表。点一下就能连接，数据随之出现。不用手写 join；想自己写的话，查询就在图的旁边。",
-    "facts": "macOS、Windows 和 Linux · PostgreSQL 和 MySQL · 无需账号"
+    "facts": "macOS、Windows 和 Linux · PostgreSQL 和 MySQL · 支持 AI 智能体 · 无需账号"
   },
   "showcase": {
     "caption": "这是应用画布的可操作副本。结果录制自一个示例商店数据库。",
@@ -75,6 +75,16 @@
     "cardLabel": "AI 智能体发送的查询示例",
     "cardTitle": "智能体",
     "cardFoot": "3 行 · 已在 Beamlynx 中打开"
+  },
+  "more": {
+    "heading": "Beamlynx 还能做什么",
+    "all": "查看全部功能",
+    "items": {
+      "paths": "说出一张表，Beamlynx 会找出所有能到达它的连接链。",
+      "traverse": "统计依赖某一行的所有数据，并生成对应的删除脚本。",
+      "edit": "直接在结果里修改值，即使结果连接了多张表。",
+      "access": "在查询内部遮盖敏感列，只对智能体生效或对所有人生效。"
+    }
   },
   "closing": {
     "heading": "连上一个数据库，看看里面有什么。",

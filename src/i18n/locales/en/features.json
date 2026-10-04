@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Features - Beamlynx",
+    "description": "What Beamlynx can do: joins from your schema, paths between tables, safe AI agents, access policies, edits across joins, and more."
+  },
+  "heading": "What Beamlynx can do",
+  "lede": "Beamlynx reads your schema, so much of what you would normally write by hand, it offers you instead. Here is what that adds up to.",
+  "items": {
+    "joins": {
+      "title": "Joins come from your schema",
+      "body": "Pick a table, and Beamlynx lists every table it connects to: the ones that point at it, and the ones it points at. When two foreign keys lead to the same table, it shows which column each one uses."
+    },
+    "paths": {
+      "title": "Find the way between two tables",
+      "body": "Name the table you want to reach, and Beamlynx finds every chain of joins that gets there, including routes through tables you hadn't thought of. Pick a route, and it's added in one step."
+    },
+    "traverse": {
+      "title": "See everything that depends on a row",
+      "body": "Traverse follows every table that points at the current one, up to 25 levels deep. It counts the rows in each. It can also write a delete script that removes them, deepest table first, for you to copy or run."
+    },
+    "edit": {
+      "title": "Edit results, even across joins",
+      "body": "Change a value right in the results, even when the result joins several tables. Beamlynx keeps each table's id with the result, so the change reaches the right row. A value that can't be changed says why."
+    },
+    "agents": {
+      "title": "AI agents that can look, not touch",
+      "body": "Beamlynx has a built-in MCP server, so an AI agent such as Claude Code can query the databases you allow. It can only read: every update and delete is refused. It never sees or writes SQL, and every query it runs shows up in Beamlynx."
+    },
+    "access": {
+      "title": "Hide what shouldn't be seen",
+      "body": "An access policy masks columns as xxxxx inside the database query, so the real value never leaves the database. Set a policy per connection, and choose whether it applies only to AI agents or to you as well. An agent that needs a masked column has to ask, and you approve or decline."
+    },
+    "sql": {
+      "title": "The SQL is always there",
+      "body": "Every query's SQL is one click away, to read or to copy. When you'd rather write SQL yourself, switch the panel to SQL and run it as it is."
+    },
+    "keyboard": {
+      "title": "Works without a mouse",
+      "body": "Ctrl+Shift+P opens the command palette. On the canvas, single keys do the work: i joins, w filters, s selects, p finds a path, and j and k move between tables. The editor has a Vim mode."
+    },
+    "grid": {
+      "title": "A results grid that keeps up",
+      "body": "The grid draws only the rows on screen, so even 100,000 rows scroll smoothly. Select a range with the keyboard or the mouse and paste it straight into a spreadsheet, or download the whole result as CSV."
+    }
+  },
+  "drawingsNote": "The pictures on this page are simplified drawings of the app. The names and values in them come from a sample shop database.",
+  "also": {
+    "heading": "Also",
+    "items": [
+      "PostgreSQL and MySQL 8",
+      "Saved connections are encrypted with your system's keychain",
+      "The query server only listens on your own computer",
+      "macOS, Windows and Linux, with automatic updates",
+      "Light, Dark and Sepia themes"
+    ]
+  },
+  "closing": {
+    "heading": "Try it on your own database.",
+    "download": "Download Beamlynx"
+  }
+}

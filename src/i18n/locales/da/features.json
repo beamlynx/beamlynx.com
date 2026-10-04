@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "title": "Funktioner - Beamlynx",
+    "description": "Det kan Beamlynx: joins ud fra dit skema, veje mellem tabeller, sikre AI-agenter, adgangspolitikker, redigering på tværs af joins og mere."
+  },
+  "heading": "Det kan Beamlynx",
+  "lede": "Beamlynx læser dit skema, så meget af det, du normalt ville skrive i hånden, tilbyder den dig i stedet. Her er, hvad det giver.",
+  "items": {
+    "joins": {
+      "title": "Joins kommer fra dit skema",
+      "body": "Vælg en tabel, og Beamlynx viser alle de tabeller, den hænger sammen med: dem, der peger på den, og dem, den peger på. Når to fremmednøgler fører til den samme tabel, viser den, hvilken kolonne hver af dem bruger."
+    },
+    "paths": {
+      "title": "Find vejen mellem to tabeller",
+      "body": "Angiv den tabel, du vil nå frem til, og Beamlynx finder alle kæder af joins, der fører derhen, også gennem tabeller, du ikke havde tænkt på. Vælg en vej, og den bliver tilføjet i ét trin."
+    },
+    "traverse": {
+      "title": "Se alt, der afhænger af en række",
+      "body": "Traverse følger alle tabeller, der peger på den aktuelle, op til 25 niveauer ned. Den tæller rækkerne i hver. Den kan også skrive et slettescript, der fjerner dem med den dybeste tabel først, som du kan kopiere eller køre."
+    },
+    "edit": {
+      "title": "Redigér resultater, også på tværs af joins",
+      "body": "Ret en værdi direkte i resultaterne, også når resultatet samler flere tabeller. Beamlynx gemmer hver tabels id sammen med resultatet, så ændringen rammer den rigtige række. En værdi, der ikke kan ændres, siger hvorfor."
+    },
+    "agents": {
+      "title": "AI-agenter, der kan kigge, men ikke røre",
+      "body": "Beamlynx har en indbygget MCP-server, så en AI-agent som Claude Code kan forespørge de databaser, du tillader. Den kan kun læse: alle opdateringer og sletninger bliver afvist. Den ser og skriver aldrig SQL, og hver forespørgsel, den kører, vises i Beamlynx."
+    },
+    "access": {
+      "title": "Skjul det, der ikke skal ses",
+      "body": "En adgangspolitik maskerer kolonner som xxxxx inde i selve databaseforespørgslen, så den rigtige værdi aldrig forlader databasen. Sæt en politik pr. forbindelse, og vælg, om den kun gælder AI-agenter eller også dig. En agent, der har brug for en maskeret kolonne, skal spørge, og du godkender eller afviser."
+    },
+    "sql": {
+      "title": "SQL'en er der altid",
+      "body": "Hver forespørgsels SQL er ét klik væk, så du kan læse eller kopiere den. Vil du hellere skrive SQL selv, så skift panelet til SQL og kør den, som den er."
+    },
+    "keyboard": {
+      "title": "Virker uden mus",
+      "body": "Ctrl+Shift+P åbner kommandopaletten. På lærredet klarer enkelte taster arbejdet: i joiner, w filtrerer, s vælger kolonner, p finder en vej, og j og k flytter mellem tabeller. Editoren har en Vim-tilstand."
+    },
+    "grid": {
+      "title": "En resultattabel, der kan følge med",
+      "body": "Tabellen tegner kun de rækker, der er på skærmen, så selv 100.000 rækker ruller glat. Markér et område med tastatur eller mus, og indsæt det direkte i et regneark, eller download hele resultatet som CSV."
+    }
+  },
+  "drawingsNote": "Billederne på denne side er forenklede tegninger af appen. Navne og værdier kommer fra en eksempeldatabase fra en webshop.",
+  "also": {
+    "heading": "Desuden",
+    "items": [
+      "PostgreSQL og MySQL 8",
+      "Gemte forbindelser krypteres med systemets nøglering",
+      "Forespørgselsserveren lytter kun på din egen computer",
+      "macOS, Windows og Linux, med automatiske opdateringer",
+      "Lyst, mørkt og sepia tema"
+    ]
+  },
+  "closing": {
+    "heading": "Prøv det på din egen database.",
+    "download": "Download Beamlynx"
+  }
+}
