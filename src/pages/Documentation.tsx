@@ -389,7 +389,7 @@ const Documentation: React.FC = () => {
       <meta property="og:title" content={t('docs:meta.ogTitle')} />
       <meta property="og:description" content={t('docs:meta.ogDescription')} />
       <meta property="og:type" content="article" />
-      <meta property="og:url" content="https://beamlynx.org/docs" />
+      <meta property="og:url" content="https://beamlynx.com/docs" />
       <meta property="og:image" content="https://beamlynx.com/og-image.png" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={t('docs:meta.twitterTitle')} />
