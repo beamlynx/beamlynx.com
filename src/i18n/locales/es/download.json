@@ -1,18 +1,18 @@
 {
   "meta": {
-    "title": "beamlynx - Descargar",
-    "description": "Descarga beamlynx, el cliente de bases de datos visual e intuitivo.",
+    "title": "Beamlynx - Descargar",
+    "description": "Descarga Beamlynx, el cliente de bases de datos visual e intuitivo.",
     "ogTitle": "Beamlynx - Descargar",
-    "ogDescription": "Descarga beamlynx, el cliente de bases de datos visual e intuitivo.",
+    "ogDescription": "Descarga Beamlynx, el cliente de bases de datos visual e intuitivo.",
     "twitterTitle": "Beamlynx - Descargar",
-    "twitterDescription": "Descarga beamlynx, el cliente de bases de datos visual e intuitivo."
+    "twitterDescription": "Descarga Beamlynx, el cliente de bases de datos visual e intuitivo."
   },
   "heading": "Descargar",
-  "headingBrand": " beamlynx",
+  "headingBrand": " Beamlynx",
   "subheading": "El cliente de bases de datos visual e intuitivo.",
   "playgroundDisabled": "El playground alojado está desactivado por el momento. Descarga la aplicación a continuación para probar beamlynx.",
   "install": {
-    "mobileWarning": "beamlynx es una aplicación de escritorio para macOS, Windows y Linux. Visita esta página desde tu computadora para instalarla.",
+    "mobileWarning": "Beamlynx es una aplicación de escritorio para macOS, Windows y Linux. Visita esta página desde tu computadora para instalarla.",
     "tabs": {
       "mac": "macOS",
       "windows": "Windows",

@@ -121,6 +121,16 @@ body {
   padding-bottom: 6rem;
 }
 
+/* Scrollbars as in the app (beamlynx-ui styles/globals.css): a muted thumb
+   on a transparent track, the accent on hover. scrollbar-color covers
+   Firefox and current Chromium; the ::-webkit rules cover Safari. */
+* { scrollbar-color: var(--bp-text-faint) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: var(--bp-text-faint); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background-color: var(--bp-trace); }
+
 #root {
   min-height: 100%;
   display: flex;
@@ -429,19 +439,8 @@ pre code {
 @media (min-width: 900px) { .home-hero-actions { align-items: flex-end; } }
 .home-facts { margin: 0; font-size: 13.5px; color: var(--bp-text-dim); line-height: 1.5; }
 
-/* Real screenshot */
-.shot { margin: 0; }
-.shot-frame {
-  border-radius: 12px;
-  padding: 6px;
-  background: var(--bp-panel);
-  border: 1px solid var(--bp-border);
-  box-shadow: 0 40px 80px -40px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(0, 0, 0, 0.25);
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-.shot-light .shot-frame { background: #f2eee0; border-color: #ddd9ca; }
-.shot-sepia .shot-frame { background: #ece0c4; border-color: #e3d5b0; }
-.shot-frame img { display: block; width: 100%; height: auto; border-radius: 7px; }
+/* Caption and theme switch under the demo */
+.ti-figure { margin: 0; }
 .shot-caption {
   margin-top: 14px;
   display: flex;
@@ -536,11 +535,61 @@ pre code {
 .home-closing p a { color: var(--bp-trace); text-decoration: underline; text-underline-offset: 3px; }
 
 /* --- Interactive demo (TryIt.tsx) ----------------------------------- */
+/* The app's three themes (beamlynx-ui styles/palette/themes.ts), applied
+   by overriding the site tokens inside the demo only. */
+.ti {
+  --ti-current: #283457;
+  --ti-warn: #f7768e;
+  --ti-op: #7dcfff;
+  --ti-kw: #bb9af7;
+}
+.ti-theme-light {
+  --bp-bg: #fffcf0;
+  --bp-grid-dot: #e6e2d3;
+  --bp-panel: #ffffff;
+  --bp-panel-raised: #f2eee0;
+  --bp-border: #ddd9ca;
+  --bp-border-soft: #e6e2d3;
+  --bp-trace: #205ea6;
+  --bp-amber: #ad8301;
+  --bp-text: #100f0f;
+  --bp-text-body: #100f0f;
+  --bp-text-dim: #6f6e69;
+  --bp-text-faint: #9f9d96;
+  --bp-on-trace: #fffcf0;
+  --ti-current: #e4edf7;
+  --ti-warn: #af3029;
+  --ti-op: #205ea6;
+  --ti-kw: #a02f6f;
+}
+.ti-theme-sepia {
+  --bp-bg: #f4ecd8;
+  --bp-grid-dot: #e7d9b4;
+  --bp-panel: #fbf6ea;
+  --bp-panel-raised: #ece0c4;
+  --bp-border: #e3d5b0;
+  --bp-border-soft: #e0d0ac;
+  --bp-trace: #bf6e4e;
+  --bp-amber: #b0791c;
+  --bp-text: #4a3b2a;
+  --bp-text-body: #4a3b2a;
+  --bp-text-dim: #8a7a63;
+  --bp-text-faint: #a8977a;
+  --bp-on-trace: #fbf6ea;
+  --ti-current: #efe2c2;
+  --ti-warn: #b54a3f;
+  --ti-op: #bf6e4e;
+  --ti-kw: #8c5a82;
+}
+.ti { transition: background-color 0.25s ease, border-color 0.25s ease; }
+.ti-theme-light .ti-picker,
+.ti-theme-sepia .ti-picker { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
 .ti {
   border: 1px solid var(--bp-border);
   border-radius: 12px;
   background: var(--bp-panel);
-  overflow: hidden;
+  /* Not overflow: hidden - the picker may hang past the bottom edge, as a
+     popover does. The canvas rounds its own corner instead. */
 }
 .ti-bar {
   display: flex;
@@ -566,15 +615,45 @@ pre code {
   .ti-grid { grid-template-columns: 1fr 1fr; }
 }
 
+.ti-grid { gap: 8px; padding: 8px; }
+
+/* Left: canvas, with the Pine/SQL panel under it when open - the app's
+   layout. Right: results. */
+.ti-left { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .ti-canvas-cell {
+  position: relative;
+  flex: 1;
   display: flex;
   align-items: center;
+  /* Room for the toolbar, so it never sits on top of a table. */
+  padding: 44px 0 8px;
+  border: 1px solid var(--bp-border);
+  border-radius: 6px;
   background:
     radial-gradient(circle at 1px 1px, var(--bp-grid-dot) 1.2px, transparent 0) 0 0/20px 20px,
     var(--bp-bg);
-  border-bottom: 1px solid var(--bp-border-soft);
 }
-@media (min-width: 900px) { .ti-canvas-cell { border-bottom: 0; border-right: 1px solid var(--bp-border-soft); } }
+.ti-toolbar {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  gap: 2px;
+  padding: 2px 4px;
+  border: 1px solid var(--bp-border);
+  border-radius: 4px;
+  background: var(--bp-panel);
+}
+.ti-toolbar button {
+  height: 22px;
+  padding: 0 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--bp-text-dim);
+}
+.ti-toolbar button.is-active { color: var(--bp-trace); }
+.ti-toolbar button:hover { color: var(--bp-text); }
 .ti-canvas {
   position: relative;
   width: 100%;
@@ -599,7 +678,7 @@ pre code {
   /* The app's dark theme notches each table's bottom-left corner. */
   clip-path: polygon(0 0, 100% 0, 100% 100%, 9px 100%, 0 calc(100% - 9px));
 }
-.ti-node.is-current { background: #283457; border-color: var(--bp-trace); box-shadow: inset 0 0 0 1px var(--bp-trace); }
+.ti-node.is-current { background: var(--ti-current); border-color: var(--bp-trace); box-shadow: inset 0 0 0 1px var(--bp-trace); }
 .ti-node-name,
 .ti-node-cols { flex-shrink: 0; line-height: 1.25; }
 .ti-node-name {
@@ -616,18 +695,6 @@ pre code {
   font-size: max(9px, calc(10.5 * var(--u)));
   color: var(--bp-text-dim);
 }
-.ti-node-candidate {
-  cursor: pointer;
-  background: transparent;
-  border: 1px dashed var(--bp-trace);
-  clip-path: none;
-  border-radius: 3px;
-  color: var(--bp-trace);
-  transition: background 0.15s ease;
-}
-.ti-node-candidate .ti-node-name { color: var(--bp-trace); }
-.ti-node-candidate:hover { background: rgba(122, 162, 247, 0.12); }
-
 .ti-chips {
   display: flex;
   flex-wrap: wrap;
@@ -651,31 +718,150 @@ pre code {
   color: var(--bp-text);
   white-space: nowrap;
 }
-.ti-chip-candidate {
-  cursor: pointer;
-  background: transparent;
-  border: 1px dashed var(--bp-amber);
-  color: var(--bp-amber);
+
+/* The app's action bar above the current table: SELECT | WHERE | JOIN | + */
+.ti-actions {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-size: max(10px, calc(11 * var(--u)));
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
-.ti-chip-candidate:hover { background: rgba(224, 175, 104, 0.12); }
+.ti-action-item { display: inline-flex; align-items: center; }
+.ti-action-sep { color: var(--bp-text-faint); margin: 0 calc(6 * var(--u)); font-weight: 400; }
+.ti-action { color: var(--bp-text-faint); padding: 1px 3px; border-radius: 3px; }
+.ti-action:disabled { cursor: default; }
+.ti-action.is-live { color: var(--bp-trace); }
+.ti-action.is-live:hover { background: color-mix(in srgb, var(--bp-trace) 14%, transparent); }
 
 @media (prefers-reduced-motion: no-preference) {
   .ti-pulse { animation: ti-pulse 2.2s ease-out infinite; }
 }
 @keyframes ti-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(122, 162, 247, 0.45); }
-  70% { box-shadow: 0 0 0 10px rgba(122, 162, 247, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(122, 162, 247, 0); }
-}
-.ti-chip-candidate.ti-pulse { animation-name: ti-pulse-amber; }
-@keyframes ti-pulse-amber {
-  0% { box-shadow: 0 0 0 0 rgba(224, 175, 104, 0.45); }
-  70% { box-shadow: 0 0 0 8px rgba(224, 175, 104, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(224, 175, 104, 0); }
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--bp-trace) 50%, transparent); }
+  70% { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 
-.ti-side { display: flex; flex-direction: column; min-width: 0; }
-.ti-result { overflow: auto; height: 232px; }
+/* Picker, modelled on beamlynx-ui's components/canvas/Picker.tsx */
+.ti-canvas { --picker-w: 232px; }
+.ti-picker {
+  position: absolute;
+  z-index: 5;
+  width: var(--picker-w);
+  max-height: 250px;
+  display: flex;
+  flex-direction: column;
+  background: var(--bp-panel);
+  border: 1px solid var(--bp-border);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  font-size: 13px;
+  color: var(--bp-text);
+}
+.ti-picker-head {
+  flex-shrink: 0;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 7px 7px 6px;
+  border-bottom: 1px solid var(--bp-border);
+}
+.ti-picker-head input,
+.ti-value-row input,
+.ti-value-row select {
+  font: inherit;
+  background: var(--bp-panel-raised);
+  color: var(--bp-text);
+  border: 1px solid var(--bp-border);
+  border-radius: 3px;
+  padding: 3px 6px;
+  min-width: 0;
+}
+.ti-picker-head input { flex: 1; }
+.ti-picker-head input:focus,
+.ti-value-row input:focus,
+.ti-value-row select:focus { outline: none; border-color: var(--bp-trace); }
+.ti-picker-close { color: var(--bp-text-dim); font-size: 16px; line-height: 1; padding: 0 3px; }
+.ti-picker-close:hover { color: var(--bp-text); }
+.ti-picker-body { flex: 1; min-height: 0; overflow: auto; padding: 4px 6px 6px; }
+.ti-picker-group {
+  margin: 6px 0 3px;
+  padding: 1px 0 3px 7px;
+  border-left: 2px solid var(--bp-text-faint);
+  border-bottom: 1px solid var(--bp-border-soft);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bp-text-dim);
+}
+.ti-group-has { border-left-color: var(--bp-trace); }
+.ti-picker-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 2px 5px;
+  line-height: 1.45;
+  border-radius: 3px;
+  color: var(--bp-text-faint);
+  cursor: default;
+}
+.ti-picker-item.is-path { color: var(--bp-text); cursor: pointer; }
+.ti-picker-item.is-highlighted { background: var(--bp-panel-raised); }
+/* The row the hint asks for: the accent, like the pulsing JOIN/WHERE. */
+.ti-picker-item.is-suggested {
+  color: var(--bp-trace);
+  /* A bar on the left. Not box-shadow, which the pulse animation uses. */
+  background-image: linear-gradient(var(--bp-trace), var(--bp-trace));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+}
+.ti-picker-row { display: flex; justify-content: space-between; gap: 8px; }
+.ti-picker-detail { opacity: 0.6; }
+.ti-picker-hint { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--bp-text-dim); }
+.ti-picker-empty { padding: 6px 5px; color: var(--bp-text-dim); }
+.ti-picker-foot {
+  flex-shrink: 0;
+  padding: 6px 9px;
+  border-top: 1px solid var(--bp-border-soft);
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--bp-text-dim);
+}
+.ti-picker-value { padding: 8px; gap: 8px; }
+.ti-picker-title { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 12.5px; }
+.ti-value-row { display: flex; gap: 6px; }
+.ti-value-row select { flex: 0 0 auto; }
+.ti-value-row input { flex: 1; }
+.ti-value-row input[aria-invalid="true"] { border-color: var(--ti-warn); }
+.ti-apply {
+  align-self: flex-end;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 3px;
+  background: var(--bp-trace);
+  color: var(--bp-on-trace);
+}
+.ti-value-error { margin: 0; font-size: 12px; line-height: 1.4; color: var(--ti-warn); }
+.ti-result td.is-null { color: var(--bp-text-faint); font-style: italic; }
+
+.ti-side {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 280px;
+  border: 1px solid var(--bp-border);
+  border-radius: 6px;
+  background: var(--bp-panel);
+  overflow: hidden;
+}
+.ti-result { flex: 1; overflow: auto; max-height: 520px; }
 .ti-result table {
   width: 100%;
   border-collapse: collapse;
@@ -687,6 +873,7 @@ pre code {
   text-align: left;
   padding: 6px 12px;
   border-bottom: 1px solid var(--bp-border-soft);
+  border-right: 1px solid var(--bp-border-soft);
   white-space: nowrap;
 }
 .ti-result th {
@@ -697,33 +884,69 @@ pre code {
   font-weight: 600;
 }
 .ti-result td { color: var(--bp-text-body); }
-.ti-count { margin: 0; padding: 6px 12px; font-size: 12px; color: var(--bp-text-dim); text-align: right; }
-
-.ti-query { border-top: 1px solid var(--bp-border-soft); display: flex; flex-direction: column; flex: 1; }
-.ti-tabs { display: flex; align-items: center; gap: 2px; padding: 8px 10px 0; }
-.ti-tabs button {
-  font-size: 12.5px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 4px;
+.ti-count {
+  margin: 0;
+  padding: 6px 12px;
+  border-top: 1px solid var(--bp-border-soft);
+  font-size: 12px;
   color: var(--bp-text-dim);
+  text-align: right;
 }
-.ti-tabs button.is-active { background: var(--bp-panel-raised); color: var(--bp-text); }
-.ti-sqlsize { margin-left: auto; font-size: 12px; color: var(--bp-text-dim); }
+
+/* The Pine/SQL panel under the canvas */
+.ti-panel {
+  position: relative;
+  border: 1px solid var(--bp-border);
+  border-radius: 6px;
+  background: var(--bp-panel);
+}
+.ti-panel-switch {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  border: 1px solid var(--bp-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.ti-panel-switch button {
+  padding: 3px 9px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--bp-text);
+  background: var(--bp-bg);
+}
+.ti-panel-switch button.is-active { background: var(--bp-panel-raised); }
 .ti-code {
   margin: 0;
-  padding: 10px 14px 14px;
-  border: 0;
-  background: transparent;
+  padding: 10px 14px 4px 0;
+  list-style: none;
+  counter-reset: line;
+  font-family: var(--font-mono);
   font-size: 12.5px;
   line-height: 1.7;
   color: var(--bp-text);
-  white-space: pre-wrap;
-  word-break: break-word;
-  min-height: 150px;
-  max-height: 230px;
+  max-height: 260px;
   overflow: auto;
 }
+.ti-code li {
+  counter-increment: line;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.ti-code li:first-child { padding-right: 104px; } /* clear of the PINE/SQL switch */
+/* Line numbers, in a gutter, as in the app's editor. */
+.ti-code li::before {
+  content: counter(line);
+  text-align: right;
+  color: var(--bp-text-faint);
+  border-right: 1px solid var(--bp-border-soft);
+  padding-right: 6px;
+}
+.ti-sqlsize { margin: 0; padding: 2px 12px 8px; text-align: right; font-size: 11.5px; color: var(--bp-text-dim); }
 .ti-code .tk-pipe { color: var(--bp-text-dim); }
-.ti-code .tk-op { color: #7dcfff; }
-.ti-code .tk-kw { color: #bb9af7; }
+.ti-code .tk-op { color: var(--ti-op); }
+.ti-code .tk-kw { color: var(--ti-kw); }

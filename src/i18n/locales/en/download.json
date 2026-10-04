@@ -1,18 +1,18 @@
 {
   "meta": {
-    "title": "beamlynx - Download",
-    "description": "Download beamlynx, the intuitive, visual database client.",
+    "title": "Beamlynx - Download",
+    "description": "Download Beamlynx, the intuitive, visual database client.",
     "ogTitle": "Beamlynx - Download",
-    "ogDescription": "Download beamlynx, the intuitive, visual database client.",
+    "ogDescription": "Download Beamlynx, the intuitive, visual database client.",
     "twitterTitle": "Beamlynx - Download",
-    "twitterDescription": "Download beamlynx, the intuitive, visual database client."
+    "twitterDescription": "Download Beamlynx, the intuitive, visual database client."
   },
   "heading": "Download",
-  "headingBrand": " beamlynx",
+  "headingBrand": " Beamlynx",
   "subheading": "The intuitive, visual database client.",
   "playgroundDisabled": "The hosted playground is currently disabled. Download the app below to try beamlynx.",
   "install": {
-    "mobileWarning": "beamlynx is a desktop app for macOS, Windows, and Linux. Visit this page on your computer to install it.",
+    "mobileWarning": "Beamlynx is a desktop app for macOS, Windows, and Linux. Visit this page on your computer to install it.",
     "tabs": {
       "mac": "macOS",
       "windows": "Windows",

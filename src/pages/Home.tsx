@@ -5,12 +5,11 @@ import { Trans, useTranslation } from "react-i18next";
 import { getLangFromPathname, localizedPath } from "../i18n/paths";
 import { detectOS, isMobileDevice } from "../utils/detectOS";
 import { trackEvent } from "../utils/analytics";
-import AppShowcase from "../components/home/AppShowcase";
 import TryIt from "../components/home/TryIt";
 
 const OG_IMAGE = "https://beamlynx.com/og-image.png";
 
-// What an AI agent sends through beamlynx's MCP server: a doc comment saying
+// What an AI agent sends through Beamlynx's MCP server: a doc comment saying
 // what it is looking for, then plain Pine. Verified against pine-lang 0.47.0.
 const AGENT_QUERY = [
   "-- Which customers left five-star reviews?",
@@ -83,25 +82,17 @@ const Home = () => {
           </div>
         </motion.div>
 
+        {/* The hero picture is a working copy of the app's canvas, not a
+            screenshot, so the page never needs a backend to run or update. */}
         <motion.div
-          className="mx-auto max-w-6xl mt-12 sm:mt-14"
+          id="try"
+          className="home-try mx-auto max-w-6xl mt-12 sm:mt-14"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
-          <AppShowcase />
-        </motion.div>
-      </section>
-
-      {/* Try it */}
-      <section id="try" className="home-section px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="home-section-head">
-            <h2>{t("try.heading")}</h2>
-            <p>{t("try.description")}</p>
-          </div>
           <TryIt />
-        </div>
+        </motion.div>
       </section>
 
       {/* Agents */}
