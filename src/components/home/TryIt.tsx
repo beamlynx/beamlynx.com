@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { DEMO_PATH, DEMO_STEPS, JOIN_CANDIDATES, WHERE_COLUMNS } from "./demoSteps";
+import { DEMO_PATH, DEMO_STEPS, JOIN_CANDIDATES, WHERE_COLUMNS, joinColumnOf } from "./demoSteps";
 import type { Cell } from "./demoSteps";
 import { trackEvent } from "../../utils/analytics";
 
@@ -47,9 +47,6 @@ const compare: Record<Operator, (a: number, b: number) => boolean> = {
   ">": (a, b) => a > b,
   "<": (a, b) => a < b,
 };
-
-const THEMES = ["dark", "light", "sepia"] as const;
-type Theme = (typeof THEMES)[number];
 
 type Picker = null | { kind: "join" } | { kind: "where-column" } | { kind: "where-value"; column: string };
 type Where = { column: string; op: Operator; value: string };
@@ -110,8 +107,6 @@ const TryIt = () => {
   const [valueError, setValueError] = useState(false);
   // The app's text panel under the canvas: Pine, SQL, or hidden.
   const [panel, setPanel] = useState<"pine" | "sql" | null>("pine");
-  // The app's three built-in themes, applied to this copy of its canvas.
-  const [theme, setTheme] = useState<Theme>("dark");
 
   const done = where !== null;
   const visible = ORDER.slice(0, step + 1);
@@ -220,7 +215,7 @@ const TryIt = () => {
                 id: c.pine,
                 label: c.table,
                 detail: c.schema,
-                hint: c.columnHint ? `.${c.columnHint}` : undefined,
+                hint: c.columnHint ? `.${joinColumnOf(c)}` : undefined,
                 enabled: c.pine === DEMO_PATH[step],
               })),
           }))
@@ -292,7 +287,7 @@ const TryIt = () => {
 
   return (
     <figure className="ti-figure">
-    <div className={`ti ti-theme-${theme}`}>
+    <div className="ti">
       <div className="ti-bar">
         <p className="ti-hint" aria-live="polite">
           <span className="ti-step">{t("try.stepOf", { n: done ? 4 : step + 1, total: 4 })}</span>
@@ -563,24 +558,6 @@ const TryIt = () => {
         </div>
       </div>
     </div>
-      <figcaption className="shot-caption">
-        <span>{t("showcase.caption")}</span>
-        <span className="shot-themes" role="radiogroup" aria-label={t("showcase.themeLabel")}>
-          {THEMES.map(th => (
-            <button
-              key={th}
-              type="button"
-              role="radio"
-              aria-checked={theme === th}
-              className={`shot-swatch shot-swatch-${th}${theme === th ? " is-active" : ""}`}
-              onClick={() => setTheme(th)}
-            >
-              <span aria-hidden="true" className="shot-dot" />
-              {t(`showcase.themes.${th}`)}
-            </button>
-          ))}
-        </span>
-      </figcaption>
     </figure>
   );
 };

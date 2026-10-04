@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "title": "Features - Beamlynx",
+    "description": "What Beamlynx can do: joins from your schema, paths between tables, traverse, edits across joins, access control, and more."
+  },
+  "heading": "What Beamlynx can do",
+  "lede": "Beamlynx reads your schema, so much of what you would normally write by hand, it offers you instead. Here is what that adds up to.",
+  "items": {
+    "joins": {
+      "title": "Joins come from your schema",
+      "body": "Pick a table, and Beamlynx lists the tables it connects to, read from the foreign keys in your schema: the table it belongs to, and the tables that point at it. Click one, and it's joined."
+    },
+    "paths": {
+      "title": "Find the way between two tables",
+      "body": "How do customers connect to products? Name the table you want to reach, and Beamlynx finds the chains of joins that lead there: through orders and order_items, or through product_reviews. Pick one, and it's added in one step."
+    },
+    "traverse": {
+      "title": "See everything that depends on a row",
+      "body": "Traverse starts at a table and follows every table that points at it, then every table that points at those, up to 25 levels deep. It counts the rows in each. It can also write a delete script that works from the deepest table back, so no foreign key is left pointing at a deleted row."
+    },
+    "edit": {
+      "title": "Edit results, even across joins",
+      "body": "Change a value right in the results, even when the result joins several tables. Beamlynx keeps each table's id with the result, so the change reaches the right row. A value that can't be changed says why."
+    },
+    "access": {
+      "title": "Access control",
+      "body": "Limit what AI agents can do. They can only read, and columns you mask show as xxxxx, so the real values never leave the database. An agent that needs a masked column has to ask you first. Agents connect through Beamlynx's built-in MCP server, which is experimental."
+    },
+    "sql": {
+      "title": "The SQL is always there",
+      "body": "Every query's SQL is one click away, to read or to copy. When you'd rather write SQL yourself, switch the panel to SQL and run it as it is."
+    },
+    "keyboard": {
+      "title": "Works without a mouse",
+      "body": "Ctrl+Shift+P opens the command palette. On the canvas, single keys do the work: i joins, w filters, s selects, p finds a path, and the arrow keys move between tables. If you use Vim, turn on Vim mode."
+    },
+    "grid": {
+      "title": "A results grid that keeps up",
+      "body": "The grid draws only the rows on screen, so even 100,000 rows scroll smoothly. Select a range with the keyboard or the mouse and paste it straight into a spreadsheet, or download the whole result as CSV."
+    }
+  },
+  "drawingsNote": "The pictures on this page are simplified drawings of the app. The names and values in them come from a sample shop database.",
+  "also": {
+    "heading": "Also",
+    "items": [
+      "PostgreSQL and MySQL 8",
+      "Saved connections are encrypted with your system's keychain",
+      "The query server only listens on your own computer",
+      "macOS, Windows and Linux, with automatic updates",
+      "Light, Dark and Sepia themes"
+    ]
+  },
+  "closing": {
+    "heading": "Try it on your own database.",
+    "download": "Download Beamlynx"
+  }
+}

@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 const Home = lazy(() => import('./pages/Home'));
 const Posts = lazy(() => import('./pages/Posts'));
 const Download = lazy(() => import('./pages/Download'));
+const Features = lazy(() => import('./pages/Features'));
 
 // Old URL from before the "Getting Started" -> "Download" rename, locale-aware.
 const LocaleSetupRedirect = () => {
@@ -56,6 +57,7 @@ const AppContent = () => {
             <Routes location={location} key={location.pathname}>
               <Route element={<EnglishLayout />}>
                 <Route path="/" element={<RootLocaleRedirect><Home /></RootLocaleRedirect>} />
+                <Route path="/features" element={<Features />} />
                 <Route path="/docs" element={<Documentation />} />
                 <Route path="/posts" element={<Posts />} />
                 <Route path="/download" element={<Download />} />
@@ -65,6 +67,7 @@ const AppContent = () => {
 
               <Route path="/:lang" element={<LocaleLayout />}>
                 <Route index element={<Home />} />
+                <Route path="features" element={<Features />} />
                 <Route path="docs" element={<Documentation />} />
                 <Route path="posts" element={<Posts />} />
                 <Route path="download" element={<Download />} />

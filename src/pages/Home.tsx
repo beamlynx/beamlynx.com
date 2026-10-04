@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { getLangFromPathname, localizedPath } from "../i18n/paths";
 import { detectOS, isMobileDevice } from "../utils/detectOS";
 import { trackEvent } from "../utils/analytics";
@@ -9,20 +9,11 @@ import TryIt from "../components/home/TryIt";
 
 const OG_IMAGE = "https://beamlynx.com/og-image.png";
 
-// What an AI agent sends through Beamlynx's MCP server: a doc comment saying
-// what it is looking for, then plain Pine. Verified against pine-lang 0.47.0.
-const AGENT_QUERY = [
-  "-- Which customers left five-star reviews?",
-  "customers",
-  "| public.orders .customer_id",
-  "| public.product_reviews .order_id",
-  "| where: rating = 5",
-];
-
 const Home = () => {
   const { t } = useTranslation("home");
   const location = useLocation();
-  const downloadHref = localizedPath(getLangFromPathname(location.pathname) ?? "en", "/download");
+  const lang = getLangFromPathname(location.pathname) ?? "en";
+  const downloadHref = localizedPath(lang, "/download");
   const os = isMobileDevice() ? null : detectOS();
   const downloadLabel = os ? t(`cta.downloadFor.${os}`) : t("cta.download");
 
@@ -95,47 +86,8 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* Agents */}
-      <section className="home-section px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl home-agents">
-          <div>
-            <h2>{t("agents.heading")}</h2>
-            <p className="home-agents-lede">{t("agents.description")}</p>
-            <ul className="home-agents-list">
-              <li>
-                <strong>{t("agents.readOnly.title")}</strong> {t("agents.readOnly.description")}
-              </li>
-              <li>
-                <strong>{t("agents.approval.title")}</strong> {t("agents.approval.description")}
-              </li>
-              <li>
-                <strong>{t("agents.visible.title")}</strong> {t("agents.visible.description")}
-              </li>
-            </ul>
-          </div>
-          <div className="home-agent-card" aria-label={t("agents.cardLabel")}>
-            <div className="home-agent-card-head">
-              <span className="home-agent-dot" aria-hidden="true" />
-              {t("agents.cardTitle")}
-            </div>
-            <pre>
-              {AGENT_QUERY.map((line, i) => (
-                <div key={i} className={line.startsWith("--") ? "tk-comment" : undefined}>
-                  {line}
-                </div>
-              ))}
-            </pre>
-            <div className="home-agent-card-foot">{t("agents.cardFoot")}</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Closing */}
+      {/* Closing: just the download. The navbar links to Features. */}
       <section className="home-closing px-4 sm:px-6 lg:px-8">
-        <h2>{t("closing.heading")}</h2>
-        <p>
-          <Trans t={t} i18nKey="closing.description" components={{ 1: <Link to={downloadHref} /> }} />
-        </p>
         <div className="flex flex-wrap gap-3 justify-center">
           <DownloadButton source="home_closing" />
         </div>

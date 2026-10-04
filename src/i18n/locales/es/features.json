@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "title": "Funciones - Beamlynx",
+    "description": "Lo que puede hacer Beamlynx: joins a partir de tu esquema, caminos entre tablas, traverse, ediciones a través de joins, control de acceso y más."
+  },
+  "heading": "Lo que puede hacer Beamlynx",
+  "lede": "Beamlynx lee tu esquema, así que mucho de lo que normalmente escribirías a mano, te lo ofrece. Esto es lo que eso supone.",
+  "items": {
+    "joins": {
+      "title": "Los joins salen de tu esquema",
+      "body": "Elige una tabla y Beamlynx muestra las tablas con las que se relaciona, leídas de las claves foráneas de tu esquema: la tabla a la que pertenece y las tablas que apuntan a ella. Haz clic en una y queda unida."
+    },
+    "paths": {
+      "title": "Encuentra el camino entre dos tablas",
+      "body": "¿Cómo se relacionan los clientes con los productos? Indica la tabla a la que quieres llegar y Beamlynx encuentra las cadenas de joins que llevan hasta ella: a través de orders y order_items, o a través de product_reviews. Elige una y se añade en un solo paso."
+    },
+    "traverse": {
+      "title": "Ve todo lo que depende de una fila",
+      "body": "Traverse empieza en una tabla y sigue todas las tablas que apuntan a ella, y luego las que apuntan a esas, hasta 25 niveles. Cuenta las filas de cada una. También puede escribir un script de borrado que empieza por la tabla más profunda, para que ninguna clave foránea quede apuntando a una fila borrada."
+    },
+    "edit": {
+      "title": "Edita resultados, incluso con joins",
+      "body": "Cambia un valor directamente en los resultados, aunque el resultado una varias tablas. Beamlynx guarda el id de cada tabla junto al resultado, así que el cambio llega a la fila correcta. Si un valor no se puede cambiar, te dice por qué."
+    },
+    "access": {
+      "title": "Control de acceso",
+      "body": "Limita lo que pueden hacer los agentes de IA. Solo pueden leer, y las columnas que enmascaras aparecen como xxxxx, así que los valores reales nunca salen de la base de datos. Un agente que necesita una columna enmascarada tiene que pedírtelo antes. Los agentes se conectan a través del servidor MCP integrado de Beamlynx, que es experimental."
+    },
+    "sql": {
+      "title": "El SQL siempre está a mano",
+      "body": "El SQL de cada consulta está a un clic, para leerlo o copiarlo. Y si prefieres escribir SQL tú mismo, cambia el panel a SQL y ejecútalo tal cual."
+    },
+    "keyboard": {
+      "title": "Funciona sin ratón",
+      "body": "Ctrl+Shift+P abre la paleta de comandos. En el lienzo, basta una tecla: i une, w filtra, s selecciona, p busca un camino, y las flechas te mueven entre tablas. Si usas Vim, activa el modo Vim."
+    },
+    "grid": {
+      "title": "Una tabla de resultados que no se queda atrás",
+      "body": "La tabla solo dibuja las filas que ves, así que incluso 100.000 filas se desplazan con fluidez. Selecciona un rango con el teclado o el ratón y pégalo directamente en una hoja de cálculo, o descarga el resultado entero en CSV."
+    }
+  },
+  "drawingsNote": "Las imágenes de esta página son dibujos simplificados de la aplicación. Los nombres y valores vienen de una base de datos de ejemplo de una tienda.",
+  "also": {
+    "heading": "Además",
+    "items": [
+      "PostgreSQL y MySQL 8",
+      "Las conexiones guardadas se cifran con el llavero del sistema",
+      "El servidor de consultas solo escucha en tu propio ordenador",
+      "macOS, Windows y Linux, con actualizaciones automáticas",
+      "Temas claro, oscuro y sepia"
+    ]
+  },
+  "closing": {
+    "heading": "Pruébalo con tu propia base de datos.",
+    "download": "Descargar Beamlynx"
+  }
+}

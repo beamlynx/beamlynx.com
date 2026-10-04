@@ -191,3 +191,10 @@ export const DEMO_PATH = ["public.orders .customer_id","public.order_items .orde
 /** order_items' columns, for the WHERE picker. Only numeric ones can be
  *  filtered here, because the browser does the filtering. */
 export const WHERE_COLUMNS: { name: string; numeric: boolean }[] = [{"name":"id","numeric":true},{"name":"order_id","numeric":true},{"name":"product_id","numeric":true},{"name":"quantity","numeric":true},{"name":"unit_price","numeric":true},{"name":"total_price","numeric":true},{"name":"created_at","numeric":false}];
+
+/** The column a candidate joins on, as the expression would name it: the
+ *  `.column` in its Pine text. For a "belongs to" candidate this is this
+ *  table's own foreign key (e.g. .shipping_address_id), which is what tells
+ *  two routes to the same table apart. `columnHint` is the other table's
+ *  column there (`id` for both), so it can't. */
+export const joinColumnOf = (c: JoinCandidate): string | undefined => c.pine.match(/ \.(\w+)/)?.[1];

@@ -14,22 +14,13 @@
       "windows": "Download til Windows",
       "linux": "Download til Linux"
     },
-    "tryHere": "Prøv det her på siden"
+    "tryHere": "Se hvordan det virker"
   },
   "hero": {
     "titleLine1": "Databaseklienten",
     "titleLine2": "der kender dit skema.",
     "description": "Vælg en tabel, og Beamlynx viser dig alle de tabeller, den hænger sammen med. Klik på en for at joine den, og rækkerne dukker op undervejs. Der er ingen joins at skrive, og forespørgslen står ved siden af tegningen, hvis du hellere vil skrive.",
     "facts": "macOS, Windows og Linux · PostgreSQL og MySQL · Ingen konto"
-  },
-  "showcase": {
-    "caption": "En fungerende kopi af appens lærred. Resultaterne er optaget fra en eksempeldatabase fra en webshop.",
-    "themeLabel": "Appens tema",
-    "themes": {
-      "dark": "Mørkt",
-      "light": "Lyst",
-      "sepia": "Sepia"
-    }
   },
   "try": {
     "stepOf": "Trin {{n}} af {{total}}",
@@ -58,28 +49,5 @@
     "panelLabel": "Paneler",
     "showPanel": "Vis {{panel}}-panelet",
     "hidePanel": "Skjul {{panel}}-panelet"
-  },
-  "agents": {
-    "heading": "Lad en AI-agent kigge sig omkring. Behold selv nøglerne.",
-    "description": "Beamlynx har en indbygget MCP-server. Enhver AI-agent, der understøtter MCP, kan udforske de databaser, du tillader, på samme måde som dig: én tabel ad gangen.",
-    "readOnly": {
-      "title": "Den kan kun læse.",
-      "description": "Opdateringer og sletninger bliver afvist, både af serveren og af appen."
-    },
-    "approval": {
-      "title": "Skjulte kolonner forbliver skjulte.",
-      "description": "For at se en skal agenten spørge, og du godkender eller afviser i appen."
-    },
-    "visible": {
-      "title": "Du ser, hvad den ser.",
-      "description": "Hver forespørgsel, den kører, vises i Beamlynx i en fane markeret som agentens. Agenter bliver bedt om at starte hver forespørgsel med en note om, hvad de leder efter."
-    },
-    "cardLabel": "Eksempel på en forespørgsel sendt af en AI-agent",
-    "cardTitle": "Agent",
-    "cardFoot": "3 rækker · åbnet i Beamlynx"
-  },
-  "closing": {
-    "heading": "Forbind en database, og se hvad der er i den.",
-    "description": "Ingen konto og ingen server at sætte op. På en Mac <1>virker Homebrew også</1>."
   }
 }

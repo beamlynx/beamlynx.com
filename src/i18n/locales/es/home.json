@@ -14,22 +14,13 @@
       "windows": "Descargar para Windows",
       "linux": "Descargar para Linux"
     },
-    "tryHere": "Pruébalo en esta página"
+    "tryHere": "Mira cómo funciona"
   },
   "hero": {
     "titleLine1": "El cliente de bases de datos",
     "titleLine2": "que conoce tu esquema.",
     "description": "Elige una tabla y Beamlynx te muestra todas las tablas con las que se relaciona. Haz clic en una para unirla y las filas aparecen a medida que avanzas. No hay joins que escribir, y la consulta está al lado del dibujo por si prefieres escribirla.",
     "facts": "macOS, Windows y Linux · PostgreSQL y MySQL · Sin cuenta"
-  },
-  "showcase": {
-    "caption": "Una copia funcional del lienzo de la aplicación. Sus resultados se grabaron de una base de datos de ejemplo de una tienda.",
-    "themeLabel": "Tema de la aplicación",
-    "themes": {
-      "dark": "Oscuro",
-      "light": "Claro",
-      "sepia": "Sepia"
-    }
   },
   "try": {
     "stepOf": "Paso {{n}} de {{total}}",
@@ -58,28 +49,5 @@
     "panelLabel": "Paneles",
     "showPanel": "Mostrar el panel {{panel}}",
     "hidePanel": "Ocultar el panel {{panel}}"
-  },
-  "agents": {
-    "heading": "Deja que un agente de IA eche un vistazo. Tú te quedas con las llaves.",
-    "description": "Beamlynx incluye un servidor MCP. Cualquier agente de IA compatible con MCP puede explorar las bases de datos que permitas, igual que tú: tabla a tabla.",
-    "readOnly": {
-      "title": "Solo puede leer.",
-      "description": "Las actualizaciones y los borrados se rechazan, en el servidor y en la aplicación."
-    },
-    "approval": {
-      "title": "Las columnas ocultas siguen ocultas.",
-      "description": "Para ver una, el agente tiene que pedirlo, y tú lo apruebas o lo rechazas en la aplicación."
-    },
-    "visible": {
-      "title": "Ves lo que ve.",
-      "description": "Cada consulta que ejecuta aparece en Beamlynx, en una pestaña marcada como del agente. Se pide a los agentes que empiecen cada una con una nota sobre lo que buscan."
-    },
-    "cardLabel": "Ejemplo de una consulta enviada por un agente de IA",
-    "cardTitle": "Agente",
-    "cardFoot": "3 filas · abierto en Beamlynx"
-  },
-  "closing": {
-    "heading": "Conecta una base de datos y mira qué hay dentro.",
-    "description": "Sin cuenta y sin servidor que configurar. En un Mac, <1>también funciona con Homebrew</1>."
   }
 }
