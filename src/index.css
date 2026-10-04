@@ -540,7 +540,8 @@ pre code {
   border: 1px solid var(--bp-border);
   border-radius: 12px;
   background: var(--bp-panel);
-  overflow: hidden;
+  /* Not overflow: hidden - the picker may hang past the bottom edge, as a
+     popover does. The canvas rounds its own corner instead. */
 }
 .ti-bar {
   display: flex;
@@ -574,7 +575,7 @@ pre code {
     var(--bp-bg);
   border-bottom: 1px solid var(--bp-border-soft);
 }
-@media (min-width: 900px) { .ti-canvas-cell { border-bottom: 0; border-right: 1px solid var(--bp-border-soft); } }
+@media (min-width: 900px) { .ti-canvas-cell { border-bottom: 0; border-right: 1px solid var(--bp-border-soft); border-bottom-left-radius: 11px; } }
 .ti-canvas {
   position: relative;
   width: 100%;
@@ -616,18 +617,6 @@ pre code {
   font-size: max(9px, calc(10.5 * var(--u)));
   color: var(--bp-text-dim);
 }
-.ti-node-candidate {
-  cursor: pointer;
-  background: transparent;
-  border: 1px dashed var(--bp-trace);
-  clip-path: none;
-  border-radius: 3px;
-  color: var(--bp-trace);
-  transition: background 0.15s ease;
-}
-.ti-node-candidate .ti-node-name { color: var(--bp-trace); }
-.ti-node-candidate:hover { background: rgba(122, 162, 247, 0.12); }
-
 .ti-chips {
   display: flex;
   flex-wrap: wrap;
@@ -651,28 +640,130 @@ pre code {
   color: var(--bp-text);
   white-space: nowrap;
 }
-.ti-chip-candidate {
-  cursor: pointer;
-  background: transparent;
-  border: 1px dashed var(--bp-amber);
-  color: var(--bp-amber);
+
+/* The app's action bar above the current table: SELECT | WHERE | JOIN | + */
+.ti-actions {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-size: max(10px, calc(11 * var(--u)));
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
-.ti-chip-candidate:hover { background: rgba(224, 175, 104, 0.12); }
+.ti-action-item { display: inline-flex; align-items: center; }
+.ti-action-sep { color: var(--bp-text-faint); margin: 0 calc(6 * var(--u)); font-weight: 400; }
+.ti-action { color: var(--bp-text-faint); padding: 1px 3px; border-radius: 3px; }
+.ti-action:disabled { cursor: default; }
+.ti-action.is-live { color: var(--bp-trace); }
+.ti-action.is-live:hover { background: rgba(122, 162, 247, 0.14); }
 
 @media (prefers-reduced-motion: no-preference) {
   .ti-pulse { animation: ti-pulse 2.2s ease-out infinite; }
 }
 @keyframes ti-pulse {
-  0% { box-shadow: 0 0 0 0 rgba(122, 162, 247, 0.45); }
-  70% { box-shadow: 0 0 0 10px rgba(122, 162, 247, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(122, 162, 247, 0.5); }
+  70% { box-shadow: 0 0 0 7px rgba(122, 162, 247, 0); }
   100% { box-shadow: 0 0 0 0 rgba(122, 162, 247, 0); }
 }
-.ti-chip-candidate.ti-pulse { animation-name: ti-pulse-amber; }
-@keyframes ti-pulse-amber {
-  0% { box-shadow: 0 0 0 0 rgba(224, 175, 104, 0.45); }
-  70% { box-shadow: 0 0 0 8px rgba(224, 175, 104, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(224, 175, 104, 0); }
+
+/* Picker, modelled on beamlynx-ui's components/canvas/Picker.tsx */
+.ti-canvas { --picker-w: 232px; }
+.ti-picker {
+  position: absolute;
+  z-index: 5;
+  width: var(--picker-w);
+  max-height: 250px;
+  display: flex;
+  flex-direction: column;
+  background: var(--bp-panel);
+  border: 1px solid var(--bp-border);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  font-size: 13px;
+  color: var(--bp-text);
 }
+.ti-picker-head {
+  flex-shrink: 0;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 7px 7px 6px;
+  border-bottom: 1px solid var(--bp-border);
+}
+.ti-picker-head input,
+.ti-value-row input,
+.ti-value-row select {
+  font: inherit;
+  background: var(--bp-panel-raised);
+  color: var(--bp-text);
+  border: 1px solid var(--bp-border);
+  border-radius: 3px;
+  padding: 3px 6px;
+  min-width: 0;
+}
+.ti-picker-head input { flex: 1; }
+.ti-picker-head input:focus,
+.ti-value-row input:focus,
+.ti-value-row select:focus { outline: none; border-color: var(--bp-trace); }
+.ti-picker-close { color: var(--bp-text-dim); font-size: 16px; line-height: 1; padding: 0 3px; }
+.ti-picker-close:hover { color: var(--bp-text); }
+.ti-picker-body { flex: 1; min-height: 0; overflow: auto; padding: 4px 6px 6px; }
+.ti-picker-group {
+  margin: 6px 0 3px;
+  padding: 1px 0 3px 7px;
+  border-left: 2px solid var(--bp-text-faint);
+  border-bottom: 1px solid var(--bp-border-soft);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bp-text-dim);
+}
+.ti-group-has { border-left-color: var(--bp-trace); }
+.ti-picker-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 2px 5px;
+  line-height: 1.45;
+  border-radius: 3px;
+  color: var(--bp-text-faint);
+  cursor: default;
+}
+.ti-picker-item.is-path { color: var(--bp-text); cursor: pointer; }
+.ti-picker-item.is-highlighted { background: var(--bp-panel-raised); }
+.ti-picker-row { display: flex; justify-content: space-between; gap: 8px; }
+.ti-picker-detail { opacity: 0.6; }
+.ti-picker-hint { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--bp-text-dim); }
+.ti-picker-empty { padding: 6px 5px; color: var(--bp-text-dim); }
+.ti-picker-foot {
+  flex-shrink: 0;
+  padding: 6px 9px;
+  border-top: 1px solid var(--bp-border-soft);
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--bp-text-dim);
+}
+.ti-picker-value { padding: 8px; gap: 8px; }
+.ti-picker-title { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 12.5px; }
+.ti-value-row { display: flex; gap: 6px; }
+.ti-value-row select { flex: 0 0 auto; }
+.ti-value-row input { flex: 1; }
+.ti-value-row input[aria-invalid="true"] { border-color: #f7768e; }
+.ti-apply {
+  align-self: flex-end;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 3px;
+  background: var(--bp-trace);
+  color: var(--bp-on-trace);
+}
+.ti-value-error { margin: 0; font-size: 12px; line-height: 1.4; color: #f7768e; }
+.ti-result td.is-null { color: var(--bp-text-faint); font-style: italic; }
 
 .ti-side { display: flex; flex-direction: column; min-width: 0; }
 .ti-result { overflow: auto; height: 232px; }

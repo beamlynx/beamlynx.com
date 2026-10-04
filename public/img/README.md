@@ -30,4 +30,8 @@ They show pine-lang's sample shop database, never a real one.
    magick shot.png -crop 1320x1440+0+170 +repage -resize 900x -quality 82 app-dark-crop.webp
    ```
 
-The homepage demo's data (`src/components/home/demoSteps.ts`) comes from the same server: each step is the result of `POST /api/v1/build` and `POST /api/v1/eval` for that step's expression.
+The homepage demo's data (`src/components/home/demoSteps.ts`) comes from the same server:
+
+- Each join step's expression, SQL and rows are the result of `POST /api/v1/build` and `POST /api/v1/eval` for that step.
+- The join picker's tables are `ast.hints.table` from building the expression with a trailing ` | `. They are grouped the way beamlynx-ui's `openJoinPicker` groups them.
+- The final filter is applied in the browser to the last step's rows. Its SQL follows the `WHERE` form Pine emits.
