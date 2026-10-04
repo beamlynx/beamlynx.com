@@ -1,34 +1,30 @@
 {
   "meta": {
     "title": "Funciones - Beamlynx",
-    "description": "Lo que puede hacer Beamlynx: joins a partir de tu esquema, caminos entre tablas, agentes de IA seguros, políticas de acceso, ediciones a través de joins y más."
+    "description": "Lo que puede hacer Beamlynx: joins a partir de tu esquema, caminos entre tablas, traverse, ediciones a través de joins, control de acceso y más."
   },
   "heading": "Lo que puede hacer Beamlynx",
   "lede": "Beamlynx lee tu esquema, así que mucho de lo que normalmente escribirías a mano, te lo ofrece. Esto es lo que eso supone.",
   "items": {
     "joins": {
       "title": "Los joins salen de tu esquema",
-      "body": "Elige una tabla y Beamlynx muestra todas las tablas con las que se relaciona: las que apuntan a ella y a las que ella apunta. Cuando dos claves foráneas llevan a la misma tabla, indica qué columna usa cada una."
+      "body": "Elige una tabla y Beamlynx muestra las tablas con las que se relaciona, leídas de las claves foráneas de tu esquema: la tabla a la que pertenece y las tablas que apuntan a ella. Haz clic en una y queda unida."
     },
     "paths": {
       "title": "Encuentra el camino entre dos tablas",
-      "body": "Indica la tabla a la que quieres llegar y Beamlynx encuentra todas las cadenas de joins que llevan hasta ella, incluso las que pasan por tablas en las que no habías pensado. Elige un camino y se añade en un solo paso."
+      "body": "¿Cómo se relacionan los clientes con los productos? Indica la tabla a la que quieres llegar y Beamlynx encuentra las cadenas de joins que llevan hasta ella: a través de orders y order_items, o a través de product_reviews. Elige una y se añade en un solo paso."
     },
     "traverse": {
       "title": "Ve todo lo que depende de una fila",
-      "body": "Traverse sigue todas las tablas que apuntan a la actual, hasta 25 niveles. Cuenta las filas de cada una. También puede escribir un script de borrado que las elimina empezando por la tabla más profunda, para que lo copies o lo ejecutes."
+      "body": "Traverse empieza en una tabla y sigue todas las tablas que apuntan a ella, y luego las que apuntan a esas, hasta 25 niveles. Cuenta las filas de cada una. También puede escribir un script de borrado que empieza por la tabla más profunda, para que ninguna clave foránea quede apuntando a una fila borrada."
     },
     "edit": {
       "title": "Edita resultados, incluso con joins",
       "body": "Cambia un valor directamente en los resultados, aunque el resultado una varias tablas. Beamlynx guarda el id de cada tabla junto al resultado, así que el cambio llega a la fila correcta. Si un valor no se puede cambiar, te dice por qué."
     },
-    "agents": {
-      "title": "Agentes de IA que miran, pero no tocan",
-      "body": "Beamlynx incluye un servidor MCP, así que un agente de IA como Claude Code puede consultar las bases de datos que permitas. Solo puede leer: se rechaza cualquier actualización o borrado. Nunca ve ni escribe SQL, y cada consulta que ejecuta aparece en Beamlynx."
-    },
     "access": {
-      "title": "Oculta lo que no debe verse",
-      "body": "Una política de acceso enmascara columnas como xxxxx dentro de la propia consulta, así que el valor real nunca sale de la base de datos. Asigna una política a cada conexión y elige si se aplica solo a los agentes de IA o también a ti. Un agente que necesita una columna enmascarada tiene que pedirlo, y tú lo apruebas o lo rechazas."
+      "title": "Control de acceso",
+      "body": "Limita lo que pueden hacer los agentes de IA. Solo pueden leer, y las columnas que enmascaras aparecen como xxxxx, así que los valores reales nunca salen de la base de datos. Un agente que necesita una columna enmascarada tiene que pedírtelo antes. Los agentes se conectan a través del servidor MCP integrado de Beamlynx, que es experimental."
     },
     "sql": {
       "title": "El SQL siempre está a mano",
@@ -36,7 +32,7 @@
     },
     "keyboard": {
       "title": "Funciona sin ratón",
-      "body": "Ctrl+Shift+P abre la paleta de comandos. En el lienzo, basta una tecla: i une, w filtra, s selecciona, p busca un camino, y j y k te mueven entre tablas. El editor tiene modo Vim."
+      "body": "Ctrl+Shift+P abre la paleta de comandos. En el lienzo, basta una tecla: i une, w filtra, s selecciona, p busca un camino, y las flechas te mueven entre tablas. Si usas Vim, activa el modo Vim."
     },
     "grid": {
       "title": "Una tabla de resultados que no se queda atrás",
@@ -57,6 +53,5 @@
   "closing": {
     "heading": "Pruébalo con tu propia base de datos.",
     "download": "Descargar Beamlynx"
-  },
-  "experimental": "Experimental"
+  }
 }

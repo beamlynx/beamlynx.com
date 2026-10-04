@@ -1,34 +1,30 @@
 {
   "meta": {
     "title": "Funktioner - Beamlynx",
-    "description": "Det kan Beamlynx: joins ud fra dit skema, veje mellem tabeller, sikre AI-agenter, adgangspolitikker, redigering på tværs af joins og mere."
+    "description": "Det kan Beamlynx: joins ud fra dit skema, veje mellem tabeller, traverse, redigering på tværs af joins, adgangskontrol og mere."
   },
   "heading": "Det kan Beamlynx",
   "lede": "Beamlynx læser dit skema, så meget af det, du normalt ville skrive i hånden, tilbyder den dig i stedet. Her er, hvad det giver.",
   "items": {
     "joins": {
       "title": "Joins kommer fra dit skema",
-      "body": "Vælg en tabel, og Beamlynx viser alle de tabeller, den hænger sammen med: dem, der peger på den, og dem, den peger på. Når to fremmednøgler fører til den samme tabel, viser den, hvilken kolonne hver af dem bruger."
+      "body": "Vælg en tabel, og Beamlynx viser de tabeller, den hænger sammen med, læst ud fra fremmednøglerne i dit skema: den tabel, den hører til, og de tabeller, der peger på den. Klik på en, og den er joinet."
     },
     "paths": {
       "title": "Find vejen mellem to tabeller",
-      "body": "Angiv den tabel, du vil nå frem til, og Beamlynx finder alle kæder af joins, der fører derhen, også gennem tabeller, du ikke havde tænkt på. Vælg en vej, og den bliver tilføjet i ét trin."
+      "body": "Hvordan hænger kunder sammen med produkter? Angiv den tabel, du vil nå frem til, og Beamlynx finder de kæder af joins, der fører derhen: gennem orders og order_items, eller gennem product_reviews. Vælg én, og den bliver tilføjet i ét trin."
     },
     "traverse": {
       "title": "Se alt, der afhænger af en række",
-      "body": "Traverse følger alle tabeller, der peger på den aktuelle, op til 25 niveauer ned. Den tæller rækkerne i hver. Den kan også skrive et slettescript, der fjerner dem med den dybeste tabel først, som du kan kopiere eller køre."
+      "body": "Traverse starter i en tabel og følger alle tabeller, der peger på den, og derefter alle, der peger på dem, op til 25 niveauer ned. Den tæller rækkerne i hver. Den kan også skrive et slettescript, der starter med den dybeste tabel, så ingen fremmednøgle bliver ved med at pege på en slettet række."
     },
     "edit": {
       "title": "Redigér resultater, også på tværs af joins",
       "body": "Ret en værdi direkte i resultaterne, også når resultatet samler flere tabeller. Beamlynx gemmer hver tabels id sammen med resultatet, så ændringen rammer den rigtige række. En værdi, der ikke kan ændres, siger hvorfor."
     },
-    "agents": {
-      "title": "AI-agenter, der kan kigge, men ikke røre",
-      "body": "Beamlynx har en indbygget MCP-server, så en AI-agent som Claude Code kan forespørge de databaser, du tillader. Den kan kun læse: alle opdateringer og sletninger bliver afvist. Den ser og skriver aldrig SQL, og hver forespørgsel, den kører, vises i Beamlynx."
-    },
     "access": {
-      "title": "Skjul det, der ikke skal ses",
-      "body": "En adgangspolitik maskerer kolonner som xxxxx inde i selve databaseforespørgslen, så den rigtige værdi aldrig forlader databasen. Sæt en politik pr. forbindelse, og vælg, om den kun gælder AI-agenter eller også dig. En agent, der har brug for en maskeret kolonne, skal spørge, og du godkender eller afviser."
+      "title": "Adgangskontrol",
+      "body": "Begræns, hvad AI-agenter kan gøre. De kan kun læse, og kolonner, du maskerer, vises som xxxxx, så de rigtige værdier aldrig forlader databasen. En agent, der har brug for en maskeret kolonne, skal spørge dig først. Agenter forbinder sig gennem Beamlynx' indbyggede MCP-server, som er eksperimentel."
     },
     "sql": {
       "title": "SQL'en er der altid",
@@ -36,7 +32,7 @@
     },
     "keyboard": {
       "title": "Virker uden mus",
-      "body": "Ctrl+Shift+P åbner kommandopaletten. På lærredet klarer enkelte taster arbejdet: i joiner, w filtrerer, s vælger kolonner, p finder en vej, og j og k flytter mellem tabeller. Editoren har en Vim-tilstand."
+      "body": "Ctrl+Shift+P åbner kommandopaletten. På lærredet klarer enkelte taster arbejdet: i joiner, w filtrerer, s vælger kolonner, p finder en vej, og piletasterne flytter mellem tabeller. Bruger du Vim, så slå Vim-tilstand til."
     },
     "grid": {
       "title": "En resultattabel, der kan følge med",
@@ -57,6 +53,5 @@
   "closing": {
     "heading": "Prøv det på din egen database.",
     "download": "Download Beamlynx"
-  },
-  "experimental": "Eksperimentel"
+  }
 }

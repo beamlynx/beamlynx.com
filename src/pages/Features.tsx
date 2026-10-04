@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { getLangFromPathname, localizedPath } from "../i18n/paths";
 import { trackEvent } from "../utils/analytics";
-import { DEMO_STEPS, JOIN_CANDIDATES, joinColumnOf } from "../components/home/demoSteps";
+import { DEMO_STEPS, JOIN_CANDIDATES } from "../components/home/demoSteps";
 import MiniCanvas from "../components/MiniCanvas";
 import type { MiniEdge, MiniNode } from "../components/MiniCanvas";
 
@@ -17,11 +17,9 @@ import type { MiniEdge, MiniNode } from "../components/MiniCanvas";
 
 const OG_IMAGE = "https://beamlynx.com/og-image.png";
 
-const FEATURES = ["joins", "paths", "traverse", "edit", "agents", "access", "sql", "keyboard", "grid"] as const;
+const FEATURES = ["joins", "paths", "traverse", "edit", "access", "sql", "keyboard", "grid"] as const;
 type FeatureId = (typeof FEATURES)[number];
 
-// Shipped, but still changing. Marked on the page so it isn't oversold.
-const EXPERIMENTAL: FeatureId[] = ["agents"];
 
 // --- Drawings ---------------------------------------------------------------
 // Canvas drawings in the app's style (MiniCanvas), with as little text as
@@ -29,19 +27,13 @@ const EXPERIMENTAL: FeatureId[] = ["agents"];
 // detail.
 
 const JoinsVisual = () => {
-  // What Pine offers from `orders`: "belongs to" on the left, "has" on the
-  // right, and two routes to customer_addresses told apart by column.
-  const [has, belongsTo] = [JOIN_CANDIDATES[1][0].items, JOIN_CANDIDATES[1][1].items];
+  // What Pine offers from `orders`, kept simple: its one parent, customers,
+  // and the tables that point at it. (It also belongs to customer_addresses
+  // twice; the drawing leaves that out.)
+  const has = JOIN_CANDIDATES[1][0].items;
   const nodes: MiniNode[] = [
-    { id: "orders", x: 220, y: 150, label: "orders", alias: "o_1", current: true },
-    ...belongsTo.map((c, i) => ({
-      id: `b${i}`,
-      x: 10,
-      y: 40 + i * 100,
-      label: c.table,
-      detail: c.columnHint ? `.${joinColumnOf(c)}` : undefined,
-      candidate: true,
-    })),
+    { id: "customers", x: 10, y: 140, label: "customers", candidate: true },
+    { id: "orders", x: 220, y: 140, label: "orders", alias: "o_1", current: true },
     ...has.map((c, i) => ({
       id: `h${i}`,
       x: 430,
@@ -51,7 +43,7 @@ const JoinsVisual = () => {
       candidate: true,
     })),
   ];
-  const edges: MiniEdge[] = nodes.slice(1).map(n => ({ from: "orders", to: n.id }));
+  const edges: MiniEdge[] = nodes.filter(n => n.id !== "orders").map(n => ({ from: "orders", to: n.id }));
   return (
     <MiniCanvas
       height={300}
@@ -59,7 +51,7 @@ const JoinsVisual = () => {
       edges={edges}
       overlay={
         <>
-          <span className="mc-tag" style={{ left: "1.7%", top: "2%" }}>belongs to</span>
+          <span className="mc-tag" style={{ left: "1.7%", top: "38%" }}>belongs to</span>
           <span className="mc-tag is-accent" style={{ right: "1.7%", top: "0%" }}>has</span>
         </>
       }
@@ -68,62 +60,72 @@ const JoinsVisual = () => {
 };
 
 const PathsVisual = () => (
-  // The example from pine-lang/docs/paths.md: three routes from company to
-  // document. The one-hop route ranks last (dashed).
+  // Two real routes in the sample schema, from its foreign keys
+  // (pine-lang/docker/db/init/001_ecommerce_seed.sql): through orders and
+  // order_items, or through product_reviews.
   <MiniCanvas
     height={270}
     nodes={[
-      { id: "company", x: 10, y: 66, label: "company", current: true },
-      { id: "document", x: 430, y: 66, label: "document" },
-      { id: "employee", x: 220, y: 186, label: "employee" },
+      { id: "customers", x: 5, y: 112, w: 120, label: "customers", current: true },
+      { id: "reviews", x: 240, y: 30, w: 120, label: "product_reviews" },
+      { id: "orders", x: 160, y: 200, w: 120, label: "orders" },
+      { id: "items", x: 315, y: 200, w: 120, label: "order_items" },
+      { id: "products", x: 475, y: 112, w: 120, label: "products" },
     ]}
     edges={[
-      { from: "company", to: "document", dashed: true, offset: -14, label: "ranked last", labelAt: "start" },
-      { from: "company", to: "employee", highlight: true },
-      { from: "employee", to: "document", highlight: true, offset: -8, label: ".employee_id", labelAt: "start" },
-      { from: "employee", to: "document", highlight: true, offset: 8, label: ".created_by", labelAt: "start" },
+      { from: "customers", to: "reviews", highlight: true },
+      { from: "reviews", to: "products", highlight: true },
+      { from: "customers", to: "orders", highlight: true },
+      { from: "orders", to: "items", highlight: true },
+      { from: "items", to: "products", highlight: true },
     ]}
     overlay={
       <span className="mc-query" style={{ left: "1.7%", top: "0%" }}>
-        company <span className="fv-pipe">|</span> <span className="fv-op">?</span> document
+        customers <span className="fv-pipe">|</span> <span className="fv-op">?</span> products
       </span>
     }
   />
 );
 
-const TraverseVisual = () => {
-  const has = JOIN_CANDIDATES[0].find(g => g.label === "has")?.items ?? [];
-  const deps = [...has].sort((a, b) => Number(a.schema !== "public") - Number(b.schema !== "public")).slice(0, 6);
-  return (
-    <MiniCanvas
-      height={330}
-      nodes={[
-        {
-          id: "customers",
-          x: 10,
-          y: 135,
-          label: "customers",
-          alias: "c_0",
-          current: true,
-          below: (
-            <div className="mc-menu">
-              <span className="mc-menu-btn">Count rows</span>
-              <span className="mc-menu-btn">Delete rows…</span>
-            </div>
-          ),
-        },
-        ...deps.map((c, i) => ({
-          id: c.table,
-          x: 430,
-          y: 8 + i * 54,
-          label: c.table,
-          detail: c.schema === "public" ? undefined : c.schema,
-        })),
-      ]}
-      edges={deps.map(c => ({ from: "customers", to: c.table }))}
-    />
-  );
-};
+const TraverseVisual = () => (
+  // Depth first: customers, the tables that point at it, then the tables
+  // that point at those. Each line is a real foreign key in the sample
+  // schema. The delete script works from the deepest column back.
+  <MiniCanvas
+    height={290}
+    nodes={[
+      {
+        id: "customers",
+        x: 10,
+        y: 100,
+        label: "customers",
+        current: true,
+        below: (
+          <div className="mc-menu">
+            <span className="mc-menu-btn">Count rows</span>
+            <span className="mc-menu-btn">Delete rows…</span>
+          </div>
+        ),
+      },
+      { id: "orders", x: 220, y: 60, label: "orders" },
+      { id: "addresses", x: 220, y: 190, label: "customer_addresses" },
+      { id: "items", x: 430, y: 30, label: "order_items" },
+      { id: "payments", x: 430, y: 110, label: "payment_events", detail: "audit" },
+    ]}
+    edges={[
+      { from: "customers", to: "orders" },
+      { from: "customers", to: "addresses" },
+      { from: "orders", to: "items" },
+      { from: "orders", to: "payments" },
+    ]}
+    overlay={
+      <>
+        <span className="mc-tag" style={{ left: "36.7%", top: "0%" }}>depth 1</span>
+        <span className="mc-tag" style={{ left: "71.7%", top: "0%" }}>depth 2</span>
+      </>
+    }
+  />
+);
 
 const EditVisual = () => {
   const s = DEMO_STEPS[1];
@@ -163,44 +165,15 @@ const EditVisual = () => {
   );
 };
 
-const AgentsVisual = () => (
-  <div className="fv-agent">
-    <div className="fv-agent-tab">
-      <span className="fv-agent-dot" aria-hidden="true" /> Agent
-    </div>
-    <MiniCanvas
-      height={170}
-      nodes={[
-        { id: "c", x: 10, y: 50, label: "customers", alias: "c_0" },
-        {
-          id: "o",
-          x: 300,
-          y: 50,
-          label: "orders",
-          alias: "o_1",
-          current: true,
-          chips: [["WHERE", ["status = 'pending'"]]],
-        },
-      ]}
-      edges={[{ from: "c", to: "o" }]}
-      overlay={
-        <span className="mc-comment" style={{ left: "1.7%", top: "2%" }}>
-          Which customers have orders still pending?
-        </span>
-      }
-    />
-  </div>
-);
-
 const AccessVisual = () => (
   <div className="fv-stack">
     <MiniCanvas
-      height={120}
+      height={150}
       nodes={[
         {
           id: "c",
           x: 10,
-          y: 14,
+          y: 30,
           label: "customers",
           alias: "c_0",
           current: true,
@@ -210,7 +183,7 @@ const AccessVisual = () => (
       edges={[]}
       overlay={
         <div className="fv-approval" style={{ position: "absolute", right: "1.7%", top: "8%" }}>
-          <div className="fv-approval-title">🔒 email</div>
+          <div className="fv-approval-title">Agent asks · 🔒 email</div>
           <div className="fv-actions">
             <span className="fv-btn is-primary">Approve</span>
             <span className="fv-btn">Decline</span>
@@ -290,8 +263,8 @@ const KeyboardVisual = () => (
           <span className="mc-keys-label">commands</span>
         </span>
         <span className="mc-keys" style={{ left: "31%", top: "80%" }}>
-          <kbd>j</kbd>
-          <kbd>k</kbd>
+          <kbd>↑</kbd>
+          <kbd>↓</kbd>
           <span className="mc-keys-label">move</span>
         </span>
       </>
@@ -335,7 +308,6 @@ const VISUALS: Record<FeatureId, () => React.ReactElement> = {
   paths: PathsVisual,
   traverse: TraverseVisual,
   edit: EditVisual,
-  agents: AgentsVisual,
   access: AccessVisual,
   sql: SqlVisual,
   keyboard: KeyboardVisual,
@@ -391,7 +363,6 @@ const Features = () => {
                 transition={{ duration: 0.4 }}
               >
                 <div className="feat-text">
-                  {EXPERIMENTAL.includes(id) && <span className="feat-badge">{t("experimental")}</span>}
                   <h2>{t(`items.${id}.title`)}</h2>
                   <p>{t(`items.${id}.body`)}</p>
                 </div>

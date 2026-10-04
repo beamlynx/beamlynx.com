@@ -9,6 +9,8 @@ export type MiniNode = {
   x: number;
   y: number;
   label: string;
+  /** Width in the 600-wide space, if not the default. */
+  w?: number;
   alias?: string;
   /** Small text along the bottom of the node, e.g. the join column. */
   detail?: string;
@@ -48,9 +50,11 @@ const pct = (v: number, of: number) => `${(v / of) * 100}%`;
 // Out of the side facing the other node, across, and in, the way the app
 // routes its join lines. Returns the path and a point for the label.
 const route = (a: MiniNode, b: MiniNode, offset = 0, labelAt: "start" | "end" = "end") => {
-  const rightward = b.x >= a.x + NODE_W;
-  const x1 = rightward ? a.x + NODE_W : a.x;
-  const x2 = rightward ? b.x : b.x + NODE_W;
+  const aw = a.w ?? NODE_W;
+  const bw = b.w ?? NODE_W;
+  const rightward = b.x >= a.x + aw;
+  const x1 = rightward ? a.x + aw : a.x;
+  const x2 = rightward ? b.x : b.x + bw;
   const y1 = a.y + HANDLE + offset;
   const y2 = b.y + HANDLE + offset;
   const mid = (x1 + x2) / 2;
@@ -93,7 +97,7 @@ const MiniCanvas = ({
         })}
       </svg>
       {nodes.map(n => (
-        <div key={n.id} className="mc-wrap" style={{ left: pct(n.x, W), top: pct(n.y, height), width: pct(NODE_W, W) }}>
+        <div key={n.id} className="mc-wrap" style={{ left: pct(n.x, W), top: pct(n.y, height), width: pct(n.w ?? NODE_W, W) }}>
           {n.above && <div className="mc-above">{n.above}</div>}
           <div
             className={`mc-node${n.current ? " is-current" : ""}${n.candidate ? " is-candidate" : ""}${n.dim ? " is-dim" : ""}`}
