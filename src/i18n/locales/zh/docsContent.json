@@ -60,16 +60,17 @@
   },
   "where": {
     "title": "Where",
-    "description": "根据条件过滤查询结果。",
+    "description": "根据条件过滤查询结果。在同一个 where: 里，用 or 连接条件。要同时满足多个条件，就为每个条件各加一个 where: 步骤。",
     "examples": [
       { "title": "条件", "description": "筛选某一列等于指定值的记录" },
-      { "title": "多个条件", "description": "使用逗号分隔应用多个筛选条件" },
+      { "title": "满足所有条件", "description": "串联多个 where: 步骤，只保留全部满足的记录" },
       { "title": "NULL", "description": "筛选某一列的值为 NULL 的记录" },
       { "title": "NOT NULL", "description": "筛选某一列的值不为 NULL 的记录" },
       { "title": "IN 子句", "description": "筛选某一列的值匹配列表中任意一项的记录" },
       { "title": "列间比较", "description": "比较不同列之间的值" },
       { "title": "LIKE", "description": "使用 LIKE 运算符筛选记录" },
-      { "title": "ILIKE", "description": "使用 ILIKE 运算符筛选记录" }
+      { "title": "ILIKE", "description": "使用 ILIKE 运算符筛选记录" },
+      { "title": "满足任一条件", "description": "用 or 连接条件，保留满足其中任意一个的记录" }
     ]
   },
   "select": {

@@ -20,6 +20,13 @@ const Where: React.FC = () => {
       description: t('where.examples.1.description')
     },
     {
+      // Indexed 8, not 2, so the translations' existing keys stay put.
+      title: t('where.examples.8.title'),
+      expression: 'customers | where: first_name = \'John\' or first_name = \'Jane\'',
+      sql: 'SELECT * FROM customers WHERE first_name = \'John\' OR first_name = \'Jane\'',
+      description: t('where.examples.8.description')
+    },
+    {
       title: t('where.examples.2.title'),
       expression: 'customers | where: created_at is null',
       sql: 'SELECT * FROM customers WHERE created_at IS NULL',

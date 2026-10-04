@@ -60,16 +60,17 @@
   },
   "where": {
     "title": "Where",
-    "description": "Filtrerer resultaterne baseret på betingelser.",
+    "description": "Filtrerer resultaterne baseret på betingelser. Inden for én where: forbindes betingelser med or. For at kræve flere betingelser tilføjer du et where:-trin for hver.",
     "examples": [
       { "title": "Betingelse", "description": "Filtrer rækker, hvor en kolonne er lig med en bestemt værdi" },
-      { "title": "Flere betingelser", "description": "Anvend flere filterbetingelser adskilt med komma" },
+      { "title": "Alle betingelser", "description": "Kæd where:-trin sammen for kun at beholde rækker, der opfylder dem alle" },
       { "title": "NULL", "description": "Filtrer rækker med NULL-værdier i en kolonne" },
       { "title": "NOT NULL", "description": "Filtrer rækker med NOT NULL-værdier i en kolonne" },
       { "title": "IN-sætning", "description": "Filtrer rækker, hvor kolonneværdien matcher en af værdierne i en liste" },
       { "title": "Sammenligning af kolonner", "description": "Sammenlign værdier mellem forskellige kolonner" },
       { "title": "LIKE", "description": "Filtrer rækker ved hjælp af LIKE-operatoren" },
-      { "title": "ILIKE", "description": "Filtrer rækker ved hjælp af ILIKE-operatoren" }
+      { "title": "ILIKE", "description": "Filtrer rækker ved hjælp af ILIKE-operatoren" },
+      { "title": "En af betingelserne", "description": "Forbind betingelser med or for at beholde rækker, der opfylder mindst én" }
     ]
   },
   "select": {
