@@ -26,8 +26,18 @@ const DOC_CONTENT_KEYS: Record<string, string> = {
   Variables: 'variables',
 };
 
+// The two sections whose sidebar label no longer derives to their own
+// anchor id: their labels were shortened to "Why?" and "Intro", but the
+// sections keep the ids existing links use (WhyDsl.tsx, PineLang.tsx).
+// Without this, the sidebar pointed at #why? and #intro, which don't
+// exist, so clicking them did nothing.
+const SECTION_IDS: Record<string, string> = {
+  'Why?': 'why-dsl',
+  'Intro': 'pine-lang',
+};
+
 const SECTION_KEYS = Object.keys(documentationComponents).map(key => {
-  const id = key
+  const id = SECTION_IDS[key] ?? key
     .replace(/([A-Z])/g, '-$1')
     .toLowerCase()
     .replace(/^-/, '');
