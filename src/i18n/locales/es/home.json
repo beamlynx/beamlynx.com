@@ -58,19 +58,5 @@
     "panelLabel": "Paneles",
     "showPanel": "Mostrar el panel {{panel}}",
     "hidePanel": "Ocultar el panel {{panel}}"
-  },
-  "more": {
-    "heading": "Más en Beamlynx",
-    "all": "Ver todas las funciones",
-    "items": {
-      "paths": "Indica una tabla y Beamlynx encuentra todas las cadenas de joins que llegan a ella.",
-      "traverse": "Cuenta todo lo que depende de una fila y obtén un script para borrarlo.",
-      "edit": "Cambia valores directamente en los resultados, aunque unan varias tablas.",
-      "access": "Enmascara columnas sensibles dentro de la consulta, así los valores reales nunca salen de la base de datos."
-    }
-  },
-  "closing": {
-    "heading": "Conecta una base de datos y mira qué hay dentro.",
-    "description": "Sin cuenta y sin servidor que configurar. En un Mac, <1>también funciona con Homebrew</1>."
   }
 }

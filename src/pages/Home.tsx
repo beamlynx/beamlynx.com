@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { getLangFromPathname, localizedPath } from "../i18n/paths";
 import { detectOS, isMobileDevice } from "../utils/detectOS";
 import { trackEvent } from "../utils/analytics";
@@ -10,11 +10,10 @@ import TryIt from "../components/home/TryIt";
 const OG_IMAGE = "https://beamlynx.com/og-image.png";
 
 const Home = () => {
-  const { t } = useTranslation(["home", "features"]);
+  const { t } = useTranslation("home");
   const location = useLocation();
   const lang = getLangFromPathname(location.pathname) ?? "en";
   const downloadHref = localizedPath(lang, "/download");
-  const featuresHref = localizedPath(lang, "/features");
   const os = isMobileDevice() ? null : detectOS();
   const downloadLabel = os ? t(`cta.downloadFor.${os}`) : t("cta.download");
 
@@ -87,32 +86,8 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* More: a few features, each linking to its section on /features */}
-      <section className="home-section px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="home-more-head">
-            <h2>{t("more.heading")}</h2>
-            <Link to={featuresHref} className="home-more-all">
-              {t("more.all")} <span aria-hidden="true">→</span>
-            </Link>
-          </div>
-          <div className="home-more">
-            {(["paths", "traverse", "edit", "access"] as const).map(id => (
-              <Link key={id} to={{ pathname: featuresHref, hash: `#${id}` }} className="home-more-card">
-                <h3>{t(`features:items.${id}.title`)}</h3>
-                <p>{t(`more.items.${id}`)}</p>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Closing */}
+      {/* Closing: just the download. The navbar links to Features. */}
       <section className="home-closing px-4 sm:px-6 lg:px-8">
-        <h2>{t("closing.heading")}</h2>
-        <p>
-          <Trans t={t} i18nKey="closing.description" components={{ 1: <Link to={downloadHref} /> }} />
-        </p>
         <div className="flex flex-wrap gap-3 justify-center">
           <DownloadButton source="home_closing" />
         </div>

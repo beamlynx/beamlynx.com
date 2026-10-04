@@ -58,19 +58,5 @@
     "panelLabel": "Panels",
     "showPanel": "Show the {{panel}} panel",
     "hidePanel": "Hide the {{panel}} panel"
-  },
-  "more": {
-    "heading": "More in Beamlynx",
-    "all": "See all features",
-    "items": {
-      "paths": "Name a table, and Beamlynx finds every chain of joins that reaches it.",
-      "traverse": "Count everything that depends on a row, and get a delete script for it.",
-      "edit": "Change values right in the results, even when they join several tables.",
-      "access": "Mask sensitive columns inside the query, so the real values never leave the database."
-    }
-  },
-  "closing": {
-    "heading": "Connect a database and see what's in there.",
-    "description": "No account and no server to set up. On a Mac, <1>Homebrew works too</1>."
   }
 }

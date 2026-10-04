@@ -58,19 +58,5 @@
     "panelLabel": "Paneler",
     "showPanel": "Vis {{panel}}-panelet",
     "hidePanel": "Skjul {{panel}}-panelet"
-  },
-  "more": {
-    "heading": "Mere i Beamlynx",
-    "all": "Se alle funktioner",
-    "items": {
-      "paths": "Angiv en tabel, og Beamlynx finder alle kæder af joins, der når den.",
-      "traverse": "Tæl alt, der afhænger af en række, og få et slettescript til det.",
-      "edit": "Ret værdier direkte i resultaterne, også når de samler flere tabeller.",
-      "access": "Maskér følsomme kolonner inde i forespørgslen, så de rigtige værdier aldrig forlader databasen."
-    }
-  },
-  "closing": {
-    "heading": "Forbind en database, og se hvad der er i den.",
-    "description": "Ingen konto og ingen server at sætte op. På en Mac <1>virker Homebrew også</1>."
   }
 }

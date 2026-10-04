@@ -56,19 +56,5 @@
     "panelLabel": "面板",
     "showPanel": "显示 {{panel}} 面板",
     "hidePanel": "隐藏 {{panel}} 面板"
-  },
-  "more": {
-    "heading": "Beamlynx 还能做什么",
-    "all": "查看全部功能",
-    "items": {
-      "paths": "说出一张表，Beamlynx 会找出所有能到达它的连接链。",
-      "traverse": "统计依赖某一行的所有数据，并生成对应的删除脚本。",
-      "edit": "直接在结果里修改值，即使结果连接了多张表。",
-      "access": "在查询内部遮盖敏感列，真实的值不会离开数据库。"
-    }
-  },
-  "closing": {
-    "heading": "连上一个数据库，看看里面有什么。",
-    "description": "无需账号，也不用搭建服务器。在 Mac 上，<1>也可以用 Homebrew 安装</1>。"
   }
 }
