@@ -48,7 +48,7 @@
     "hintPickTable": "Det er de tabeller, Pine fandt, og appen kan joine dem alle. Denne demo følger {{table}}.",
     "hintWhere": "Klik nu på WHERE over {{table}} for at filtrere den.",
     "hintPickColumn": "Vælg en kolonne at filtrere på, for eksempel unit_price.",
-    "hintValue": "Vælg en operator, skriv en værdi, og tryk Enter. Prøv > 500.",
+    "hintValue": "unit_price > 500 er udfyldt. Tryk Enter for at anvende det, eller ret det først.",
     "actionsLabel": "Handlinger for {{table}}",
     "filterPlaceholder": "filtrér...",
     "close": "Luk",
@@ -57,7 +57,10 @@
     "operator": "Operator",
     "value": "Værdi",
     "apply": "Anvend",
-    "wholeNumber": "Brug et heltal, for eksempel 500. Pine læser et tal uden anførselstegn som et heltal."
+    "wholeNumber": "Brug et heltal, for eksempel 500. Pine læser et tal uden anførselstegn som et heltal.",
+    "panelLabel": "Paneler",
+    "showPanel": "Vis {{panel}}-panelet",
+    "hidePanel": "Skjul {{panel}}-panelet"
   },
   "agents": {
     "heading": "Lad en AI-agent kigge sig omkring. Behold selv nøglerne.",

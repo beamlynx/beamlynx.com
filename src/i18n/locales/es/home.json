@@ -48,7 +48,7 @@
     "hintPickTable": "Estas son las tablas que encontró Pine, y la aplicación puede unir cualquiera. Esta demo sigue {{table}}.",
     "hintWhere": "Ahora haz clic en WHERE sobre {{table}} para filtrarla.",
     "hintPickColumn": "Elige una columna para filtrar, por ejemplo unit_price.",
-    "hintValue": "Elige un operador, escribe un valor y pulsa Enter. Prueba > 500.",
+    "hintValue": "unit_price > 500 ya está escrito. Pulsa Enter para aplicarlo, o cámbialo antes.",
     "actionsLabel": "Acciones de {{table}}",
     "filterPlaceholder": "filtrar...",
     "close": "Cerrar",
@@ -57,7 +57,10 @@
     "operator": "Operador",
     "value": "Valor",
     "apply": "Aplicar",
-    "wholeNumber": "Usa un número entero, como 500. Pine lee un número sin comillas como un entero."
+    "wholeNumber": "Usa un número entero, como 500. Pine lee un número sin comillas como un entero.",
+    "panelLabel": "Paneles",
+    "showPanel": "Mostrar el panel {{panel}}",
+    "hidePanel": "Ocultar el panel {{panel}}"
   },
   "agents": {
     "heading": "Deja que un agente de IA eche un vistazo. Tú te quedas con las llaves.",

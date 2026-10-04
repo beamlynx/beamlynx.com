@@ -121,6 +121,16 @@ body {
   padding-bottom: 6rem;
 }
 
+/* Scrollbars as in the app (beamlynx-ui styles/globals.css): a muted thumb
+   on a transparent track, the accent on hover. scrollbar-color covers
+   Firefox and current Chromium; the ::-webkit rules cover Safari. */
+* { scrollbar-color: var(--bp-text-faint) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: var(--bp-text-faint); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background-color: var(--bp-trace); }
+
 #root {
   min-height: 100%;
   display: flex;
@@ -567,15 +577,45 @@ pre code {
   .ti-grid { grid-template-columns: 1fr 1fr; }
 }
 
+.ti-grid { gap: 8px; padding: 8px; }
+
+/* Left: canvas, with the Pine/SQL panel under it when open - the app's
+   layout. Right: results. */
+.ti-left { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .ti-canvas-cell {
+  position: relative;
+  flex: 1;
   display: flex;
   align-items: center;
+  /* Room for the toolbar, so it never sits on top of a table. */
+  padding: 44px 0 8px;
+  border: 1px solid var(--bp-border);
+  border-radius: 6px;
   background:
     radial-gradient(circle at 1px 1px, var(--bp-grid-dot) 1.2px, transparent 0) 0 0/20px 20px,
     var(--bp-bg);
-  border-bottom: 1px solid var(--bp-border-soft);
 }
-@media (min-width: 900px) { .ti-canvas-cell { border-bottom: 0; border-right: 1px solid var(--bp-border-soft); border-bottom-left-radius: 11px; } }
+.ti-toolbar {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  gap: 2px;
+  padding: 2px 4px;
+  border: 1px solid var(--bp-border);
+  border-radius: 4px;
+  background: var(--bp-panel);
+}
+.ti-toolbar button {
+  height: 22px;
+  padding: 0 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--bp-text-dim);
+}
+.ti-toolbar button.is-active { color: var(--bp-trace); }
+.ti-toolbar button:hover { color: var(--bp-text); }
 .ti-canvas {
   position: relative;
   width: 100%;
@@ -765,8 +805,17 @@ pre code {
 .ti-value-error { margin: 0; font-size: 12px; line-height: 1.4; color: #f7768e; }
 .ti-result td.is-null { color: var(--bp-text-faint); font-style: italic; }
 
-.ti-side { display: flex; flex-direction: column; min-width: 0; }
-.ti-result { overflow: auto; height: 232px; }
+.ti-side {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 280px;
+  border: 1px solid var(--bp-border);
+  border-radius: 6px;
+  background: var(--bp-panel);
+  overflow: hidden;
+}
+.ti-result { flex: 1; overflow: auto; max-height: 520px; }
 .ti-result table {
   width: 100%;
   border-collapse: collapse;
@@ -778,6 +827,7 @@ pre code {
   text-align: left;
   padding: 6px 12px;
   border-bottom: 1px solid var(--bp-border-soft);
+  border-right: 1px solid var(--bp-border-soft);
   white-space: nowrap;
 }
 .ti-result th {
@@ -788,33 +838,69 @@ pre code {
   font-weight: 600;
 }
 .ti-result td { color: var(--bp-text-body); }
-.ti-count { margin: 0; padding: 6px 12px; font-size: 12px; color: var(--bp-text-dim); text-align: right; }
-
-.ti-query { border-top: 1px solid var(--bp-border-soft); display: flex; flex-direction: column; flex: 1; }
-.ti-tabs { display: flex; align-items: center; gap: 2px; padding: 8px 10px 0; }
-.ti-tabs button {
-  font-size: 12.5px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 4px;
+.ti-count {
+  margin: 0;
+  padding: 6px 12px;
+  border-top: 1px solid var(--bp-border-soft);
+  font-size: 12px;
   color: var(--bp-text-dim);
+  text-align: right;
 }
-.ti-tabs button.is-active { background: var(--bp-panel-raised); color: var(--bp-text); }
-.ti-sqlsize { margin-left: auto; font-size: 12px; color: var(--bp-text-dim); }
+
+/* The Pine/SQL panel under the canvas */
+.ti-panel {
+  position: relative;
+  border: 1px solid var(--bp-border);
+  border-radius: 6px;
+  background: var(--bp-panel);
+}
+.ti-panel-switch {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  border: 1px solid var(--bp-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.ti-panel-switch button {
+  padding: 3px 9px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--bp-text);
+  background: var(--bp-bg);
+}
+.ti-panel-switch button.is-active { background: var(--bp-panel-raised); }
 .ti-code {
   margin: 0;
-  padding: 10px 14px 14px;
-  border: 0;
-  background: transparent;
+  padding: 10px 14px 4px 0;
+  list-style: none;
+  counter-reset: line;
+  font-family: var(--font-mono);
   font-size: 12.5px;
   line-height: 1.7;
   color: var(--bp-text);
-  white-space: pre-wrap;
-  word-break: break-word;
-  min-height: 150px;
-  max-height: 230px;
+  max-height: 260px;
   overflow: auto;
 }
+.ti-code li {
+  counter-increment: line;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.ti-code li:first-child { padding-right: 104px; } /* clear of the PINE/SQL switch */
+/* Line numbers, in a gutter, as in the app's editor. */
+.ti-code li::before {
+  content: counter(line);
+  text-align: right;
+  color: var(--bp-text-faint);
+  border-right: 1px solid var(--bp-border-soft);
+  padding-right: 6px;
+}
+.ti-sqlsize { margin: 0; padding: 2px 12px 8px; text-align: right; font-size: 11.5px; color: var(--bp-text-dim); }
 .ti-code .tk-pipe { color: var(--bp-text-dim); }
 .ti-code .tk-op { color: #7dcfff; }
 .ti-code .tk-kw { color: #bb9af7; }

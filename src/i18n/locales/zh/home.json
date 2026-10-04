@@ -46,7 +46,7 @@
     "hintPickTable": "这些是 Pine 找到的表，应用里任何一个都能连接。这个演示走 {{table}}。",
     "hintWhere": "现在点击 {{table}} 上方的 WHERE 来筛选它。",
     "hintPickColumn": "选一个要筛选的列，比如 unit_price。",
-    "hintValue": "选择运算符，输入数值，然后按 Enter。试试 > 500。",
+    "hintValue": "已填好 unit_price > 500。按 Enter 应用，或先修改。",
     "actionsLabel": "{{table}} 的操作",
     "filterPlaceholder": "筛选...",
     "close": "关闭",
@@ -55,7 +55,10 @@
     "operator": "运算符",
     "value": "值",
     "apply": "应用",
-    "wholeNumber": "请输入整数，比如 500。Pine 把不带引号的数字当作整数读取。"
+    "wholeNumber": "请输入整数，比如 500。Pine 把不带引号的数字当作整数读取。",
+    "panelLabel": "面板",
+    "showPanel": "显示 {{panel}} 面板",
+    "hidePanel": "隐藏 {{panel}} 面板"
   },
   "agents": {
     "heading": "让 AI 智能体四处看看，钥匙留在你手里。",

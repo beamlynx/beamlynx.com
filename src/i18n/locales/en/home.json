@@ -48,7 +48,7 @@
     "hintPickTable": "These are the tables Pine found, and the app joins any of them. This demo follows {{table}}.",
     "hintWhere": "Now click WHERE above {{table}} to filter it.",
     "hintPickColumn": "Pick a column to filter on, for example unit_price.",
-    "hintValue": "Choose an operator, type a value, and press Enter. Try > 500.",
+    "hintValue": "unit_price > 500 is filled in. Press Enter to apply it, or change it first.",
     "actionsLabel": "Actions for {{table}}",
     "filterPlaceholder": "filter...",
     "close": "Close",
@@ -57,7 +57,10 @@
     "operator": "Operator",
     "value": "Value",
     "apply": "Apply",
-    "wholeNumber": "Use a whole number, like 500. Pine reads a bare number as a whole number."
+    "wholeNumber": "Use a whole number, like 500. Pine reads a bare number as a whole number.",
+    "panelLabel": "Panels",
+    "showPanel": "Show the {{panel}} panel",
+    "hidePanel": "Hide the {{panel}} panel"
   },
   "agents": {
     "heading": "Let an AI agent look around. Keep the keys.",

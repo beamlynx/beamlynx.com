@@ -36,6 +36,9 @@ const NODES: Record<NodeId, { x: number; y: number; alias: string; joinColumn?: 
 // demo accepts only what Pine would run.
 const PINE_NUMBER = /^[0-9]+$/;
 const OPERATORS = ["=", "!=", ">", "<"] as const;
+// Prefilled so a visitor only has to press Enter. The app starts empty.
+const DEFAULT_OP = ">";
+const DEFAULT_VALUE = "500";
 type Operator = (typeof OPERATORS)[number];
 const compare: Record<Operator, (a: number, b: number) => boolean> = {
   "=": (a, b) => a === b,
@@ -98,10 +101,11 @@ const TryIt = () => {
   const [picker, setPicker] = useState<Picker>(null);
   const [filter, setFilter] = useState("");
   const [highlighted, setHighlighted] = useState(0);
-  const [op, setOp] = useState<Operator>(">");
-  const [value, setValue] = useState("");
+  const [op, setOp] = useState<Operator>(DEFAULT_OP);
+  const [value, setValue] = useState(DEFAULT_VALUE);
   const [valueError, setValueError] = useState(false);
-  const [view, setView] = useState<"pine" | "sql">("pine");
+  // The app's text panel under the canvas: Pine, SQL, or hidden.
+  const [panel, setPanel] = useState<"pine" | "sql" | null>("pine");
 
   const done = where !== null;
   const visible = ORDER.slice(0, step + 1);
@@ -170,7 +174,8 @@ const TryIt = () => {
 
   const pickColumn = (name: string) => {
     moveFocus.current = true;
-    setValue("");
+    setOp(DEFAULT_OP);
+    setValue(DEFAULT_VALUE);
     setValueError(false);
     setPicker({ kind: "where-value", column: name });
   };
@@ -288,7 +293,22 @@ const TryIt = () => {
       </div>
 
       <div className="ti-grid">
+        <div className="ti-left">
         <div className="ti-canvas-cell">
+          <div className="ti-toolbar" role="toolbar" aria-label={t("try.panelLabel")}>
+            {(["pine", "sql"] as const).map(v => (
+              <button
+                key={v}
+                type="button"
+                aria-pressed={panel === v}
+                title={t(panel === v ? "try.hidePanel" : "try.showPanel", { panel: v === "pine" ? "Pine" : "SQL" })}
+                className={panel === v ? "is-active" : ""}
+                onClick={() => setPanel(panel === v ? null : v)}
+              >
+                {v.toUpperCase()}
+              </button>
+            ))}
+          </div>
           <div className="ti-canvas" style={{ aspectRatio: `${W} / ${H}` }}>
             <svg className="ti-traces" viewBox={`0 0 ${W} ${H}`} aria-hidden="true">
               {visible.slice(1).map((id, i) => (
@@ -469,7 +489,28 @@ const TryIt = () => {
           </div>
         </div>
 
-        {/* Result and query */}
+        {panel && (
+          <div className="ti-panel">
+            <div className="ti-panel-switch" role="tablist" aria-label={t("try.queryLabel")}>
+              {(["pine", "sql"] as const).map(v => (
+                <button key={v} type="button" role="tab" aria-selected={panel === v} className={panel === v ? "is-active" : ""} onClick={() => setPanel(v)}>
+                  {v.toUpperCase()}
+                </button>
+              ))}
+            </div>
+            <ol className="ti-code">
+              {(panel === "pine" ? current.expression : formatSql(current.sql).split("\n")).map((l, i) => (
+                <li key={i}>
+                  <span>{panel === "pine" ? highlightPine(l) : highlightSql(l)}</span>
+                </li>
+              ))}
+            </ol>
+            <p className="ti-sqlsize">{t("try.sqlWritten", { count: current.sql.length })}</p>
+          </div>
+        )}
+        </div>
+
+        {/* Results */}
         <div className="ti-side">
           <div className="ti-result" role="region" aria-label={t("try.resultLabel")}>
             <AnimatePresence mode="wait" initial={false}>
@@ -502,31 +543,6 @@ const TryIt = () => {
             </AnimatePresence>
           </div>
           <p className="ti-count">{t("try.rows", { count: current.rows.length })}</p>
-
-          <div className="ti-query">
-            <div className="ti-tabs" role="tablist" aria-label={t("try.queryLabel")}>
-              {(["pine", "sql"] as const).map(v => (
-                <button
-                  key={v}
-                  type="button"
-                  role="tab"
-                  aria-selected={view === v}
-                  className={view === v ? "is-active" : ""}
-                  onClick={() => setView(v)}
-                >
-                  {v === "pine" ? "Pine" : "SQL"}
-                </button>
-              ))}
-              <span className="ti-sqlsize">{t("try.sqlWritten", { count: current.sql.length })}</span>
-            </div>
-            <pre className="ti-code">
-              {view === "pine"
-                ? current.expression.map((l, i) => <div key={i}>{highlightPine(l)}</div>)
-                : formatSql(current.sql)
-                    .split("\n")
-                    .map((l, i) => <div key={i}>{highlightSql(l)}</div>)}
-            </pre>
-          </div>
         </div>
       </div>
     </div>
