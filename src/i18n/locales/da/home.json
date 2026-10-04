@@ -14,22 +14,13 @@
       "windows": "Download til Windows",
       "linux": "Download til Linux"
     },
-    "tryHere": "Prøv det her på siden"
+    "tryHere": "Se hvordan det virker"
   },
   "hero": {
     "titleLine1": "Databaseklienten",
     "titleLine2": "der kender dit skema.",
     "description": "Vælg en tabel, og Beamlynx viser dig alle de tabeller, den hænger sammen med. Klik på en for at joine den, og rækkerne dukker op undervejs. Der er ingen joins at skrive, og forespørgslen står ved siden af tegningen, hvis du hellere vil skrive.",
     "facts": "macOS, Windows og Linux · PostgreSQL og MySQL · Ingen konto"
-  },
-  "showcase": {
-    "caption": "En fungerende kopi af appens lærred. Resultaterne er optaget fra en eksempeldatabase fra en webshop.",
-    "themeLabel": "Appens tema",
-    "themes": {
-      "dark": "Mørkt",
-      "light": "Lyst",
-      "sepia": "Sepia"
-    }
   },
   "try": {
     "stepOf": "Trin {{n}} af {{total}}",

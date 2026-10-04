@@ -14,22 +14,13 @@
       "windows": "下载 Windows 版",
       "linux": "下载 Linux 版"
     },
-    "tryHere": "在本页试一试"
+    "tryHere": "看看怎么用"
   },
   "hero": {
     "titleLine1": "数据库客户端，",
     "titleLine2": "懂你的表结构。",
     "description": "选一张表，Beamlynx 就会列出所有与它相关的表。点一下就能连接，数据随之出现。不用手写 join；想自己写的话，查询就在图的旁边。",
     "facts": "macOS、Windows 和 Linux · PostgreSQL 和 MySQL · 无需账号"
-  },
-  "showcase": {
-    "caption": "这是应用画布的可操作副本。结果录制自一个示例商店数据库。",
-    "themeLabel": "应用主题",
-    "themes": {
-      "dark": "深色",
-      "light": "浅色",
-      "sepia": "棕褐"
-    }
   },
   "try": {
     "stepOf": "第 {{n}} 步，共 {{total}} 步",

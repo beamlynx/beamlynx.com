@@ -48,9 +48,6 @@ const compare: Record<Operator, (a: number, b: number) => boolean> = {
   "<": (a, b) => a < b,
 };
 
-const THEMES = ["dark", "light", "sepia"] as const;
-type Theme = (typeof THEMES)[number];
-
 type Picker = null | { kind: "join" } | { kind: "where-column" } | { kind: "where-value"; column: string };
 type Where = { column: string; op: Operator; value: string };
 type PickerRow = { id: string; label: string; detail?: string; hint?: string; enabled: boolean };
@@ -110,8 +107,6 @@ const TryIt = () => {
   const [valueError, setValueError] = useState(false);
   // The app's text panel under the canvas: Pine, SQL, or hidden.
   const [panel, setPanel] = useState<"pine" | "sql" | null>("pine");
-  // The app's three built-in themes, applied to this copy of its canvas.
-  const [theme, setTheme] = useState<Theme>("dark");
 
   const done = where !== null;
   const visible = ORDER.slice(0, step + 1);
@@ -292,7 +287,7 @@ const TryIt = () => {
 
   return (
     <figure className="ti-figure">
-    <div className={`ti ti-theme-${theme}`}>
+    <div className="ti">
       <div className="ti-bar">
         <p className="ti-hint" aria-live="polite">
           <span className="ti-step">{t("try.stepOf", { n: done ? 4 : step + 1, total: 4 })}</span>
@@ -563,24 +558,6 @@ const TryIt = () => {
         </div>
       </div>
     </div>
-      <figcaption className="shot-caption">
-        <span>{t("showcase.caption")}</span>
-        <span className="shot-themes" role="radiogroup" aria-label={t("showcase.themeLabel")}>
-          {THEMES.map(th => (
-            <button
-              key={th}
-              type="button"
-              role="radio"
-              aria-checked={theme === th}
-              className={`shot-swatch shot-swatch-${th}${theme === th ? " is-active" : ""}`}
-              onClick={() => setTheme(th)}
-            >
-              <span aria-hidden="true" className="shot-dot" />
-              {t(`showcase.themes.${th}`)}
-            </button>
-          ))}
-        </span>
-      </figcaption>
     </figure>
   );
 };

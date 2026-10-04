@@ -14,22 +14,13 @@
       "windows": "Download for Windows",
       "linux": "Download for Linux"
     },
-    "tryHere": "Try it on this page"
+    "tryHere": "See how it works"
   },
   "hero": {
     "titleLine1": "The database client",
     "titleLine2": "that knows your schema.",
     "description": "Pick a table, and Beamlynx shows you every table it connects to. Click one to join it, and the rows appear as you go. There are no joins to write, and the query sits beside the picture if you'd rather type.",
     "facts": "macOS, Windows and Linux · PostgreSQL and MySQL · No account"
-  },
-  "showcase": {
-    "caption": "A working copy of the app's canvas. Its results were recorded from a sample shop database.",
-    "themeLabel": "App theme",
-    "themes": {
-      "dark": "Dark",
-      "light": "Light",
-      "sepia": "Sepia"
-    }
   },
   "try": {
     "stepOf": "Step {{n}} of {{total}}",

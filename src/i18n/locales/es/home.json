@@ -14,22 +14,13 @@
       "windows": "Descargar para Windows",
       "linux": "Descargar para Linux"
     },
-    "tryHere": "Pruébalo en esta página"
+    "tryHere": "Mira cómo funciona"
   },
   "hero": {
     "titleLine1": "El cliente de bases de datos",
     "titleLine2": "que conoce tu esquema.",
     "description": "Elige una tabla y Beamlynx te muestra todas las tablas con las que se relaciona. Haz clic en una para unirla y las filas aparecen a medida que avanzas. No hay joins que escribir, y la consulta está al lado del dibujo por si prefieres escribirla.",
     "facts": "macOS, Windows y Linux · PostgreSQL y MySQL · Sin cuenta"
-  },
-  "showcase": {
-    "caption": "Una copia funcional del lienzo de la aplicación. Sus resultados se grabaron de una base de datos de ejemplo de una tienda.",
-    "themeLabel": "Tema de la aplicación",
-    "themes": {
-      "dark": "Oscuro",
-      "light": "Claro",
-      "sepia": "Sepia"
-    }
   },
   "try": {
     "stepOf": "Paso {{n}} de {{total}}",
