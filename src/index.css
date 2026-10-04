@@ -44,33 +44,32 @@
   src: url('/fonts/ibm-plex-sans-variable.woff2') format('woff2');
 }
 
-/* Base styles - the "schematic/blueprint" identity, reused verbatim from
-   beamlynx-ui's dark --canvas-* tokens (see that repo's styles/colors.ts)
-   rather than invented fresh for the site. Home/Navbar/Footer are the
-   surfaces built against these so far; Documentation/Download/Posts are
-   still on the original light palette below (--color-*) as a deliberate,
-   called-out follow-up rather than a half-finished sweep. */
+/* Base styles - the colours of beamlynx-ui's own dark theme (see
+   styles/palette/themes.ts in that repo), so the site looks like the app
+   it shows. --color-* and --bp-* hold the same values; --color-* is the
+   older set, still read by ColorPaletteContext and a few pages. */
 :root {
-  --color-primary: #dbeeff;
-  --color-secondary: #6f97b5;
-  --color-accent: #4fd1ff;
-  --color-background: #0a1826;
-  --color-text: #dbeeff;
+  --color-primary: #c0caf5;
+  --color-secondary: #8890b5;
+  --color-accent: #7aa2f7;
+  --color-background: #1a1b26;
+  --color-text: #c0caf5;
   --navbar-height: 64px;
 
-  --bp-bg: #0a1826;
-  --bp-grid-dot: #17324b;
-  --bp-panel: #0f2337;
-  --bp-panel-raised: #123554;
-  --bp-border: #22496b;
-  --bp-border-soft: #1a3552;
-  --bp-trace: #4fd1ff;
-  --bp-trace-dim: #2f7fa3;
-  --bp-amber: #f5a623;
-  --bp-text: #dbeeff;
-  --bp-text-dim: #6f97b5;
-  --bp-text-faint: #4a6883;
-  --bp-on-trace: #06131f;
+  --bp-bg: #1a1b26;
+  --bp-grid-dot: #242837;
+  --bp-panel: #1f2335;
+  --bp-panel-raised: #24283b;
+  --bp-border: #363b58;
+  --bp-border-soft: #292e42;
+  --bp-trace: #7aa2f7;
+  --bp-trace-dim: #3d59a1;
+  --bp-amber: #e0af68;
+  --bp-text: #c0caf5;
+  --bp-text-body: #a9b1d6;
+  --bp-text-dim: #8890b5;
+  --bp-text-faint: #565f89;
+  --bp-on-trace: #1a1b26;
 
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
   --font-sans: 'IBM Plex Sans', -apple-system, 'Segoe UI', sans-serif;
@@ -111,22 +110,26 @@ body {
   font-family: var(--font-sans);
   /* Just the flat token here - ColorPaletteContext sets this same color as
      an inline style on mount, which would otherwise silently win over any
-     background declared here. The dot-grid texture itself lives on each
-     page's own wrapper (.bp-page below), not globally on body -- Footer's
-     own background stays flat/gradient on purpose (see Footer.tsx), so it
-     reads as a distinct region rather than a continuation of the page. */
+     background declared here. */
   background: var(--bp-bg);
 }
 
 .bp-page {
-  background:
-    radial-gradient(circle at 1px 1px, var(--bp-grid-dot) 1.4px, transparent 0) 0 0/28px 28px,
-    var(--bp-bg);
-  /* Breathing room before Footer, kept here (inside the dotted area) rather
-     than as a margin on Footer itself, so the dots reach all the way down
-     to it instead of leaving a flat, undotted gap above it. */
+  background: var(--bp-bg);
+  /* Breathing room before Footer, kept here rather than as a margin on
+     Footer itself, so the page background reaches all the way down to it. */
   padding-bottom: 6rem;
 }
+
+/* Scrollbars as in the app (beamlynx-ui styles/globals.css): a muted thumb
+   on a transparent track, the accent on hover. scrollbar-color covers
+   Firefox and current Chromium; the ::-webkit rules cover Safari. */
+* { scrollbar-color: var(--bp-text-faint) transparent; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner { background: transparent; }
+::-webkit-scrollbar-thumb { background-color: var(--bp-text-faint); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background-color: var(--bp-trace); }
 
 #root {
   min-height: 100%;
@@ -136,7 +139,7 @@ body {
 
 /* Typography styles */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-weight: 600;
   line-height: var(--line-height-tight);
   margin-bottom: 1em;
@@ -329,7 +332,7 @@ pre code {
   font-family: var(--font-mono);
   font-size: 0.9em;
   color: var(--bp-text);
-  background-color: rgba(79, 209, 255, 0.14);
+  background-color: rgba(122, 162, 247, 0.14);
   padding: 0.2em 0.4em;
   border-radius: 0.25em;
   white-space: nowrap;
@@ -364,153 +367,586 @@ pre code {
 }
 
 /* ---------------------------------------------------------------------
-   Blueprint/schematic components - new dark chrome for Home, distinct
-   from the .nav-link/.btn-primary/.card set above, which stay untouched
-   for Download.tsx's still-unconverted card. Namespaced .bp- so nothing
-   here can collide with an existing class. See beamlynx-plans/pending
-   for the app-side pass this is unifying the site with.
+   Site components, namespaced .bp- (shared across pages) and .home-/.ti-/
+   .shot- (homepage only). Colours come from the tokens on :root, which
+   are beamlynx-ui's own dark theme (styles/palette/themes.ts there).
+   Mono is for code and data only; everything else is IBM Plex Sans.
    --------------------------------------------------------------------- */
 .bp-eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  letter-spacing: 0.14em;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--bp-trace);
 }
-.bp-eyebrow::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  background: var(--bp-trace);
-  box-shadow: 0 0 0 3px rgba(79, 209, 255, 0.18);
-}
 
 .bp-btn {
-  font-family: var(--font-mono);
-  font-size: 14.5px;
-  letter-spacing: 0.02em;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
   text-decoration: none;
-  padding: 12px 22px;
-  border-radius: 3px;
+  padding: 11px 20px;
+  border-radius: 6px;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 .bp-btn-primary { background: var(--bp-trace); color: var(--bp-on-trace); font-weight: 600; }
-.bp-btn-primary:hover { background: #6fdcff; transform: translateY(-1px); }
+.bp-btn-primary:hover { background: #9ab8ff; transform: translateY(-1px); }
 .bp-btn-ghost { background: transparent; color: var(--bp-text); border: 1px solid var(--bp-border); }
-.bp-btn-ghost:hover { border-color: var(--bp-trace-dim); color: var(--bp-trace); }
+.bp-btn-ghost:hover { border-color: var(--bp-trace); color: var(--bp-trace); }
+.bp-btn:focus-visible,
+.home button:focus-visible,
+.home a:focus-visible { outline: 2px solid var(--bp-trace); outline-offset: 2px; }
 
-.bp-viewport {
-  position: relative;
-  padding: 22px;
+/* --- Homepage ------------------------------------------------------- */
+.home h1, .home h2 { font-family: var(--font-sans); }
+
+.home-hero { padding-top: clamp(48px, 9vw, 104px); }
+.home-title {
+  font-size: clamp(36px, 6.4vw, 76px);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--bp-text);
+  margin: 0;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+.home-title-accent { display: block; color: var(--bp-trace); }
+.home-hero-row {
+  margin-top: 28px;
+  display: grid;
+  gap: 28px;
+  align-items: end;
+}
+@media (min-width: 900px) {
+  .home-hero-row { grid-template-columns: minmax(0, 1fr) auto; gap: 56px; }
+}
+.home-lede {
+  margin: 0;
+  max-width: 54ch;
+  font-size: clamp(17px, 1.6vw, 19px);
+  line-height: 1.6;
+  color: var(--bp-text-body);
+}
+.home-hero-actions { display: flex; flex-direction: column; gap: 14px; }
+@media (min-width: 900px) { .home-hero-actions { align-items: flex-end; } }
+.home-facts { margin: 0; font-size: 13.5px; color: var(--bp-text-dim); line-height: 1.5; }
+
+/* Caption and theme switch under the demo */
+.ti-figure { margin: 0; }
+.shot-caption {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: var(--bp-text-dim);
+}
+.shot-themes { display: inline-flex; gap: 4px; padding: 3px; border: 1px solid var(--bp-border-soft); border-radius: 8px; }
+.shot-swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 11px;
+  border-radius: 5px;
+  font-size: 13.5px;
+  color: var(--bp-text-dim);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.shot-swatch:hover { color: var(--bp-text); }
+.shot-swatch.is-active { background: var(--bp-panel-raised); color: var(--bp-text); }
+.shot-dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.2); }
+.shot-swatch-dark .shot-dot { background: #1a1b26; box-shadow: inset 0 0 0 3px #7aa2f7; }
+.shot-swatch-light .shot-dot { background: #fffcf0; box-shadow: inset 0 0 0 3px #205ea6; }
+.shot-swatch-sepia .shot-dot { background: #f4ecd8; box-shadow: inset 0 0 0 3px #bf6e4e; }
+
+/* Sections */
+/* .home prefix outranks the global section[id] padding above. */
+.home .home-section { padding-top: clamp(72px, 10vw, 128px); padding-bottom: 0; }
+.home-section h2,
+.home-closing h2 {
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--bp-text);
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+.home-section-head { margin-bottom: 28px; }
+.home-section-head p { margin: 0; max-width: 60ch; color: var(--bp-text-body); font-size: 17px; line-height: 1.6; }
+
+/* Agents */
+.home-agents { display: grid; gap: 40px; align-items: center; }
+@media (min-width: 900px) { .home-agents { grid-template-columns: 1.1fr 1fr; gap: 64px; } }
+.home-agents-lede { color: var(--bp-text-body); font-size: 17px; line-height: 1.6; margin: 0 0 22px; max-width: 52ch; }
+.home-agents-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.home-agents-list li {
+  padding-left: 18px;
+  border-left: 2px solid var(--bp-border);
+  color: var(--bp-text-dim);
+  font-size: 16px;
+  line-height: 1.55;
+}
+.home-agents-list strong { color: var(--bp-text); font-weight: 600; }
+.home-agent-card {
   border: 1px solid var(--bp-border);
-  background: linear-gradient(180deg, rgba(18, 53, 84, 0.55), rgba(15, 35, 55, 0.35));
+  border-radius: 10px;
+  background: var(--bp-panel);
+  overflow: hidden;
 }
-.bp-viewport::before,
-.bp-viewport::after,
-.bp-viewport .bp-vp-bl,
-.bp-viewport .bp-vp-br {
-  content: '';
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--bp-trace);
+.home-agent-card-head,
+.home-agent-card-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 13px;
+  color: var(--bp-text-dim);
 }
-.bp-viewport::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
-.bp-viewport::after { top: -1px; right: -1px; border-left: none; border-bottom: none; }
-.bp-viewport .bp-vp-bl { bottom: -1px; left: -1px; border-right: none; border-top: none; }
-.bp-viewport .bp-vp-br { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+.home-agent-card-head { border-bottom: 1px solid var(--bp-border-soft); }
+.home-agent-card-foot { border-top: 1px solid var(--bp-border-soft); font-family: var(--font-mono); font-size: 12.5px; }
+.home-agent-dot { width: 7px; height: 7px; border-radius: 50%; background: #bb9af7; }
+.home-agent-card pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 18px 16px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--bp-text);
+  white-space: pre-wrap;
+}
+.home-agent-card .tk-comment { color: var(--bp-text-dim); font-style: italic; }
 
-.bp-diagram {
+/* Closing */
+.home-closing { padding-top: clamp(96px, 12vw, 160px); text-align: center; }
+.home-closing p { color: var(--bp-text-body); margin: 0 auto 26px; max-width: 60ch; text-wrap: balance; }
+.home-closing p a { color: var(--bp-trace); text-decoration: underline; text-underline-offset: 3px; }
+
+/* --- Interactive demo (TryIt.tsx) ----------------------------------- */
+/* The app's three themes (beamlynx-ui styles/palette/themes.ts), applied
+   by overriding the site tokens inside the demo only. */
+.ti {
+  --ti-current: #283457;
+  --ti-warn: #f7768e;
+  --ti-op: #7dcfff;
+  --ti-kw: #bb9af7;
+}
+.ti-theme-light {
+  --bp-bg: #fffcf0;
+  --bp-grid-dot: #e6e2d3;
+  --bp-panel: #ffffff;
+  --bp-panel-raised: #f2eee0;
+  --bp-border: #ddd9ca;
+  --bp-border-soft: #e6e2d3;
+  --bp-trace: #205ea6;
+  --bp-amber: #ad8301;
+  --bp-text: #100f0f;
+  --bp-text-body: #100f0f;
+  --bp-text-dim: #6f6e69;
+  --bp-text-faint: #9f9d96;
+  --bp-on-trace: #fffcf0;
+  --ti-current: #e4edf7;
+  --ti-warn: #af3029;
+  --ti-op: #205ea6;
+  --ti-kw: #a02f6f;
+}
+.ti-theme-sepia {
+  --bp-bg: #f4ecd8;
+  --bp-grid-dot: #e7d9b4;
+  --bp-panel: #fbf6ea;
+  --bp-panel-raised: #ece0c4;
+  --bp-border: #e3d5b0;
+  --bp-border-soft: #e0d0ac;
+  --bp-trace: #bf6e4e;
+  --bp-amber: #b0791c;
+  --bp-text: #4a3b2a;
+  --bp-text-body: #4a3b2a;
+  --bp-text-dim: #8a7a63;
+  --bp-text-faint: #a8977a;
+  --bp-on-trace: #fbf6ea;
+  --ti-current: #efe2c2;
+  --ti-warn: #b54a3f;
+  --ti-op: #bf6e4e;
+  --ti-kw: #8c5a82;
+}
+.ti { transition: background-color 0.25s ease, border-color 0.25s ease; }
+.ti-theme-light .ti-picker,
+.ti-theme-sepia .ti-picker { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); }
+.ti {
+  border: 1px solid var(--bp-border);
+  border-radius: 12px;
+  background: var(--bp-panel);
+  /* Not overflow: hidden - the picker may hang past the bottom edge, as a
+     popover does. The canvas rounds its own corner instead. */
+}
+.ti-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--bp-border-soft);
+}
+.ti-hint { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--bp-text); }
+.ti-step {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--bp-text-dim);
+  margin-right: 10px;
+  white-space: nowrap;
+}
+.ti-reset { font-size: 13.5px; color: var(--bp-trace); white-space: nowrap; }
+.ti-reset:disabled { color: var(--bp-text-faint); cursor: default; }
+
+.ti-grid { display: grid; }
+@media (min-width: 900px) {
+  .ti-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.ti-grid { gap: 8px; padding: 8px; }
+
+/* Left: canvas, with the Pine/SQL panel under it when open - the app's
+   layout. Right: results. */
+.ti-left { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.ti-canvas-cell {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  /* Room for the toolbar, so it never sits on top of a table. */
+  padding: 44px 0 8px;
+  border: 1px solid var(--bp-border);
+  border-radius: 6px;
+  background:
+    radial-gradient(circle at 1px 1px, var(--bp-grid-dot) 1.2px, transparent 0) 0 0/20px 20px,
+    var(--bp-bg);
+}
+.ti-toolbar {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  display: flex;
+  gap: 2px;
+  padding: 2px 4px;
+  border: 1px solid var(--bp-border);
+  border-radius: 4px;
+  background: var(--bp-panel);
+}
+.ti-toolbar button {
+  height: 22px;
+  padding: 0 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--bp-text-dim);
+}
+.ti-toolbar button.is-active { color: var(--bp-trace); }
+.ti-toolbar button:hover { color: var(--bp-text); }
+.ti-canvas {
+  position: relative;
+  width: 100%;
+  container-type: inline-size;
+  --u: calc(100cqw / 600);
+}
+.ti-traces { position: absolute; inset: 0; width: 100%; height: 100%; }
+.ti-trace { fill: none; stroke: var(--bp-text-faint); stroke-width: 1.5; }
+.ti-trace-ghost { stroke-dasharray: 4 4; opacity: 0.6; }
+
+.ti-node-wrap { position: absolute; }
+.ti-node {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  padding: calc(9 * var(--u)) calc(11 * var(--u));
+  background: var(--bp-panel);
+  border: 1px solid var(--bp-border);
+  /* The app's dark theme notches each table's bottom-left corner. */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 9px 100%, 0 calc(100% - 9px));
+}
+.ti-node.is-current { background: var(--ti-current); border-color: var(--bp-trace); box-shadow: inset 0 0 0 1px var(--bp-trace); }
+.ti-node-name,
+.ti-node-cols { flex-shrink: 0; line-height: 1.25; }
+.ti-node-name {
+  font-size: max(11px, calc(15 * var(--u)));
+  color: var(--bp-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ti-alias { color: var(--bp-text-dim); font-size: 0.78em; }
+.ti-node-cols {
+  display: flex;
+  justify-content: space-between;
+  font-size: max(9px, calc(10.5 * var(--u)));
+  color: var(--bp-text-dim);
+}
+.ti-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(4 * var(--u));
+  margin-top: calc(6 * var(--u));
+}
+.ti-chip-label {
+  font-size: max(8px, calc(9.5 * var(--u)));
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--bp-text-dim);
+  margin-right: 2px;
+}
+.ti-chip {
+  font-size: max(9px, calc(11 * var(--u)));
+  padding: calc(2 * var(--u)) calc(7 * var(--u));
+  background: var(--bp-panel-raised);
+  border: 1px solid var(--bp-border);
+  border-radius: 3px;
+  color: var(--bp-text);
+  white-space: nowrap;
+}
+
+/* The app's action bar above the current table: SELECT | WHERE | JOIN | + */
+.ti-actions {
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  font-size: max(10px, calc(11 * var(--u)));
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.ti-action-item { display: inline-flex; align-items: center; }
+.ti-action-sep { color: var(--bp-text-faint); margin: 0 calc(6 * var(--u)); font-weight: 400; }
+.ti-action { color: var(--bp-text-faint); padding: 1px 3px; border-radius: 3px; }
+.ti-action:disabled { cursor: default; }
+.ti-action.is-live { color: var(--bp-trace); }
+.ti-action.is-live:hover { background: color-mix(in srgb, var(--bp-trace) 14%, transparent); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .ti-pulse { animation: ti-pulse 2.2s ease-out infinite; }
+}
+@keyframes ti-pulse {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--bp-trace) 50%, transparent); }
+  70% { box-shadow: 0 0 0 7px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+/* Picker, modelled on beamlynx-ui's components/canvas/Picker.tsx */
+.ti-canvas { --picker-w: 232px; }
+.ti-picker {
+  position: absolute;
+  z-index: 5;
+  width: var(--picker-w);
+  max-height: 250px;
+  display: flex;
+  flex-direction: column;
+  background: var(--bp-panel);
+  border: 1px solid var(--bp-border);
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  font-size: 13px;
+  color: var(--bp-text);
+}
+.ti-picker-head {
+  flex-shrink: 0;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 7px 7px 6px;
+  border-bottom: 1px solid var(--bp-border);
+}
+.ti-picker-head input,
+.ti-value-row input,
+.ti-value-row select {
+  font: inherit;
+  background: var(--bp-panel-raised);
+  color: var(--bp-text);
+  border: 1px solid var(--bp-border);
+  border-radius: 3px;
+  padding: 3px 6px;
+  min-width: 0;
+}
+.ti-picker-head input { flex: 1; }
+.ti-picker-head input:focus,
+.ti-value-row input:focus,
+.ti-value-row select:focus { outline: none; border-color: var(--bp-trace); }
+.ti-picker-close { color: var(--bp-text-dim); font-size: 16px; line-height: 1; padding: 0 3px; }
+.ti-picker-close:hover { color: var(--bp-text); }
+.ti-picker-body { flex: 1; min-height: 0; overflow: auto; padding: 4px 6px 6px; }
+.ti-picker-group {
+  margin: 6px 0 3px;
+  padding: 1px 0 3px 7px;
+  border-left: 2px solid var(--bp-text-faint);
+  border-bottom: 1px solid var(--bp-border-soft);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--bp-text-dim);
+}
+.ti-group-has { border-left-color: var(--bp-trace); }
+.ti-picker-item {
   display: block;
   width: 100%;
-  height: auto;
-  background:
-    radial-gradient(circle at 1px 1px, var(--bp-border-soft) 1.2px, transparent 0) 0 0/22px 22px,
-    var(--bp-panel);
+  text-align: left;
+  padding: 2px 5px;
+  line-height: 1.45;
+  border-radius: 3px;
+  color: var(--bp-text-faint);
+  cursor: default;
+}
+.ti-picker-item.is-path { color: var(--bp-text); cursor: pointer; }
+.ti-picker-item.is-highlighted { background: var(--bp-panel-raised); }
+/* The row the hint asks for: the accent, like the pulsing JOIN/WHERE. */
+.ti-picker-item.is-suggested {
+  color: var(--bp-trace);
+  /* A bar on the left. Not box-shadow, which the pulse animation uses. */
+  background-image: linear-gradient(var(--bp-trace), var(--bp-trace));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+}
+.ti-picker-row { display: flex; justify-content: space-between; gap: 8px; }
+.ti-picker-detail { opacity: 0.6; }
+.ti-picker-hint { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--bp-text-dim); }
+.ti-picker-empty { padding: 6px 5px; color: var(--bp-text-dim); }
+.ti-picker-foot {
+  flex-shrink: 0;
+  padding: 6px 9px;
+  border-top: 1px solid var(--bp-border-soft);
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: var(--bp-text-dim);
+}
+.ti-picker-value { padding: 8px; gap: 8px; }
+.ti-picker-title { display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 12.5px; }
+.ti-value-row { display: flex; gap: 6px; }
+.ti-value-row select { flex: 0 0 auto; }
+.ti-value-row input { flex: 1; }
+.ti-value-row input[aria-invalid="true"] { border-color: var(--ti-warn); }
+.ti-apply {
+  align-self: flex-end;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 3px;
+  background: var(--bp-trace);
+  color: var(--bp-on-trace);
+}
+.ti-value-error { margin: 0; font-size: 12px; line-height: 1.4; color: var(--ti-warn); }
+.ti-result td.is-null { color: var(--bp-text-faint); font-style: italic; }
+
+.ti-side {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 280px;
+  border: 1px solid var(--bp-border);
+  border-radius: 6px;
+  background: var(--bp-panel);
+  overflow: hidden;
+}
+.ti-result { flex: 1; overflow: auto; max-height: 520px; }
+.ti-result table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+.ti-result th,
+.ti-result td {
+  text-align: left;
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--bp-border-soft);
+  border-right: 1px solid var(--bp-border-soft);
+  white-space: nowrap;
+}
+.ti-result th {
+  position: sticky;
+  top: 0;
+  background: var(--bp-panel-raised);
+  color: var(--bp-text);
+  font-weight: 600;
+}
+.ti-result td { color: var(--bp-text-body); }
+.ti-count {
+  margin: 0;
+  padding: 6px 12px;
+  border-top: 1px solid var(--bp-border-soft);
+  font-size: 12px;
+  color: var(--bp-text-dim);
+  text-align: right;
 }
 
-.bp-query {
-  margin: 14px 0 0;
-  padding: 12px 14px;
+/* The Pine/SQL panel under the canvas */
+.ti-panel {
+  position: relative;
+  border: 1px solid var(--bp-border);
+  border-radius: 6px;
   background: var(--bp-panel);
-  border: 1px solid var(--bp-border-soft);
-  border-radius: 3px;
+}
+.ti-panel-switch {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  border: 1px solid var(--bp-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.ti-panel-switch button {
+  padding: 3px 9px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--bp-text);
+  background: var(--bp-bg);
+}
+.ti-panel-switch button.is-active { background: var(--bp-panel-raised); }
+.ti-code {
+  margin: 0;
+  padding: 10px 14px 4px 0;
+  list-style: none;
+  counter-reset: line;
   font-family: var(--font-mono);
   font-size: 12.5px;
   line-height: 1.7;
-  color: var(--bp-text-dim);
+  color: var(--bp-text);
+  max-height: 260px;
+  overflow: auto;
+}
+.ti-code li {
+  counter-increment: line;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 8px;
   white-space: pre-wrap;
   word-break: break-word;
 }
-.bp-query .tk-pipe { color: var(--bp-trace); }
-.bp-query .tk-kw { color: var(--bp-amber); }
-
-.bp-divider { height: 34px; }
-.bp-divider svg { display: block; width: 100%; height: 100%; }
-
-.bp-legend-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 30px;
-}
-.bp-legend-head h2 {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--bp-text-dim);
-  margin: 0;
-  font-weight: 500;
-}
-.bp-legend-head span {
-  font-family: var(--font-mono);
-  font-size: 12px;
+.ti-code li:first-child { padding-right: 104px; } /* clear of the PINE/SQL switch */
+/* Line numbers, in a gutter, as in the app's editor. */
+.ti-code li::before {
+  content: counter(line);
+  text-align: right;
   color: var(--bp-text-faint);
+  border-right: 1px solid var(--bp-border-soft);
+  padding-right: 6px;
 }
-
-.bp-legend-row {
-  display: grid;
-  grid-template-columns: 28px 1fr;
-  gap: 20px;
-  padding: 22px 0;
-}
-.bp-legend-row:first-child { padding-top: 0; }
-.bp-pin {
-  width: 14px;
-  height: 14px;
-  margin-top: 5px;
-  border-radius: 2px;
-  border: 1.5px solid var(--bp-trace);
-  background: rgba(79, 209, 255, 0.12);
-}
-.bp-pin.amber { border-color: var(--bp-amber); background: rgba(245, 166, 35, 0.14); }
-.bp-pin.dim { border-color: var(--bp-text-dim); background: rgba(111, 151, 181, 0.14); }
-.bp-legend-row h3 {
-  font-family: var(--font-mono);
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 8px;
-  color: var(--bp-text);
-  letter-spacing: 0.01em;
-}
-.bp-legend-row p { margin: 0; color: var(--bp-text-dim); font-size: 15px; max-width: 60ch; }
-
-.bp-closing {
-  border-top: 1px solid var(--bp-border-soft);
-  padding: 64px 0 80px;
-  text-align: center;
-}
-.bp-closing .bp-eyebrow { margin: 0 0 14px; }
-.bp-closing h2 {
-  font-size: clamp(22px, 3vw, 30px);
-  margin: 0 0 26px;
-  text-wrap: balance;
-}
+.ti-sqlsize { margin: 0; padding: 2px 12px 8px; text-align: right; font-size: 11.5px; color: var(--bp-text-dim); }
+.ti-code .tk-pipe { color: var(--bp-text-dim); }
+.ti-code .tk-op { color: var(--ti-op); }
+.ti-code .tk-kw { color: var(--ti-kw); }

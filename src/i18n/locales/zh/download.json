@@ -1,18 +1,18 @@
 {
   "meta": {
-    "title": "beamlynx - 下载",
-    "description": "下载 beamlynx，直观易用的可视化数据库客户端。",
+    "title": "Beamlynx - 下载",
+    "description": "下载 Beamlynx，直观易用的可视化数据库客户端。",
     "ogTitle": "Beamlynx - 下载",
-    "ogDescription": "下载 beamlynx，直观易用的可视化数据库客户端。",
+    "ogDescription": "下载 Beamlynx，直观易用的可视化数据库客户端。",
     "twitterTitle": "Beamlynx - 下载",
-    "twitterDescription": "下载 beamlynx，直观易用的可视化数据库客户端。"
+    "twitterDescription": "下载 Beamlynx，直观易用的可视化数据库客户端。"
   },
   "heading": "下载",
-  "headingBrand": " beamlynx",
+  "headingBrand": " Beamlynx",
   "subheading": "直观易用的可视化数据库客户端。",
-  "playgroundDisabled": "在线演练场目前已关闭。请在下方下载客户端以试用 beamlynx。",
+  "playgroundDisabled": "在线演练场目前已关闭。请在下方下载客户端以试用 Beamlynx。",
   "install": {
-    "mobileWarning": "beamlynx 是一款面向 macOS、Windows 和 Linux 的桌面应用。请在电脑上访问此页面进行安装。",
+    "mobileWarning": "Beamlynx 是一款面向 macOS、Windows 和 Linux 的桌面应用。请在电脑上访问此页面进行安装。",
     "tabs": {
       "mac": "macOS",
       "windows": "Windows",
