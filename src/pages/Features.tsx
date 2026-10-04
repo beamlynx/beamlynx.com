@@ -5,12 +5,15 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { getLangFromPathname, localizedPath } from "../i18n/paths";
 import { trackEvent } from "../utils/analytics";
-import { DEMO_STEPS, JOIN_CANDIDATES } from "../components/home/demoSteps";
+import { DEMO_STEPS, JOIN_CANDIDATES, joinColumnOf } from "../components/home/demoSteps";
+import MiniCanvas from "../components/MiniCanvas";
+import type { MiniEdge, MiniNode } from "../components/MiniCanvas";
 
-// Each feature has a small drawing of the app beside it. They are drawings,
-// not screenshots (the page says so), but every name and value in them is
-// real: join candidates and rows come from demoSteps.ts (recorded Pine
-// output), and the Paths example is the one in pine-lang/docs/paths.md.
+// Each feature has a small drawing of the app beside it, mostly in the
+// style of its canvas. They are drawings, not screenshots (the page says
+// so), but the table names and values in them are real: join candidates and
+// rows come from demoSteps.ts (recorded Pine output), and the Paths example
+// is the one in pine-lang/docs/paths.md.
 
 const OG_IMAGE = "https://beamlynx.com/og-image.png";
 
@@ -18,61 +21,104 @@ const FEATURES = ["joins", "paths", "traverse", "edit", "agents", "access", "sql
 type FeatureId = (typeof FEATURES)[number];
 
 // --- Drawings ---------------------------------------------------------------
+// Canvas drawings in the app's style (MiniCanvas), with as little text as
+// possible: the picture should carry the idea, the paragraph beside it the
+// detail.
 
-const JoinsVisual = () => (
-  // The orders picker: it has both groups, and two routes to the same table.
-  <div className="fv-picker">
-    <div className="fv-picker-head">orders · JOIN</div>
-    {JOIN_CANDIDATES[1].map(g => (
-      <div key={g.label}>
-        <div className={`fv-group${g.label === "has" ? " is-has" : ""}`}>{g.label}</div>
-        {g.items.map(c => (
-          <div key={c.pine} className="fv-item">
-            <span>
-              {c.table}
-              {c.columnHint && <span className="fv-hint"> .{c.columnHint}</span>}
-            </span>
-            <span className="fv-dim">{c.schema}</span>
-          </div>
-        ))}
-      </div>
-    ))}
-  </div>
-);
+const JoinsVisual = () => {
+  // What Pine offers from `orders`: "belongs to" on the left, "has" on the
+  // right, and two routes to customer_addresses told apart by column.
+  const [has, belongsTo] = [JOIN_CANDIDATES[1][0].items, JOIN_CANDIDATES[1][1].items];
+  const nodes: MiniNode[] = [
+    { id: "orders", x: 220, y: 150, label: "orders", alias: "o_1", current: true },
+    ...belongsTo.map((c, i) => ({
+      id: `b${i}`,
+      x: 10,
+      y: 40 + i * 100,
+      label: c.table,
+      detail: c.columnHint ? `.${joinColumnOf(c)}` : undefined,
+      candidate: true,
+    })),
+    ...has.map((c, i) => ({
+      id: `h${i}`,
+      x: 430,
+      y: 30 + i * 78,
+      label: c.table,
+      detail: c.schema === "public" ? undefined : c.schema,
+      candidate: true,
+    })),
+  ];
+  const edges: MiniEdge[] = nodes.slice(1).map(n => ({ from: "orders", to: n.id }));
+  return (
+    <MiniCanvas
+      height={300}
+      nodes={nodes}
+      edges={edges}
+      overlay={
+        <>
+          <span className="mc-tag" style={{ left: "1.7%", top: "2%" }}>belongs to</span>
+          <span className="mc-tag is-accent" style={{ right: "1.7%", top: "0%" }}>has</span>
+        </>
+      }
+    />
+  );
+};
 
 const PathsVisual = () => (
-  <div className="fv-code">
-    <div className="fv-code-in">
-      company <span className="fv-pipe">|</span> <span className="fv-op">?</span> document
-    </div>
-    {["employee .company_id | document .employee_id", "employee .company_id | document .created_by", "document .company_id"].map(
-      route => (
-        <div key={route} className="fv-route">
-          <span className="fv-arrow">→</span> {route}
-        </div>
-      ),
-    )}
-  </div>
+  // The example from pine-lang/docs/paths.md: three routes from company to
+  // document. The one-hop route ranks last (dashed).
+  <MiniCanvas
+    height={270}
+    nodes={[
+      { id: "company", x: 10, y: 66, label: "company", current: true },
+      { id: "document", x: 430, y: 66, label: "document" },
+      { id: "employee", x: 220, y: 186, label: "employee" },
+    ]}
+    edges={[
+      { from: "company", to: "document", dashed: true, offset: -14, label: "ranked last", labelAt: "start" },
+      { from: "company", to: "employee", highlight: true },
+      { from: "employee", to: "document", highlight: true, offset: -8, label: ".employee_id", labelAt: "start" },
+      { from: "employee", to: "document", highlight: true, offset: 8, label: ".created_by", labelAt: "start" },
+    ]}
+    overlay={
+      <span className="mc-query" style={{ left: "1.7%", top: "0%" }}>
+        company <span className="fv-pipe">|</span> <span className="fv-op">?</span> document
+      </span>
+    }
+  />
 );
 
 const TraverseVisual = () => {
   const has = JOIN_CANDIDATES[0].find(g => g.label === "has")?.items ?? [];
+  const deps = [...has].sort((a, b) => Number(a.schema !== "public") - Number(b.schema !== "public")).slice(0, 6);
   return (
-    <div className="fv-panel">
-      <div className="fv-panel-title">traverse · customers</div>
-      <ul className="fv-tree">
-        {has.slice(0, 6).map(c => (
-          <li key={c.pine}>
-            <span className="fv-dim">{c.schema}.</span>
-            {c.table}
-          </li>
-        ))}
-      </ul>
-      <div className="fv-actions">
-        <span className="fv-btn">Count rows</span>
-        <span className="fv-btn">Delete rows…</span>
-      </div>
-    </div>
+    <MiniCanvas
+      height={330}
+      nodes={[
+        {
+          id: "customers",
+          x: 10,
+          y: 135,
+          label: "customers",
+          alias: "c_0",
+          current: true,
+          below: (
+            <div className="mc-menu">
+              <span className="mc-menu-btn">Count rows</span>
+              <span className="mc-menu-btn">Delete rows…</span>
+            </div>
+          ),
+        },
+        ...deps.map((c, i) => ({
+          id: c.table,
+          x: 430,
+          y: 8 + i * 54,
+          label: c.table,
+          detail: c.schema === "public" ? undefined : c.schema,
+        })),
+      ]}
+      edges={deps.map(c => ({ from: "customers", to: c.table }))}
+    />
   );
 };
 
@@ -81,7 +127,15 @@ const EditVisual = () => {
   const cols = ["first_name", "order_number", "status"];
   const idx = cols.map(c => s.columns.indexOf(c));
   return (
-    <div className="fv-grid-wrap">
+    <div className="fv-stack">
+      <MiniCanvas
+        height={110}
+        nodes={[
+          { id: "c", x: 10, y: 20, label: "customers", alias: "c_0" },
+          { id: "o", x: 430, y: 20, label: "orders", alias: "o_1", current: true },
+        ]}
+        edges={[{ from: "c", to: "o" }]}
+      />
       <table className="fv-grid">
         <thead>
           <tr>
@@ -91,80 +145,114 @@ const EditVisual = () => {
           </tr>
         </thead>
         <tbody>
-          {s.rows.slice(0, 4).map((r, i) => (
+          {s.rows.slice(0, 3).map((r, i) => (
             <tr key={i}>
               {idx.map((j, k) => (
                 <td key={k} className={i === 1 && k === 2 ? "is-edited" : undefined}>
-                  {i === 1 && k === 2 ? "delivered" : String(r[j])}
+                  {i === 1 && k === 2 ? "delivered ✓" : String(r[j])}
                 </td>
               ))}
             </tr>
           ))}
         </tbody>
       </table>
-      <div className="fv-toast">✓ Saved</div>
     </div>
   );
 };
 
 const AgentsVisual = () => (
-  <div className="fv-panel">
-    <div className="fv-panel-title">
-      <span className="fv-agent-dot" aria-hidden="true" /> MCP tools
+  <div className="fv-agent">
+    <div className="fv-agent-tab">
+      <span className="fv-agent-dot" aria-hidden="true" /> Agent
     </div>
-    <ul className="fv-tools">
-      {["find_tables", "complete_query", "get_pine_doc", "run_query", "request_reveal", "check_reveal"].map(tool => (
-        <li key={tool}>{tool}</li>
-      ))}
-    </ul>
-    <div className="fv-note">update! · delete! → refused</div>
+    <MiniCanvas
+      height={170}
+      nodes={[
+        { id: "c", x: 10, y: 50, label: "customers", alias: "c_0" },
+        {
+          id: "o",
+          x: 300,
+          y: 50,
+          label: "orders",
+          alias: "o_1",
+          current: true,
+          chips: [["WHERE", ["status = 'pending'"]]],
+        },
+      ]}
+      edges={[{ from: "c", to: "o" }]}
+      overlay={
+        <span className="mc-comment" style={{ left: "1.7%", top: "2%" }}>
+          Which customers have orders still pending?
+        </span>
+      }
+    />
   </div>
 );
 
-const AccessVisual = () => {
-  const s = DEMO_STEPS[0];
-  return (
-    <div className="fv-stack">
-      <table className="fv-grid">
-        <thead>
-          <tr>
-            <th>first_name</th>
-            <th>email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {s.rows.slice(0, 3).map((r, i) => (
-            <tr key={i}>
-              <td>{String(r[0])}</td>
-              <td className="fv-masked">xxxxx</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="fv-approval">
-        <div className="fv-approval-title">Needs approval</div>
-        <div className="fv-dim">Agent asks to see customers.email</div>
-        <div className="fv-actions">
-          <span className="fv-btn is-primary">Approve</span>
-          <span className="fv-btn">Decline</span>
+const AccessVisual = () => (
+  <div className="fv-stack">
+    <MiniCanvas
+      height={120}
+      nodes={[
+        {
+          id: "c",
+          x: 10,
+          y: 14,
+          label: "customers",
+          alias: "c_0",
+          current: true,
+          chips: [["SEL", ["first_name", "🔒 email"]]],
+        },
+      ]}
+      edges={[]}
+      overlay={
+        <div className="fv-approval" style={{ position: "absolute", right: "1.7%", top: "8%" }}>
+          <div className="fv-approval-title">🔒 email</div>
+          <div className="fv-actions">
+            <span className="fv-btn is-primary">Approve</span>
+            <span className="fv-btn">Decline</span>
+          </div>
         </div>
-      </div>
-    </div>
-  );
-};
+      }
+    />
+    <table className="fv-grid">
+      <thead>
+        <tr>
+          <th>first_name</th>
+          <th>email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {DEMO_STEPS[0].rows.slice(0, 3).map((r, i) => (
+          <tr key={i}>
+            <td>{String(r[0])}</td>
+            <td className="fv-masked">xxxxx</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+);
 
 const SqlVisual = () => {
   const s = DEMO_STEPS[1];
   return (
     <div className="fv-stack">
+      <MiniCanvas
+        height={110}
+        nodes={[
+          { id: "c", x: 10, y: 28, label: "customers", alias: "c_0" },
+          { id: "o", x: 430, y: 28, label: "orders", alias: "o_1", current: true },
+        ]}
+        edges={[{ from: "c", to: "o" }]}
+        overlay={
+          <span className="mc-toolbar" style={{ left: "1.7%", top: "4%" }}>
+            <span>PINE</span>
+            <span className="is-active">SQL</span>
+          </span>
+        }
+      />
       <div className="fv-code">
-        <div className="fv-label">Pine</div>
-        {s.expression.map((l, i) => (
-          <div key={i}>{l}</div>
-        ))}
-      </div>
-      <div className="fv-code">
-        <div className="fv-label">SQL</div>
         {s.sql.replace(/ (FROM|JOIN|LIMIT) /g, "\n$1 ").split("\n").map((l, i) => (
           <div key={i}>{l}</div>
         ))}
@@ -173,28 +261,39 @@ const SqlVisual = () => {
   );
 };
 
-const KEYS: [string, string][] = [
-  ["i", "join"],
-  ["w", "where"],
-  ["s", "select"],
-  ["p", "path"],
-  ["j / k", "move"],
-  ["x", "remove"],
-];
+// The action bar marks each action's shortcut key. JOIN's is `i`, as in
+// the app (beamlynx-ui hooks/useCanvasKeybindings.ts).
+const ActionBar = () => (
+  <span className="mc-actionbar">
+    <span><kbd>S</kbd>ELECT</span>
+    <span><kbd>W</kbd>HERE</span>
+    <span>JO<kbd>I</kbd>N</span>
+    <span><kbd>+</kbd></span>
+  </span>
+);
 
 const KeyboardVisual = () => (
-  <div className="fv-panel">
-    <div className="fv-keys">
-      <span className="fv-key is-wide">Ctrl+Shift+P</span>
-      <span className="fv-dim">commands</span>
-      {KEYS.map(([k, what]) => (
-        <span key={k} className="fv-keyrow">
-          <span className="fv-key">{k}</span>
-          <span className="fv-dim">{what}</span>
+  <MiniCanvas
+    height={190}
+    nodes={[
+      { id: "c", x: 10, y: 110, label: "customers", alias: "c_0" },
+      { id: "o", x: 300, y: 110, label: "orders", alias: "o_1", current: true, above: <ActionBar /> },
+    ]}
+    edges={[{ from: "c", to: "o" }]}
+    overlay={
+      <>
+        <span className="mc-keys" style={{ left: "1.7%", top: "4%" }}>
+          <kbd>Ctrl+Shift+P</kbd>
+          <span className="mc-keys-label">commands</span>
         </span>
-      ))}
-    </div>
-  </div>
+        <span className="mc-keys" style={{ left: "31%", top: "80%" }}>
+          <kbd>j</kbd>
+          <kbd>k</kbd>
+          <span className="mc-keys-label">move</span>
+        </span>
+      </>
+    }
+  />
 );
 
 const GridVisual = () => {

@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { DEMO_PATH, DEMO_STEPS, JOIN_CANDIDATES, WHERE_COLUMNS } from "./demoSteps";
+import { DEMO_PATH, DEMO_STEPS, JOIN_CANDIDATES, WHERE_COLUMNS, joinColumnOf } from "./demoSteps";
 import type { Cell } from "./demoSteps";
 import { trackEvent } from "../../utils/analytics";
 
@@ -220,7 +220,7 @@ const TryIt = () => {
                 id: c.pine,
                 label: c.table,
                 detail: c.schema,
-                hint: c.columnHint ? `.${c.columnHint}` : undefined,
+                hint: c.columnHint ? `.${joinColumnOf(c)}` : undefined,
                 enabled: c.pine === DEMO_PATH[step],
               })),
           }))
