@@ -60,16 +60,17 @@
   },
   "where": {
     "title": "Where",
-    "description": "Filters the results based on conditions.",
+    "description": "Filters the results based on conditions. Inside one where:, join conditions with or. To require several conditions, add a where: step for each.",
     "examples": [
       { "title": "Condition", "description": "Filter records where a column equals a specific value" },
-      { "title": "Multiple conditions", "description": "Apply multiple filter conditions with comma separation" },
+      { "title": "Every condition", "description": "Chain where: steps to keep only rows that match all of them" },
       { "title": "NULL", "description": "Filter for records with NULL values in a column" },
       { "title": "NOT NULL", "description": "Filter for records with NOT NULL values in a column" },
       { "title": "IN clause", "description": "Filter for records where column value matches any in a list" },
       { "title": "Column comparison", "description": "Compare values between different columns" },
       { "title": "LIKE", "description": "Filter for records using the LIKE operator" },
-      { "title": "ILIKE", "description": "Filter for records using the ILIKE operator" }
+      { "title": "ILIKE", "description": "Filter for records using the ILIKE operator" },
+      { "title": "Either condition", "description": "Join conditions with or to keep rows that match any of them" }
     ]
   },
   "select": {

@@ -60,16 +60,17 @@
   },
   "where": {
     "title": "Where",
-    "description": "Filtra los resultados según condiciones.",
+    "description": "Filtra los resultados según condiciones. Dentro de un where:, une las condiciones con or. Para exigir varias condiciones, añade un paso where: por cada una.",
     "examples": [
       { "title": "Condición", "description": "Filtra los registros donde una columna es igual a un valor específico" },
-      { "title": "Múltiples condiciones", "description": "Aplica varias condiciones de filtro separándolas con comas" },
+      { "title": "Todas las condiciones", "description": "Encadena pasos where: para quedarte solo con las filas que cumplen todas" },
       { "title": "NULL", "description": "Filtra los registros con valores NULL en una columna" },
       { "title": "NOT NULL", "description": "Filtra los registros con valores NOT NULL en una columna" },
       { "title": "Cláusula IN", "description": "Filtra los registros cuyo valor de columna coincide con alguno de una lista" },
       { "title": "Comparación de columnas", "description": "Compara valores entre columnas distintas" },
       { "title": "LIKE", "description": "Filtra los registros usando el operador LIKE" },
-      { "title": "ILIKE", "description": "Filtra los registros usando el operador ILIKE" }
+      { "title": "ILIKE", "description": "Filtra los registros usando el operador ILIKE" },
+      { "title": "Cualquier condición", "description": "Une las condiciones con or para quedarte con las filas que cumplen alguna" }
     ]
   },
   "select": {
