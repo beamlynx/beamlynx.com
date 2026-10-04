@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Beamlynx - Click through your database",
-    "description": "Beamlynx is a visual database client for PostgreSQL and MySQL. Click from one table to the next and the query writes itself.",
-    "ogTitle": "Beamlynx - Click through your database",
-    "ogDescription": "A visual database client. Click from table to table and the query writes itself.",
-    "twitterTitle": "Beamlynx - Click through your database",
-    "twitterDescription": "A visual database client. Click from table to table and the query writes itself."
+    "title": "Beamlynx - The database client that knows your schema",
+    "description": "Beamlynx is a database client for PostgreSQL and MySQL that knows your schema. Pick a table, and it shows you every table it connects to.",
+    "ogTitle": "Beamlynx - The database client that knows your schema",
+    "ogDescription": "The database client that knows your schema. Pick a table, and it shows you every table it connects to.",
+    "twitterTitle": "Beamlynx - The database client that knows your schema",
+    "twitterDescription": "The database client that knows your schema. Pick a table, and it shows you every table it connects to."
   },
   "cta": {
     "download": "Download Beamlynx",
@@ -17,9 +17,9 @@
     "tryHere": "Try it on this page"
   },
   "hero": {
-    "titleLine1": "Click through your database.",
-    "titleLine2": "The query writes itself.",
-    "description": "Beamlynx draws your tables and how they connect. Pick a table, follow a link to the next one, and the rows appear as you go. The query sits beside the picture, in case you'd rather type.",
+    "titleLine1": "The database client",
+    "titleLine2": "that knows your schema.",
+    "description": "Pick a table, and Beamlynx shows you every table it connects to. Click one to join it, and the rows appear as you go. There are no joins to write, and the query sits beside the picture if you'd rather type.",
     "facts": "macOS, Windows and Linux · PostgreSQL and MySQL · No account"
   },
   "showcase": {

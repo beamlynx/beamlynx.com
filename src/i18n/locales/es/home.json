@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Beamlynx - Recorre tu base de datos con clics",
-    "description": "Beamlynx es un cliente de bases de datos visual para PostgreSQL y MySQL. Haz clic de una tabla a la siguiente y la consulta se escribe sola.",
-    "ogTitle": "Beamlynx - Recorre tu base de datos con clics",
-    "ogDescription": "Un cliente de bases de datos visual. Haz clic de tabla en tabla y la consulta se escribe sola.",
-    "twitterTitle": "Beamlynx - Recorre tu base de datos con clics",
-    "twitterDescription": "Un cliente de bases de datos visual. Haz clic de tabla en tabla y la consulta se escribe sola."
+    "title": "Beamlynx - El cliente de bases de datos que conoce tu esquema",
+    "description": "Beamlynx es un cliente de bases de datos para PostgreSQL y MySQL que conoce tu esquema. Elige una tabla y te muestra todas las tablas con las que se relaciona.",
+    "ogTitle": "Beamlynx - El cliente de bases de datos que conoce tu esquema",
+    "ogDescription": "El cliente de bases de datos que conoce tu esquema. Elige una tabla y te muestra todas las tablas con las que se relaciona.",
+    "twitterTitle": "Beamlynx - El cliente de bases de datos que conoce tu esquema",
+    "twitterDescription": "El cliente de bases de datos que conoce tu esquema. Elige una tabla y te muestra todas las tablas con las que se relaciona."
   },
   "cta": {
     "download": "Descargar Beamlynx",
@@ -17,9 +17,9 @@
     "tryHere": "Pruébalo en esta página"
   },
   "hero": {
-    "titleLine1": "Recorre tu base de datos con clics.",
-    "titleLine2": "La consulta se escribe sola.",
-    "description": "Beamlynx dibuja tus tablas y cómo se relacionan. Elige una tabla, sigue un enlace a la siguiente y las filas aparecen a medida que avanzas. La consulta está al lado del dibujo, por si prefieres escribirla.",
+    "titleLine1": "El cliente de bases de datos",
+    "titleLine2": "que conoce tu esquema.",
+    "description": "Elige una tabla y Beamlynx te muestra todas las tablas con las que se relaciona. Haz clic en una para unirla y las filas aparecen a medida que avanzas. No hay joins que escribir, y la consulta está al lado del dibujo por si prefieres escribirla.",
     "facts": "macOS, Windows y Linux · PostgreSQL y MySQL · Sin cuenta"
   },
   "showcase": {

@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Beamlynx - 点一点，看遍你的数据库",
-    "description": "Beamlynx 是一款支持 PostgreSQL 和 MySQL 的可视化数据库客户端。从一张表点到下一张表，查询语句自动写好。",
-    "ogTitle": "Beamlynx - 点一点，看遍你的数据库",
-    "ogDescription": "一款可视化数据库客户端。在表与表之间点击，查询自动写好。",
-    "twitterTitle": "Beamlynx - 点一点，看遍你的数据库",
-    "twitterDescription": "一款可视化数据库客户端。在表与表之间点击，查询自动写好。"
+    "title": "Beamlynx - 懂你表结构的数据库客户端",
+    "description": "Beamlynx 是一款支持 PostgreSQL 和 MySQL 的数据库客户端，懂你的表结构。选一张表，它会列出所有与它相关的表。",
+    "ogTitle": "Beamlynx - 懂你表结构的数据库客户端",
+    "ogDescription": "懂你表结构的数据库客户端。选一张表，它会列出所有与它相关的表。",
+    "twitterTitle": "Beamlynx - 懂你表结构的数据库客户端",
+    "twitterDescription": "懂你表结构的数据库客户端。选一张表，它会列出所有与它相关的表。"
   },
   "cta": {
     "download": "下载 Beamlynx",
@@ -17,9 +17,9 @@
     "tryHere": "在本页试一试"
   },
   "hero": {
-    "titleLine1": "点一点，看遍你的数据库。",
-    "titleLine2": "查询自动写好。",
-    "description": "Beamlynx 会画出你的表，以及表与表之间的关系。选一张表，顺着关系点到下一张，数据随之出现。查询语句就在图的旁边，想手写也可以。",
+    "titleLine1": "数据库客户端，",
+    "titleLine2": "懂你的表结构。",
+    "description": "选一张表，Beamlynx 就会列出所有与它相关的表。点一下就能连接，数据随之出现。不用手写 join；想自己写的话，查询就在图的旁边。",
     "facts": "macOS、Windows 和 Linux · PostgreSQL 和 MySQL · 无需账号"
   },
   "showcase": {
