@@ -73,6 +73,18 @@
       { "title": "En af betingelserne", "description": "Forbind betingelser med or for at beholde rækker, der opfylder mindst én" }
     ]
   },
+  "json": {
+    "title": "JSON",
+    "description": "Brug en nøgle inde i en json- eller jsonb-kolonne alle steder, hvor en kolonne kan stå: skriv kolonnen og derefter hver nøgle efter et punktum. Det virker i select:, where:, order: og group: på PostgreSQL og MySQL. Nøgler sendes som parametre og indsættes aldrig i SQL'en.",
+    "examples": [
+      { "title": "Hent en værdi", "description": "Hver nøgle står efter et punktum. Resultatkolonnen hedder som stien, medmindre 'as' giver den et andet navn." },
+      { "title": "Filtrér på en værdi", "description": "Værdien afgør, hvordan der sammenlignes: 10 som tal, 'SE' som tekst. '>' og '<' sammenligner kun værdier af samme slags, så en række, hvor seats er teksten '20' eller en boolean, springes over." },
+      { "title": "Manglende nøgler", "description": "'is null' rammer en række uden nøglen og en række, hvor nøglen er null." },
+      { "title": "Gruppér efter en nøgle", "description": "Tæl rækker pr. værdi af en nøgle, som med enhver kolonne." },
+      { "title": "Arrays og usædvanlige nøgler", "description": "[0] er det første element i et array. En nøgle med mellemrum eller andre tegn sættes i anførselstegn." },
+      { "title": "Gennem et alias", "description": "Et navn før det første punktum er et alias, hvis der findes et; ellers er det en kolonne i den aktuelle tabel. Findes begge, vinder aliasset." }
+    ]
+  },
   "select": {
     "title": "Select",
     "description": "Vælg de kolonner, der skal returneres i forespørgselsresultatet.",

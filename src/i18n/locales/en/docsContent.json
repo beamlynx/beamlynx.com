@@ -73,6 +73,18 @@
       { "title": "Either condition", "description": "Join conditions with or to keep rows that match any of them" }
     ]
   },
+  "json": {
+    "title": "JSON",
+    "description": "Use a key inside a json or jsonb column wherever a column goes: write the column, then each key after a dot. It works in select:, where:, order: and group:, on PostgreSQL and MySQL. Keys are sent as parameters, never pasted into the SQL.",
+    "examples": [
+      { "title": "Pick out a value", "description": "Each key follows a dot. The result column is named after the path, unless 'as' names it." },
+      { "title": "Filter on a value", "description": "The value decides how it compares: 10 as a number, 'SE' as text. '>' and '<' only match values of the same kind, so a row whose seats is the text '20' or a boolean is skipped." },
+      { "title": "Missing keys", "description": "'is null' matches a row without the key, and a row where the key is null." },
+      { "title": "Group by a key", "description": "Count rows per value of a key, like any column." },
+      { "title": "Arrays and unusual keys", "description": "[0] is the first element of an array. A key with spaces or other characters is quoted." },
+      { "title": "Through an alias", "description": "A name before the first dot is an alias when one exists, otherwise a column of the current table. If both exist, the alias wins." }
+    ]
+  },
   "select": {
     "title": "Select",
     "description": "Select columns to return in the query result.",
