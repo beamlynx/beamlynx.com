@@ -42,6 +42,12 @@ const Json: React.FC = () => {
       expression: "customer as c | employee | where: c.data.plan = 'pro'",
       sql: "SELECT * FROM customer AS c JOIN employee ON c.id = employee.customer_id WHERE jsonb_extract_path(c.data, 'plan') = '\"pro\"'",
       description: t('json.examples.5.description')
+    },
+    {
+      title: t('json.examples.6.title'),
+      expression: "customer | where: id = 7 | update! data.plan = 'pro', data.seats = 12",
+      sql: "UPDATE customer SET data = jsonb_set(jsonb_set(data, '{plan}', '\"pro\"'), '{seats}', '12') WHERE id = 7",
+      description: t('json.examples.6.description')
     }
   ];
 
@@ -49,7 +55,7 @@ const Json: React.FC = () => {
     <DocumentationSection
       id="json"
       title={t('json.title')}
-      operations={['select:', 'where:', 'order:', 'group:']}
+      operations={['select:', 'where:', 'order:', 'group:', 'update!']}
       syntax="column.key[.key...] | column.'quoted key' | column[index]"
       description={t('json.description')}
       examples={examples}

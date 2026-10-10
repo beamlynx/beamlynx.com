@@ -75,14 +75,15 @@
   },
   "json": {
     "title": "JSON",
-    "description": "在任何可以使用列的地方使用 json 或 jsonb 列中的键：先写列名，再在点号后写每个键。它适用于 select:、where:、order: 和 group:，支持 PostgreSQL 和 MySQL。键作为参数发送，从不直接拼接进 SQL。",
+    "description": "在任何可以使用列的地方使用 json 或 jsonb 列中的键：先写列名，再在点号后写每个键。它适用于 select:、where:、order:、group: 和 update!，支持 PostgreSQL 和 MySQL。键作为参数发送，从不直接拼接进 SQL。",
     "examples": [
       { "title": "取出一个值", "description": "每个键写在点号之后。结果列以路径命名，除非用 'as' 另行命名。" },
       { "title": "按值过滤", "description": "值决定比较方式：10 按数字比较，'SE' 按文本比较。'>' 和 '<' 只比较同一类型的值，因此 seats 为文本 '20' 或布尔值的行会被跳过。" },
       { "title": "缺失的键", "description": "'is null' 匹配没有该键的行，以及该键为 null 的行。" },
       { "title": "按键分组", "description": "像对任何列一样，按某个键的每个值统计行数。" },
       { "title": "数组和特殊键", "description": "[0] 是数组的第一个元素。包含空格或其他字符的键需要加引号。" },
-      { "title": "通过别名", "description": "第一个点号之前的名字如果是已有的别名，就按别名处理；否则是当前表的列。两者都存在时，以别名为准。" }
+      { "title": "通过别名", "description": "第一个点号之前的名字如果是已有的别名，就按别名处理；否则是当前表的列。两者都存在时，以别名为准。" },
+      { "title": "修改一个值", "description": "update! 替换某个键的值，JSON 的其余部分保持不变。值保持你所写的类型：12 是数字，'12' 是文本。在结果中编辑这样的单元格效果相同。" }
     ]
   },
   "select": {
