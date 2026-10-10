@@ -73,6 +73,19 @@
       { "title": "Cualquier condición", "description": "Une las condiciones con or para quedarte con las filas que cumplen alguna" }
     ]
   },
+  "json": {
+    "title": "JSON",
+    "description": "Usa una clave dentro de una columna json o jsonb en cualquier lugar donde va una columna: escribe la columna y luego cada clave después de un punto. Funciona en select:, where:, order:, group: y update!, en PostgreSQL y MySQL. Las claves se envían como parámetros, nunca se pegan en el SQL.",
+    "examples": [
+      { "title": "Extraer un valor", "description": "Cada clave va después de un punto. La columna del resultado se llama como la ruta, salvo que 'as' le dé otro nombre." },
+      { "title": "Filtrar por un valor", "description": "El valor decide cómo se compara: 10 como número, 'SE' como texto. '>' y '<' solo comparan valores del mismo tipo, así que se omite una fila cuyo seats sea el texto '20' o un booleano." },
+      { "title": "Claves que faltan", "description": "'is null' coincide con una fila sin la clave y con una fila donde la clave es null." },
+      { "title": "Agrupar por una clave", "description": "Cuenta filas por cada valor de una clave, como con cualquier columna." },
+      { "title": "Arrays y claves especiales", "description": "[0] es el primer elemento de un array. Una clave con espacios u otros caracteres va entre comillas." },
+      { "title": "A través de un alias", "description": "Un nombre antes del primer punto es un alias si existe; si no, es una columna de la tabla actual. Si existen ambos, gana el alias." },
+      { "title": "Cambiar un valor", "description": "update! reemplaza el valor de una clave y deja el resto del JSON como estaba. El valor conserva el tipo que escribes: 12 es un número, '12' es texto. Editar esa celda en los resultados hace lo mismo." }
+    ]
+  },
   "select": {
     "title": "Select",
     "description": "Selecciona las columnas que se devolverán en el resultado de la consulta.",
