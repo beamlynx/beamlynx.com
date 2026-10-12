@@ -16,6 +16,7 @@ const DOC_CONTENT_KEYS: Record<string, string> = {
   Join: 'join',
   Paths: 'paths',
   Where: 'where',
+  JSON: 'json',
   Select: 'select',
   Order: 'order',
   Limit: 'limit',

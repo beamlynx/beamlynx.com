@@ -7,6 +7,7 @@ const documentationComponents = {
   Join: lazy(() => import('./Join')),
   Paths: lazy(() => import('./Paths')),
   Where: lazy(() => import('./Where')),
+  JSON: lazy(() => import('./Json')),
   Select: lazy(() => import('./Select')),
   Order: lazy(() => import('./Order')),
   Limit: lazy(() => import('./Limit')),
