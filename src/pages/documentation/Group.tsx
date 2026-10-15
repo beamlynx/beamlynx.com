@@ -9,7 +9,7 @@ const Group: React.FC = () => {
   const examples: DocumentationExample[] = [
     {
       title: t('group.examples.0.title'),
-      expression: "categories as c | products .category_id | order_items .product_id | group: c.name => count",
+      expression: "categories as c | products .category_id | order_items .product_id | group: c.name with count",
       sql: "SELECT c.name, COUNT(1) FROM categories as c JOIN products ON c.id = products.category_id JOIN order_items ON products.id = order_items.product_id GROUP BY c.name",
       description: t('group.examples.0.description')
     }
@@ -20,7 +20,7 @@ const Group: React.FC = () => {
       id="group"
       title={t('group.title')}
       operations={['group:', 'g:']}
-      syntax="table_name | group: column_name => function"
+      syntax="table_name | group: column_name with aggregate"
       description={t('group.description')}
       examples={examples}
       isOperation={true}

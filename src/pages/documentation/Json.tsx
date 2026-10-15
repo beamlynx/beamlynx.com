@@ -27,7 +27,7 @@ const Json: React.FC = () => {
     },
     {
       title: t('json.examples.3.title'),
-      expression: 'customer | group: data.plan => count',
+      expression: 'customer | group: data.plan with count',
       sql: "SELECT jsonb_extract_path_text(data, 'plan') AS \"data.plan\", COUNT(*) FROM customer GROUP BY 1",
       description: t('json.examples.3.description')
     },
