@@ -14,6 +14,15 @@ export function useHreflangTags(pathname: string, lang?: string): void {
 
     document.querySelectorAll("link[data-i18n-hreflang]").forEach((el) => el.remove());
 
+    // Each page names its own beamlynx.com address as the one true copy.
+    // This tells search engines which domain to list, even if the page is
+    // reached through an old domain or a URL with extra query parameters.
+    const canonical = document.createElement("link");
+    canonical.rel = "canonical";
+    canonical.href = `${SITE_ORIGIN}${pathname === "/" ? "/" : pathname.replace(/\/$/, "")}`;
+    canonical.setAttribute("data-i18n-hreflang", "true");
+    document.head.appendChild(canonical);
+
     const entries: Array<[string, string]> = [
       ["en", basePath],
       ...SUPPORTED_LOCALES.map(
