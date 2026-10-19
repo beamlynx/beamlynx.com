@@ -2,7 +2,7 @@ import React from "react";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useColorPalette } from "../contexts/ColorPaletteContext";
+import { useColorPalette } from "../contexts/colorPalette";
 import { persistLocale } from "../i18n/detect";
 import { getLangFromPathname, localizedPath, stripLocalePrefix } from "../i18n/paths";
 import type { Locale } from "../i18n/config";

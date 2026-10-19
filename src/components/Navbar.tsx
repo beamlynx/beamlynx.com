@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useColorPalette } from "../contexts/ColorPaletteContext";
+import { useColorPalette } from "../contexts/colorPalette";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackEvent } from "../utils/analytics";
 import { getLangFromPathname, localizedPath, stripLocalePrefix } from "../i18n/paths";

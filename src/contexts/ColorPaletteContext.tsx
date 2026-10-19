@@ -1,26 +1,5 @@
-import React, { createContext, useContext, useMemo, useCallback } from 'react';
-
-interface ColorPalette {
-  primary: string;
-  secondary: string;
-  accent: string;
-  background: string;
-  text: string;
-}
-
-// beamlynx-ui's own dark theme (styles/palette/themes.ts there), so the
-// site's chrome (nav, footer, body colour) matches the app it shows.
-const appDark: ColorPalette = {
-  primary: '#c0caf5',
-  secondary: '#8890b5',
-  accent: '#7aa2f7',
-  background: '#1a1b26',
-  text: '#c0caf5'
-};
-
-const ColorPaletteContext = createContext<ColorPalette>(appDark);
-
-export const useColorPalette = () => useContext(ColorPaletteContext);
+import React, { useMemo, useCallback } from 'react';
+import { appDark, ColorPaletteContext } from './colorPalette';
 
 export const ColorPaletteProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const applyColors = useCallback(() => {
@@ -47,5 +26,3 @@ export const ColorPaletteProvider: React.FC<{ children: React.ReactNode }> = ({ 
     </ColorPaletteContext.Provider>
   );
 };
-
-export default ColorPaletteContext; 

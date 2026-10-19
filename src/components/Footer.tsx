@@ -1,6 +1,6 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { useColorPalette } from '../contexts/ColorPaletteContext';
+import { useColorPalette } from '../contexts/colorPalette';
 import NewsletterSignup from './NewsletterSignup';
 
 const Footer: React.FC = () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import DocSection from "../pages/documentation/DocSection";
-import { useColorPalette } from "../contexts/ColorPaletteContext";
+import { useColorPalette } from "../contexts/colorPalette";
 import { openInPlayground } from "../utils/playground";
 
 export interface DocumentationExample {
