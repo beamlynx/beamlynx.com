@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { useColorPalette } from '../contexts/ColorPaletteContext';
+import { useColorPalette } from '../contexts/colorPalette';
 import { HTML_LANG, type Locale } from '../i18n/config';
 
 const Posts: React.FC = () => {

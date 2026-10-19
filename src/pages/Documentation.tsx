@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, Suspense, useRef } from 'react';
-import { useColorPalette } from '../contexts/ColorPaletteContext';
+import { useColorPalette } from '../contexts/colorPalette';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import documentationComponents from './documentation';
@@ -76,7 +76,7 @@ const Documentation: React.FC = () => {
 
   // Initial setup effect - handles hash navigation and initial active section
   useEffect(() => {
-    const targetId = window.location.hash.substring(1) || SECTIONS[0]?.id;
+    const targetId = window.location.hash.substring(1) || SECTION_KEYS[0]?.id;
     if (!targetId) return;
 
     const observer = new MutationObserver(() => {
@@ -125,7 +125,7 @@ const Documentation: React.FC = () => {
       const triggerLine = window.innerHeight * 0.4;
       let candidateId: string | null = null;
 
-      for (const { id } of SECTIONS) {
+      for (const { id } of SECTION_KEYS) {
         const element = document.getElementById(id);
         if (element && element.getBoundingClientRect().top <= triggerLine) {
           candidateId = id;
@@ -134,7 +134,7 @@ const Documentation: React.FC = () => {
 
       // Above the first section (e.g. page just loaded, not yet scrolled), default to it.
       if (!candidateId) {
-        candidateId = SECTIONS[0]?.id ?? null;
+        candidateId = SECTION_KEYS[0]?.id ?? null;
       }
 
       if (candidateId && candidateId !== activeSectionRef.current) {
@@ -153,7 +153,7 @@ const Documentation: React.FC = () => {
         scrollObserverRef.current.disconnect();
       }
 
-      const sectionElements = SECTIONS.map(({ id }) => document.getElementById(id)).filter(Boolean);
+      const sectionElements = SECTION_KEYS.map(({ id }) => document.getElementById(id)).filter(Boolean);
 
       if (sectionElements.length === 0) {
         // Sections not ready yet, try again after a delay

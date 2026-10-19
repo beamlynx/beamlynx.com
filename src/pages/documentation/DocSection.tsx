@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useColorPalette } from '../../contexts/ColorPaletteContext';
+import { useColorPalette } from '../../contexts/colorPalette';
 
 interface DocSectionProps {
   id: string;
