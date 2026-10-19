@@ -6,6 +6,41 @@
   NODE_VERSION = "20.11.1"
   NPM_VERSION = "10.2.4"
 
+# The site used to live at pine-lang.org. Send every old URL to the same
+# path here with a permanent redirect, so search engines move their listing
+# to beamlynx.com. These only take effect once pine-lang.org and
+# www.pine-lang.org are added as domain aliases of this Netlify site.
+[[redirects]]
+  from = "https://pine-lang.org/*"
+  to = "https://beamlynx.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://pine-lang.org/*"
+  to = "https://beamlynx.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.pine-lang.org/*"
+  to = "https://beamlynx.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.pine-lang.org/*"
+  to = "https://beamlynx.com/:splat"
+  status = 301
+  force = true
+
+# The hosted playground was shut down. Its old URL, still in search results,
+# goes to the demo on the homepage instead of an empty page.
+[[redirects]]
+  from = "/playground"
+  to = "/#try"
+  status = 301
+
 # Redirect all routes to index.html for SPA routing
 [[redirects]]
   from = "/*"
