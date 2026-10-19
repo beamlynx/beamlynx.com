@@ -101,7 +101,7 @@ const Navbar: React.FC = () => {
         <rect x="12" y="4" width="4" height="14" rx="1" fill="currentColor" />
         <rect x="18" y="8" width="4" height="6" rx="1" fill="currentColor" />
       </svg>
-      <span className="text-lg sm:text-xl font-semibold tracking-tight hidden lg:inline whitespace-nowrap">
+      <span className="text-lg sm:text-xl font-semibold tracking-tight whitespace-nowrap">
         Beamlynx
       </span>
     </Link>
@@ -190,12 +190,15 @@ const Navbar: React.FC = () => {
       >
         <div className="flex items-center justify-between h-full">
           {/* Left: Logo */}
-          <div className="w-32 lg:w-48">
+          <div className="shrink-0 lg:w-48">
             <Logo />
           </div>
 
-          {/* Center: Current Page Title - Mobile Only */}
+          {/* Center: Current Page Title - Mobile Only. Not on the homepage,
+              where the logo already says where you are and a lone "Home"
+              reads like a stray tab. */}
           <div className="flex-1 lg:hidden text-center">
+            {currentBasePath !== "/" && (
             <div className="relative inline-block">
               <h1
                 className="text-[14px] sm:text-[15px] font-medium tracking-wide truncate px-2"
@@ -208,6 +211,7 @@ const Navbar: React.FC = () => {
                 style={{ backgroundColor: palette.accent }}
               />
             </div>
+            )}
           </div>
 
           {/* Right: Menu Button (Mobile) or Navigation (Desktop). Fixed width
