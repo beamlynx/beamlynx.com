@@ -9,6 +9,7 @@ const documentationComponents = {
   Where: lazy(() => import('./Where')),
   JSON: lazy(() => import('./Json')),
   Select: lazy(() => import('./Select')),
+  ComputedValues: lazy(() => import('./ComputedValues')),
   Order: lazy(() => import('./Order')),
   Limit: lazy(() => import('./Limit')),
   From: lazy(() => import('./From')),

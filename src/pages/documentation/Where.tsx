@@ -61,6 +61,13 @@ const Where: React.FC = () => {
       expression: 'customers | where: first_name ilike \'jo%\'',
       sql: 'SELECT * FROM customers WHERE first_name ILIKE \'jo%\'',
       description: t('where.examples.7.description')
+    },
+    {
+      title: t('where.examples.9.title'),
+      expression: "customer | where: jsonb_typeof(data) = 'array'",
+      sql: "SELECT * FROM customer WHERE jsonb_typeof(data) = 'array'",
+      description: t('where.examples.9.description'),
+      experimental: true // pine-lang #143, #144
     }
   ];
 

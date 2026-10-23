@@ -18,6 +18,8 @@
     "examples": "Examples",
     "tryIt": "Try it",
     "tryInPlayground": "Try in playground",
-    "becomes": "becomes"
+    "becomes": "becomes",
+    "experimental": "Experimental",
+    "experimentalHint": "Coming in the next release of the app. It may still change."
   }
 }
