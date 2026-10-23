@@ -18,6 +18,8 @@
     "examples": "Eksempler",
     "tryIt": "Prøv det",
     "tryInPlayground": "Prøv i playground",
-    "becomes": "bliver til"
+    "becomes": "bliver til",
+    "experimental": "Eksperimentel",
+    "experimentalHint": "Kommer i næste udgave af appen. Det kan stadig ændre sig."
   }
 }

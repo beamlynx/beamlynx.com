@@ -18,6 +18,8 @@
     "examples": "示例",
     "tryIt": "试一试",
     "tryInPlayground": "在演练场中试用",
-    "becomes": "转换为"
+    "becomes": "转换为",
+    "experimental": "实验性",
+    "experimentalHint": "将在应用的下一个版本中推出，仍可能变化。"
   }
 }

@@ -70,7 +70,8 @@
       { "title": "列间比较", "description": "比较不同列之间的值" },
       { "title": "LIKE", "description": "使用 LIKE 运算符筛选记录" },
       { "title": "ILIKE", "description": "使用 ILIKE 运算符筛选记录" },
-      { "title": "满足任一条件", "description": "用 or 连接条件，保留满足其中任意一个的记录" }
+      { "title": "满足任一条件", "description": "用 or 连接条件，保留满足其中任意一个的记录" },
+      { "title": "列的函数", "description": "条件可以以列的函数开头，并与一个值比较。data => jsonb_typeof = 'array' 的意思相同。" }
     ]
   },
   "json": {
@@ -83,7 +84,10 @@
       { "title": "按键分组", "description": "像对任何列一样，按某个键的每个值统计行数。" },
       { "title": "数组和特殊键", "description": "[0] 是数组的第一个元素。包含空格或其他字符的键需要加引号。" },
       { "title": "通过别名", "description": "第一个点号之前的名字如果是已有的别名，就按别名处理；否则是当前表的列。两者都存在时，以别名为准。" },
-      { "title": "修改一个值", "description": "update! 替换某个键的值，JSON 的其余部分保持不变。值保持你所写的类型：12 是数字，'12' 是文本。在结果中编辑这样的单元格效果相同。" }
+      { "title": "修改一个值", "description": "update! 替换某个键的值，JSON 的其余部分保持不变。值保持你所写的类型：12 是数字，'12' 是文本。在结果中编辑这样的单元格效果相同。" },
+      { "title": "值的类型", "description": "jsonb_typeof 返回 object、array、string、number、boolean 或 null，在每种数据库上名称都相同。缺失的键不返回值。" },
+      { "title": "统计数组的元素", "description": "jsonb_array_length 统计数组中的元素个数。在 PostgreSQL 上，不是数组的值会报错；MySQL 和 SQLite 不返回值。x => f 与 f(x) 的意思相同。" },
+      { "title": "数组，或里面的数组", "description": "当一个值可能不是数组时，先检查类型。在这两个函数内部，键按 JSON 读取，if 的每个分支也是如此。在其他地方键是文本，所以一个 if 若在一个分支返回整列、在另一个分支返回某个键，在 PostgreSQL 上会失败。" }
     ]
   },
   "select": {
@@ -95,13 +99,26 @@
       { "title": "带表限定的选择", "description": "指定每一列在连接中来自哪张表" }
     ]
   },
+  "computedValues": {
+    "title": "计算值",
+    "description": "不只是一列的值：备用值、标记、标签、截取到月份的日期。在 select: 中用 as 给它命名。后续步骤像使用列一样使用这个名称。函数有 coalesce、concat、now，以及日期单位 minute、hour、day、week、month 和 year。在 group: 中，聚合有 count、min、max、sum、avg、any 和 all。",
+    "examples": [
+      { "title": "备用值", "description": "coalesce 返回第一个非空的值。concat 把值拼接成文本，任何一部分为空时结果也为空。" },
+      { "title": "标记", "description": "select: 中的条件是一个真或假的列。" },
+      { "title": "由条件选择的标签", "description": "if ... then ... else 选择一个值。用 else if 串联多个分支。没有 else 时，若没有条件成立，值为空。" },
+      { "title": "箭头", "description": "x => f 就是 f(x)，所以可以在末尾添加步骤来扩展一个值。month、year、day、week、hour 和 minute 把日期截取到该单位。" },
+      { "title": "之后使用名称", "description": "之后的 where:、order:、group: 或 limit: per 像使用列一样使用这个名称。Pine 会在那里再写出一次这个值，因为 SQL 不能在 WHERE 中使用 SELECT 的名称。" },
+      { "title": "每组的合计", "description": "在 group: 中，先写键，然后是 with 和聚合。" }
+    ]
+  },
   "order": {
     "title": "Order",
     "description": "按一个或多个列对结果进行排序。",
     "examples": [
       { "title": "基本排序", "description": "按单个列进行升序排序" },
-      { "title": "降序排序", "description": "使用 desc 关键字进行降序排序" },
-      { "title": "多列排序", "description": "按多个列排序，且可分别指定不同的排序方向" }
+      { "title": "降序排序", "description": "使用 desc 关键字进行降序排序。既不写 asc 也不写 desc 时，默认也是降序。" },
+      { "title": "多列排序", "description": "按多个列排序，且可分别指定不同的排序方向" },
+      { "title": "空值在前", "description": "nulls first 把没有值的行排在最前，nulls last 把它们排在最后。不写时由数据库决定：PostgreSQL 在升序时把它们排在最后，MySQL 和 SQLite 排在最前。" }
     ]
   },
   "limit": {

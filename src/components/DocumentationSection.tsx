@@ -9,6 +9,9 @@ export interface DocumentationExample {
   expression: string;
   sql?: string;
   description?: string;
+  // Shown with an Experimental badge: the example needs a release of the
+  // app that isn't out yet. The release skill removes the flag once it is.
+  experimental?: boolean;
 }
 
 // SQL syntax highlighter component that returns React elements
@@ -200,10 +203,19 @@ const DocumentationSection: React.FC<DocumentationSectionProps> = ({
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <h4 
-                        className="text-lg font-semibold mb-2"
+                        className="text-lg font-semibold mb-2 flex items-center gap-2"
                         style={{ color: palette.primary }}
                       >
                         {example.title}
+                        {example.experimental && (
+                          <span
+                            className="inline-flex items-center font-medium px-2 py-0.5 rounded-md"
+                            style={{ backgroundColor: '#f59e0b1f', color: '#b45309', fontSize: '0.75rem' }}
+                            title={t('section.experimentalHint')}
+                          >
+                            {t('section.experimental').toUpperCase()}
+                          </span>
+                        )}
                       </h4>
                       <p 
                         className="text-sm leading-relaxed"

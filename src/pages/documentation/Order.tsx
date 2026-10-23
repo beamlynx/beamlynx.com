@@ -9,8 +9,8 @@ const Order: React.FC = () => {
   const examples: DocumentationExample[] = [
     {
       title: t('order.examples.0.title'),
-      expression: 'customers | order: email',
-      sql: 'SELECT * FROM customers ORDER BY email',
+      expression: 'customers | order: email asc',
+      sql: 'SELECT * FROM customers ORDER BY email ASC',
       description: t('order.examples.0.description')
     },
     {
@@ -24,6 +24,13 @@ const Order: React.FC = () => {
       expression: 'customers | order: first_name asc, last_name desc',
       sql: 'SELECT * FROM customers ORDER BY first_name ASC, last_name DESC',
       description: t('order.examples.2.description')
+    },
+    {
+      title: t('order.examples.3.title'),
+      expression: 'customers | order: company_id asc nulls first, created_at asc',
+      sql: 'SELECT * FROM customers ORDER BY company_id ASC NULLS FIRST, created_at ASC',
+      description: t('order.examples.3.description'),
+      experimental: true // pine-lang #142
     }
   ];
 

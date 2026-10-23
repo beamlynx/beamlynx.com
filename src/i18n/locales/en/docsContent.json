@@ -70,7 +70,8 @@
       { "title": "Column comparison", "description": "Compare values between different columns" },
       { "title": "LIKE", "description": "Filter for records using the LIKE operator" },
       { "title": "ILIKE", "description": "Filter for records using the ILIKE operator" },
-      { "title": "Either condition", "description": "Join conditions with or to keep rows that match any of them" }
+      { "title": "Either condition", "description": "Join conditions with or to keep rows that match any of them" },
+      { "title": "A function of a column", "description": "A condition can start with a function of a column, compared with a value. data => jsonb_typeof = 'array' means the same." }
     ]
   },
   "json": {
@@ -83,7 +84,10 @@
       { "title": "Group by a key", "description": "Count rows per value of a key, like any column." },
       { "title": "Arrays and unusual keys", "description": "[0] is the first element of an array. A key with spaces or other characters is quoted." },
       { "title": "Through an alias", "description": "A name before the first dot is an alias when one exists, otherwise a column of the current table. If both exist, the alias wins." },
-      { "title": "Change one value", "description": "update! replaces the value at a key and leaves the rest of the JSON as it was. The value keeps the kind you write: 12 is a number, '12' is text. Editing such a cell in the results does the same." }
+      { "title": "Change one value", "description": "update! replaces the value at a key and leaves the rest of the JSON as it was. The value keeps the kind you write: 12 is a number, '12' is text. Editing such a cell in the results does the same." },
+      { "title": "The type of a value", "description": "jsonb_typeof gives object, array, string, number, boolean or null, with the same names on every database. A missing key gives no value." },
+      { "title": "Count an array's items", "description": "jsonb_array_length counts the items in an array. On PostgreSQL, a value that isn't an array is an error; MySQL and SQLite give no value. x => f means the same as f(x)." },
+      { "title": "An array, or an array inside", "description": "Check the type first when a value may not be an array. Inside these two functions a key is read as JSON, and so is each branch of an if. Elsewhere a key is text, so an if that gives the whole column in one branch and a key in another fails on PostgreSQL." }
     ]
   },
   "select": {
@@ -95,13 +99,26 @@
       { "title": "Select with table qualification", "description": "Specify which table each column comes from in joins" }
     ]
   },
+  "computedValues": {
+    "title": "Computed values",
+    "description": "A value that isn't just a column: a fallback, a flag, a label, a date cut to its month. In select:, give it a name with as. Later steps use the name like a column. The functions are coalesce, concat, now and the date units minute, hour, day, week, month and year. In group:, the aggregates are count, min, max, sum, avg, any and all.",
+    "examples": [
+      { "title": "A fallback", "description": "coalesce gives the first value that isn't empty. concat joins values as text, and is empty when any part is." },
+      { "title": "A flag", "description": "A condition in select: is a true or false column." },
+      { "title": "A label chosen by a condition", "description": "if ... then ... else picks a value. Chain branches with else if. Without else, the value is empty when no condition holds." },
+      { "title": "The arrow", "description": "x => f is f(x), so a value grows by adding steps at the end. month, year, day, week, hour and minute cut a date to that unit." },
+      { "title": "Use the name later", "description": "A later where:, order:, group: or limit: per uses the name like a column. Pine writes the value out again there, since SQL can't use a SELECT name in WHERE." },
+      { "title": "Totals per group", "description": "In group:, the keys come first, then with and the aggregates." }
+    ]
+  },
   "order": {
     "title": "Order",
     "description": "Sort the results by one or more columns.",
     "examples": [
       { "title": "Basic ordering", "description": "Sort results by a single column in ascending order" },
-      { "title": "Descending order", "description": "Sort results in descending order using the desc keyword" },
-      { "title": "Multiple columns", "description": "Sort by multiple columns with different sort directions" }
+      { "title": "Descending order", "description": "Sort results in descending order using the desc keyword. Descending is also the default when you write neither asc nor desc." },
+      { "title": "Multiple columns", "description": "Sort by multiple columns with different sort directions" },
+      { "title": "Empty values first", "description": "nulls first puts the rows with no value first, and nulls last puts them last. Without it, each database decides: PostgreSQL puts them last when sorting ascending, MySQL and SQLite put them first." }
     ]
   },
   "limit": {

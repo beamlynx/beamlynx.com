@@ -18,6 +18,8 @@
     "examples": "Ejemplos",
     "tryIt": "Probarlo",
     "tryInPlayground": "Probar en el playground",
-    "becomes": "se convierte en"
+    "becomes": "se convierte en",
+    "experimental": "Experimental",
+    "experimentalHint": "Llega en la próxima versión de la app. Aún puede cambiar."
   }
 }

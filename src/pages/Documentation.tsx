@@ -18,6 +18,7 @@ const DOC_CONTENT_KEYS: Record<string, string> = {
   Where: 'where',
   JSON: 'json',
   Select: 'select',
+  ComputedValues: 'computedValues',
   Order: 'order',
   Limit: 'limit',
   From: 'from',

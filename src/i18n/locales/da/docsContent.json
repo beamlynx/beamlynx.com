@@ -70,7 +70,8 @@
       { "title": "Sammenligning af kolonner", "description": "Sammenlign værdier mellem forskellige kolonner" },
       { "title": "LIKE", "description": "Filtrer rækker ved hjælp af LIKE-operatoren" },
       { "title": "ILIKE", "description": "Filtrer rækker ved hjælp af ILIKE-operatoren" },
-      { "title": "En af betingelserne", "description": "Forbind betingelser med or for at beholde rækker, der opfylder mindst én" }
+      { "title": "En af betingelserne", "description": "Forbind betingelser med or for at beholde rækker, der opfylder mindst én" },
+      { "title": "En funktion af en kolonne", "description": "En betingelse kan starte med en funktion af en kolonne, sammenlignet med en værdi. data => jsonb_typeof = 'array' betyder det samme." }
     ]
   },
   "json": {
@@ -83,7 +84,10 @@
       { "title": "Gruppér efter en nøgle", "description": "Tæl rækker pr. værdi af en nøgle, som med enhver kolonne." },
       { "title": "Arrays og usædvanlige nøgler", "description": "[0] er det første element i et array. En nøgle med mellemrum eller andre tegn sættes i anførselstegn." },
       { "title": "Gennem et alias", "description": "Et navn før det første punktum er et alias, hvis der findes et; ellers er det en kolonne i den aktuelle tabel. Findes begge, vinder aliasset." },
-      { "title": "Ændr én værdi", "description": "update! erstatter værdien ved en nøgle og lader resten af JSON'en være, som den var. Værdien beholder den type, du skriver: 12 er et tal, '12' er tekst. At redigere sådan en celle i resultaterne gør det samme." }
+      { "title": "Ændr én værdi", "description": "update! erstatter værdien ved en nøgle og lader resten af JSON'en være, som den var. Værdien beholder den type, du skriver: 12 er et tal, '12' er tekst. At redigere sådan en celle i resultaterne gør det samme." },
+      { "title": "Typen af en værdi", "description": "jsonb_typeof giver object, array, string, number, boolean eller null, med de samme navne på alle databaser. En manglende nøgle giver ingen værdi." },
+      { "title": "Tæl elementerne i et array", "description": "jsonb_array_length tæller elementerne i et array. På PostgreSQL er en værdi, der ikke er et array, en fejl; MySQL og SQLite giver ingen værdi. x => f betyder det samme som f(x)." },
+      { "title": "Et array, eller et array indeni", "description": "Tjek typen først, når en værdi måske ikke er et array. Inde i de to funktioner læses en nøgle som JSON, og det samme gælder hver gren af en if. Andre steder er en nøgle tekst, så en if, der giver hele kolonnen i én gren og en nøgle i en anden, fejler på PostgreSQL." }
     ]
   },
   "select": {
@@ -95,13 +99,26 @@
       { "title": "Vælg med tabelkvalifikation", "description": "Angiv, hvilken tabel hver kolonne kommer fra ved joins" }
     ]
   },
+  "computedValues": {
+    "title": "Beregnede værdier",
+    "description": "En værdi, der ikke bare er en kolonne: en reserveværdi, et flag, en etiket, en dato skåret ned til måneden. I select: giver du den et navn med as. Senere trin bruger navnet som en kolonne. Funktionerne er coalesce, concat, now og datoenhederne minute, hour, day, week, month og year. I group: er aggregaterne count, min, max, sum, avg, any og all.",
+    "examples": [
+      { "title": "En reserveværdi", "description": "coalesce giver den første værdi, der ikke er tom. concat sætter værdier sammen som tekst og er tom, når en af delene er." },
+      { "title": "Et flag", "description": "En betingelse i select: er en kolonne med sand eller falsk." },
+      { "title": "En etiket valgt af en betingelse", "description": "if ... then ... else vælger en værdi. Kæd grene sammen med else if. Uden else er værdien tom, når ingen betingelse gælder." },
+      { "title": "Pilen", "description": "x => f er f(x), så en værdi vokser ved at tilføje trin til sidst. month, year, day, week, hour og minute skærer en dato ned til den enhed." },
+      { "title": "Brug navnet senere", "description": "Et senere where:, order:, group: eller limit: per bruger navnet som en kolonne. Pine skriver værdien ud igen der, da SQL ikke kan bruge et SELECT-navn i WHERE." },
+      { "title": "Totaler pr. gruppe", "description": "I group: kommer nøglerne først, derefter with og aggregaterne." }
+    ]
+  },
   "order": {
     "title": "Order",
     "description": "Sortér resultaterne efter en eller flere kolonner.",
     "examples": [
       { "title": "Grundlæggende sortering", "description": "Sortér resultater efter én kolonne i stigende rækkefølge" },
-      { "title": "Faldende rækkefølge", "description": "Sortér resultater i faldende rækkefølge ved hjælp af nøgleordet desc" },
-      { "title": "Flere kolonner", "description": "Sortér efter flere kolonner med forskellige sorteringsretninger" }
+      { "title": "Faldende rækkefølge", "description": "Sortér resultater i faldende rækkefølge ved hjælp af nøgleordet desc. Faldende er også standard, når du hverken skriver asc eller desc." },
+      { "title": "Flere kolonner", "description": "Sortér efter flere kolonner med forskellige sorteringsretninger" },
+      { "title": "Tomme værdier først", "description": "nulls first sætter rækkerne uden værdi først, og nulls last sætter dem sidst. Uden det bestemmer databasen: PostgreSQL sætter dem sidst ved stigende sortering, MySQL og SQLite sætter dem først." }
     ]
   },
   "limit": {

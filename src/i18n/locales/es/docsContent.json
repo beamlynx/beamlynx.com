@@ -70,7 +70,8 @@
       { "title": "Comparación de columnas", "description": "Compara valores entre columnas distintas" },
       { "title": "LIKE", "description": "Filtra los registros usando el operador LIKE" },
       { "title": "ILIKE", "description": "Filtra los registros usando el operador ILIKE" },
-      { "title": "Cualquier condición", "description": "Une las condiciones con or para quedarte con las filas que cumplen alguna" }
+      { "title": "Cualquier condición", "description": "Une las condiciones con or para quedarte con las filas que cumplen alguna" },
+      { "title": "Una función de una columna", "description": "Una condición puede empezar con una función de una columna, comparada con un valor. data => jsonb_typeof = 'array' significa lo mismo." }
     ]
   },
   "json": {
@@ -83,7 +84,10 @@
       { "title": "Agrupar por una clave", "description": "Cuenta filas por cada valor de una clave, como con cualquier columna." },
       { "title": "Arrays y claves especiales", "description": "[0] es el primer elemento de un array. Una clave con espacios u otros caracteres va entre comillas." },
       { "title": "A través de un alias", "description": "Un nombre antes del primer punto es un alias si existe; si no, es una columna de la tabla actual. Si existen ambos, gana el alias." },
-      { "title": "Cambiar un valor", "description": "update! reemplaza el valor de una clave y deja el resto del JSON como estaba. El valor conserva el tipo que escribes: 12 es un número, '12' es texto. Editar esa celda en los resultados hace lo mismo." }
+      { "title": "Cambiar un valor", "description": "update! reemplaza el valor de una clave y deja el resto del JSON como estaba. El valor conserva el tipo que escribes: 12 es un número, '12' es texto. Editar esa celda en los resultados hace lo mismo." },
+      { "title": "El tipo de un valor", "description": "jsonb_typeof da object, array, string, number, boolean o null, con los mismos nombres en todas las bases de datos. Una clave que falta no da ningún valor." },
+      { "title": "Contar los elementos de un array", "description": "jsonb_array_length cuenta los elementos de un array. En PostgreSQL, un valor que no es un array es un error; MySQL y SQLite no dan ningún valor. x => f significa lo mismo que f(x)." },
+      { "title": "Un array, o un array dentro", "description": "Comprueba primero el tipo cuando un valor puede no ser un array. Dentro de estas dos funciones una clave se lee como JSON, y también cada rama de un if. En otros sitios una clave es texto, así que un if que da la columna entera en una rama y una clave en otra falla en PostgreSQL." }
     ]
   },
   "select": {
@@ -95,13 +99,26 @@
       { "title": "Seleccionar con calificación de tabla", "description": "Especifica de qué tabla proviene cada columna en las uniones" }
     ]
   },
+  "computedValues": {
+    "title": "Valores calculados",
+    "description": "Un valor que no es solo una columna: un valor de respaldo, una marca, una etiqueta, una fecha recortada a su mes. En select:, dale un nombre con as. Los pasos siguientes usan el nombre como una columna. Las funciones son coalesce, concat, now y las unidades de fecha minute, hour, day, week, month y year. En group:, los agregados son count, min, max, sum, avg, any y all.",
+    "examples": [
+      { "title": "Un valor de respaldo", "description": "coalesce da el primer valor que no está vacío. concat une valores como texto, y está vacío cuando alguna parte lo está." },
+      { "title": "Una marca", "description": "Una condición en select: es una columna de verdadero o falso." },
+      { "title": "Una etiqueta elegida por una condición", "description": "if ... then ... else elige un valor. Encadena ramas con else if. Sin else, el valor está vacío cuando no se cumple ninguna condición." },
+      { "title": "La flecha", "description": "x => f es f(x), así que un valor crece añadiendo pasos al final. month, year, day, week, hour y minute recortan una fecha a esa unidad." },
+      { "title": "Usar el nombre después", "description": "Un where:, order:, group: o limit: per posterior usa el nombre como una columna. Pine vuelve a escribir el valor allí, porque SQL no puede usar un nombre del SELECT en WHERE." },
+      { "title": "Totales por grupo", "description": "En group:, primero van las claves, luego with y los agregados." }
+    ]
+  },
   "order": {
     "title": "Order",
     "description": "Ordena los resultados por una o más columnas.",
     "examples": [
       { "title": "Ordenamiento básico", "description": "Ordena los resultados por una sola columna en orden ascendente" },
-      { "title": "Orden descendente", "description": "Ordena los resultados en orden descendente usando la palabra clave desc" },
-      { "title": "Múltiples columnas", "description": "Ordena por varias columnas con distintas direcciones de orden" }
+      { "title": "Orden descendente", "description": "Ordena los resultados en orden descendente usando la palabra clave desc. El orden descendente también es el predeterminado si no escribes asc ni desc." },
+      { "title": "Múltiples columnas", "description": "Ordena por varias columnas con distintas direcciones de orden" },
+      { "title": "Valores vacíos primero", "description": "nulls first pone primero las filas sin valor, y nulls last las pone al final. Sin esto, decide cada base de datos: PostgreSQL las pone al final al ordenar de forma ascendente, MySQL y SQLite al principio." }
     ]
   },
   "limit": {
