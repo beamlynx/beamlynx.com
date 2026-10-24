@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "title": "Privatliv · Beamlynx",
+    "description": "Hvad Beamlynx indsamler, hvorfor, og hvordan du slår det fra. Dine databaser, forespørgsler og data forlader aldrig din computer."
+  },
+  "heading": "Privatliv",
+  "intro": "Beamlynx er lavet af Grephyte ApS, et dansk selskab (CVR 37931535). Denne side fortæller, hvad vi indsamler, hvorfor, og hvordan du stopper det. Spørgsmål sendes til contact@grephyte.com.",
+  "updated": "Senest opdateret 24. oktober 2026.",
+  "sections": [
+    {
+      "title": "Dine databaser bliver på din computer",
+      "paragraphs": [
+        "Beamlynx-appen kører på din computer. Dine forespørgsler, dine forbindelser og deres adgangskoder og de data, du ser, forlader den aldrig. Vi kan ikke se dem."
+      ]
+    },
+    {
+      "title": "Brugsstatistik i appen",
+      "paragraphs": [
+        "Desktop-appen sender nogle få anonyme hændelser: når den åbner, når du tilføjer en forbindelse (kun databasetypen, fx PostgreSQL), og når en forespørgsel kører (kun om du eller en AI-agent kørte den, og om den var i Pine eller SQL). Hver hændelse indeholder også appens version, styresystem og processortype.",
+        "PostHog modtager hændelserne og registrerer dit land ud fra din IP-adresse. Hændelserne er knyttet til et tilfældigt ID, der er lavet på din computer, ikke til dig, medmindre du logger ind.",
+        "Appen fortæller dig om det første gang, den starter, før noget bliver sendt. Du kan slå det fra der, eller når som helst under Indstillinger → Præferencer → Send usage stats."
+      ]
+    },
+    {
+      "title": "Log ind",
+      "paragraphs": [
+        "Appen spørger én gang, om du vil logge ind med GitHub eller Google. Det er frivilligt, og appen virker på samme måde uanset hvad.",
+        "Hvis du logger ind, gemmer vi din e-mailadresse, navnet på kontoen, hvilken af de to du brugte, hvornår du første og sidste gang brugte Beamlynx, og din appversion og dit styresystem. Din brugsstatistik bliver derefter knyttet til dig. Vi bruger det til at vide, hvem der bruger Beamlynx."
+      ]
+    },
+    {
+      "title": "Denne hjemmeside",
+      "paragraphs": [
+        "beamlynx.com tæller sidevisninger og klik med PostHog. Hvis du tilmelder dig nyhedsbrevet, gemmer Substack din e-mailadresse og sender nyhedsbrevet, og dine besøg her bliver knyttet til den adresse i PostHog."
+      ]
+    },
+    {
+      "title": "Hvem der behandler det",
+      "paragraphs": [
+        "PostHog gemmer brugsstatistik og besøg på hjemmesiden, og Supabase gemmer log ind. Begge gemmer det i EU. GitHub og Google står for selve log ind under deres egne privatlivspolitikker. Substack står for nyhedsbrevet. Vi sælger ikke dine data og deler dem ikke med andre."
+      ]
+    },
+    {
+      "title": "Hvorfor vi må",
+      "paragraphs": [
+        "Vi tæller brug og besøg, fordi vi har en legitim interesse i at vide, hvordan Beamlynx bliver brugt, og du kan slå det fra. Vi gemmer dit log ind, fordi du har valgt at logge ind."
+      ]
+    },
+    {
+      "title": "Dine rettigheder",
+      "paragraphs": [
+        "Skriv til contact@grephyte.com for at se, hvad vi har om dig, eller for at få det slettet. Når du logger ud af appen, bliver ny brug ikke længere knyttet til dig, men det, der er gemt, bliver ikke slettet.",
+        "Vi gemmer data, indtil du beder os om at slette dem, eller indtil Beamlynx lukker. Du kan også klage til Datatilsynet."
+      ]
+    }
+  ]
+}

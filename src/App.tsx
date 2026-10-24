@@ -18,6 +18,7 @@ const Home = lazy(() => import('./pages/Home'));
 const Posts = lazy(() => import('./pages/Posts'));
 const Download = lazy(() => import('./pages/Download'));
 const Features = lazy(() => import('./pages/Features'));
+const Privacy = lazy(() => import('./pages/Privacy'));
 
 // Old URL from before the "Getting Started" -> "Download" rename, locale-aware.
 const LocaleSetupRedirect = () => {
@@ -61,6 +62,7 @@ const AppContent = () => {
                 <Route path="/docs" element={<Documentation />} />
                 <Route path="/posts" element={<Posts />} />
                 <Route path="/download" element={<Download />} />
+                <Route path="/privacy" element={<Privacy />} />
                 {/* Old URL from before the "Getting Started" -> "Download" rename */}
                 <Route path="/setup" element={<Navigate to="/download" replace />} />
               </Route>
@@ -71,6 +73,7 @@ const AppContent = () => {
                 <Route path="docs" element={<Documentation />} />
                 <Route path="posts" element={<Posts />} />
                 <Route path="download" element={<Download />} />
+                <Route path="privacy" element={<Privacy />} />
                 <Route path="setup" element={<LocaleSetupRedirect />} />
               </Route>
             </Routes>
