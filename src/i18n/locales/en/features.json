@@ -24,7 +24,7 @@
     },
     "access": {
       "title": "Access control",
-      "body": "Limit what AI agents can do. They can only read, and columns you mask show as xxxxx, so the real values never leave the database. An agent that needs a masked column has to ask you first. Agents connect through Beamlynx's built-in MCP server, which is experimental."
+      "body": "Limit what AI agents can do. They can only read, and columns you mask show to them as xxxxx. An agent that needs a masked column has to ask you first. Access control lowers what an agent sees, but it isn't a security guarantee, so only connect agents to data you're willing to share with their AI provider. Agents connect through Beamlynx's built-in MCP server, which is experimental."
     },
     "sql": {
       "title": "The SQL is always there",

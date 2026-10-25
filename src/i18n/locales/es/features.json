@@ -24,7 +24,7 @@
     },
     "access": {
       "title": "Control de acceso",
-      "body": "Limita lo que pueden hacer los agentes de IA. Solo pueden leer, y las columnas que enmascaras aparecen como xxxxx, así que los valores reales nunca salen de la base de datos. Un agente que necesita una columna enmascarada tiene que pedírtelo antes. Los agentes se conectan a través del servidor MCP integrado de Beamlynx, que es experimental."
+      "body": "Limita lo que pueden hacer los agentes de IA. Solo pueden leer, y las columnas que enmascaras les aparecen como xxxxx. Un agente que necesita una columna enmascarada tiene que pedírtelo antes. El control de acceso reduce lo que ve un agente, pero no es una garantía de seguridad, así que conecta agentes solo a datos que estés dispuesto a compartir con su proveedor de IA. Los agentes se conectan a través del servidor MCP integrado de Beamlynx, que es experimental."
     },
     "sql": {
       "title": "El SQL siempre está a mano",

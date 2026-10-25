@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Vilkår · Beamlynx",
+    "description": "Vilkårene for at bruge Beamlynx og beamlynx.com: det er gratis, det leveres, som det er, og du bestemmer, hvad dine databaser og AI-agenter deler."
+  },
+  "heading": "Vilkår for brug",
+  "intro": "Disse vilkår gælder, når du bruger Beamlynx-appen eller beamlynx.com. Beamlynx er lavet af Grephyte ApS, et dansk selskab (CVR 37931535). Spørgsmål sendes til <email/>.",
+  "updated": "Senest opdateret 25. oktober 2026.",
+  "sections": [
+    {
+      "title": "Beamlynx er gratis og leveres, som det er",
+      "paragraphs": [
+        "Beamlynx er gratis. Det leveres, som det er, uden nogen garanti. Det kan have fejl, og det passer måske ikke til det, du bruger det til.",
+        "Vi kan til enhver tid ændre Beamlynx eller holde op med at tilbyde det eller dets log ind."
+      ]
+    },
+    {
+      "title": "Dine databaser er dit ansvar",
+      "paragraphs": [
+        "Beamlynx kører på din computer og sender aldrig dine databaser, forespørgsler eller data til os.",
+        "Du bestemmer, hvilke databaser du forbinder, og hvad du kører på dem. Tag backup, og prøv ændringer et sikkert sted, før du kører dem på data, der betyder noget."
+      ]
+    },
+    {
+      "title": "AI-agenter",
+      "paragraphs": [
+        "Når du forbinder en AI-agent, bestemmer du, hvad den må læse. Det, den læser, går til agenten og dens AI-udbyder under udbyderens vilkår. Vi ser det ikke, og vi har ingen kontrol over, hvad der sker med det dér.",
+        "Adgangspolitikker begrænser, hvad en agent kan se, men de er ingen sikkerhedsgaranti og kan have fejl. Forbind kun agenter til data, du må og vil dele med deres udbyder, og følg din organisations regler for det."
+      ]
+    },
+    {
+      "title": "Licensen",
+      "paragraphs": [
+        "Beamlynx' kode er licenseret under <licence>PolyForm Noncommercial License 1.0.0</licence>. Disse vilkår ændrer ikke licensen."
+      ]
+    },
+    {
+      "title": "Log ind",
+      "paragraphs": [
+        "Det er frivilligt at logge ind. <privacy>Privatlivssiden</privacy> fortæller, hvad vi gemmer, når du gør. Vi kan til enhver tid lukke en konto eller stoppe log ind."
+      ]
+    },
+    {
+      "title": "Ansvar",
+      "paragraphs": [
+        "I det omfang loven tillader det, er Grephyte ApS ikke ansvarlig for tab ved brug af Beamlynx. Det gælder også data, der bliver tabt, ændret eller afsløret, og data, som en AI-agent læser eller giver videre.",
+        "Intet i disse vilkår begrænser de rettigheder, du har som forbruger efter loven, og som ikke kan begrænses."
+      ]
+    },
+    {
+      "title": "Ændringer og lovvalg",
+      "paragraphs": [
+        "Vi kan opdatere disse vilkår. Datoen øverst viser den seneste version.",
+        "Dansk ret gælder, og tvister afgøres ved de danske domstole."
+      ]
+    }
+  ]
+}

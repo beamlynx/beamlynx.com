@@ -24,7 +24,7 @@
     },
     "access": {
       "title": "Adgangskontrol",
-      "body": "Begræns, hvad AI-agenter kan gøre. De kan kun læse, og kolonner, du maskerer, vises som xxxxx, så de rigtige værdier aldrig forlader databasen. En agent, der har brug for en maskeret kolonne, skal spørge dig først. Agenter forbinder sig gennem Beamlynx' indbyggede MCP-server, som er eksperimentel."
+      "body": "Begræns, hvad AI-agenter kan gøre. De kan kun læse, og kolonner, du maskerer, vises for dem som xxxxx. En agent, der har brug for en maskeret kolonne, skal spørge dig først. Adgangskontrol begrænser, hvad en agent ser, men er ingen sikkerhedsgaranti, så forbind kun agenter til data, du er villig til at dele med deres AI-udbyder. Agenter forbinder sig gennem Beamlynx' indbyggede MCP-server, som er eksperimentel."
     },
     "sql": {
       "title": "SQL'en er der altid",
