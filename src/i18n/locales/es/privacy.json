@@ -4,7 +4,7 @@
     "description": "Qué recoge Beamlynx, por qué y cómo desactivarlo. Tus bases de datos, consultas y datos nunca salen de tu ordenador."
   },
   "heading": "Privacidad",
-  "intro": "Beamlynx lo hace Grephyte ApS, una empresa danesa (CVR 37931535). Esta página explica qué recogemos, por qué y cómo detenerlo. Escribe tus preguntas a contact@grephyte.com.",
+  "intro": "Beamlynx lo hace Grephyte ApS, una empresa danesa (CVR 37931535). Esta página explica qué recogemos, por qué y cómo detenerlo. Escribe tus preguntas a <email/>.",
   "updated": "Última actualización: 24 de octubre de 2026.",
   "sections": [
     {
@@ -49,7 +49,7 @@
     {
       "title": "Tus derechos",
       "paragraphs": [
-        "Escribe a contact@grephyte.com para ver qué datos tenemos sobre ti o para que los borremos. Cerrar sesión en la app deja de ligar el uso nuevo a ti, pero no borra lo que ya está guardado.",
+        "Escribe a <email/> para ver qué datos tenemos sobre ti o para que los borremos. Cerrar sesión en la app deja de ligar el uso nuevo a ti, pero no borra lo que ya está guardado.",
         "Guardamos los datos hasta que nos pidas borrarlos o hasta que Beamlynx deje de existir. También puedes reclamar ante la autoridad danesa de protección de datos (Datatilsynet)."
       ]
     }

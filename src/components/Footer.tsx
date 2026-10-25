@@ -1,5 +1,6 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import ContactEmail from './ContactEmail';
 import { Link, useLocation } from 'react-router-dom';
 import { getLangFromPathname, localizedPath } from '../i18n/paths';
 import { useColorPalette } from '../contexts/colorPalette';
@@ -100,7 +101,7 @@ const Footer: React.FC = () => {
               >
                 Grephyte ApS
               </a>
-              , CVR 37931535 · <a href="mailto:contact@grephyte.com" className="underline decoration-dotted underline-offset-2 hover:no-underline">contact@grephyte.com</a>
+              , CVR 37931535 · <ContactEmail />
               {' · '}
               <Link to={privacyPath} className="underline decoration-dotted underline-offset-2 hover:no-underline">
                 {t('footer.privacy')}

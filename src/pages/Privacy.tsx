@@ -1,4 +1,5 @@
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
+import ContactEmail from "../components/ContactEmail";
 
 type Section = { title: string; paragraphs: string[] };
 
@@ -25,21 +26,21 @@ const Privacy = () => {
             {t("heading")}
           </h1>
           <p className="mt-4 text-base leading-7" style={{ color: "var(--bp-text-dim)" }}>
-            {t("intro")}
+            <Trans t={t} i18nKey="intro" components={{ email: <ContactEmail /> }} />
           </p>
           <p className="mt-2 text-sm" style={{ color: "var(--bp-text-dim)" }}>
             {t("updated")}
           </p>
 
           {Array.isArray(sections) &&
-            sections.map(section => (
+            sections.map((section, i) => (
               <div key={section.title} className="mt-10">
                 <h2 className="text-xl font-semibold" style={{ color: "var(--bp-text)" }}>
                   {section.title}
                 </h2>
-                {section.paragraphs.map(paragraph => (
+                {section.paragraphs.map((paragraph, j) => (
                   <p key={paragraph} className="mt-3 text-base leading-7" style={{ color: "var(--bp-text-dim)" }}>
-                    {paragraph}
+                    <Trans t={t} i18nKey={`sections.${i}.paragraphs.${j}`} components={{ email: <ContactEmail /> }} />
                   </p>
                 ))}
               </div>

@@ -4,7 +4,7 @@
     "description": "Hvad Beamlynx indsamler, hvorfor, og hvordan du slår det fra. Dine databaser, forespørgsler og data forlader aldrig din computer."
   },
   "heading": "Privatliv",
-  "intro": "Beamlynx er lavet af Grephyte ApS, et dansk selskab (CVR 37931535). Denne side fortæller, hvad vi indsamler, hvorfor, og hvordan du stopper det. Spørgsmål sendes til contact@grephyte.com.",
+  "intro": "Beamlynx er lavet af Grephyte ApS, et dansk selskab (CVR 37931535). Denne side fortæller, hvad vi indsamler, hvorfor, og hvordan du stopper det. Spørgsmål sendes til <email/>.",
   "updated": "Senest opdateret 24. oktober 2026.",
   "sections": [
     {
@@ -49,7 +49,7 @@
     {
       "title": "Dine rettigheder",
       "paragraphs": [
-        "Skriv til contact@grephyte.com for at se, hvad vi har om dig, eller for at få det slettet. Når du logger ud af appen, bliver ny brug ikke længere knyttet til dig, men det, der er gemt, bliver ikke slettet.",
+        "Skriv til <email/> for at se, hvad vi har om dig, eller for at få det slettet. Når du logger ud af appen, bliver ny brug ikke længere knyttet til dig, men det, der er gemt, bliver ikke slettet.",
         "Vi gemmer data, indtil du beder os om at slette dem, eller indtil Beamlynx lukker. Du kan også klage til Datatilsynet."
       ]
     }
