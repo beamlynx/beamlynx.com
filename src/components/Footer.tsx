@@ -10,7 +10,9 @@ const Footer: React.FC = () => {
   const palette = useColorPalette();
   const { t } = useTranslation('common');
   const location = useLocation();
-  const privacyPath = localizedPath(getLangFromPathname(location.pathname) ?? 'en', '/privacy');
+  const lang = getLangFromPathname(location.pathname) ?? 'en';
+  const privacyPath = localizedPath(lang, '/privacy');
+  const termsPath = localizedPath(lang, '/terms');
 
   const socialLinks = [
     {
@@ -105,6 +107,10 @@ const Footer: React.FC = () => {
               {' · '}
               <Link to={privacyPath} className="underline decoration-dotted underline-offset-2 hover:no-underline">
                 {t('footer.privacy')}
+              </Link>
+              {' · '}
+              <Link to={termsPath} className="underline decoration-dotted underline-offset-2 hover:no-underline">
+                {t('footer.terms')}
               </Link>
             </div>
           </div>

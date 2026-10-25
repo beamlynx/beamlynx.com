@@ -8,12 +8,13 @@ import enDocsContent from "./locales/en/docsContent.json";
 import enPosts from "./locales/en/posts.json";
 import enFeatures from "./locales/en/features.json";
 import enPrivacy from "./locales/en/privacy.json";
+import enTerms from "./locales/en/terms.json";
 
 export const SUPPORTED_LOCALES = ["es", "zh", "da"] as const;
 export type SupportedLocale = (typeof SUPPORTED_LOCALES)[number];
 export type Locale = "en" | SupportedLocale;
 
-export const NAMESPACES = ["common", "home", "download", "docs", "docsContent", "posts", "features", "privacy"] as const;
+export const NAMESPACES = ["common", "home", "download", "docs", "docsContent", "posts", "features", "privacy", "terms"] as const;
 
 // Maps a URL locale segment to the value the <html lang> attribute and
 // hreflang tags should use. zh-Hans (not "zh") is the correct IETF tag for
@@ -32,7 +33,7 @@ const loadedLocales = new Set<string>(["en"]);
 export async function loadLocale(locale: Locale): Promise<void> {
   if (loadedLocales.has(locale)) return;
 
-  const [common, home, download, docs, docsContent, posts, features, privacy] = await Promise.all([
+  const [common, home, download, docs, docsContent, posts, features, privacy, terms] = await Promise.all([
     import(`./locales/${locale}/common.json`),
     import(`./locales/${locale}/home.json`),
     import(`./locales/${locale}/download.json`),
@@ -41,6 +42,7 @@ export async function loadLocale(locale: Locale): Promise<void> {
     import(`./locales/${locale}/posts.json`),
     import(`./locales/${locale}/features.json`),
     import(`./locales/${locale}/privacy.json`),
+    import(`./locales/${locale}/terms.json`),
   ]);
 
   i18next.addResourceBundle(locale, "common", common.default);
@@ -51,6 +53,7 @@ export async function loadLocale(locale: Locale): Promise<void> {
   i18next.addResourceBundle(locale, "posts", posts.default);
   i18next.addResourceBundle(locale, "features", features.default);
   i18next.addResourceBundle(locale, "privacy", privacy.default);
+  i18next.addResourceBundle(locale, "terms", terms.default);
 
   loadedLocales.add(locale);
 }
@@ -75,6 +78,7 @@ i18next.use(initReactI18next).init({
       posts: enPosts,
       features: enFeatures,
       privacy: enPrivacy,
+      terms: enTerms,
     },
   },
   interpolation: {

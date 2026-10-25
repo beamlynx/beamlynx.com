@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Terms · Beamlynx",
+    "description": "The terms for using Beamlynx and beamlynx.com: it's free, it comes as is, and you decide what your databases and AI agents share."
+  },
+  "heading": "Terms of use",
+  "intro": "These terms apply when you use the Beamlynx app or beamlynx.com. Beamlynx is made by Grephyte ApS, a Danish company (CVR 37931535). Questions go to <email/>.",
+  "updated": "Last updated 25 October 2026.",
+  "sections": [
+    {
+      "title": "Beamlynx is free and comes as is",
+      "paragraphs": [
+        "Beamlynx is free. It comes as is, without any warranty. It can have bugs, and it may not suit what you use it for.",
+        "We can change Beamlynx, or stop offering it or its sign-in, at any time."
+      ]
+    },
+    {
+      "title": "Your databases are your responsibility",
+      "paragraphs": [
+        "Beamlynx runs on your computer and never sends us your databases, your queries or your data.",
+        "You decide which databases you connect and what you run on them. Keep backups, and try changes somewhere safe before you run them on data that matters."
+      ]
+    },
+    {
+      "title": "AI agents",
+      "paragraphs": [
+        "When you connect an AI agent, you decide what it can read. Whatever it reads goes to the agent and its AI provider, under that provider's terms. We don't see it, and we can't control what happens to it there.",
+        "Access policies lower what an agent can see, but they aren't a security guarantee and can have bugs. Only connect agents to data you're allowed and willing to share with their provider, and follow your organisation's rules about it."
+      ]
+    },
+    {
+      "title": "The licence",
+      "paragraphs": [
+        "The Beamlynx code is licensed under the <licence>PolyForm Noncommercial License 1.0.0</licence>. These terms don't change that licence."
+      ]
+    },
+    {
+      "title": "Signing in",
+      "paragraphs": [
+        "Signing in is optional. The <privacy>privacy page</privacy> says what we store when you do. We can close an account or end sign-in at any time."
+      ]
+    },
+    {
+      "title": "Liability",
+      "paragraphs": [
+        "As far as the law allows, Grephyte ApS isn't liable for any loss from using Beamlynx. That includes data that is lost, changed or exposed, and data an AI agent reads or passes on.",
+        "Nothing in these terms limits rights the law gives you as a consumer that can't be limited."
+      ]
+    },
+    {
+      "title": "Changes and law",
+      "paragraphs": [
+        "We may update these terms. The date at the top shows the latest version.",
+        "Danish law applies, and disputes go to the Danish courts."
+      ]
+    }
+  ]
+}

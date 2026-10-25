@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Términos · Beamlynx",
+    "description": "Los términos para usar Beamlynx y beamlynx.com: es gratis, se ofrece tal cual y tú decides qué comparten tus bases de datos y tus agentes de IA."
+  },
+  "heading": "Términos de uso",
+  "intro": "Estos términos se aplican cuando usas la app de Beamlynx o beamlynx.com. Beamlynx lo hace Grephyte ApS, una empresa danesa (CVR 37931535). Escribe tus preguntas a <email/>.",
+  "updated": "Última actualización: 25 de octubre de 2026.",
+  "sections": [
+    {
+      "title": "Beamlynx es gratis y se ofrece tal cual",
+      "paragraphs": [
+        "Beamlynx es gratis. Se ofrece tal cual, sin ninguna garantía. Puede tener errores y puede que no sirva para lo que lo usas.",
+        "Podemos cambiar Beamlynx, o dejar de ofrecerlo a él o su inicio de sesión, en cualquier momento."
+      ]
+    },
+    {
+      "title": "Tus bases de datos son tu responsabilidad",
+      "paragraphs": [
+        "Beamlynx se ejecuta en tu ordenador y nunca nos envía tus bases de datos, tus consultas ni tus datos.",
+        "Tú decides qué bases de datos conectas y qué ejecutas en ellas. Haz copias de seguridad y prueba los cambios en un lugar seguro antes de ejecutarlos sobre datos importantes."
+      ]
+    },
+    {
+      "title": "Agentes de IA",
+      "paragraphs": [
+        "Cuando conectas un agente de IA, tú decides qué puede leer. Lo que lee va al agente y a su proveedor de IA, bajo los términos de ese proveedor. Nosotros no lo vemos y no podemos controlar qué pasa con ello allí.",
+        "Las políticas de acceso reducen lo que un agente puede ver, pero no son una garantía de seguridad y pueden tener errores. Conecta agentes solo a datos que puedas y quieras compartir con su proveedor, y sigue las normas de tu organización al respecto."
+      ]
+    },
+    {
+      "title": "La licencia",
+      "paragraphs": [
+        "El código de Beamlynx tiene la licencia <licence>PolyForm Noncommercial License 1.0.0</licence>. Estos términos no cambian esa licencia."
+      ]
+    },
+    {
+      "title": "Iniciar sesión",
+      "paragraphs": [
+        "Iniciar sesión es opcional. La <privacy>página de privacidad</privacy> explica qué guardamos cuando lo haces. Podemos cerrar una cuenta o dejar de ofrecer el inicio de sesión en cualquier momento."
+      ]
+    },
+    {
+      "title": "Responsabilidad",
+      "paragraphs": [
+        "En la medida en que la ley lo permita, Grephyte ApS no es responsable de ninguna pérdida derivada del uso de Beamlynx. Eso incluye datos perdidos, modificados o expuestos, y datos que un agente de IA lee o transmite.",
+        "Nada en estos términos limita los derechos que la ley te da como consumidor y que no se pueden limitar."
+      ]
+    },
+    {
+      "title": "Cambios y ley aplicable",
+      "paragraphs": [
+        "Podemos actualizar estos términos. La fecha de arriba indica la versión más reciente.",
+        "Se aplica la ley danesa, y los conflictos se resuelven ante los tribunales daneses."
+      ]
+    }
+  ]
+}
