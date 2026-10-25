@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "title": "Privacy · Beamlynx",
+    "description": "What Beamlynx collects, why, and how to turn it off. Your databases, queries and data never leave your computer."
+  },
+  "heading": "Privacy",
+  "intro": "Beamlynx is made by Grephyte ApS, a Danish company (CVR 37931535). This page says what we collect, why, and how to stop it. Questions go to <email/>.",
+  "updated": "Last updated 24 October 2026.",
+  "sections": [
+    {
+      "title": "Your databases stay on your computer",
+      "paragraphs": [
+        "The Beamlynx app runs on your computer. Your queries, your connections and their passwords, and the data you see never leave it. We can't see them."
+      ]
+    },
+    {
+      "title": "Usage stats in the app",
+      "paragraphs": [
+        "The desktop app sends a few anonymous events: when it opens, when you add a connection (only the database type, such as PostgreSQL), and when a query runs (only whether you or an AI agent ran it, and whether it was Pine or SQL). Each event also carries the app version, operating system and processor type.",
+        "PostHog receives these events and records your country from your IP address. The events are tied to a random ID made on your computer, not to you, unless you sign in.",
+        "The app tells you about this the first time it starts, before anything is sent. You can turn it off then, or at any time in Settings → Preferences → Send usage stats."
+      ]
+    },
+    {
+      "title": "Signing in",
+      "paragraphs": [
+        "The app asks once whether you want to sign in with GitHub or Google. It's optional, and the app works the same either way.",
+        "If you sign in, we store your email address, the name on that account, which of the two you used, when you first and last used Beamlynx, and your app version and operating system. Your usage stats are then linked to you. We use this to know who uses Beamlynx."
+      ]
+    },
+    {
+      "title": "This website",
+      "paragraphs": [
+        "beamlynx.com counts page views and clicks with PostHog. If you sign up for the newsletter, Substack stores your email address and sends the newsletter, and your visits here are linked to that address in PostHog."
+      ]
+    },
+    {
+      "title": "Who handles it",
+      "paragraphs": [
+        "PostHog stores the usage stats and website visits, and Supabase stores sign-ins. Both store them in the EU. GitHub and Google handle the sign-in itself, under their own privacy policies. Substack handles the newsletter. We don't sell your data or share it with anyone else."
+      ]
+    },
+    {
+      "title": "Why we're allowed to",
+      "paragraphs": [
+        "We count usage and visits because we have a legitimate interest in knowing how Beamlynx is used, and you can turn it off. We store your sign-in because you chose to sign in."
+      ]
+    },
+    {
+      "title": "Your rights",
+      "paragraphs": [
+        "Email <email/> to see what we have about you, or to have it deleted. Signing out of the app stops linking new usage to you, but doesn't delete what is stored.",
+        "We keep the data until you ask us to delete it, or until Beamlynx is shut down. You can also complain to the Danish Data Protection Agency (Datatilsynet)."
+      ]
+    }
+  ]
+}
