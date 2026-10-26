@@ -66,8 +66,7 @@ const Where: React.FC = () => {
       title: t('where.examples.9.title'),
       expression: "customer | where: jsonb_typeof(data) = 'array'",
       sql: "SELECT * FROM customer WHERE jsonb_typeof(data) = 'array'",
-      description: t('where.examples.9.description'),
-      experimental: true // pine-lang #143, #144
+      description: t('where.examples.9.description')
     }
   ];
 
