@@ -18,7 +18,7 @@
       "paragraphs": [
         "Desktop-appen sender nogle få anonyme hændelser: når den åbner, når du tilføjer en forbindelse (kun databasetypen, fx PostgreSQL), og når en forespørgsel kører (kun om du eller en AI-agent kørte den, og om den var i Pine eller SQL). Hver hændelse indeholder også appens version, styresystem og processortype.",
         "PostHog modtager hændelserne og registrerer dit land ud fra din IP-adresse. Hændelserne er knyttet til et tilfældigt ID, der er lavet på din computer, ikke til dig, medmindre du logger ind.",
-        "Appen fortæller dig om det første gang, den starter, før noget bliver sendt. Du kan slå det fra der, eller når som helst under Indstillinger → Præferencer → Send usage stats."
+        "Appen fortæller dig om det første gang, den starter, før noget bliver sendt. Du kan når som helst slå det fra under Settings → Account → Send usage stats."
       ]
     },
     {

@@ -18,7 +18,7 @@
       "paragraphs": [
         "The desktop app sends a few anonymous events: when it opens, when you add a connection (only the database type, such as PostgreSQL), and when a query runs (only whether you or an AI agent ran it, and whether it was Pine or SQL). Each event also carries the app version, operating system and processor type.",
         "PostHog receives these events and records your country from your IP address. The events are tied to a random ID made on your computer, not to you, unless you sign in.",
-        "The app tells you about this the first time it starts, before anything is sent. You can turn it off then, or at any time in Settings → Preferences → Send usage stats."
+        "The app tells you about this the first time it starts, before anything is sent. You can turn it off at any time in Settings → Account → Send usage stats."
       ]
     },
     {
