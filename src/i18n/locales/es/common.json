@@ -33,5 +33,9 @@
     "es": "Español",
     "zh": "中文",
     "da": "Dansk"
+  },
+  "signedIn": {
+    "title": "Has iniciado sesión en Beamlynx",
+    "body": "Puedes cerrar esta pestaña y volver a la app."
   }
 }

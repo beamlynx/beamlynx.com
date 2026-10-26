@@ -53,3 +53,15 @@ export function identifyPerson(email: string) {
 
   posthog.identify(email, { email });
 }
+
+// Joins this browser's visits to a desktop app install, after the person
+// signed in to the app (pages/SignedIn.tsx). The app has already joined the
+// install to the person, so PostHog merges the visits into them. Only for a
+// browser that isn't identified yet: PostHog won't merge two known people,
+// and a newsletter signup's visits stay with that email.
+export function linkDesktopInstall(installId: string) {
+  if (!analyticsEnabled) return;
+  if (posthog.get_property('$user_state') === 'identified') return;
+
+  posthog.identify(installId);
+}

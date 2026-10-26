@@ -31,7 +31,7 @@
     {
       "title": "Denne hjemmeside",
       "paragraphs": [
-        "beamlynx.com tæller sidevisninger og klik med PostHog. Hvis du tilmelder dig nyhedsbrevet, gemmer Substack din e-mailadresse og sender nyhedsbrevet, og dine besøg her bliver knyttet til den adresse i PostHog."
+        "beamlynx.com tæller sidevisninger og klik med PostHog. Hvis du tilmelder dig nyhedsbrevet, gemmer Substack din e-mailadresse og sender nyhedsbrevet, og dine besøg her bliver knyttet til den adresse i PostHog. Hvis du logger ind i appen med brugsstatistik slået til, ender browseren, du logger ind med, på en side her, og dens besøg her bliver knyttet til din konto."
       ]
     },
     {

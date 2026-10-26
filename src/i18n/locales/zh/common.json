@@ -33,5 +33,9 @@
     "es": "Español",
     "zh": "中文",
     "da": "Dansk"
+  },
+  "signedIn": {
+    "title": "你已登录 Beamlynx",
+    "body": "你可以关闭此标签页，回到应用。"
   }
 }

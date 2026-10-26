@@ -31,7 +31,7 @@
     {
       "title": "This website",
       "paragraphs": [
-        "beamlynx.com counts page views and clicks with PostHog. If you sign up for the newsletter, Substack stores your email address and sends the newsletter, and your visits here are linked to that address in PostHog."
+        "beamlynx.com counts page views and clicks with PostHog. If you sign up for the newsletter, Substack stores your email address and sends the newsletter, and your visits here are linked to that address in PostHog. If you sign in to the app with usage stats on, the browser you sign in with ends on a page here, and its visits here are linked to your account."
       ]
     },
     {

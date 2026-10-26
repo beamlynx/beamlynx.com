@@ -31,7 +31,7 @@
     {
       "title": "Este sitio web",
       "paragraphs": [
-        "beamlynx.com cuenta las visitas y los clics con PostHog. Si te suscribes al boletín, Substack guarda tu dirección de correo y envía el boletín, y tus visitas aquí quedan ligadas a esa dirección en PostHog."
+        "beamlynx.com cuenta las visitas y los clics con PostHog. Si te suscribes al boletín, Substack guarda tu dirección de correo y envía el boletín, y tus visitas aquí quedan ligadas a esa dirección en PostHog. Si inicias sesión en la app con las estadísticas de uso activadas, el navegador con el que inicias sesión termina en una página de este sitio, y sus visitas aquí quedan ligadas a tu cuenta."
       ]
     },
     {

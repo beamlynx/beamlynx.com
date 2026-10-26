@@ -33,5 +33,9 @@
     "es": "Español",
     "zh": "中文",
     "da": "Dansk"
+  },
+  "signedIn": {
+    "title": "Du er logget ind i Beamlynx",
+    "body": "Du kan lukke denne fane og gå tilbage til appen."
   }
 }
