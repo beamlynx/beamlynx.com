@@ -24,7 +24,7 @@
     {
       "title": "Signing in",
       "paragraphs": [
-        "The app asks once whether you want to sign in with GitHub or Google. It's optional, and the app works the same either way.",
+        "Each time the app starts, it asks whether you want to sign in with GitHub or Google, until you do. It's optional, and the app works the same either way.",
         "If you sign in, we store your email address, the name on that account, which of the two you used, when you first and last used Beamlynx, and your app version and operating system. Your usage stats are then linked to you. We use this to know who uses Beamlynx."
       ]
     },
