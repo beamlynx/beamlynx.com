@@ -33,5 +33,9 @@
     "es": "Español",
     "zh": "中文",
     "da": "Dansk"
+  },
+  "signedIn": {
+    "title": "You're signed in to Beamlynx",
+    "body": "You can close this tab and go back to the app."
   }
 }
