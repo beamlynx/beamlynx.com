@@ -18,7 +18,7 @@
       "paragraphs": [
         "La app de escritorio envía unos pocos eventos anónimos: cuando se abre, cuando añades una conexión (solo el tipo de base de datos, como PostgreSQL) y cuando se ejecuta una consulta (solo si la ejecutaste tú o un agente de IA, y si era Pine o SQL). Cada evento incluye también la versión de la app, el sistema operativo y el tipo de procesador.",
         "PostHog recibe estos eventos y registra tu país a partir de tu dirección IP. Los eventos están ligados a un ID aleatorio creado en tu ordenador, no a ti, salvo que inicies sesión.",
-        "La app te lo dice la primera vez que se abre, antes de enviar nada. Puedes desactivarlo en ese momento o cuando quieras en Settings → Preferences → Send usage stats."
+        "La app te lo dice la primera vez que se abre, antes de enviar nada. Puedes desactivarlo cuando quieras en Settings → Account → Send usage stats."
       ]
     },
     {
