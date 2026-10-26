@@ -24,7 +24,7 @@
     {
       "title": "Iniciar sesión",
       "paragraphs": [
-        "La app te pregunta una sola vez si quieres iniciar sesión con GitHub o Google. Es opcional, y la app funciona igual en ambos casos.",
+        "Cada vez que se abre, la app te pregunta si quieres iniciar sesión con GitHub o Google, hasta que lo hagas. Es opcional, y la app funciona igual en ambos casos.",
         "Si inicias sesión, guardamos tu dirección de correo, el nombre de esa cuenta, cuál de las dos usaste, cuándo usaste Beamlynx por primera y por última vez, y la versión de la app y tu sistema operativo. Tus estadísticas de uso quedan entonces ligadas a ti. Lo usamos para saber quién usa Beamlynx."
       ]
     },

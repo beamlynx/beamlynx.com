@@ -24,7 +24,7 @@
     {
       "title": "Log ind",
       "paragraphs": [
-        "Appen spørger én gang, om du vil logge ind med GitHub eller Google. Det er frivilligt, og appen virker på samme måde uanset hvad.",
+        "Hver gang appen starter, spørger den, om du vil logge ind med GitHub eller Google, indtil du gør det. Det er frivilligt, og appen virker på samme måde uanset hvad.",
         "Hvis du logger ind, gemmer vi din e-mailadresse, navnet på kontoen, hvilken af de to du brugte, hvornår du første og sidste gang brugte Beamlynx, og din appversion og dit styresystem. Din brugsstatistik bliver derefter knyttet til dig. Vi bruger det til at vide, hvem der bruger Beamlynx."
       ]
     },
