@@ -53,22 +53,19 @@ const Json: React.FC = () => {
       title: t('json.examples.7.title'),
       expression: 'customer | select: id, jsonb_typeof(data.tags) as tags_type',
       sql: "SELECT id, jsonb_typeof(data->'tags') AS tags_type FROM customer",
-      description: t('json.examples.7.description'),
-      experimental: true // pine-lang #143
+      description: t('json.examples.7.description')
     },
     {
       title: t('json.examples.8.title'),
       expression: 'customer | select: id, data.tags => jsonb_array_length as tag_count',
       sql: "SELECT id, jsonb_array_length(data->'tags') AS tag_count FROM customer",
-      description: t('json.examples.8.description'),
-      experimental: true // pine-lang #143
+      description: t('json.examples.8.description')
     },
     {
       title: t('json.examples.9.title'),
       expression: "customer | select: id, jsonb_array_length(if jsonb_typeof(data) = 'array' then data else data.nodes) as n",
       sql: "SELECT id, jsonb_array_length(CASE WHEN jsonb_typeof(data) = 'array' THEN data ELSE data->'nodes' END) AS n FROM customer",
-      description: t('json.examples.9.description'),
-      experimental: true // pine-lang #143, #144
+      description: t('json.examples.9.description')
     }
   ];
 

@@ -29,8 +29,7 @@ const Order: React.FC = () => {
       title: t('order.examples.3.title'),
       expression: 'customers | order: company_id asc nulls first, created_at asc',
       sql: 'SELECT * FROM customers ORDER BY company_id ASC NULLS FIRST, created_at ASC',
-      description: t('order.examples.3.description'),
-      experimental: true // pine-lang #142
+      description: t('order.examples.3.description')
     }
   ];
 
