@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Privacy · Beamlynx",
-    "description": "What Beamlynx collects, why, and how to turn it off. Your databases, queries and data never leave your computer."
+    "description": "What Beamlynx collects, why, and what you can turn off. Your databases, queries and data never leave your computer."
   },
   "heading": "Privacy",
-  "intro": "Beamlynx is made by Grephyte ApS, a Danish company (CVR 37931535). This page says what we collect, why, and how to stop it. Questions go to <email/>.",
-  "updated": "Last updated 24 October 2026.",
+  "intro": "Beamlynx is made by Grephyte ApS, a Danish company (CVR 37931535). This page says what we collect, why, and what you can turn off. Questions go to <email/>.",
+  "updated": "Last updated 30 October 2026.",
   "sections": [
     {
       "title": "Your databases stay on your computer",
@@ -16,22 +16,23 @@
     {
       "title": "Usage stats in the app",
       "paragraphs": [
-        "The desktop app sends a few anonymous events: when it opens, when you add a connection (only the database type, such as PostgreSQL), and when a query runs (only whether you or an AI agent ran it, and whether it was Pine or SQL). Each event also carries the app version, operating system and processor type.",
-        "PostHog receives these events and records your country from your IP address. The events are tied to a random ID made on your computer, not to you, unless you sign in.",
-        "The app tells you about this the first time it starts, before anything is sent. You can turn it off at any time in Settings → Account → Send usage stats."
+        "Each time the desktop app opens, it sends one event. If you are signed in, the event is tied to your account. If not, it is tied to a random ID made on your computer, not to you.",
+        "The app also sends detailed usage stats: when you add a connection (only the database type, such as PostgreSQL), and how many queries ran each hour (only whether you or an AI agent ran them, and whether they were Pine or SQL). You can turn these off at any time in Settings → Account → Send detailed usage stats. The event when the app opens is sent either way.",
+        "Every event also carries the app version, operating system and processor type. PostHog receives the events and records your country from your IP address.",
+        "The app tells you about this the first time it starts, before anything is sent."
       ]
     },
     {
       "title": "Signing in",
       "paragraphs": [
         "Each time the app starts, it asks whether you want to sign in with GitHub or Google, until you do. It's optional, and the app works the same either way.",
-        "If you sign in, we store your email address, the name on that account, which of the two you used, when you first and last used Beamlynx, and your app version and operating system. Your usage stats are then linked to you. We use this to know who uses Beamlynx."
+        "If you sign in, we store your email address, the name on that account, which of the two you used, when you first and last used Beamlynx, and your app version and operating system. Your usage stats, including each time the app opens, are then linked to you. We use this to know who uses Beamlynx."
       ]
     },
     {
       "title": "This website",
       "paragraphs": [
-        "beamlynx.com counts page views and clicks with PostHog. If you sign up for the newsletter, Substack stores your email address and sends the newsletter, and your visits here are linked to that address in PostHog. If you sign in to the app with usage stats on, the browser you sign in with ends on a page here, and its visits here are linked to your account."
+        "beamlynx.com counts page views and clicks with PostHog. If you sign up for the newsletter, Substack stores your email address and sends the newsletter, and your visits here are linked to that address in PostHog. If you sign in to the app with detailed usage stats on, the browser you sign in with ends on a page here, and its visits here are linked to your account."
       ]
     },
     {
@@ -43,7 +44,7 @@
     {
       "title": "Why we're allowed to",
       "paragraphs": [
-        "We count usage and visits because we have a legitimate interest in knowing how Beamlynx is used, and you can turn it off. We store your sign-in because you chose to sign in."
+        "We count usage and visits because we have a legitimate interest in knowing how Beamlynx is used, and by whom. You can turn the detailed usage stats off. To object to the rest, email <email/>. We store your sign-in because you chose to sign in."
       ]
     },
     {

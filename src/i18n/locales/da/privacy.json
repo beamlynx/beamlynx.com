@@ -1,11 +1,11 @@
 {
   "meta": {
     "title": "Privatliv · Beamlynx",
-    "description": "Hvad Beamlynx indsamler, hvorfor, og hvordan du slår det fra. Dine databaser, forespørgsler og data forlader aldrig din computer."
+    "description": "Hvad Beamlynx indsamler, hvorfor, og hvad du kan slå fra. Dine databaser, forespørgsler og data forlader aldrig din computer."
   },
   "heading": "Privatliv",
-  "intro": "Beamlynx er lavet af Grephyte ApS, et dansk selskab (CVR 37931535). Denne side fortæller, hvad vi indsamler, hvorfor, og hvordan du stopper det. Spørgsmål sendes til <email/>.",
-  "updated": "Senest opdateret 24. oktober 2026.",
+  "intro": "Beamlynx er lavet af Grephyte ApS, et dansk selskab (CVR 37931535). Denne side fortæller, hvad vi indsamler, hvorfor, og hvad du kan slå fra. Spørgsmål sendes til <email/>.",
+  "updated": "Senest opdateret 30. oktober 2026.",
   "sections": [
     {
       "title": "Dine databaser bliver på din computer",
@@ -16,22 +16,23 @@
     {
       "title": "Brugsstatistik i appen",
       "paragraphs": [
-        "Desktop-appen sender nogle få anonyme hændelser: når den åbner, når du tilføjer en forbindelse (kun databasetypen, fx PostgreSQL), og når en forespørgsel kører (kun om du eller en AI-agent kørte den, og om den var i Pine eller SQL). Hver hændelse indeholder også appens version, styresystem og processortype.",
-        "PostHog modtager hændelserne og registrerer dit land ud fra din IP-adresse. Hændelserne er knyttet til et tilfældigt ID, der er lavet på din computer, ikke til dig, medmindre du logger ind.",
-        "Appen fortæller dig om det første gang, den starter, før noget bliver sendt. Du kan når som helst slå det fra under Settings → Account → Send usage stats."
+        "Hver gang desktop-appen åbner, sender den én hændelse. Hvis du er logget ind, bliver hændelsen knyttet til din konto. Hvis ikke, bliver den knyttet til et tilfældigt ID, der er lavet på din computer, ikke til dig.",
+        "Appen sender også detaljeret brugsstatistik: når du tilføjer en forbindelse (kun databasetypen, fx PostgreSQL), og hvor mange forespørgsler der kørte hver time (kun om du eller en AI-agent kørte dem, og om de var i Pine eller SQL). Du kan når som helst slå den fra under Settings → Account → Send detailed usage stats. Hændelsen, når appen åbner, bliver sendt uanset hvad.",
+        "Hver hændelse indeholder også appens version, styresystem og processortype. PostHog modtager hændelserne og registrerer dit land ud fra din IP-adresse.",
+        "Appen fortæller dig om det første gang, den starter, før noget bliver sendt."
       ]
     },
     {
       "title": "Log ind",
       "paragraphs": [
         "Hver gang appen starter, spørger den, om du vil logge ind med GitHub eller Google, indtil du gør det. Det er frivilligt, og appen virker på samme måde uanset hvad.",
-        "Hvis du logger ind, gemmer vi din e-mailadresse, navnet på kontoen, hvilken af de to du brugte, hvornår du første og sidste gang brugte Beamlynx, og din appversion og dit styresystem. Din brugsstatistik bliver derefter knyttet til dig. Vi bruger det til at vide, hvem der bruger Beamlynx."
+        "Hvis du logger ind, gemmer vi din e-mailadresse, navnet på kontoen, hvilken af de to du brugte, hvornår du første og sidste gang brugte Beamlynx, og din appversion og dit styresystem. Din brugsstatistik, også hver gang appen åbner, bliver derefter knyttet til dig. Vi bruger det til at vide, hvem der bruger Beamlynx."
       ]
     },
     {
       "title": "Denne hjemmeside",
       "paragraphs": [
-        "beamlynx.com tæller sidevisninger og klik med PostHog. Hvis du tilmelder dig nyhedsbrevet, gemmer Substack din e-mailadresse og sender nyhedsbrevet, og dine besøg her bliver knyttet til den adresse i PostHog. Hvis du logger ind i appen med brugsstatistik slået til, ender browseren, du logger ind med, på en side her, og dens besøg her bliver knyttet til din konto."
+        "beamlynx.com tæller sidevisninger og klik med PostHog. Hvis du tilmelder dig nyhedsbrevet, gemmer Substack din e-mailadresse og sender nyhedsbrevet, og dine besøg her bliver knyttet til den adresse i PostHog. Hvis du logger ind i appen med detaljeret brugsstatistik slået til, ender browseren, du logger ind med, på en side her, og dens besøg her bliver knyttet til din konto."
       ]
     },
     {
@@ -43,7 +44,7 @@
     {
       "title": "Hvorfor vi må",
       "paragraphs": [
-        "Vi tæller brug og besøg, fordi vi har en legitim interesse i at vide, hvordan Beamlynx bliver brugt, og du kan slå det fra. Vi gemmer dit log ind, fordi du har valgt at logge ind."
+        "Vi tæller brug og besøg, fordi vi har en legitim interesse i at vide, hvordan og af hvem Beamlynx bliver brugt. Du kan slå den detaljerede brugsstatistik fra. Vil du gøre indsigelse mod resten, så skriv til <email/>. Vi gemmer dit log ind, fordi du har valgt at logge ind."
       ]
     },
     {
