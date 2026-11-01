@@ -28,14 +28,15 @@ const DOC_CONTENT_KEYS: Record<string, string> = {
   Variables: 'variables',
 };
 
-// The two sections whose sidebar label no longer derives to their own
-// anchor id: their labels were shortened to "Why?" and "Intro", but the
-// sections keep the ids existing links use (WhyDsl.tsx, PineLang.tsx).
-// Without this, the sidebar pointed at #why? and #intro, which don't
-// exist, so clicking them did nothing.
+// Sections whose key doesn't derive to their own anchor id. "Why?" and
+// "Intro" were shortened, but the sections keep the ids existing links use
+// (WhyDsl.tsx, PineLang.tsx). "JSON" is all capitals, so the rule below
+// would make it #j-s-o-n. Without this, the sidebar pointed at an anchor
+// that doesn't exist, so clicking it did nothing.
 const SECTION_IDS: Record<string, string> = {
   'Why?': 'why-dsl',
   'Intro': 'pine-lang',
+  JSON: 'json',
 };
 
 const SECTION_KEYS = Object.keys(documentationComponents).map(key => {
