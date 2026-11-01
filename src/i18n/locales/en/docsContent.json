@@ -33,7 +33,9 @@
       { "title": "Schema qualified join", "description": "Use schema qualification when joining across different schemas" },
       { "title": "Left join", "description": "Use the :left modifier to specify a left join" },
       { "title": "Self join", "description": "Join a table with itself" },
-      { "title": "Self join with direction / Parent-child relationship", "description": "By default, the child table is picked for the join i.e. the one that holds the foreing key. If you want to join on the parent table i.e. the one being referenced, then use the :parent modifier. Aliases are used for demonstration purposes." }
+      { "title": "Self join with direction / Parent-child relationship", "description": "By default, the child table is picked for the join i.e. the one that holds the foreing key. If you want to join on the parent table i.e. the one being referenced, then use the :parent modifier. Aliases are used for demonstration purposes." },
+      { "title": "Join on values in a JSON array", "description": "[*] means any element of the array. Each project joins to every employee whose id is in its members array. The new table's column comes first. A row joins once per match. Values compare as JSON, so the number 5 doesn't match the string \"5\"." },
+      { "title": "Join on a name you give", "description": "A name given with as tells Pine what a column holds. company_id leads to the companies table, by the same rule Pine uses for column names. Use it when no foreign key says it, as here: resource_id holds the ids of several tables, and only the where: makes sure they are company ids." }
     ],
     "modifiersIntro": "Supported modifiers:",
     "modifiers": [
@@ -87,7 +89,9 @@
       { "title": "Change one value", "description": "update! replaces the value at a key and leaves the rest of the JSON as it was. The value keeps the kind you write: 12 is a number, '12' is text. Editing such a cell in the results does the same." },
       { "title": "The type of a value", "description": "jsonb_typeof gives object, array, string, number, boolean or null, with the same names on every database. A missing key gives no value." },
       { "title": "Count an array's items", "description": "jsonb_array_length counts the items in an array. On PostgreSQL, a value that isn't an array is an error; MySQL and SQLite give no value. x => f means the same as f(x)." },
-      { "title": "An array, or an array inside", "description": "Check the type first when a value may not be an array. Inside these two functions a key is read as JSON, and so is each branch of an if. Elsewhere a key is text, so an if that gives the whole column in one branch and a key in another fails on PostgreSQL." }
+      { "title": "An array, or an array inside", "description": "Check the type first when a value may not be an array. Inside these two functions a key is read as JSON, and so is each branch of an if. Elsewhere a key is text, so an if that gives the whole column in one branch and a key in another fails on PostgreSQL." },
+      { "title": "One row per element", "description": "unnest: gives one row for each element of an array, next to the row it came from. Read the element's keys through the name after as. A row whose value isn't an array is skipped. This works on PostgreSQL, MySQL and SQLite." },
+      { "title": "Keep rows without an array", "description": ":left keeps a row whose value isn't an array once, with the element empty. For an array of strings or numbers, the name on its own is the element." }
     ]
   },
   "select": {
