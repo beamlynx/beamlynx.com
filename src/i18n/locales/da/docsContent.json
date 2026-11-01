@@ -33,7 +33,9 @@
       { "title": "Skemakvalificeret join", "description": "Brug skemakvalifikation, når du joiner på tværs af forskellige skemaer" },
       { "title": "Left join", "description": "Brug modifikatoren :left til at angive et left join" },
       { "title": "Self join", "description": "Join en tabel med sig selv" },
-      { "title": "Self join med retning / forælder-barn-relation", "description": "Som standard vælges børnetabellen til joinet, dvs. den der har fremmednøglen. Hvis du vil joine på forældretabellen, dvs. den der refereres til, så brug modifikatoren :parent. Aliasser bruges her i demonstrationsøjemed." }
+      { "title": "Self join med retning / forælder-barn-relation", "description": "Som standard vælges børnetabellen til joinet, dvs. den der har fremmednøglen. Hvis du vil joine på forældretabellen, dvs. den der refereres til, så brug modifikatoren :parent. Aliasser bruges her i demonstrationsøjemed." },
+      { "title": "Join på værdier i et JSON-array", "description": "[*] betyder et hvilket som helst element i arrayet. Hvert projekt joines til hver medarbejder, hvis id står i projektets members-array. Den nye tabels kolonne står først. En række joines én gang pr. match. Værdier sammenlignes som JSON, så tallet 5 matcher ikke teksten \"5\"." },
+      { "title": "Join på et navn, du giver", "description": "Et navn givet med as fortæller Pine, hvad en kolonne indeholder. company_id fører til tabellen companies, efter den samme regel, Pine bruger for kolonnenavne. Brug det, når ingen fremmednøgle siger det, som her: resource_id indeholder id'er fra flere tabeller, og kun where: sikrer, at det er virksomheds-id'er." }
     ],
     "modifiersIntro": "Understøttede modifikatorer:",
     "modifiers": [
@@ -87,7 +89,9 @@
       { "title": "Ændr én værdi", "description": "update! erstatter værdien ved en nøgle og lader resten af JSON'en være, som den var. Værdien beholder den type, du skriver: 12 er et tal, '12' er tekst. At redigere sådan en celle i resultaterne gør det samme." },
       { "title": "Typen af en værdi", "description": "jsonb_typeof giver object, array, string, number, boolean eller null, med de samme navne på alle databaser. En manglende nøgle giver ingen værdi." },
       { "title": "Tæl elementerne i et array", "description": "jsonb_array_length tæller elementerne i et array. På PostgreSQL er en værdi, der ikke er et array, en fejl; MySQL og SQLite giver ingen værdi. x => f betyder det samme som f(x)." },
-      { "title": "Et array, eller et array indeni", "description": "Tjek typen først, når en værdi måske ikke er et array. Inde i de to funktioner læses en nøgle som JSON, og det samme gælder hver gren af en if. Andre steder er en nøgle tekst, så en if, der giver hele kolonnen i én gren og en nøgle i en anden, fejler på PostgreSQL." }
+      { "title": "Et array, eller et array indeni", "description": "Tjek typen først, når en værdi måske ikke er et array. Inde i de to funktioner læses en nøgle som JSON, og det samme gælder hver gren af en if. Andre steder er en nøgle tekst, så en if, der giver hele kolonnen i én gren og en nøgle i en anden, fejler på PostgreSQL." },
+      { "title": "Én række pr. element", "description": "unnest: giver én række for hvert element i et array, ved siden af den række, det kom fra. Læs elementets nøgler gennem navnet efter as. En række, hvis værdi ikke er et array, springes over. Det virker på PostgreSQL, MySQL og SQLite." },
+      { "title": "Behold rækker uden et array", "description": ":left beholder en række, hvis værdi ikke er et array, én gang med et tomt element. For et array af tekster eller tal er navnet alene selve elementet." }
     ]
   },
   "select": {

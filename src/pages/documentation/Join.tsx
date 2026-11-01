@@ -42,6 +42,19 @@ const Join: React.FC = () => {
       expression: 'categories as p | categories as c :parent',
       sql: 'SELECT p.* FROM categories as c JOIN categories as p ON c.parent_id = p.id',
       description: t('join.examples.5.description')
+    },
+    {
+      title: t('join.examples.6.title'),
+      expression: 'projects | employees .id = .members[*].id',
+      sql: "SELECT employees.* FROM projects JOIN employees ON projects.members @> jsonb_build_array(jsonb_build_object('id', employees.id))",
+      description: t('join.examples.6.description')
+    },
+    {
+      title: t('join.examples.7.title'),
+      expression: "activity | where: resource_type = 'company' | select: resource_id as company_id | companies",
+      sql: "SELECT companies.* FROM activity JOIN companies ON activity.resource_id = companies.id WHERE activity.resource_type = 'company'",
+      description: t('join.examples.7.description'),
+      experimental: true // pine-lang #160
     }
   ];
 

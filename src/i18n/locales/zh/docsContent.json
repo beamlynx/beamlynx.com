@@ -33,7 +33,9 @@
       { "title": "跨 schema 连接", "description": "在跨不同 schema 连接时使用 schema 限定。" },
       { "title": "左连接", "description": "使用 :left 修饰符指定左连接。" },
       { "title": "自连接", "description": "将一张表与自身连接。" },
-      { "title": "带方向的自连接 / 父子关系", "description": "默认情况下，连接会选择子表，即持有外键的那一方。如果你想连接到父表，即被引用的那一方，可以使用 :parent 修饰符。示例中使用别名仅用于演示。" }
+      { "title": "带方向的自连接 / 父子关系", "description": "默认情况下，连接会选择子表，即持有外键的那一方。如果你想连接到父表，即被引用的那一方，可以使用 :parent 修饰符。示例中使用别名仅用于演示。" },
+      { "title": "按 JSON 数组中的值连接", "description": "[*] 表示数组中的任意元素。每个项目会连接到 id 出现在其 members 数组中的每个员工。新表的列写在前面。每个匹配只连接一次。值按 JSON 比较，因此数字 5 不匹配字符串 \"5\"。" },
+      { "title": "按你起的名字连接", "description": "用 as 起的名字告诉 Pine 一列中存的是什么。company_id 指向 companies 表，规则与 Pine 处理列名时相同。当没有外键能表达这一点时使用它，例如这里：resource_id 存有多张表的 id，只有 where: 能确保它们是公司的 id。" }
     ],
     "modifiersIntro": "支持的修饰符：",
     "modifiers": [
@@ -87,7 +89,9 @@
       { "title": "修改一个值", "description": "update! 替换某个键的值，JSON 的其余部分保持不变。值保持你所写的类型：12 是数字，'12' 是文本。在结果中编辑这样的单元格效果相同。" },
       { "title": "值的类型", "description": "jsonb_typeof 返回 object、array、string、number、boolean 或 null，在每种数据库上名称都相同。缺失的键不返回值。" },
       { "title": "统计数组的元素", "description": "jsonb_array_length 统计数组中的元素个数。在 PostgreSQL 上，不是数组的值会报错；MySQL 和 SQLite 不返回值。x => f 与 f(x) 的意思相同。" },
-      { "title": "数组，或里面的数组", "description": "当一个值可能不是数组时，先检查类型。在这两个函数内部，键按 JSON 读取，if 的每个分支也是如此。在其他地方键是文本，所以一个 if 若在一个分支返回整列、在另一个分支返回某个键，在 PostgreSQL 上会失败。" }
+      { "title": "数组，或里面的数组", "description": "当一个值可能不是数组时，先检查类型。在这两个函数内部，键按 JSON 读取，if 的每个分支也是如此。在其他地方键是文本，所以一个 if 若在一个分支返回整列、在另一个分支返回某个键，在 PostgreSQL 上会失败。" },
+      { "title": "每个元素一行", "description": "unnest: 为数组的每个元素生成一行，放在它所来自的那一行旁边。通过 as 后面的名字读取元素的键。值不是数组的行会被跳过。支持 PostgreSQL、MySQL 和 SQLite。" },
+      { "title": "保留没有数组的行", "description": ":left 会保留值不是数组的行（只保留一次），元素为空。对于字符串或数字数组，名字本身就是元素。" }
     ]
   },
   "select": {

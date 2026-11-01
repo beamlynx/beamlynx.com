@@ -33,7 +33,9 @@
       { "title": "Unión con esquema calificado", "description": "Usa la calificación de esquema al unir tablas de distintos esquemas" },
       { "title": "Unión izquierda (left join)", "description": "Usa el modificador :left para especificar una unión izquierda" },
       { "title": "Autounión (self join)", "description": "Une una tabla consigo misma" },
-      { "title": "Autounión con dirección / relación padre-hijo", "description": "Por defecto, se elige la tabla hija para la unión, es decir, la que contiene la clave foránea. Si quieres unir usando la tabla padre, es decir, la que es referenciada, usa el modificador :parent. Los alias se usan aquí con fines demostrativos." }
+      { "title": "Autounión con dirección / relación padre-hijo", "description": "Por defecto, se elige la tabla hija para la unión, es decir, la que contiene la clave foránea. Si quieres unir usando la tabla padre, es decir, la que es referenciada, usa el modificador :parent. Los alias se usan aquí con fines demostrativos." },
+      { "title": "Unir por valores de un array JSON", "description": "[*] significa cualquier elemento del array. Cada proyecto se une a cada empleado cuyo id está en su array members. La columna de la tabla nueva va primero. Una fila se une una vez por coincidencia. Los valores se comparan como JSON, así que el número 5 no coincide con el texto \"5\"." },
+      { "title": "Unir por un nombre que das", "description": "Un nombre dado con as le dice a Pine qué contiene una columna. company_id lleva a la tabla companies, con la misma regla que Pine usa para los nombres de columnas. Úsalo cuando ninguna clave foránea lo dice, como aquí: resource_id contiene ids de varias tablas, y solo el where: asegura que son ids de empresas." }
     ],
     "modifiersIntro": "Modificadores admitidos:",
     "modifiers": [
@@ -87,7 +89,9 @@
       { "title": "Cambiar un valor", "description": "update! reemplaza el valor de una clave y deja el resto del JSON como estaba. El valor conserva el tipo que escribes: 12 es un número, '12' es texto. Editar esa celda en los resultados hace lo mismo." },
       { "title": "El tipo de un valor", "description": "jsonb_typeof da object, array, string, number, boolean o null, con los mismos nombres en todas las bases de datos. Una clave que falta no da ningún valor." },
       { "title": "Contar los elementos de un array", "description": "jsonb_array_length cuenta los elementos de un array. En PostgreSQL, un valor que no es un array es un error; MySQL y SQLite no dan ningún valor. x => f significa lo mismo que f(x)." },
-      { "title": "Un array, o un array dentro", "description": "Comprueba primero el tipo cuando un valor puede no ser un array. Dentro de estas dos funciones una clave se lee como JSON, y también cada rama de un if. En otros sitios una clave es texto, así que un if que da la columna entera en una rama y una clave en otra falla en PostgreSQL." }
+      { "title": "Un array, o un array dentro", "description": "Comprueba primero el tipo cuando un valor puede no ser un array. Dentro de estas dos funciones una clave se lee como JSON, y también cada rama de un if. En otros sitios una clave es texto, así que un if que da la columna entera en una rama y una clave en otra falla en PostgreSQL." },
+      { "title": "Una fila por elemento", "description": "unnest: da una fila por cada elemento de un array, junto a la fila de la que viene. Lee las claves del elemento a través del nombre que va después de as. Se omite una fila cuyo valor no es un array. Funciona en PostgreSQL, MySQL y SQLite." },
+      { "title": "Conservar filas sin array", "description": ":left conserva una vez una fila cuyo valor no es un array, con el elemento vacío. En un array de textos o números, el nombre solo es el elemento." }
     ]
   },
   "select": {
