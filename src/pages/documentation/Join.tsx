@@ -53,8 +53,7 @@ const Join: React.FC = () => {
       title: t('join.examples.7.title'),
       expression: "activity | where: resource_type = 'company' | select: resource_id as company_id | companies",
       sql: "SELECT companies.* FROM activity JOIN companies ON activity.resource_id = companies.id WHERE activity.resource_type = 'company'",
-      description: t('join.examples.7.description'),
-      experimental: true // pine-lang #160
+      description: t('join.examples.7.description')
     }
   ];
 

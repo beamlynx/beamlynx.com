@@ -71,15 +71,13 @@ const Json: React.FC = () => {
       title: t('json.examples.10.title'),
       expression: "customer | unnest: data.contacts as contact | where: contact.role = 'billing' | select: name, contact.email",
       sql: "SELECT name, contact.value->>'email' AS email FROM customer CROSS JOIN LATERAL jsonb_array_elements(CASE WHEN jsonb_typeof(data->'contacts') = 'array' THEN data->'contacts' END) AS contact(value) WHERE contact.value->'role' = '\"billing\"'",
-      description: t('json.examples.10.description'),
-      experimental: true // pine-lang #158
+      description: t('json.examples.10.description')
     },
     {
       title: t('json.examples.11.title'),
       expression: 'customer | unnest: data.tags as tag :left | select: name, tag',
       sql: "SELECT name, tag.value #>> '{}' AS tag FROM customer LEFT JOIN LATERAL jsonb_array_elements(CASE WHEN jsonb_typeof(data->'tags') = 'array' THEN data->'tags' END) AS tag(value) ON TRUE",
-      description: t('json.examples.11.description'),
-      experimental: true // pine-lang #163
+      description: t('json.examples.11.description')
     }
   ];
 
