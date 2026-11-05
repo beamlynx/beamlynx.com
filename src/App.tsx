@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, useParams, Navigate } from 'react-router-dom';
 import { getLangFromPathname } from './i18n/paths';
-import Documentation from './pages/Documentation';
+import Home from './pages/Home';
 import { ColorPaletteProvider } from './contexts/ColorPaletteContext';
 import Navbar from './components/Navbar';
 import { AnimatePresence, MotionConfig } from 'framer-motion';
@@ -14,7 +14,7 @@ import LocaleLayout from './components/LocaleLayout';
 import { useHreflangTags } from './i18n/useHreflangTags';
 import { useTranslation } from 'react-i18next';
 
-const Home = lazy(() => import('./pages/Home'));
+const Documentation = lazy(() => import('./pages/Documentation'));
 const Posts = lazy(() => import('./pages/Posts'));
 const Download = lazy(() => import('./pages/Download'));
 const Features = lazy(() => import('./pages/Features'));
