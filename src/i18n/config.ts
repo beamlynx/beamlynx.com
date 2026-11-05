@@ -30,30 +30,19 @@ const loadedLocales = new Set<string>(["en"]);
 
 // Locale JSON is lazy-loaded per language so a Danish visitor's bundle
 // doesn't also pull the Chinese and Spanish translations.
+const LOCALE_BUNDLES: Record<SupportedLocale, () => Promise<{ default: Record<string, object> }>> = {
+  es: () => import("./locales/es/index"),
+  zh: () => import("./locales/zh/index"),
+  da: () => import("./locales/da/index"),
+};
+
 export async function loadLocale(locale: Locale): Promise<void> {
   if (loadedLocales.has(locale)) return;
 
-  const [common, home, download, docs, docsContent, posts, features, privacy, terms] = await Promise.all([
-    import(`./locales/${locale}/common.json`),
-    import(`./locales/${locale}/home.json`),
-    import(`./locales/${locale}/download.json`),
-    import(`./locales/${locale}/docs.json`),
-    import(`./locales/${locale}/docsContent.json`),
-    import(`./locales/${locale}/posts.json`),
-    import(`./locales/${locale}/features.json`),
-    import(`./locales/${locale}/privacy.json`),
-    import(`./locales/${locale}/terms.json`),
-  ]);
-
-  i18next.addResourceBundle(locale, "common", common.default);
-  i18next.addResourceBundle(locale, "home", home.default);
-  i18next.addResourceBundle(locale, "download", download.default);
-  i18next.addResourceBundle(locale, "docs", docs.default);
-  i18next.addResourceBundle(locale, "docsContent", docsContent.default);
-  i18next.addResourceBundle(locale, "posts", posts.default);
-  i18next.addResourceBundle(locale, "features", features.default);
-  i18next.addResourceBundle(locale, "privacy", privacy.default);
-  i18next.addResourceBundle(locale, "terms", terms.default);
+  const { default: bundle } = await LOCALE_BUNDLES[locale as SupportedLocale]();
+  for (const ns of NAMESPACES) {
+    i18next.addResourceBundle(locale, ns, bundle[ns]);
+  }
 
   loadedLocales.add(locale);
 }

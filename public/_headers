@@ -1,0 +1,11 @@
+# Netlify response headers. https://docs.netlify.com/routing/headers/
+
+# Vite puts a content hash in every file name under /assets, so a file at a
+# given URL never changes. Browsers may keep it for a year without asking.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# The fonts have no hash in their names. If you ever change a font file,
+# give it a new name too, or returning visitors keep the old one for a year.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
