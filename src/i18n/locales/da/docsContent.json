@@ -214,16 +214,16 @@
         "list_connections": "Viser de databaser, du har slået til for agenter. En anden database findes ikke, så vidt agenten kan se.",
         "find_tables": "Finder tabeller ud fra en del af navnet, på samme måde som appen foreslår en tabel, når du begynder at skrive. \"ten\" finder <1>tenant</1>.",
         "complete_query": "Fortæller, hvad der kan komme næste gang i et Pine-udtryk: de tabeller, det kan joine til, eller en tabels kolonner. Sådan bygger agenten en forespørgsel trin for trin i stedet for at gætte. Den kører intet.",
-        "run_query": "Kører et Pine-udtryk og returnerer rækkerne, højst 250. Forespørgslen åbner i en fane i appen, så du kan se, hvad der kørte.",
-        "run_sql_as_pine": "Tager SQL, oversætter den til Pine og kører Pine-udtrykket, som run_query gør. Svaret starter med Pine-udtrykket, så agenten lærer at skrive det.",
+        "run_query": "Kører et Pine-udtryk og returnerer rækkerne. Forespørgslen åbner i en fane i appen, så du kan se, hvad der kørte. Uden sin egen grænse stopper et resultat ved 250 rækker og siger det. Agenten kan sende det, den undersøger, og det, den har fundet, med forespørgslen: spørgsmålet bliver titlen på dens tidslinje, og et nyt spørgsmål starter et nyt afsnit.",
+        "run_sql_as_pine": "Tager SQL, oversætter den til Pine og kører Pine-udtrykket, som run_query gør, også med spørgsmål og fund. Svaret starter med Pine-udtrykket, så agenten lærer at skrive det.",
         "get_pine_doc": "Læser ét emne i Pine-referencen, med eksempler.",
-        "set_question": "Navngiver det, agenten undersøger. Det bliver titlen på dens fane, og et nyt spørgsmål starter et nyt afsnit i tidslinjen.",
-        "note_finding": "Gemmer noget, agenten har fundet. Det vises i tidslinjen ved siden af de forespørgsler, der førte til det.",
+        "set_question": "Navngiver det, agenten undersøger. Erstattes af spørgsmålet, der sendes med run_query, og virker indtil videre.",
+        "note_finding": "Gemmer noget, agenten har fundet. Erstattes af fundet, der sendes med run_query, og virker indtil videre.",
         "get_access_policy": "Læser, hvilke kolonner agenten må se i en database: maskeringsreglerne, aldrig data.",
         "propose_policy_change": "Beder dig ændre maskeringsreglerne. Intet ændres, før du klikker Apply i appen.",
         "open_in_desktop": "Giver dig et link, der åbner et Pine-udtryk i appen, så du selv kan se på det."
       },
-      "coming": "På vej: en Pine-operation, <1>describe:</1>, der viser en tabels kolonner og de tabeller, den joiner til, i ét trin, både i appen og for agenter."
+      "describe": "For at lære en tabel at kende kører agenten to Pine-operationer med run_query, de samme som du kan køre i appen. <1>describe:</1> viser tabellens kolonner: hver kolonnes type og nøgle, om den kan være tom, og om den er maskeret. <1>references:</1> viser, hvordan tabellen joiner med andre tabeller, begge veje, med hvad der skal skrives for hver join."
     },
     "masking": {
       "title": "Datamaskering",
