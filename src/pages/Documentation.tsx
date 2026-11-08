@@ -26,6 +26,7 @@ const DOC_CONTENT_KEYS: Record<string, string> = {
   Count: 'count',
   Delete: 'delete',
   Variables: 'variables',
+  Agents: 'agents',
 };
 
 // Sections whose key doesn't derive to their own anchor id. "Why?" and

@@ -17,6 +17,7 @@ const documentationComponents = {
   Count: lazy(() => import('./Count')),
   Delete: lazy(() => import('./Delete')),
   Variables: lazy(() => import('./Variables')),
+  Agents: lazy(() => import('./Agents')),
 };
 
 export default documentationComponents;

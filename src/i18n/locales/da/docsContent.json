@@ -174,5 +174,56 @@
       { "title": "Automatiske checkpoints efter group: eller limit:", "description": "group: og limit: producerer et endeligt, afgrænset resultat. At pipe ind i en anden tabel efter en af dem pakker automatisk den foregående forespørgsel ind i en anonym CTE først, så joinet anvendes oven på det begrænsede/grupperede resultat i stedet for at ødelægge det. Navngiv selv den CTE ved at placere |= lige efter group:/limit:-trinnet." },
       { "title": "Kombinér flere aggregater pr. række", "description": "x og y aggregerer hver især en forskellig relateret tabel ned til én række pr. kunde og eksponerer kun deres egen count-kolonne. Det endelige udtryk starter fra customers igen og joiner begge variabler ind, hvilket giver én række pr. kunde med email, order_count og status_change_count side om side — uden at indlejre underforespørgsler eller gentage customers-joinet i hver gren." }
     ]
+  },
+  "agents": {
+    "title": "AI-agenter",
+    "description": "Beamlynx kan lade en AI-agent, for eksempel Claude Code, forespørge de databaser, du vælger. Agenten arbejder i Pine, og hver forespørgsel, den kører, vises i Beamlynx-appen, hvor du kan følge med.",
+    "intro": [
+      "Desktop-appen kører en MCP-server: den almindelige måde, en AI-agent taler med et værktøj på din computer. Agenten spørger Beamlynx om dine tabeller, bygger en forespørgsel trin for trin og kører den. Hver forespørgsel åbner i en fane i appen, ved siden af en tidslinje over det, agenten har gjort.",
+      "Agenter skriver Pine. De kan også sende SQL med <1>run_sql_as_pine</1>: Beamlynx oversætter den til Pine, og kun Pine-udtrykket kører. SQL, som Pine ikke kan udtrykke, kører ikke, og agenten får at vide hvorfor. En agent ændrer aldrig dine data. Kun du kan køre en opdatering eller en sletning."
+    ],
+    "setup": {
+      "title": "Forbind en agent",
+      "steps": [
+        "Klik på <1>Agent</1> i sidebjælken i Beamlynx, og åbn fanen <3>Setup</3>.",
+        "Kopiér det, der vises for din agent. Det indeholder stien til Beamlynx på din computer."
+      ],
+      "claudeCode": "Til Claude Code: kør kommandoen i en terminal. Den ser sådan ud:",
+      "otherClients": "Til andre MCP-klienter: indsæt konfigurationen i klientens MCP-indstillinger, for eksempel Claude Desktops <1>claude_desktop_config.json</1>:",
+      "databases": "Vælg derefter, hvilke databaser agenten må bruge, på fanen <1>Databases</1>. En database er slået fra, indtil du slår den til, og når du slår den til, maskeres den med de anbefalede regler."
+    },
+    "tools": {
+      "title": "Hvad agenten kan",
+      "intro": "Agenten får disse værktøjer. Hvert af dem giver adgang til noget, Pine og appen allerede gør. Intet af dem kan mere, end du kan i appen.",
+      "items": {
+        "list_connections": "Viser de databaser, du har slået til for agenter. En anden database findes ikke, så vidt agenten kan se.",
+        "find_tables": "Finder tabeller ud fra en del af navnet, på samme måde som appen foreslår en tabel, når du begynder at skrive. \"ten\" finder <1>tenant</1>.",
+        "complete_query": "Fortæller, hvad der kan komme næste gang i et Pine-udtryk: de tabeller, det kan joine til, eller en tabels kolonner. Sådan bygger agenten en forespørgsel trin for trin i stedet for at gætte. Den kører intet.",
+        "run_query": "Kører et Pine-udtryk og returnerer rækkerne, højst 250. Forespørgslen åbner i en fane i appen, så du kan se, hvad der kørte.",
+        "run_sql_as_pine": "Tager SQL, oversætter den til Pine og kører Pine-udtrykket, som run_query gør. Svaret starter med Pine-udtrykket, så agenten lærer at skrive det.",
+        "get_pine_doc": "Læser ét emne i Pine-referencen, med eksempler.",
+        "set_question": "Navngiver det, agenten undersøger. Det bliver titlen på dens fane, og et nyt spørgsmål starter et nyt afsnit i tidslinjen.",
+        "note_finding": "Gemmer noget, agenten har fundet. Det vises i tidslinjen ved siden af de forespørgsler, der førte til det.",
+        "get_access_policy": "Læser, hvilke kolonner agenten må se i en database: maskeringsreglerne, aldrig data.",
+        "propose_policy_change": "Beder dig ændre maskeringsreglerne. Intet ændres, før du klikker Apply i appen.",
+        "request_reveal": "Beder dig vise de rigtige værdier i en forespørgsel, hvis resultater er maskeret. Du ser rækkerne først og beslutter.",
+        "check_reveal": "Venter på dit svar på en anmodning om at vise værdier.",
+        "open_in_desktop": "Giver dig et link, der åbner et Pine-udtryk i appen, så du selv kan se på det."
+      },
+      "coming": "På vej: en Pine-operation, <1>describe:</1>, der viser en tabels kolonner og de tabeller, den joiner til, i ét trin, både i appen og for agenter."
+    },
+    "masking": {
+      "title": "Datamaskering",
+      "0": "Hver database, en agent kan bruge, har maskeringsregler. Værdierne i en maskeret kolonne kommer tilbage til agenten som \"xxxxx\". Agenten kan stadig filtrere, sortere og joine på en maskeret kolonne, fordi den værdi, der sammenlignes med, er dens egen. Den ser bare aldrig værdierne.",
+      "1": "Du sætter reglerne på Agent-siden under Masking. De anbefalede regler viser tal, id'er, datoer, sand/falsk-værdier og nøgler og maskerer alt andet, for eksempel tekst og JSON. Det er typisk i tekst, at navne, e-mails og noter står."
+    },
+    "reveal": {
+      "title": "Anmodninger om at vise værdier",
+      "0": "Når en maskeret værdi står i vejen for noget, agenten har brug for, kan den bede dig vise den. Anmodningen vises i appen med agentens begrundelse og de rigtige rækker, så du kan se dem først. Viser du dem, får agenten de rækker. Afviser du, får den intet."
+    },
+    "proposals": {
+      "title": "Forslag til ændringer",
+      "0": "En agent kan også foreslå en ændring af maskeringsreglerne, for eksempel at vise én kolonne, med en begrundelse. Forslaget venter i appen, indtil du anvender eller afviser det. Intet ændres uden dig."
+    }
   }
 }

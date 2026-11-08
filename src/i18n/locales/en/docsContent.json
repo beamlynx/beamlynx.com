@@ -174,5 +174,56 @@
       { "title": "Automatic checkpoints after group: or limit:", "description": "group: and limit: produce a final, bounded result. Piping into another table after one of them automatically wraps the preceding query in an anonymous CTE first, so the join applies on top of the limited/grouped result instead of corrupting it. Name that CTE yourself with |= placed right after the group:/limit: step." },
       { "title": "Combine multiple aggregates per row", "description": "x and y each aggregate a different related table down to one row per customer, exposing just their own count column. The final expression starts from customers again and joins both variables in, producing one row per customer with email, order_count, and status_change_count side by side — without nesting subqueries or repeating the customers join in each branch." }
     ]
+  },
+  "agents": {
+    "title": "AI agents",
+    "description": "Beamlynx can let an AI agent, such as Claude Code, query the databases you choose. The agent works in Pine, and every query it runs shows in the Beamlynx app, where you can follow it.",
+    "intro": [
+      "The desktop app runs an MCP server: the standard way an AI agent talks to a tool on your computer. The agent asks Beamlynx about your tables, builds a query one step at a time, and runs it. Each query opens in a tab in the app, next to a timeline of what the agent has done.",
+      "Agents write Pine. They can also send SQL with <1>run_sql_as_pine</1>: Beamlynx converts it to Pine, and only the Pine runs. SQL that Pine can't express runs nothing, and the agent is told why. An agent never changes your data. Only you can run an update or a delete."
+    ],
+    "setup": {
+      "title": "Connect an agent",
+      "steps": [
+        "In Beamlynx, click <1>Agent</1> in the sidebar and open the <3>Setup</3> tab.",
+        "Copy what it shows for your agent. It holds the path to Beamlynx on your computer."
+      ],
+      "claudeCode": "For Claude Code, run the command in a terminal. It looks like this:",
+      "otherClients": "For other MCP clients, paste the configuration into the client's MCP settings, such as Claude Desktop's <1>claude_desktop_config.json</1>:",
+      "databases": "Then choose which databases the agent may use, on the <1>Databases</1> tab. A database is off until you turn it on, and turning it on masks it with the recommended rules."
+    },
+    "tools": {
+      "title": "What the agent can do",
+      "intro": "The agent gets these tools. Each is a way to reach what Pine and the app already do; none of them can do more than you can in the app.",
+      "items": {
+        "list_connections": "Lists the databases you turned on for agents. Any other database doesn't exist as far as the agent can tell.",
+        "find_tables": "Finds tables by part of their name, the same way the app suggests a table when you start typing. \"ten\" finds <1>tenant</1>.",
+        "complete_query": "Says what can come next in a Pine expression: the tables it can join to, or a table's columns. It is how the agent builds a query step by step instead of guessing. It runs nothing.",
+        "run_query": "Runs a Pine expression and returns the rows, at most 250. The query opens in a tab in the app, so you see what ran.",
+        "run_sql_as_pine": "Takes SQL, converts it to Pine and runs the Pine, the same as run_query. The answer starts with the Pine, so the agent learns how to write it.",
+        "get_pine_doc": "Reads one topic of the Pine reference, with examples.",
+        "set_question": "Names what the agent is investigating. It becomes the title of its tab, and a new question starts a new section of the timeline.",
+        "note_finding": "Records something the agent found, shown in the timeline next to the queries that led to it.",
+        "get_access_policy": "Reads which columns the agent may see on a database: the masking rules, never data.",
+        "propose_policy_change": "Asks you to change the masking rules. Nothing changes until you click Apply in the app.",
+        "request_reveal": "Asks you to show the real values of a query whose results are masked. You see the rows first, and decide.",
+        "check_reveal": "Waits for your answer to a reveal request.",
+        "open_in_desktop": "Gives you a link that opens a Pine expression in the app, for you to look at yourself."
+      },
+      "coming": "Coming: a Pine operation, <1>describe:</1>, that lists a table's columns and the tables it joins to in one step, in the app and for agents."
+    },
+    "masking": {
+      "title": "Data masking",
+      "0": "Each database an agent can use has masking rules. A masked column's values come back to the agent as \"xxxxx\". The agent can still filter, sort and join on a masked column, because the value it compares with is its own. It just never sees the values.",
+      "1": "You set the rules on the Agent page, under Masking. The recommended rules show numbers, ids, dates, true/false values and keys, and mask everything else, such as text and JSON. Text is where names, emails and notes usually are."
+    },
+    "reveal": {
+      "title": "Reveal requests",
+      "0": "When a masked value blocks something the agent needs, it can ask you to reveal it. The request shows in the app with the agent's reason and the real rows, for you to look at first. If you reveal them, the agent gets those rows. If you decline, it gets nothing."
+    },
+    "proposals": {
+      "title": "Change proposals",
+      "0": "An agent can also propose a change to the masking rules, such as unmasking one column, with its reason. The proposal waits in the app until you apply or decline it. Nothing changes without you."
+    }
   }
 }

@@ -174,5 +174,56 @@
       { "title": "Puntos de control automáticos tras group: o limit:", "description": "group: y limit: producen un resultado final y acotado. Encadenar hacia otra tabla después de uno de ellos envuelve automáticamente la consulta anterior en un CTE anónimo, de modo que la unión se aplica sobre el resultado ya limitado/agrupado en lugar de corromperlo. Nombra tú mismo ese CTE con |= justo después del paso group:/limit:." },
       { "title": "Combinar varios agregados por fila", "description": "x e y agregan cada uno una tabla relacionada distinta hasta obtener una fila por cliente, exponiendo solo su propia columna de conteo. La expresión final vuelve a partir de customers y une ambas variables, produciendo una fila por cliente con email, order_count y status_change_count uno junto al otro — sin anidar subconsultas ni repetir la unión con customers en cada rama." }
     ]
+  },
+  "agents": {
+    "title": "Agentes de IA",
+    "description": "Beamlynx puede dejar que un agente de IA, como Claude Code, consulte las bases de datos que elijas. El agente trabaja en Pine, y cada consulta que ejecuta aparece en la app de Beamlynx, donde puedes seguirla.",
+    "intro": [
+      "La app de escritorio ejecuta un servidor MCP: la forma estándar en que un agente de IA habla con una herramienta de tu ordenador. El agente pregunta a Beamlynx por tus tablas, construye una consulta paso a paso y la ejecuta. Cada consulta se abre en una pestaña de la app, junto a una línea de tiempo de lo que ha hecho el agente.",
+      "Los agentes escriben Pine. También pueden enviar SQL con <1>run_sql_as_pine</1>: Beamlynx lo convierte a Pine, y solo se ejecuta el Pine. El SQL que Pine no puede expresar no ejecuta nada, y se le explica al agente por qué. Un agente nunca cambia tus datos. Solo tú puedes ejecutar una actualización o un borrado."
+    ],
+    "setup": {
+      "title": "Conectar un agente",
+      "steps": [
+        "En Beamlynx, haz clic en <1>Agent</1> en la barra lateral y abre la pestaña <3>Setup</3>.",
+        "Copia lo que muestra para tu agente. Incluye la ruta a Beamlynx en tu ordenador."
+      ],
+      "claudeCode": "Para Claude Code, ejecuta el comando en una terminal. Tiene este aspecto:",
+      "otherClients": "Para otros clientes MCP, pega la configuración en los ajustes MCP del cliente, como el <1>claude_desktop_config.json</1> de Claude Desktop:",
+      "databases": "Después elige qué bases de datos puede usar el agente, en la pestaña <1>Databases</1>. Una base de datos está desactivada hasta que la activas, y al activarla se enmascara con las reglas recomendadas."
+    },
+    "tools": {
+      "title": "Qué puede hacer el agente",
+      "intro": "El agente recibe estas herramientas. Cada una da acceso a algo que Pine y la app ya hacen; ninguna puede hacer más de lo que tú puedes hacer en la app.",
+      "items": {
+        "list_connections": "Lista las bases de datos que activaste para agentes. Cualquier otra no existe, hasta donde el agente puede saber.",
+        "find_tables": "Encuentra tablas por parte de su nombre, igual que la app sugiere una tabla cuando empiezas a escribir. \"ten\" encuentra <1>tenant</1>.",
+        "complete_query": "Dice qué puede venir a continuación en una expresión de Pine: las tablas a las que puede unirse, o las columnas de una tabla. Así el agente construye una consulta paso a paso en lugar de adivinar. No ejecuta nada.",
+        "run_query": "Ejecuta una expresión de Pine y devuelve las filas, como máximo 250. La consulta se abre en una pestaña de la app, para que veas lo que se ejecutó.",
+        "run_sql_as_pine": "Toma SQL, lo convierte a Pine y ejecuta el Pine, igual que run_query. La respuesta empieza con el Pine, así el agente aprende a escribirlo.",
+        "get_pine_doc": "Lee un tema de la referencia de Pine, con ejemplos.",
+        "set_question": "Da nombre a lo que el agente investiga. Se convierte en el título de su pestaña, y una pregunta nueva empieza una sección nueva de la línea de tiempo.",
+        "note_finding": "Registra algo que el agente encontró. Aparece en la línea de tiempo junto a las consultas que llevaron a ello.",
+        "get_access_policy": "Lee qué columnas puede ver el agente en una base de datos: las reglas de enmascaramiento, nunca datos.",
+        "propose_policy_change": "Te pide cambiar las reglas de enmascaramiento. Nada cambia hasta que haces clic en Apply en la app.",
+        "request_reveal": "Te pide mostrar los valores reales de una consulta cuyos resultados están enmascarados. Tú ves las filas primero y decides.",
+        "check_reveal": "Espera tu respuesta a una solicitud para mostrar valores.",
+        "open_in_desktop": "Te da un enlace que abre una expresión de Pine en la app, para que la mires tú mismo."
+      },
+      "coming": "Próximamente: una operación de Pine, <1>describe:</1>, que muestra las columnas de una tabla y las tablas a las que se une en un solo paso, en la app y para agentes."
+    },
+    "masking": {
+      "title": "Enmascaramiento de datos",
+      "0": "Cada base de datos que un agente puede usar tiene reglas de enmascaramiento. Los valores de una columna enmascarada le llegan al agente como \"xxxxx\". El agente aún puede filtrar, ordenar y unir por una columna enmascarada, porque el valor con el que compara es suyo. Simplemente nunca ve los valores.",
+      "1": "Las reglas se configuran en la página Agent, en Masking. Las reglas recomendadas muestran números, ids, fechas, valores verdadero/falso y claves, y enmascaran todo lo demás, como texto y JSON. Los nombres, correos y notas suelen estar en columnas de texto."
+    },
+    "reveal": {
+      "title": "Solicitudes para mostrar valores",
+      "0": "Cuando un valor enmascarado bloquea algo que el agente necesita, puede pedirte que lo muestres. La solicitud aparece en la app con el motivo del agente y las filas reales, para que las veas primero. Si las muestras, el agente recibe esas filas. Si la rechazas, no recibe nada."
+    },
+    "proposals": {
+      "title": "Propuestas de cambio",
+      "0": "Un agente también puede proponer un cambio en las reglas de enmascaramiento, como mostrar una columna, con su motivo. La propuesta espera en la app hasta que la apliques o la rechaces. Nada cambia sin ti."
+    }
   }
 }
