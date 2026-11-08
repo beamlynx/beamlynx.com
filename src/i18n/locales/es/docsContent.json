@@ -206,8 +206,6 @@
         "note_finding": "Registra algo que el agente encontró. Aparece en la línea de tiempo junto a las consultas que llevaron a ello.",
         "get_access_policy": "Lee qué columnas puede ver el agente en una base de datos: las reglas de enmascaramiento, nunca datos.",
         "propose_policy_change": "Te pide cambiar las reglas de enmascaramiento. Nada cambia hasta que haces clic en Apply en la app.",
-        "request_reveal": "Te pide mostrar los valores reales de una consulta cuyos resultados están enmascarados. Tú ves las filas primero y decides.",
-        "check_reveal": "Espera tu respuesta a una solicitud para mostrar valores.",
         "open_in_desktop": "Te da un enlace que abre una expresión de Pine en la app, para que la mires tú mismo."
       },
       "coming": "Próximamente: una operación de Pine, <1>describe:</1>, que muestra las columnas de una tabla y las tablas a las que se une en un solo paso, en la app y para agentes."
@@ -217,13 +215,9 @@
       "0": "Cada base de datos que un agente puede usar tiene reglas de enmascaramiento. Los valores de una columna enmascarada le llegan al agente como \"xxxxx\". El agente aún puede filtrar, ordenar y unir por una columna enmascarada, porque el valor con el que compara es suyo. Simplemente nunca ve los valores.",
       "1": "Las reglas se configuran en la página Agent, en Masking. Las reglas recomendadas muestran números, ids, fechas, valores verdadero/falso y claves, y enmascaran todo lo demás, como texto y JSON. Los nombres, correos y notas suelen estar en columnas de texto."
     },
-    "reveal": {
-      "title": "Solicitudes para mostrar valores",
-      "0": "Cuando un valor enmascarado bloquea algo que el agente necesita, puede pedirte que lo muestres. La solicitud aparece en la app con el motivo del agente y las filas reales, para que las veas primero. Si las muestras, el agente recibe esas filas. Si la rechazas, no recibe nada."
-    },
     "proposals": {
       "title": "Propuestas de cambio",
-      "0": "Un agente también puede proponer un cambio en las reglas de enmascaramiento, como mostrar una columna, con su motivo. La propuesta espera en la app hasta que la apliques o la rechaces. Nada cambia sin ti."
+      "0": "Cuando un agente necesita ver una columna enmascarada, propone un cambio en las reglas de enmascaramiento, como mostrar esa columna, con su motivo. La propuesta espera en la línea de tiempo del agente hasta que la apliques o la rechaces. Nada cambia sin ti."
     }
   }
 }

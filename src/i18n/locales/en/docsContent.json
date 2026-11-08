@@ -206,8 +206,6 @@
         "note_finding": "Records something the agent found, shown in the timeline next to the queries that led to it.",
         "get_access_policy": "Reads which columns the agent may see on a database: the masking rules, never data.",
         "propose_policy_change": "Asks you to change the masking rules. Nothing changes until you click Apply in the app.",
-        "request_reveal": "Asks you to show the real values of a query whose results are masked. You see the rows first, and decide.",
-        "check_reveal": "Waits for your answer to a reveal request.",
         "open_in_desktop": "Gives you a link that opens a Pine expression in the app, for you to look at yourself."
       },
       "coming": "Coming: a Pine operation, <1>describe:</1>, that lists a table's columns and the tables it joins to in one step, in the app and for agents."
@@ -217,13 +215,9 @@
       "0": "Each database an agent can use has masking rules. A masked column's values come back to the agent as \"xxxxx\". The agent can still filter, sort and join on a masked column, because the value it compares with is its own. It just never sees the values.",
       "1": "You set the rules on the Agent page, under Masking. The recommended rules show numbers, ids, dates, true/false values and keys, and mask everything else, such as text and JSON. Text is where names, emails and notes usually are."
     },
-    "reveal": {
-      "title": "Reveal requests",
-      "0": "When a masked value blocks something the agent needs, it can ask you to reveal it. The request shows in the app with the agent's reason and the real rows, for you to look at first. If you reveal them, the agent gets those rows. If you decline, it gets nothing."
-    },
     "proposals": {
       "title": "Change proposals",
-      "0": "An agent can also propose a change to the masking rules, such as unmasking one column, with its reason. The proposal waits in the app until you apply or decline it. Nothing changes without you."
+      "0": "When an agent needs to see a masked column, it proposes a change to the masking rules, such as showing that one column, with its reason. The proposal waits in the agent's timeline until you apply or decline it. Nothing changes without you."
     }
   }
 }
