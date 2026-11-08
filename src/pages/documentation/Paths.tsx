@@ -9,7 +9,7 @@ const Paths: React.FC = () => {
   const examples: DocumentationExample[] = [
     {
       title: t('paths.examples.0.title'),
-      expression: 'company ? document',
+      expression: 'company | ? document',
       description: t('paths.examples.0.description')
     },
     {
@@ -25,7 +25,7 @@ const Paths: React.FC = () => {
       title={t('paths.title')}
       description={t('paths.description')}
       operations={['?']}
-      syntax="table_a ? table_b\ntable_a | table_b | ? table_c"
+      syntax="table_a | ? table_b\ntable_a | table_b | ? table_c"
       examples={examples}
       isOperation={true}
     >
