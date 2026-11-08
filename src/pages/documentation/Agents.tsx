@@ -16,8 +16,6 @@ const TOOLS = [
   'note_finding',
   'get_access_policy',
   'propose_policy_change',
-  'request_reveal',
-  'check_reveal',
   'open_in_desktop',
 ] as const;
 
@@ -101,9 +99,6 @@ const Agents: React.FC = () => {
       {h3(t('agents.masking.title'))}
       <p>{t('agents.masking.0')}</p>
       <p>{t('agents.masking.1')}</p>
-
-      {h3(t('agents.reveal.title'))}
-      <p>{t('agents.reveal.0')}</p>
 
       {h3(t('agents.proposals.title'))}
       <p>{t('agents.proposals.0')}</p>
