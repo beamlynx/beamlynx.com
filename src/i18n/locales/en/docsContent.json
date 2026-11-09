@@ -62,17 +62,31 @@
   },
   "describe": {
     "title": "Describe",
-    "description": "See a table's columns and how it joins to other tables, as a result you can read. describe: reads the schema Beamlynx already knows, so nothing runs on your database.",
+    "description": "See a table's columns, as a result you can read. describe: reads the schema Beamlynx already knows, so nothing runs on your database.",
     "examples": [
-      { "title": "A table's columns and joins", "description": "One row per column, with its type and whether it is the key or may be empty. Then one row per table it joins to or from, with the Pine to type for that join." },
+      { "title": "A table's columns", "description": "One row per column, with its type, and whether it is the key, may be empty or is masked." },
       { "title": "After a join", "description": "describe: describes the table the pipe left off at: here, employee." }
     ],
-    "intro1": "Each row has a <1>kind</1>: <3>column</3>, <5>joins to</5> (a table this one holds a key of), <7>joined from</7> (a table that holds a key of this one), or <9>schema</9>, which says when the schema was read.",
+    "intro1": "Each row has five columns: <1>column</1>, <3>type</3>, <5>key</5> (primary for a column of the primary key), <7>nullable</7> (yes when it may be empty) and <9>masked</9> (yes when the masking policy masks it).",
     "notes": [
-      "The joins are the ones Beamlynx suggests after a pipe, so each one listed is something you can type next.",
-      "A column the masking policy masks says so. Its name still shows: masking hides values, not names.",
-      "Beamlynx reads the schema when it connects. After a migration, reindex the connection to see the change.",
+      "A masked column's name still shows: masking hides values, not names.",
+      "describe: ends a query for now. Nothing can follow it. To see how a table connects to others, use references:.",
       "In the app, a table's <1>+</1> menu on the canvas has <3>describe</3>, which opens it in a new tab."
+    ]
+  },
+  "references": {
+    "title": "References",
+    "description": "See every relation that touches a table, both ways: the keys it holds of other tables, and the keys other tables hold of it. references: reads the schema Beamlynx already knows, so nothing runs on your database.",
+    "examples": [
+      { "title": "The tables that refer to one", "description": "One row per relation: which side holds the key, which it points at, how Beamlynx knows it, and the Pine to follow it." },
+      { "title": "A table that holds keys", "description": "employee holds a key of company, so that relation shows too, with the Pine to go from employee to company." }
+    ],
+    "intro1": "Each row has four columns: <1>from</1> (the side holding the key), <3>to</3> (the side it points at), <5>how</5> and <7>pine</7> (what to type after a pipe to follow it).",
+    "notes": [
+      "how says foreign key when the database declares the relation, and naming when Beamlynx infers it from a column's name, such as company_id.",
+      "A table that refers to itself, such as employee.reports_to, shows twice: once each way.",
+      "references: ends a query for now. Nothing can follow it.",
+      "In the app, a table's <1>+</1> menu on the canvas has <3>references</3>, which opens it in a new tab."
     ]
   },
   "where": {
