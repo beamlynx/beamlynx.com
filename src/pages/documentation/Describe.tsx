@@ -11,13 +11,11 @@ const Describe: React.FC = () => {
       title: t('describe.examples.0.title'),
       expression: 'company | describe:',
       description: t('describe.examples.0.description'),
-      experimental: true, // pine-lang #175, #177
     },
     {
       title: t('describe.examples.1.title'),
       expression: 'company | employee | describe:',
       description: t('describe.examples.1.description'),
-      experimental: true, // pine-lang #175, #177
     },
   ];
 

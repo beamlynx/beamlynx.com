@@ -11,13 +11,11 @@ const References: React.FC = () => {
       title: t('references.examples.0.title'),
       expression: 'company | references:',
       description: t('references.examples.0.description'),
-      experimental: true, // pine-lang #177
     },
     {
       title: t('references.examples.1.title'),
       expression: 'employee | references:',
       description: t('references.examples.1.description'),
-      experimental: true, // pine-lang #177
     },
   ];
 
