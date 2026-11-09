@@ -62,17 +62,31 @@
   },
   "describe": {
     "title": "Describe",
-    "description": "Se en tabels kolonner, og hvordan den kobles til andre tabeller, som et resultat du kan læse. describe: læser det skema, Beamlynx allerede kender, så intet køres mod din database.",
+    "description": "Se en tabels kolonner som et resultat, du kan læse. describe: læser det skema, Beamlynx allerede kender, så intet køres mod din database.",
     "examples": [
-      { "title": "En tabels kolonner og joins", "description": "Én række pr. kolonne med dens type, og om den er nøglen eller kan være tom. Derefter én række pr. tabel, den kobles til eller fra, med den Pine, du skal skrive for det join." },
+      { "title": "En tabels kolonner", "description": "Én række pr. kolonne med dens type, og om den er nøglen, kan være tom eller er maskeret." },
       { "title": "Efter et join", "description": "describe: beskriver den tabel, pipen sluttede ved: her employee." }
     ],
-    "intro1": "Hver række har en <1>kind</1>: <3>column</3>, <5>joins to</5> (en tabel, som denne har en nøgle til), <7>joined from</7> (en tabel, der har en nøgle til denne) eller <9>schema</9>, som fortæller, hvornår skemaet blev læst.",
+    "intro1": "Hver række har fem kolonner: <1>column</1>, <3>type</3>, <5>key</5> (primary for en kolonne i primærnøglen), <7>nullable</7> (yes, når den kan være tom) og <9>masked</9> (yes, når maskeringspolitikken maskerer den).",
     "notes": [
-      "Joins er dem, Beamlynx foreslår efter en pipe, så alt på listen er noget, du kan skrive som det næste.",
-      "En kolonne, som maskeringspolitikken maskerer, er markeret. Navnet vises stadig: maskering skjuler værdier, ikke navne.",
-      "Beamlynx læser skemaet, når den forbinder. Efter en migrering skal du genindeksere forbindelsen for at se ændringen.",
+      "En maskeret kolonnes navn vises stadig: maskering skjuler værdier, ikke navne.",
+      "describe: afslutter indtil videre en forespørgsel. Intet kan komme efter den. Brug references: for at se, hvordan en tabel kobles til andre.",
       "I appen har en tabels <1>+</1>-menu på lærredet <3>describe</3>, som åbner den i en ny fane."
+    ]
+  },
+  "references": {
+    "title": "References",
+    "description": "Se alle relationer, der rører en tabel, begge veje: de nøgler, den har til andre tabeller, og de nøgler, andre tabeller har til den. references: læser det skema, Beamlynx allerede kender, så intet køres mod din database.",
+    "examples": [
+      { "title": "De tabeller, der henviser til en tabel", "description": "Én række pr. relation: hvilken side der har nøglen, hvad den peger på, hvordan Beamlynx kender den, og den Pine, du skal skrive for at følge den." },
+      { "title": "En tabel, der har nøgler", "description": "employee har en nøgle til company, så den relation vises også, med den Pine, der fører fra employee til company." }
+    ],
+    "intro1": "Hver række har fire kolonner: <1>from</1> (den side, der har nøglen), <3>to</3> (den side, den peger på), <5>how</5> og <7>pine</7> (det, du skriver efter en pipe for at følge den).",
+    "notes": [
+      "how siger foreign key, når databasen erklærer relationen, og naming, når Beamlynx udleder den af en kolonnes navn, for eksempel company_id.",
+      "En tabel, der henviser til sig selv, for eksempel employee.reports_to, vises to gange: én gang hver vej.",
+      "references: afslutter indtil videre en forespørgsel. Intet kan komme efter den.",
+      "I appen har en tabels <1>+</1>-menu på lærredet <3>references</3>, som åbner den i en ny fane."
     ]
   },
   "where": {
