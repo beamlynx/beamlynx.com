@@ -228,16 +228,16 @@
         "list_connections": "Lista las bases de datos que activaste para agentes. Cualquier otra no existe, hasta donde el agente puede saber.",
         "find_tables": "Encuentra tablas por parte de su nombre, igual que la app sugiere una tabla cuando empiezas a escribir. \"ten\" encuentra <1>tenant</1>.",
         "complete_query": "Dice qué puede venir a continuación en una expresión de Pine: las tablas a las que puede unirse, o las columnas de una tabla. Así el agente construye una consulta paso a paso en lugar de adivinar. No ejecuta nada.",
-        "run_query": "Ejecuta una expresión de Pine y devuelve las filas, como máximo 250. La consulta se abre en una pestaña de la app, para que veas lo que se ejecutó.",
-        "run_sql_as_pine": "Toma SQL, lo convierte a Pine y ejecuta el Pine, igual que run_query. La respuesta empieza con el Pine, así el agente aprende a escribirlo.",
+        "run_query": "Ejecuta una expresión de Pine y devuelve las filas. La consulta se abre en una pestaña de la app, para que veas lo que se ejecutó. Sin un límite propio, un resultado se detiene en 250 filas y lo dice. El agente puede enviar lo que investiga y lo que ha encontrado junto con la consulta: la pregunta da título a su línea de tiempo, y una pregunta nueva empieza una sección nueva.",
+        "run_sql_as_pine": "Toma SQL, lo convierte a Pine y ejecuta el Pine, igual que run_query, también con pregunta y hallazgos. La respuesta empieza con el Pine, así el agente aprende a escribirlo.",
         "get_pine_doc": "Lee un tema de la referencia de Pine, con ejemplos.",
-        "set_question": "Da nombre a lo que el agente investiga. Se convierte en el título de su pestaña, y una pregunta nueva empieza una sección nueva de la línea de tiempo.",
-        "note_finding": "Registra algo que el agente encontró. Aparece en la línea de tiempo junto a las consultas que llevaron a ello.",
+        "set_question": "Da nombre a lo que el agente investiga. Lo reemplaza la pregunta enviada con run_query, y por ahora sigue funcionando.",
+        "note_finding": "Registra algo que el agente encontró. Lo reemplaza el hallazgo enviado con run_query, y por ahora sigue funcionando.",
         "get_access_policy": "Lee qué columnas puede ver el agente en una base de datos: las reglas de enmascaramiento, nunca datos.",
         "propose_policy_change": "Te pide cambiar las reglas de enmascaramiento. Nada cambia hasta que haces clic en Apply en la app.",
         "open_in_desktop": "Te da un enlace que abre una expresión de Pine en la app, para que la mires tú mismo."
       },
-      "coming": "Próximamente: una operación de Pine, <1>describe:</1>, que muestra las columnas de una tabla y las tablas a las que se une en un solo paso, en la app y para agentes."
+      "describe": "Para conocer una tabla, el agente ejecuta dos operaciones de Pine con run_query, las mismas que puedes ejecutar en la app. <1>describe:</1> muestra las columnas de la tabla: el tipo y la clave de cada una, si puede estar vacía y si está enmascarada. <1>references:</1> muestra cómo se une la tabla con otras tablas, en ambos sentidos, con lo que hay que escribir para cada unión."
     },
     "masking": {
       "title": "Enmascaramiento de datos",

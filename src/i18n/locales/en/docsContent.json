@@ -228,16 +228,16 @@
         "list_connections": "Lists the databases you turned on for agents. Any other database doesn't exist as far as the agent can tell.",
         "find_tables": "Finds tables by part of their name, the same way the app suggests a table when you start typing. \"ten\" finds <1>tenant</1>.",
         "complete_query": "Says what can come next in a Pine expression: the tables it can join to, or a table's columns. It is how the agent builds a query step by step instead of guessing. It runs nothing.",
-        "run_query": "Runs a Pine expression and returns the rows, at most 250. The query opens in a tab in the app, so you see what ran.",
-        "run_sql_as_pine": "Takes SQL, converts it to Pine and runs the Pine, the same as run_query. The answer starts with the Pine, so the agent learns how to write it.",
+        "run_query": "Runs a Pine expression and returns the rows. The query opens in a tab in the app, so you see what ran. Without a limit of its own, a result stops at 250 rows and says so. The agent can send what it is investigating and what it has found with the query: the question titles its timeline, and a new question starts a new section.",
+        "run_sql_as_pine": "Takes SQL, converts it to Pine and runs the Pine, the same as run_query, question and findings included. The answer starts with the Pine, so the agent learns how to write it.",
         "get_pine_doc": "Reads one topic of the Pine reference, with examples.",
-        "set_question": "Names what the agent is investigating. It becomes the title of its tab, and a new question starts a new section of the timeline.",
-        "note_finding": "Records something the agent found, shown in the timeline next to the queries that led to it.",
+        "set_question": "Names what the agent is investigating. Being replaced by the question sent with run_query, and still works for now.",
+        "note_finding": "Records something the agent found. Being replaced by the finding sent with run_query, and still works for now.",
         "get_access_policy": "Reads which columns the agent may see on a database: the masking rules, never data.",
         "propose_policy_change": "Asks you to change the masking rules. Nothing changes until you click Apply in the app.",
         "open_in_desktop": "Gives you a link that opens a Pine expression in the app, for you to look at yourself."
       },
-      "coming": "Coming: a Pine operation, <1>describe:</1>, that lists a table's columns and the tables it joins to in one step, in the app and for agents."
+      "describe": "To learn a table, the agent runs two Pine operations with run_query, the same ones you can run in the app. <1>describe:</1> lists the table's columns: each one's type and key, whether it may be empty, and whether it is masked. <1>references:</1> lists how the table joins to other tables, both ways, with what to type for each join."
     },
     "masking": {
       "title": "Data masking",

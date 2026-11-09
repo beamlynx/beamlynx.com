@@ -92,8 +92,9 @@ const Agents: React.FC = () => {
           </div>
         ))}
       </dl>
+      {/* describe: and references: are pine-lang #175 and #177; question/finding and the row-cap notice are beamlynx-desktop #97. */}
       <p className="mt-4">
-        <Trans i18nKey="agents.tools.coming" ns="docsContent" components={{ 1: <code /> }} />
+        <Trans i18nKey="agents.tools.describe" ns="docsContent" components={{ 1: <code /> }} />
       </p>
 
       {h3(t('agents.masking.title'))}
