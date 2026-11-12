@@ -54,6 +54,20 @@ const Join: React.FC = () => {
       expression: "activity | where: resource_type = 'company' | select: resource_id as company_id | companies",
       sql: "SELECT companies.* FROM activity JOIN companies ON activity.resource_id = companies.id WHERE activity.resource_type = 'company'",
       description: t('join.examples.7.description')
+    },
+    {
+      title: t('join.examples.8.title'),
+      expression: 'orders as o | customers as c c.id = o.customer_id | addresses as a a.customer_id = c.id, a.region_id = o.region_id',
+      sql: 'SELECT a.* FROM orders AS o JOIN customers AS c ON c.id = o.customer_id JOIN addresses AS a ON a.customer_id = c.id AND a.region_id = o.region_id',
+      description: t('join.examples.8.description'),
+      experimental: true, // pine-lang #192
+    },
+    {
+      title: t('join.examples.9.title'),
+      expression: "customers as c | orders as o :left o.customer_id = c.id, o.status = 'paid', o.deleted_at is null",
+      sql: "SELECT o.* FROM customers AS c LEFT JOIN orders AS o ON o.customer_id = c.id AND o.status = 'paid' AND o.deleted_at IS NULL",
+      description: t('join.examples.9.description'),
+      experimental: true, // pine-lang #192, #193
     }
   ];
 

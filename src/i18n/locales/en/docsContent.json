@@ -35,7 +35,9 @@
       { "title": "Self join", "description": "Join a table with itself" },
       { "title": "Self join with direction / Parent-child relationship", "description": "By default, the child table is picked for the join i.e. the one that holds the foreing key. If you want to join on the parent table i.e. the one being referenced, then use the :parent modifier. Aliases are used for demonstration purposes." },
       { "title": "Join on values in a JSON array", "description": "[*] means any element of the array. Each project joins to every employee whose id is in its members array. The new table's column comes first. A row joins once per match. Values compare as JSON, so the number 5 doesn't match the string \"5\"." },
-      { "title": "Join on a name you give", "description": "A name given with as tells Pine what a column holds. company_id leads to the companies table, by the same rule Pine uses for column names. Use it when no foreign key says it, as here: resource_id holds the ids of several tables, and only the where: makes sure they are company ids." }
+      { "title": "Join on a name you give", "description": "A name given with as tells Pine what a column holds. company_id leads to the companies table, by the same rule Pine uses for column names. Use it when no foreign key says it, as here: resource_id holds the ids of several tables, and only the where: makes sure they are company ids." },
+      { "title": "Name the table on each side", "description": "Each side of a pair can name its table's alias, so one join can compare with any table before it. Here addresses joins to customers and to orders. A side without an alias keeps its usual meaning: written first, the table being joined; written second, the table just before it." },
+      { "title": "Conditions on the join", "description": "A pair can compare a column with a value, or test is null. The condition stays on the join. On a :left join that keeps every customer and attaches only their paid orders. The same test in where: would drop the customers without one." }
     ],
     "modifiersIntro": "Supported modifiers:",
     "modifiers": [
