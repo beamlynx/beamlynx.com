@@ -35,7 +35,9 @@
       { "title": "自连接", "description": "将一张表与自身连接。" },
       { "title": "带方向的自连接 / 父子关系", "description": "默认情况下，连接会选择子表，即持有外键的那一方。如果你想连接到父表，即被引用的那一方，可以使用 :parent 修饰符。示例中使用别名仅用于演示。" },
       { "title": "按 JSON 数组中的值连接", "description": "[*] 表示数组中的任意元素。每个项目会连接到 id 出现在其 members 数组中的每个员工。新表的列写在前面。每个匹配只连接一次。值按 JSON 比较，因此数字 5 不匹配字符串 \"5\"。" },
-      { "title": "按你起的名字连接", "description": "用 as 起的名字告诉 Pine 一列中存的是什么。company_id 指向 companies 表，规则与 Pine 处理列名时相同。当没有外键能表达这一点时使用它，例如这里：resource_id 存有多张表的 id，只有 where: 能确保它们是公司的 id。" }
+      { "title": "按你起的名字连接", "description": "用 as 起的名字告诉 Pine 一列中存的是什么。company_id 指向 companies 表，规则与 Pine 处理列名时相同。当没有外键能表达这一点时使用它，例如这里：resource_id 存有多张表的 id，只有 where: 能确保它们是公司的 id。" },
+      { "title": "为每一侧指明表", "description": "一对列的每一侧都可以写上其表的别名，这样一个连接可以与它之前的任何表比较。这里 addresses 同时连接到 customers 和 orders。不带别名的一侧保持原有含义：写在前面的是正在连接的表；写在后面的是紧挨着的前一张表。" },
+      { "title": "连接上的条件", "description": "一对列可以把一列与一个值比较，或检查 is null。条件留在连接上。在 :left 连接中，这会保留所有客户，只附上他们已付款的订单。把同样的条件放在 where: 中，会去掉没有已付款订单的客户。" }
     ],
     "modifiersIntro": "支持的修饰符：",
     "modifiers": [
