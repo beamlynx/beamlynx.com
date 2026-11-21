@@ -4,7 +4,7 @@
     "description": "Lo que puede hacer Beamlynx: joins a partir de tu esquema, caminos entre tablas, traverse, ediciones a través de joins, control de acceso y más."
   },
   "heading": "Lo que puede hacer Beamlynx",
-  "lede": "Beamlynx lee tu esquema, así que mucho de lo que normalmente escribirías a mano, te lo ofrece. Esto es lo que eso supone.",
+  "lede": "Beamlynx lee tu esquema, así que mucho de lo que normalmente escribirías a mano, te lo ofrece.",
   "items": {
     "joins": {
       "title": "Los joins salen de tu esquema",
@@ -23,19 +23,20 @@
       "body": "Cambia un valor directamente en los resultados, aunque el resultado una varias tablas. Beamlynx guarda el id de cada tabla junto al resultado, así que el cambio llega a la fila correcta. Si un valor no se puede cambiar, te dice por qué."
     },
     "access": {
-      "title": "Control de acceso",
-      "body": "Limita lo que pueden hacer los agentes de IA. Solo pueden leer, y las columnas que enmascaras les aparecen como xxxxx. Un agente que necesita una columna enmascarada tiene que pedírtelo antes. El control de acceso reduce lo que ve un agente, pero no es una garantía de seguridad, así que conecta agentes solo a datos que estés dispuesto a compartir con su proveedor de IA. Los agentes se conectan a través del servidor MCP integrado de Beamlynx, que es experimental."
+      "title": "Limita lo que ven los agentes de IA",
+      "body": "Limita lo que pueden hacer los agentes de IA. Solo pueden leer, y las columnas que enmascaras les aparecen como xxxxx. Un agente que necesita una columna enmascarada tiene que pedírtelo antes. El control de acceso reduce lo que ve un agente, pero no es una garantía de seguridad, así que conecta agentes solo a datos que estés dispuesto a compartir con su proveedor de IA. Los agentes se conectan a través del servidor MCP integrado de Beamlynx, que es experimental.",
+      "link": "Configura un agente"
     },
     "sql": {
       "title": "El SQL siempre está a mano",
       "body": "El SQL de cada consulta está a un clic, para leerlo o copiarlo. Y si prefieres escribir SQL tú mismo, cambia el panel a SQL y ejecútalo tal cual."
     },
     "keyboard": {
-      "title": "Funciona sin ratón",
-      "body": "Ctrl+Shift+P abre la paleta de comandos. En el lienzo, basta una tecla: i une, w filtra, s selecciona, p busca un camino, y las flechas te mueven entre tablas. Si usas Vim, activa el modo Vim."
+      "title": "Una tecla por acción en el lienzo, Vim en los editores",
+      "body": "Cuando el lienzo tiene el teclado, cada acción es una sola tecla: i une, w filtra, s selecciona, o ordena, g agrupa y p busca un camino. Los selectores buscan de forma aproximada, así que \"ordr itm\" encuentra order_items. Pulsa : para escribir en la consulta Pine y Esc para volver al lienzo. El modo Vim pone Vim en los editores de Pine y SQL y añade j y k en el lienzo. Ctrl+K (⌘K en Mac) abre la paleta de comandos, y Ctrl+Enter ejecuta la consulta."
     },
     "grid": {
-      "title": "Una tabla de resultados que no se queda atrás",
+      "title": "Una tabla de resultados rápida",
       "body": "La tabla solo dibuja las filas que ves, así que incluso 100.000 filas se desplazan con fluidez. Selecciona un rango con el teclado o el ratón y pégalo directamente en una hoja de cálculo, o descarga el resultado entero en CSV."
     }
   },

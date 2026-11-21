@@ -15,6 +15,7 @@ import { useHreflangTags } from './i18n/useHreflangTags';
 import { useTranslation } from 'react-i18next';
 
 const Documentation = lazy(() => import('./pages/Documentation'));
+const Agents = lazy(() => import('./pages/Agents'));
 const Posts = lazy(() => import('./pages/Posts'));
 const Download = lazy(() => import('./pages/Download'));
 const Features = lazy(() => import('./pages/Features'));
@@ -62,6 +63,7 @@ const AppContent = () => {
                 <Route path="/" element={<RootLocaleRedirect><Home /></RootLocaleRedirect>} />
                 <Route path="/features" element={<Features />} />
                 <Route path="/docs" element={<Documentation />} />
+                <Route path="/docs/agents" element={<Agents />} />
                 <Route path="/posts" element={<Posts />} />
                 <Route path="/download" element={<Download />} />
                 <Route path="/privacy" element={<Privacy />} />
@@ -75,6 +77,7 @@ const AppContent = () => {
                 <Route index element={<Home />} />
                 <Route path="features" element={<Features />} />
                 <Route path="docs" element={<Documentation />} />
+                <Route path="docs/agents" element={<Agents />} />
                 <Route path="posts" element={<Posts />} />
                 <Route path="download" element={<Download />} />
                 <Route path="privacy" element={<Privacy />} />

@@ -17,7 +17,9 @@ import type { MiniEdge, MiniNode } from "../components/MiniCanvas";
 
 const OG_IMAGE = "https://beamlynx.com/og-image.png";
 
-const FEATURES = ["joins", "paths", "traverse", "edit", "access", "sql", "keyboard", "grid"] as const;
+// AI agents come last: the MCP server is experimental, so it isn't a lead
+// feature.
+const FEATURES = ["joins", "paths", "traverse", "edit", "sql", "keyboard", "grid", "access"] as const;
 type FeatureId = (typeof FEATURES)[number];
 
 
@@ -259,7 +261,7 @@ const KeyboardVisual = () => (
     overlay={
       <>
         <span className="mc-keys" style={{ left: "1.7%", top: "4%" }}>
-          <kbd>Ctrl+Shift+P</kbd>
+          <kbd>Ctrl+K</kbd>
           <span className="mc-keys-label">commands</span>
         </span>
         <span className="mc-keys" style={{ left: "31%", top: "80%" }}>
@@ -319,7 +321,9 @@ const VISUALS: Record<FeatureId, () => React.ReactElement> = {
 const Features = () => {
   const { t } = useTranslation("features");
   const location = useLocation();
-  const downloadHref = localizedPath(getLangFromPathname(location.pathname) ?? "en", "/download");
+  const lang = getLangFromPathname(location.pathname) ?? "en";
+  const downloadHref = localizedPath(lang, "/download");
+  const agentsHref = localizedPath(lang, "/docs/agents");
   const also = t("also.items", { returnObjects: true }) as string[];
 
   // Links like /features#paths (from the homepage) scroll here once the
@@ -365,6 +369,13 @@ const Features = () => {
                 <div className="feat-text">
                   <h2>{t(`items.${id}.title`)}</h2>
                   <p>{t(`items.${id}.body`)}</p>
+                  {id === "access" && (
+                    <p>
+                      <Link to={agentsHref} className="underline decoration-dotted underline-offset-2 hover:no-underline">
+                        {t("items.access.link")}
+                      </Link>
+                    </p>
+                  )}
                 </div>
                 <div className="feat-visual" aria-hidden="true">
                   <Visual />

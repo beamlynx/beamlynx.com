@@ -249,6 +249,7 @@
     "proposals": {
       "title": "Change proposals",
       "0": "When an agent needs to see a masked column, it proposes a change to the masking rules, such as showing that one column, with its reason. The proposal waits in the agent's timeline until you apply or decline it. Nothing changes without you."
-    }
+    },
+    "pineDocs": "Agents write their queries in Pine, the query language Beamlynx uses. The <1>Pine docs</1> describe it."
   }
 }

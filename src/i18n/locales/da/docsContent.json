@@ -249,6 +249,7 @@
     "proposals": {
       "title": "Forslag til ændringer",
       "0": "Når en agent har brug for at se en maskeret kolonne, foreslår den en ændring af maskeringsreglerne, for eksempel at vise netop den kolonne, med en begrundelse. Forslaget venter i agentens tidslinje, indtil du anvender eller afviser det. Intet ændres uden dig."
-    }
+    },
+    "pineDocs": "Agenter skriver deres forespørgsler i Pine, det forespørgselssprog Beamlynx bruger. <1>Pine-dokumentationen</1> beskriver det."
   }
 }
