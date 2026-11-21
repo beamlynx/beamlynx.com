@@ -5,7 +5,7 @@
   },
   "heading": "Términos de uso",
   "intro": "Estos términos se aplican cuando usas la app de Beamlynx o beamlynx.com. Beamlynx lo hace Grephyte ApS, una empresa danesa (CVR 37931535). Escribe tus preguntas a <email/>.",
-  "updated": "Última actualización: 25 de octubre de 2026.",
+  "updated": "Última actualización: 21 de noviembre de 2026.",
   "sections": [
     {
       "title": "Beamlynx es gratis y se ofrece tal cual",
@@ -31,7 +31,7 @@
     {
       "title": "La licencia",
       "paragraphs": [
-        "El código de Beamlynx tiene la licencia <licence>PolyForm Noncommercial License 1.0.0</licence>. Estos términos no cambian esa licencia."
+        "Beamlynx es de código abierto. Su código tiene la licencia <licence>GNU AGPL-3.0</licence>, y Grephyte ApS ofrece también una licencia comercial. Estos términos no cambian ninguna de las dos licencias."
       ]
     },
     {

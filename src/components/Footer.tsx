@@ -96,7 +96,7 @@ const Footer: React.FC = () => {
             >
               {t('footer.supportedBy')}{' '}
               <a
-                href="https://github.com/beamlynx/beamlynx-desktop/blob/main/LICENSE"
+                href="https://github.com/beamlynx/beamlynx-desktop/blob/main/LICENSING.md"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline decoration-dotted underline-offset-2 hover:no-underline"

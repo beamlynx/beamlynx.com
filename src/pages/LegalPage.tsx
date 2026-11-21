@@ -5,7 +5,7 @@ import { getLangFromPathname, localizedPath } from "../i18n/paths";
 
 type Section = { title: string; paragraphs: string[] };
 
-const LICENSE_URL = "https://github.com/beamlynx/beamlynx-desktop/blob/main/LICENSE";
+const LICENSE_URL = "https://github.com/beamlynx/beamlynx-desktop/blob/main/LICENSING.md";
 const linkClass = "underline decoration-dotted underline-offset-2 hover:no-underline";
 
 // A page of plain legal text: the privacy page and the terms. Each is one
