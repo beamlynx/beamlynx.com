@@ -15,9 +15,10 @@ This is a React + TypeScript + Vite application for the Beamlynx website.
 ### Getting Started
 
 ```bash
-npm install
-npm run dev
+bin/beam-website
 ```
+
+It installs the dependencies the first time, then serves the site on http://localhost:5173. It's the same as `npm install` and `npm run dev`.
 
 ### Building
 
