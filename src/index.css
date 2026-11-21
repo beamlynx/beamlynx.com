@@ -622,11 +622,27 @@ pre code {
 .ti-action-sep { color: var(--bp-text-faint); margin: 0 calc(6 * var(--u)); font-weight: 400; }
 .ti-action { color: var(--bp-text-faint); padding: 1px 3px; border-radius: 3px; }
 .ti-action:disabled { cursor: default; }
-.ti-action.is-live { color: var(--bp-trace); }
-.ti-action.is-live:hover { background: color-mix(in srgb, var(--bp-trace) 14%, transparent); }
+/* The one action the demo asks for is a filled button, so it reads as the
+   thing to click next to the grey ones. Dark text: the accent is too light
+   for white. */
+.ti-action.is-live {
+  color: #1a1b26;
+  background: var(--bp-trace);
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.ti-action.is-live:hover { background: color-mix(in srgb, var(--bp-trace) 85%, white); }
 
 @media (prefers-reduced-motion: no-preference) {
   .ti-pulse { animation: ti-pulse 2.2s ease-out infinite; }
+  .ti-action.is-live.ti-pulse { animation: ti-pulse-strong 1.6s ease-out infinite; }
+}
+@keyframes ti-pulse-strong {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--bp-trace) 70%, transparent); }
+  70% { box-shadow: 0 0 0 12px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 @keyframes ti-pulse {
   0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--bp-trace) 50%, transparent); }

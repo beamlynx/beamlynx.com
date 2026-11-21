@@ -63,16 +63,19 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ variant = "desktop"
   return (
     <Menu as="div" className="relative">
       <MenuButton
-        className="flex items-center gap-1.5 px-2 sm:px-3 py-2 text-[14px] sm:text-[15px] font-medium tracking-wide transition-colors duration-200 rounded-lg hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap"
+        className="flex items-center p-2 transition-colors duration-200 rounded-lg hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
         style={
           {
             color: palette.secondary,
             "--tw-ring-color": palette.accent,
           } as React.CSSProperties
         }
-        aria-label={t("languageSwitcher.label")}
+        // Only the globe shows. The current language is in the label and the
+        // tooltip, and the menu marks it in bold.
+        aria-label={`${t("languageSwitcher.label")}: ${t(`languageSwitcher.${currentLocale}`)}`}
+        title={t(`languageSwitcher.${currentLocale}`)}
       >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -80,11 +83,6 @@ const LanguageSwitcher: React.FC<LanguageSwitcherProps> = ({ variant = "desktop"
             d="M3 12h18M12 3a15.3 15.3 0 010 18 15.3 15.3 0 010-18z M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9z"
           />
         </svg>
-        {/* Fixed width, sized to the longest label ("Español", ~57px measured)
-            plus a little slack -- otherwise switching locales (e.g. "中文" at
-            ~31px vs "English" at ~53px) resizes this button and everything
-            in the navbar to its left/right shifts with it. */}
-        <span className="inline-block w-[60px] text-left">{t(`languageSwitcher.${currentLocale}`)}</span>
       </MenuButton>
       <MenuItems
         anchor="bottom end"

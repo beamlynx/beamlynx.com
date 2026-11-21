@@ -48,6 +48,17 @@ const Navbar: React.FC = () => {
       )
     },
     {
+      // The MCP server is experimental, so the item says so.
+      path: "/docs/agents",
+      label: t("nav.agents"),
+      badge: t("nav.experimental"),
+      icon: (
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M3 9h2m-2 6h2m14-6h2m-2 6h2M7 5h10a2 2 0 012 2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2zm3 5h4v4h-4v-4z" />
+        </svg>
+      )
+    },
+    {
       path: "/download",
       label: t("nav.download"),
       icon: (
@@ -65,14 +76,26 @@ const Navbar: React.FC = () => {
         </svg>
       )
     },
-  ];
+  ] as { path: string; label: string; badge?: string; icon: React.ReactNode }[];
 
-  const isActive = (path: string) => {
-    if (path === "/") {
-      return currentBasePath === path;
-    }
-    return currentBasePath.startsWith(path);
-  };
+  // The longest item path that contains the current page wins, so on
+  // /docs/agents only Agents is active, not DSL (/docs) as well.
+  const activePath = navItems
+    .map((item) => item.path)
+    .filter((path) =>
+      path === "/" ? currentBasePath === "/" : currentBasePath === path || currentBasePath.startsWith(`${path}/`),
+    )
+    .sort((a, b) => b.length - a.length)[0];
+  const isActive = (path: string) => path === activePath;
+
+  const Badge = ({ text }: { text: string }) => (
+    <span
+      className="px-1.5 py-px rounded-full text-[10px] font-semibold uppercase tracking-wider leading-4"
+      style={{ color: palette.accent, border: `1px solid ${palette.accent}55` }}
+    >
+      {text}
+    </span>
+  );
 
   const getCurrentPageTitle = () => {
     const currentItem = navItems.find((item) => isActive(item.path));
@@ -140,6 +163,7 @@ const Navbar: React.FC = () => {
                   <span className="flex items-center gap-2">
                     {item.icon}
                     <span>{item.label}</span>
+                    {item.badge && <Badge text={item.badge} />}
                   </span>
                 </Link>
               ))}
@@ -260,7 +284,7 @@ const Navbar: React.FC = () => {
                 <Link
                   key={item.path}
                   to={withLocale(item.path)}
-                  className="relative px-2 sm:px-3 py-2 text-[14px] sm:text-[15px] font-medium tracking-wide transition-colors duration-200 rounded-lg hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap"
+                  className="relative px-2 xl:px-3 py-2 text-[14px] sm:text-[15px] font-medium tracking-wide transition-colors duration-200 rounded-lg hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 whitespace-nowrap"
                   style={
                     {
                       color: isActive(item.path)
@@ -271,17 +295,24 @@ const Navbar: React.FC = () => {
                   }
                 >
                   <span className="flex items-center gap-1.5">
-                    {item.icon}
+                    {/* Icons only from xl up: between lg and xl the
+                        translated labels plus the Agents badge don't fit. */}
+                    <span className="hidden xl:inline-flex">{item.icon}</span>
                     <span>{item.label}</span>
+                    {item.badge && <Badge text={item.badge} />}
                   </span>
                   {isActive(item.path) && (
                     <span
-                      className="absolute bottom-0 left-2 right-2 sm:left-3 sm:right-3 h-0.5 rounded-full"
+                      className="absolute bottom-0 left-2 right-2 xl:left-3 xl:right-3 h-0.5 rounded-full"
                       style={{ backgroundColor: palette.accent }}
                     />
                   )}
                 </Link>
               ))}
+
+              {/* The globe sits before Try it, so the call to action stays
+                  the last thing on the right. */}
+              <LanguageSwitcher variant="desktop" />
 
               {/* Try it: links to the homepage demo */}
               <div className="relative">
@@ -303,8 +334,6 @@ const Navbar: React.FC = () => {
                   {t("nav.tryIt")}
                 </Link>
               </div>
-
-              <LanguageSwitcher variant="desktop" />
             </div>
           </div>
         </div>
