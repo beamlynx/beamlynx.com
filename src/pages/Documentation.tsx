@@ -2,8 +2,11 @@ import React, { useEffect, useState, useCallback, Suspense, useRef } from 'react
 import { useColorPalette } from '../contexts/colorPalette';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
 import documentationComponents from './documentation';
 import LoadingIndicator from '../components/LoadingIndicator';
+import DocsStyles from '../components/DocsStyles';
+import { getLangFromPathname, localizedPath } from '../i18n/paths';
 
 // Anchor ids stay derived from the English object key and never change with
 // locale (shared/bookmarked #section links must keep working in every
@@ -28,7 +31,6 @@ const DOC_CONTENT_KEYS: Record<string, string> = {
   Count: 'count',
   Delete: 'delete',
   Variables: 'variables',
-  Agents: 'agents',
 };
 
 // Sections whose key doesn't derive to their own anchor id. "Why?" and
@@ -57,6 +59,18 @@ const SECTION_KEYS = Object.keys(documentationComponents).map(key => {
 const Documentation: React.FC = () => {
   const palette = useColorPalette();
   const { t } = useTranslation(['docs', 'docsContent']);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // The AI agents section moved to its own page, /docs/agents. Links to its
+  // old place (/docs#agents) still work.
+  useEffect(() => {
+    if (location.hash === '#agents') {
+      const lang = getLangFromPathname(location.pathname) ?? 'en';
+      navigate(localizedPath(lang, '/docs/agents'), { replace: true });
+    }
+  }, [location.hash, location.pathname, navigate]);
+
   const SECTIONS = SECTION_KEYS.map(({ id, contentKey, component }) => ({
     id,
     label: t(`docsContent:${contentKey}.title`),
@@ -427,52 +441,8 @@ const Documentation: React.FC = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
           <div>
             <div className="max-w-none" ref={contentRef}>
-              <style>
-                {`
-                  section[id] {
-                    scroll-margin-top: 100px;
-                  }
-                  section[id] h2 {
-                    scroll-margin-top: 100px;
-                  }
-                  /* Style inline code blocks */
-                  code:not(pre code) {
-                    background-color: ${palette.accent}10;
-                    color: ${palette.accent};
-                    padding: 0.2em 0.4em;
-                    border-radius: 0.25em;
-                    font-size: 0.875em;
-                    font-weight: 500;
-                    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-                    white-space: nowrap;
-                  }
-                  /* Remove any pseudo-elements that might be adding backticks */
-                  code:not(pre code)::before,
-                  code:not(pre code)::after {
-                    content: none !important;
-                  }
-                  /* Style code blocks within pre tags */
-                  pre {
-                    background-color: ${palette.accent}10;
-                    border-radius: 0.5em;
-                    padding: 1em;
-                    margin: 1em 0;
-                    overflow-x: auto;
-                  }
-                  pre code {
-                    color: ${palette.primary};
-                    padding: 0;
-                    background: none;
-                    font-size: 0.875em;
-                    line-height: 1.7;
-                  }
-                  pre code::before,
-                  pre code::after {
-                    content: none !important;
-                  }
-                `}
-              </style>
-              
+              <DocsStyles />
+
               <Suspense fallback={<LoadingIndicator text={t('common:loading.docs')} />}>
                 {SECTIONS.map(({ id, component: Component }) => (
                   <Component key={id} />

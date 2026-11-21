@@ -249,6 +249,7 @@
     "proposals": {
       "title": "Propuestas de cambio",
       "0": "Cuando un agente necesita ver una columna enmascarada, propone un cambio en las reglas de enmascaramiento, como mostrar esa columna, con su motivo. La propuesta espera en la línea de tiempo del agente hasta que la apliques o la rechaces. Nada cambia sin ti."
-    }
+    },
+    "pineDocs": "Los agentes escriben sus consultas en Pine, el lenguaje de consultas que usa Beamlynx. La <1>documentación de Pine</1> lo describe."
   }
 }

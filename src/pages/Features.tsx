@@ -321,7 +321,9 @@ const VISUALS: Record<FeatureId, () => React.ReactElement> = {
 const Features = () => {
   const { t } = useTranslation("features");
   const location = useLocation();
-  const downloadHref = localizedPath(getLangFromPathname(location.pathname) ?? "en", "/download");
+  const lang = getLangFromPathname(location.pathname) ?? "en";
+  const downloadHref = localizedPath(lang, "/download");
+  const agentsHref = localizedPath(lang, "/docs/agents");
   const also = t("also.items", { returnObjects: true }) as string[];
 
   // Links like /features#paths (from the homepage) scroll here once the
@@ -367,6 +369,13 @@ const Features = () => {
                 <div className="feat-text">
                   <h2>{t(`items.${id}.title`)}</h2>
                   <p>{t(`items.${id}.body`)}</p>
+                  {id === "access" && (
+                    <p>
+                      <Link to={agentsHref} className="underline decoration-dotted underline-offset-2 hover:no-underline">
+                        {t("items.access.link")}
+                      </Link>
+                    </p>
+                  )}
                 </div>
                 <div className="feat-visual" aria-hidden="true">
                   <Visual />

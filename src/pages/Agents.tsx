@@ -1,7 +1,14 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import DocumentationSection from '../../components/DocumentationSection';
-import { useColorPalette } from '../../contexts/colorPalette';
+import { Link, useLocation } from 'react-router-dom';
+import DocumentationSection from '../components/DocumentationSection';
+import DocsStyles from '../components/DocsStyles';
+import { useColorPalette } from '../contexts/colorPalette';
+import { getLangFromPathname, localizedPath } from '../i18n/paths';
+
+// The AI agents page, /docs/agents. It is about the app's MCP server, not
+// about Pine, so it has its own page instead of a section in the Pine docs.
+// Its text is still in the docsContent namespace, under "agents".
 
 // The MCP server's tools, in the order an agent usually meets them. Names
 // are the same in every language; what each does is translated.
@@ -34,6 +41,8 @@ const OTHER_CLIENTS_CONFIG = `{
 const Agents: React.FC = () => {
   const { t } = useTranslation(['docsContent', 'docs']);
   const palette = useColorPalette();
+  const location = useLocation();
+  const docsPath = localizedPath(getLangFromPathname(location.pathname) ?? 'en', '/docs');
 
   const h3 = (text: string) => (
     <h3 className="text-xl font-semibold mt-10 mb-3" style={{ color: palette.primary }}>
@@ -103,8 +112,36 @@ const Agents: React.FC = () => {
 
       {h3(t('agents.proposals.title'))}
       <p>{t('agents.proposals.0')}</p>
+
+      <p className="mt-10">
+        <Trans
+          i18nKey="agents.pineDocs"
+          ns="docsContent"
+          components={{ 1: <Link to={docsPath} className="underline decoration-dotted underline-offset-2 hover:no-underline" /> }}
+        />
+      </p>
     </DocumentationSection>
   );
 };
 
-export default Agents;
+const AgentsPage: React.FC = () => {
+  const { t } = useTranslation(['docsContent', 'docs']);
+  const title = `${t('docs:meta.titlePrefix')}${t('agents.title')}`;
+
+  return (
+    <div className="bp-page min-h-screen">
+      <title>{title}</title>
+      <meta name="description" content={t('agents.description')} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={t('agents.description')} />
+      <meta property="og:type" content="article" />
+      <meta property="og:url" content="https://beamlynx.com/docs/agents" />
+      <DocsStyles />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        <Agents />
+      </div>
+    </div>
+  );
+};
+
+export default AgentsPage;
