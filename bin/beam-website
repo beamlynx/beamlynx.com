@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Runs beamlynx.com locally, on http://localhost:5173. Works from anywhere,
+# including through a symlink such as ~/.local/bin/beam-website.
+set -e
+
+cd "$(dirname "$(realpath "$0")")/.."
+
+if [ ! -d node_modules ]; then
+  echo "Installing dependencies first"
+  npm ci
+fi
+
+npm run dev
