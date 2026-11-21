@@ -5,7 +5,7 @@
   },
   "heading": "使用条款",
   "intro": "当你使用 Beamlynx 应用或 beamlynx.com 时，适用本条款。Beamlynx 由丹麦公司 Grephyte ApS（CVR 37931535）开发。如有问题，请发邮件至 <email/>。",
-  "updated": "最后更新：2026 年 10 月 25 日。",
+  "updated": "最后更新：2026 年 11 月 21 日。",
   "sections": [
     {
       "title": "Beamlynx 免费，按现状提供",
@@ -31,7 +31,7 @@
     {
       "title": "许可证",
       "paragraphs": [
-        "Beamlynx 的代码采用 <licence>PolyForm Noncommercial License 1.0.0</licence> 许可。本条款不改变该许可证。"
+        "Beamlynx 是开源软件。它的代码采用 <licence>GNU AGPL-3.0</licence> 许可，Grephyte ApS 也提供商业许可。本条款不改变这两种许可证。"
       ]
     },
     {
