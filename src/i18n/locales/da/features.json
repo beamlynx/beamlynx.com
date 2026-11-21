@@ -4,7 +4,7 @@
     "description": "Det kan Beamlynx: joins ud fra dit skema, veje mellem tabeller, traverse, redigering på tværs af joins, adgangskontrol og mere."
   },
   "heading": "Det kan Beamlynx",
-  "lede": "Beamlynx læser dit skema, så meget af det, du normalt ville skrive i hånden, tilbyder den dig i stedet. Her er, hvad det giver.",
+  "lede": "Beamlynx læser dit skema, så meget af det, du normalt ville skrive i hånden, tilbyder den dig i stedet.",
   "items": {
     "joins": {
       "title": "Joins kommer fra dit skema",
@@ -23,7 +23,7 @@
       "body": "Ret en værdi direkte i resultaterne, også når resultatet samler flere tabeller. Beamlynx gemmer hver tabels id sammen med resultatet, så ændringen rammer den rigtige række. En værdi, der ikke kan ændres, siger hvorfor."
     },
     "access": {
-      "title": "Adgangskontrol",
+      "title": "Begræns, hvad AI-agenter ser",
       "body": "Begræns, hvad AI-agenter kan gøre. De kan kun læse, og kolonner, du maskerer, vises for dem som xxxxx. En agent, der har brug for en maskeret kolonne, skal spørge dig først. Adgangskontrol begrænser, hvad en agent ser, men er ingen sikkerhedsgaranti, så forbind kun agenter til data, du er villig til at dele med deres AI-udbyder. Agenter forbinder sig gennem Beamlynx' indbyggede MCP-server, som er eksperimentel."
     },
     "sql": {
@@ -31,11 +31,11 @@
       "body": "Hver forespørgsels SQL er ét klik væk, så du kan læse eller kopiere den. Vil du hellere skrive SQL selv, så skift panelet til SQL og kør den, som den er."
     },
     "keyboard": {
-      "title": "Virker uden mus",
-      "body": "Ctrl+Shift+P åbner kommandopaletten. På lærredet klarer enkelte taster arbejdet: i joiner, w filtrerer, s vælger kolonner, p finder en vej, og piletasterne flytter mellem tabeller. Bruger du Vim, så slå Vim-tilstand til."
+      "title": "Én tast pr. handling på lærredet, Vim i editorerne",
+      "body": "Når lærredet har tastaturet, er hver handling én tast: i joiner, w filtrerer, s vælger kolonner, o sorterer, g grupperer, og p finder en vej. Vælgerne matcher løst, så \"ordr itm\" finder order_items. Tryk : for at skrive i Pine-forespørgslen og Esc for at gå tilbage til lærredet. Vim-tilstand giver Vim i Pine- og SQL-editoren og tilføjer j og k på lærredet. Ctrl+K (⌘K på Mac) åbner kommandopaletten, og Ctrl+Enter kører forespørgslen."
     },
     "grid": {
-      "title": "En resultattabel, der kan følge med",
+      "title": "En hurtig resultattabel",
       "body": "Tabellen tegner kun de rækker, der er på skærmen, så selv 100.000 rækker ruller glat. Markér et område med tastatur eller mus, og indsæt det direkte i et regneark, eller download hele resultatet som CSV."
     }
   },

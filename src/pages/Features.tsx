@@ -17,7 +17,9 @@ import type { MiniEdge, MiniNode } from "../components/MiniCanvas";
 
 const OG_IMAGE = "https://beamlynx.com/og-image.png";
 
-const FEATURES = ["joins", "paths", "traverse", "edit", "access", "sql", "keyboard", "grid"] as const;
+// AI agents come last: the MCP server is experimental, so it isn't a lead
+// feature.
+const FEATURES = ["joins", "paths", "traverse", "edit", "sql", "keyboard", "grid", "access"] as const;
 type FeatureId = (typeof FEATURES)[number];
 
 
@@ -259,7 +261,7 @@ const KeyboardVisual = () => (
     overlay={
       <>
         <span className="mc-keys" style={{ left: "1.7%", top: "4%" }}>
-          <kbd>Ctrl+Shift+P</kbd>
+          <kbd>Ctrl+K</kbd>
           <span className="mc-keys-label">commands</span>
         </span>
         <span className="mc-keys" style={{ left: "31%", top: "80%" }}>
