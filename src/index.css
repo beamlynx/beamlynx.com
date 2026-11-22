@@ -466,6 +466,10 @@ pre code {
 .ti {
   --ti-current: #283457;
   --ti-warn: #f7768e;
+  /* "Click here": every step's target (the action above the table, the
+     suggested row, Apply, then SQL and Start over) has this colour and its
+     pulse. Amber stands out from the blue accent the rest of the demo uses. */
+  --ti-cue: var(--bp-amber);
   --ti-op: #7dcfff;
   --ti-kw: #bb9af7;
 }
@@ -540,6 +544,9 @@ pre code {
   color: var(--bp-text-dim);
 }
 .ti-toolbar button.is-active { color: var(--bp-trace); }
+/* At the end: SQL (to see what was written) and Start over. */
+.ti-toolbar button.ti-pulse,
+.ti-reset.ti-pulse { color: var(--ti-cue); }
 .ti-toolbar button:hover { color: var(--bp-text); }
 .ti-canvas {
   position: relative;
@@ -622,31 +629,19 @@ pre code {
 .ti-action-sep { color: var(--bp-text-faint); margin: 0 calc(6 * var(--u)); font-weight: 400; }
 .ti-action { color: var(--bp-text-faint); padding: 1px 3px; border-radius: 3px; }
 .ti-action:disabled { cursor: default; }
-/* The one action the demo asks for is a filled button, so it reads as the
-   thing to click next to the grey ones. Dark text: the accent is too light
-   for white. */
 .ti-action.is-live {
-  color: #1a1b26;
-  background: var(--bp-trace);
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 999px;
+  color: var(--ti-cue);
+  background: color-mix(in srgb, var(--ti-cue) 12%, transparent);
   cursor: pointer;
 }
-.ti-action.is-live:hover { background: color-mix(in srgb, var(--bp-trace) 85%, white); }
+.ti-action.is-live:hover { background: color-mix(in srgb, var(--ti-cue) 22%, transparent); }
 
 @media (prefers-reduced-motion: no-preference) {
-  .ti-pulse { animation: ti-pulse 2.2s ease-out infinite; }
-  .ti-action.is-live.ti-pulse { animation: ti-pulse-strong 1.6s ease-out infinite; }
-}
-@keyframes ti-pulse-strong {
-  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--bp-trace) 70%, transparent); }
-  70% { box-shadow: 0 0 0 12px transparent; }
-  100% { box-shadow: 0 0 0 0 transparent; }
+  .ti-pulse { animation: ti-pulse 1.8s ease-out infinite; }
 }
 @keyframes ti-pulse {
-  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--bp-trace) 50%, transparent); }
-  70% { box-shadow: 0 0 0 7px transparent; }
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--ti-cue) 65%, transparent); }
+  70% { box-shadow: 0 0 0 8px transparent; }
   100% { box-shadow: 0 0 0 0 transparent; }
 }
 
@@ -716,11 +711,11 @@ pre code {
 }
 .ti-picker-item.is-path { color: var(--bp-text); cursor: pointer; }
 .ti-picker-item.is-highlighted { background: var(--bp-panel-raised); }
-/* The row the hint asks for: the accent, like the pulsing JOIN/WHERE. */
+/* The row the hint asks for: the cue colour, like the pulsing JOIN/WHERE. */
 .ti-picker-item.is-suggested {
-  color: var(--bp-trace);
+  color: var(--ti-cue);
   /* A bar on the left. Not box-shadow, which the pulse animation uses. */
-  background-image: linear-gradient(var(--bp-trace), var(--bp-trace));
+  background-image: linear-gradient(var(--ti-cue), var(--ti-cue));
   background-size: 2px 100%;
   background-repeat: no-repeat;
 }
@@ -748,7 +743,7 @@ pre code {
   font-weight: 600;
   padding: 3px 10px;
   border-radius: 3px;
-  background: var(--bp-trace);
+  background: var(--ti-cue);
   color: var(--bp-on-trace);
 }
 .ti-value-error { margin: 0; font-size: 12px; line-height: 1.4; color: var(--ti-warn); }
