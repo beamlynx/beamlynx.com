@@ -29,8 +29,8 @@
       "smartScreenWarning": "Denne build er endnu ikke kodesigneret, så Windows SmartScreen kan advare dig. Klik på <1>Flere oplysninger</1> og derefter <3>Kør alligevel</3> for at starte det."
     },
     "linux": {
-      "download": "<1>Download .AppImage-filen</1> (fungerer på de fleste distroer, ingen installation nødvendig):",
-      "orDeb": "Eller, på Debian/Ubuntu, <1>download .deb-filen</1>, og installér den med din sædvanlige pakkehåndtering."
+      "download": "Kør dette i en terminal. Det downloader AppImage-filen og starter den. AppImage-filen virker på de fleste distroer og skal ikke installeres. Du kan også <1>downloade den selv</1>.",
+      "orDeb": "På Debian eller Ubuntu kan du i stedet <1>downloade .deb-filen</1> og installere den med <3>sudo apt install ./beamlynx-*.deb</3>. Beamlynx er ikke i apt's arkiver eller i AUR endnu."
     }
   }
 }

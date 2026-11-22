@@ -29,8 +29,8 @@
       "smartScreenWarning": "This build isn't code-signed yet, so Windows SmartScreen may warn you. Click <1>More info</1> then <3>Run anyway</3> to launch it."
     },
     "linux": {
-      "download": "<1>Download the .AppImage</1> (works on most distros, no installation needed):",
-      "orDeb": "Or, on Debian/Ubuntu, <1>download the .deb</1> and install it with your usual package manager."
+      "download": "Run this in a terminal. It downloads the AppImage and starts it. The AppImage works on most distros and needs no installation. You can also <1>download it yourself</1>.",
+      "orDeb": "On Debian or Ubuntu, you can instead <1>download the .deb</1> and install the file with <3>sudo apt install ./beamlynx-*.deb</3>. Beamlynx isn't in apt's repositories or the AUR yet."
     }
   }
 }

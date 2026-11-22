@@ -8,6 +8,15 @@ const RELEASES_URL = "https://github.com/beamlynx/beamlynx-desktop/releases/late
 
 const TAB_KEYS: DetectedOS[] = ["mac", "windows", "linux"];
 
+// Downloads the AppImage, makes it runnable and starts it. The AppImage's
+// name has no version in it (so the app can update itself in place), which
+// lets releases/latest/download always point at the newest one.
+const LINUX_COMMAND = [
+  "curl -LO https://github.com/beamlynx/beamlynx-desktop/releases/latest/download/beamlynx.AppImage \\",
+  "  && chmod +x beamlynx.AppImage \\",
+  "  && ./beamlynx.AppImage",
+].join("\n");
+
 function CopyCommand({ command, os, format }: { command: string; os: DetectedOS; format: string }) {
   const { t } = useTranslation("download");
   const [copied, setCopied] = useState(false);
@@ -168,12 +177,12 @@ const InstallTabs = () => {
               components={{ 1: <ReleasesLink os="linux" format="appimage">{""}</ReleasesLink> }}
             />
           </p>
-          <CopyCommand command="chmod +x beamlynx.AppImage && ./beamlynx.AppImage" os="linux" format="appimage-chmod" />
+          <CopyCommand command={LINUX_COMMAND} os="linux" format="appimage-curl" />
           <p className="text-sm" style={{ color: 'var(--bp-text-faint)' }}>
             <Trans
               i18nKey="install.linux.orDeb"
               ns="download"
-              components={{ 1: <ReleasesLink os="linux" format="deb">{""}</ReleasesLink> }}
+              components={{ 1: <ReleasesLink os="linux" format="deb">{""}</ReleasesLink>, 3: <code /> }}
             />
           </p>
         </TabPanel>
