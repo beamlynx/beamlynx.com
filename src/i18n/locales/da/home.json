@@ -19,7 +19,7 @@
   "hero": {
     "titleLine1": "En databaseklient,",
     "titleLine2": "du kan give til en AI-agent.",
-    "description": "En agent som Claude Code spørger din database gennem Beamlynx. Beamlynx skriver selv SQL'en, så en kolonne, du maskerer, aldrig forlader databasen, og hver forespørgsel vises i appen. Til dig selv er der et lærred, der kender dit skema: vælg en tabel, klik for at joine, og rækkerne dukker op undervejs.",
+    "description": "AI-agenter spørger din database gennem Beamlynx. Kolonner, du maskerer, når aldrig frem til dem, og du ser hver forespørgsel.",
     "facts": "macOS, Windows og Linux · PostgreSQL, MySQL 8 og SQLite · Ingen konto · Open source"
   },
   "try": {

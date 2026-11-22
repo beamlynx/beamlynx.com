@@ -19,7 +19,7 @@
   "hero": {
     "titleLine1": "A database client",
     "titleLine2": "you can hand to an AI agent.",
-    "description": "An agent such as Claude Code queries your database through Beamlynx. Beamlynx writes the SQL itself, so a column you mask never leaves the database, and every query shows up in the app. For yourself, there's a canvas that knows your schema: pick a table, click to join, and the rows appear as you go.",
+    "description": "AI agents query your database through Beamlynx. Columns you mask never reach them, and you see every query.",
     "facts": "macOS, Windows and Linux · PostgreSQL, MySQL 8 and SQLite · No account · Open source"
   },
   "try": {
