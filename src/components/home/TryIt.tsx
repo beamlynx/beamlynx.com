@@ -348,7 +348,11 @@ const TryIt = () => {
                   transition={{ duration: 0.3 }}
                 >
                   {isCurrent && !done && (
-                    <div className="ti-actions" role="toolbar" aria-label={t("try.actionsLabel", { table: id })}>
+                    <div
+                      // Near the right edge the bar is anchored to the table's
+                      // right side, or it runs out of a narrow canvas.
+                      className={`ti-actions${n.x + NODE_W > W * 0.75 ? " is-right" : ""}`}
+                      role="toolbar" aria-label={t("try.actionsLabel", { table: id })}>
                       {(["select", "where", "join", "more"] as const).map((a, i) => {
                         const live = a === nextAction;
                         const label = a === "more" ? "+" : a.toUpperCase();

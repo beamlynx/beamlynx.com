@@ -625,6 +625,9 @@ pre code {
   font-weight: 600;
   letter-spacing: 0.04em;
 }
+@media (max-width: 899px) {
+  .ti-actions.is-right { left: auto; right: 0; }
+}
 .ti-action-item { display: inline-flex; align-items: center; }
 .ti-action-sep { color: var(--bp-text-faint); margin: 0 calc(6 * var(--u)); font-weight: 400; }
 .ti-action { color: var(--bp-text-faint); padding: 1px 3px; border-radius: 3px; }
@@ -836,6 +839,12 @@ pre code {
   word-break: break-word;
 }
 .ti-code li:first-child { padding-right: 104px; } /* clear of the PINE/SQL switch */
+/* On a phone the code wraps, so a second line can run under the switch too.
+   There the switch gets its own row above the code. */
+@media (max-width: 899px) {
+  .ti-panel-switch { position: static; width: max-content; margin: 8px 8px 0 auto; }
+  .ti-code li:first-child { padding-right: 0; }
+}
 /* Line numbers, in a gutter, as in the app's editor. */
 .ti-code li::before {
   content: counter(line);
