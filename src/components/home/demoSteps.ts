@@ -22,9 +22,9 @@ export interface JoinCandidate {
   columnHint?: string;
 }
 
-/** Steps 0-2: customers, then each join. Step 3 (the filter) is applied
- *  to step 2's rows in the browser; see TryIt.tsx. */
-export const DEMO_STEPS: DemoStep[] = [
+/** Steps 0-2: customers, then each join, as recorded. Step 3 (the filter)
+ *  is applied to step 2's rows in the browser; see TryIt.tsx. */
+const RECORDED_STEPS: DemoStep[] = [
   {
     expression: ["customers","| select: first_name, email"],
     sql: "SELECT \"c_0\".\"first_name\", \"c_0\".\"email\", \"c_0\".id AS \"__c_0__id\" FROM \"customers\" AS \"c_0\" LIMIT 250;",
@@ -73,6 +73,49 @@ export const DEMO_STEPS: DemoStep[] = [
     ],
   },
 ];
+
+// The demo also selects loyalty_points, a number, next to email, so the
+// agent view can show one column masked and one shown as it is. The
+// recordings above predate that, so the column is added here, the way Pine
+// adds a selected column: after email in the expression, the SELECT list,
+// the columns and each row. The values are the sample database's
+// (001_ecommerce_seed.sql), looked up by email, which is unique.
+const LOYALTY_POINTS: Record<string, number> = {
+  "john.doe@email.com": 150,
+  "jane.smith@email.com": 320,
+  "bob.johnson@email.com": 75,
+  "alice.brown@email.com": 0,
+  "charlie.wilson@email.com": 500,
+  "diana.garcia@email.com": 220,
+  "frank.miller@email.com": 180,
+  "grace.davis@email.com": 90,
+};
+
+const addLoyaltyPoints = (s: DemoStep): DemoStep => ({
+  expression: s.expression.map(l =>
+    l === "| select: first_name, email" ? "| select: first_name, email, loyalty_points" : l,
+  ),
+  sql: s.sql.replace(`"c_0"."email", `, `"c_0"."email", "c_0"."loyalty_points", `),
+  columns: [...s.columns.slice(0, 2), "loyalty_points", ...s.columns.slice(2)],
+  rows: s.rows.map(r => [...r.slice(0, 2), LOYALTY_POINTS[String(r[1])], ...r.slice(2)]),
+});
+
+export const DEMO_STEPS: DemoStep[] = RECORDED_STEPS.map(addLoyaltyPoints);
+
+/** The column the demo's masking rule masks for agents. */
+export const MASKED_COLUMN = "email";
+
+/** What an agent gets for a step: the SQL Pine builds under the masking
+ *  rule selects 'xxxxx' AS "email" in place of the column, so every row
+ *  holds xxxxx there. A filter on the column would still use the real one. */
+export const asAgentSees = (s: DemoStep): DemoStep => {
+  const i = s.columns.indexOf(MASKED_COLUMN);
+  return {
+    ...s,
+    sql: s.sql.replace(`"c_0"."${MASKED_COLUMN}"`, `'xxxxx' AS "${MASKED_COLUMN}"`),
+    rows: s.rows.map(r => r.map((v, j) => (j === i ? "xxxxx" : v))),
+  };
+};
 
 /** The join picker's contents at steps 0 and 1, grouped like the app's:
  *  "has" (tables that point at this one) and "belongs to" (tables this one

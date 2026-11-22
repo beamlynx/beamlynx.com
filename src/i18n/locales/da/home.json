@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Beamlynx - Databaseklienten der kender dit skema",
-    "description": "Beamlynx er en databaseklient til PostgreSQL, MySQL og SQLite, der kender dit skema. Vælg en tabel, og den viser dig alle de tabeller, den hænger sammen med.",
-    "ogTitle": "Beamlynx - Databaseklienten der kender dit skema",
-    "ogDescription": "Databaseklienten der kender dit skema. Vælg en tabel, og den viser dig alle de tabeller, den hænger sammen med.",
-    "twitterTitle": "Beamlynx - Databaseklienten der kender dit skema",
-    "twitterDescription": "Databaseklienten der kender dit skema. Vælg en tabel, og den viser dig alle de tabeller, den hænger sammen med."
+    "title": "Beamlynx - En databaseklient, du kan give til en AI-agent",
+    "description": "Beamlynx er en databaseklient til skrivebordet til PostgreSQL, MySQL 8 og SQLite. AI-agenter spørger gennem den, og de kolonner, du maskerer, når aldrig frem til dem.",
+    "ogTitle": "Beamlynx - En databaseklient, du kan give til en AI-agent",
+    "ogDescription": "En databaseklient til skrivebordet til PostgreSQL, MySQL 8 og SQLite. AI-agenter spørger gennem den, og de kolonner, du maskerer, når aldrig frem til dem.",
+    "twitterTitle": "Beamlynx - En databaseklient, du kan give til en AI-agent",
+    "twitterDescription": "En databaseklient til skrivebordet til PostgreSQL, MySQL 8 og SQLite. AI-agenter spørger gennem den, og de kolonner, du maskerer, når aldrig frem til dem."
   },
   "cta": {
     "download": "Download Beamlynx",
@@ -17,15 +17,16 @@
     "tryHere": "Se hvordan det virker"
   },
   "hero": {
-    "titleLine1": "Databaseklienten",
-    "titleLine2": "der kender dit skema.",
-    "description": "Vælg en tabel, og Beamlynx viser dig alle de tabeller, den hænger sammen med. Klik på en for at joine den, og rækkerne dukker op undervejs. Der er ingen joins at skrive, og forespørgslen står ved siden af tegningen, hvis du hellere vil skrive.",
-    "facts": "macOS, Windows og Linux · PostgreSQL, MySQL og SQLite · Ingen konto"
+    "titleLine1": "En databaseklient,",
+    "titleLine2": "du kan give til en AI-agent.",
+    "description": "En agent som Claude Code spørger din database gennem Beamlynx. Beamlynx skriver selv SQL'en, så en kolonne, du maskerer, aldrig forlader databasen, og hver forespørgsel vises i appen. Til dig selv er der et lærred, der kender dit skema: vælg en tabel, klik for at joine, og rækkerne dukker op undervejs.",
+    "facts": "macOS, Windows og Linux · PostgreSQL, MySQL 8 og SQLite · Ingen konto · Open source"
   },
   "try": {
     "stepOf": "Trin {{n}} af {{total}}",
     "hintJoin": "Klik på JOIN over {{table}} for at se de tabeller, den hænger sammen med.",
-    "hintDone": "Færdig. Skift til SQL for at se, hvad Beamlynx skrev for dig, eller start forfra.",
+    "hintAgent": "Klik nu på Agent over resultatet for at se, hvad en AI-agent ville få for den samme forespørgsel.",
+    "hintDone": "Det er, hvad en agent får: email er xxxxx. Skift til SQL for at se hvorfor, eller start forfra.",
     "reset": "Start forfra",
     "resultLabel": "Resultat af forespørgslen",
     "queryLabel": "Forespørgsel",
@@ -46,8 +47,15 @@
     "value": "Værdi",
     "apply": "Anvend",
     "wholeNumber": "Brug et heltal, for eksempel 500. Pine læser et tal uden anførselstegn som et heltal.",
-    "panelLabel": "Paneler",
-    "showPanel": "Vis {{panel}}-panelet",
-    "hidePanel": "Skjul {{panel}}-panelet"
+    "viewerLabel": "Hvis visning resultatet viser",
+    "viewer": {
+      "you": "Dig",
+      "agent": "Agent"
+    },
+    "viewerNote": {
+      "you": "Du ser de rigtige værdier.",
+      "agent": "email er maskeret for agenter."
+    },
+    "maskedForAgents": "maskeret for agenter"
   }
 }

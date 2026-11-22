@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { DEMO_PATH, DEMO_STEPS, JOIN_CANDIDATES, WHERE_COLUMNS, joinColumnOf } from "./demoSteps";
+import { DEMO_PATH, DEMO_STEPS, JOIN_CANDIDATES, MASKED_COLUMN, WHERE_COLUMNS, asAgentSees, joinColumnOf } from "./demoSteps";
 import type { Cell } from "./demoSteps";
 import { trackEvent } from "../../utils/analytics";
 
@@ -105,19 +105,29 @@ const TryIt = () => {
   const [op, setOp] = useState<Operator>(DEFAULT_OP);
   const [value, setValue] = useState(DEFAULT_VALUE);
   const [valueError, setValueError] = useState(false);
-  // The app's text panel under the canvas: Pine, SQL, or hidden.
-  const [panel, setPanel] = useState<"pine" | "sql" | null>("pine");
+  // The app's text panel under the canvas: Pine or SQL. Its own switch,
+  // above the text, is the only one.
+  const [panel, setPanel] = useState<"pine" | "sql">("pine");
+  // Whose view the results and SQL show. Masking changes what an agent
+  // gets, not what you see in your own tabs, so "you" shows real values.
+  const [viewer, setViewer] = useState<"you" | "agent">("you");
+  // The last step asks for the Agent view, so the visitor sees the
+  // difference masking makes. Seen once is enough to finish.
+  const [sawAgent, setSawAgent] = useState(false);
 
-  const done = where !== null;
+  const filtered = where !== null;
+  const done = filtered && sawAgent;
+  const askAgent = filtered && !sawAgent;
   const visible = ORDER.slice(0, step + 1);
   const currentNode = visible[visible.length - 1];
-  const nextAction: "join" | "where" | null = done ? null : step < 2 ? "join" : "where";
+  const nextAction: "join" | "where" | null = filtered ? null : step < 2 ? "join" : "where";
 
   // Keyboard focus follows the flow: into the picker when it opens, back to
   // the next action when it closes, and to "Start over" at the end. Never on
   // first render, so the page doesn't jump to the demo on load.
   const actionRef = useRef<HTMLButtonElement>(null);
   const resetRef = useRef<HTMLButtonElement>(null);
+  const agentRef = useRef<HTMLButtonElement>(null);
   const pickerInputRef = useRef<HTMLInputElement>(null);
   const valueRef = useRef<HTMLInputElement>(null);
   const moveFocus = useRef(false);
@@ -131,9 +141,11 @@ const TryIt = () => {
           ? pickerInputRef
           : done
             ? resetRef
-            : actionRef;
+            : askAgent
+              ? agentRef
+              : actionRef;
     target.current?.focus({ preventScroll: true });
-  }, [picker, step, done]);
+  }, [picker, step, done, askAgent]);
 
   // The result, expression and SQL for the current state. The filter step
   // uses step 2's rows, and the WHERE clause in the exact form Pine emits.
@@ -152,6 +164,8 @@ const TryIt = () => {
       rows: base.rows.filter(r => compare[where.op](Number(r[col]), n)),
     };
   }, [step, where]);
+  const shown = viewer === "agent" ? asAgentSees(current) : current;
+  const maskedIdx = shown.columns.indexOf(MASKED_COLUMN);
 
   const openPicker = (p: Picker) => {
     moveFocus.current = true;
@@ -198,7 +212,20 @@ const TryIt = () => {
     setStep(0);
     setWhere(null);
     setPicker(null);
+    setViewer("you");
+    setSawAgent(false);
     trackEvent("home_demo_step", { step: 0, action: "reset" });
+  };
+
+  const chooseViewer = (v: "you" | "agent") => {
+    setViewer(v);
+    if (v === "agent" && askAgent) {
+      moveFocus.current = true;
+      setSawAgent(true);
+      trackEvent("home_demo_step", { step: 4, action: "agent_view" });
+    } else {
+      trackEvent("home_demo_viewer", { viewer: v });
+    }
   };
 
   // Picker rows: join candidates or columns, narrowed by the filter box.
@@ -267,6 +294,8 @@ const TryIt = () => {
 
   const hint = done
     ? t("try.hintDone")
+    : askAgent
+      ? t("try.hintAgent")
     : picker?.kind === "join"
       ? t("try.hintPickTable", { table: DEMO_PATH[step].split(" ")[0].replace("public.", "") })
       : picker?.kind === "where-column"
@@ -290,7 +319,7 @@ const TryIt = () => {
     <div className="ti">
       <div className="ti-bar">
         <p className="ti-hint" aria-live="polite">
-          <span className="ti-step">{t("try.stepOf", { n: done ? 4 : step + 1, total: 4 })}</span>
+          <span className="ti-step">{t("try.stepOf", { n: done ? 5 : askAgent ? 4 : step + 1, total: 5 })}</span>
           {hint}
         </p>
         <button
@@ -307,20 +336,6 @@ const TryIt = () => {
       <div className="ti-grid">
         <div className="ti-left">
         <div className="ti-canvas-cell">
-          <div className="ti-toolbar" role="toolbar" aria-label={t("try.panelLabel")}>
-            {(["pine", "sql"] as const).map(v => (
-              <button
-                key={v}
-                type="button"
-                aria-pressed={panel === v}
-                title={t(panel === v ? "try.hidePanel" : "try.showPanel", { panel: v === "pine" ? "Pine" : "SQL" })}
-                className={`${panel === v ? "is-active" : ""}${done && v === "sql" && panel !== "sql" ? " ti-pulse" : ""}`}
-                onClick={() => setPanel(panel === v ? null : v)}
-              >
-                {v.toUpperCase()}
-              </button>
-            ))}
-          </div>
           <div className="ti-canvas" style={{ aspectRatio: `${W} / ${H}` }}>
             <svg className="ti-traces" viewBox={`0 0 ${W} ${H}`} aria-hidden="true">
               {visible.slice(1).map((id, i) => (
@@ -347,7 +362,7 @@ const TryIt = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {isCurrent && !done && (
+                  {isCurrent && !filtered && (
                     <div
                       // Near the right edge the bar is anchored to the table's
                       // right side, or it runs out of a narrow canvas.
@@ -390,6 +405,7 @@ const TryIt = () => {
                       <span className="ti-chip-label">SEL</span>
                       <span className="ti-chip">first_name</span>
                       <span className="ti-chip">email</span>
+                      <span className="ti-chip">loyalty_points</span>
                     </div>
                   )}
                   {id === "order_items" && where && (
@@ -505,33 +521,56 @@ const TryIt = () => {
           </div>
         </div>
 
-        {panel && (
-          <div className="ti-panel">
+        <div className="ti-panel">
             <div className="ti-panel-switch" role="tablist" aria-label={t("try.queryLabel")}>
               {(["pine", "sql"] as const).map(v => (
-                <button key={v} type="button" role="tab" aria-selected={panel === v} className={panel === v ? "is-active" : ""} onClick={() => setPanel(v)}>
+                <button
+                  key={v}
+                  type="button"
+                  role="tab"
+                  aria-selected={panel === v}
+                  className={`${panel === v ? "is-active" : ""}${done && v === "sql" && panel !== "sql" ? " ti-pulse" : ""}`}
+                  onClick={() => setPanel(v)}
+                >
                   {v.toUpperCase()}
                 </button>
               ))}
             </div>
             <ol className="ti-code">
-              {(panel === "pine" ? current.expression : formatSql(current.sql).split("\n")).map((l, i) => (
+              {(panel === "pine" ? shown.expression : formatSql(shown.sql).split("\n")).map((l, i) => (
                 <li key={i}>
                   <span>{panel === "pine" ? highlightPine(l) : highlightSql(l)}</span>
                 </li>
               ))}
             </ol>
-            <p className="ti-sqlsize">{t("try.sqlWritten", { count: current.sql.length })}</p>
-          </div>
-        )}
+            <p className="ti-sqlsize">{t("try.sqlWritten", { count: shown.sql.length })}</p>
+        </div>
         </div>
 
         {/* Results */}
         <div className="ti-side">
+          <div className="ti-viewer">
+            <div className="ti-viewer-switch" role="radiogroup" aria-label={t("try.viewerLabel")}>
+              {(["you", "agent"] as const).map(v => (
+                <button
+                  key={v}
+                  type="button"
+                  role="radio"
+                  aria-checked={viewer === v}
+                  ref={v === "agent" ? agentRef : undefined}
+                  className={`${viewer === v ? "is-active" : ""}${v === "agent" && askAgent ? " ti-pulse is-cue" : ""}`}
+                  onClick={() => chooseViewer(v)}
+                >
+                  {t(`try.viewer.${v}`)}
+                </button>
+              ))}
+            </div>
+            <p className="ti-viewer-note">{t(`try.viewerNote.${viewer}`)}</p>
+          </div>
           <div className="ti-result" role="region" aria-label={t("try.resultLabel")}>
             <AnimatePresence mode="wait" initial={false}>
               <motion.table
-                key={`${step}-${where ? JSON.stringify(where) : ""}`}
+                key={`${step}-${where ? JSON.stringify(where) : ""}-${viewer}`}
                 initial={reduceMotion ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={reduceMotion ? undefined : { opacity: 0 }}
@@ -539,16 +578,22 @@ const TryIt = () => {
               >
                 <thead>
                   <tr>
-                    {current.columns.map((c, i) => (
-                      <th key={i}>{c}</th>
+                    {shown.columns.map((c, i) => (
+                      <th key={i}>
+                        {c}
+                        {i === maskedIdx && <span className="ti-masked-chip">{t("try.maskedForAgents")}</span>}
+                      </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {current.rows.map((r: Cell[], i) => (
+                  {shown.rows.map((r: Cell[], i) => (
                     <tr key={i}>
                       {r.map((v, j) => (
-                        <td key={j} className={v === null ? "is-null" : undefined}>
+                        <td
+                          key={j}
+                          className={v === null ? "is-null" : viewer === "agent" && j === maskedIdx ? "is-masked" : undefined}
+                        >
                           {v === null ? "null" : String(v)}
                         </td>
                       ))}
@@ -558,7 +603,7 @@ const TryIt = () => {
               </motion.table>
             </AnimatePresence>
           </div>
-          <p className="ti-count">{t("try.rows", { count: current.rows.length })}</p>
+          <p className="ti-count">{t("try.rows", { count: shown.rows.length })}</p>
         </div>
       </div>
     </div>

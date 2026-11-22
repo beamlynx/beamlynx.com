@@ -524,30 +524,9 @@ pre code {
     radial-gradient(circle at 1px 1px, var(--bp-grid-dot) 1.2px, transparent 0) 0 0/20px 20px,
     var(--bp-bg);
 }
-.ti-toolbar {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  display: flex;
-  gap: 2px;
-  padding: 2px 4px;
-  border: 1px solid var(--bp-border);
-  border-radius: 4px;
-  background: var(--bp-panel);
-}
-.ti-toolbar button {
-  height: 22px;
-  padding: 0 6px;
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  color: var(--bp-text-dim);
-}
-.ti-toolbar button.is-active { color: var(--bp-trace); }
 /* At the end: SQL (to see what was written) and Start over. */
-.ti-toolbar button.ti-pulse,
+.ti-panel-switch button.ti-pulse,
 .ti-reset.ti-pulse { color: var(--ti-cue); }
-.ti-toolbar button:hover { color: var(--bp-text); }
 .ti-canvas {
   position: relative;
   width: 100%;
@@ -785,6 +764,25 @@ pre code {
   font-weight: 600;
 }
 .ti-result td { color: var(--bp-text-body); }
+.ti-result td.is-masked { color: var(--bp-amber); letter-spacing: 0.06em; }
+.ti-masked-chip {
+  margin-left: 8px; padding: 0 7px; border-radius: 999px; vertical-align: 1px;
+  font-family: var(--font-sans); font-size: 10.5px; font-weight: 600; color: var(--bp-amber);
+  border: 1px solid color-mix(in srgb, var(--bp-amber) 45%, transparent);
+}
+.ti-viewer {
+  display: flex; align-items: center; flex-wrap: wrap; gap: 6px 12px;
+  padding: 8px 12px; border-bottom: 1px solid var(--bp-border-soft);
+}
+.ti-viewer-switch { display: inline-flex; padding: 2px; border: 1px solid var(--bp-border); border-radius: 6px; background: var(--bp-bg); }
+.ti-viewer-switch button {
+  padding: 3px 12px; border-radius: 4px; font-size: 12.5px; font-weight: 600; color: var(--bp-text-dim);
+  background: none; border: 0; cursor: pointer;
+}
+.ti-viewer-switch button.is-active { color: var(--bp-on-trace); background: var(--bp-trace); }
+.ti-viewer-switch button.is-cue { color: var(--ti-cue); box-shadow: inset 0 0 0 1px var(--ti-cue); }
+.ti-viewer-switch button:focus-visible { outline: 2px solid var(--bp-trace); outline-offset: 1px; }
+.ti-viewer-note { margin: 0; font-size: 12.5px; color: var(--bp-text-dim); }
 .ti-count {
   margin: 0;
   padding: 6px 12px;

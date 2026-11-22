@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Beamlynx - The database client that knows your schema",
-    "description": "Beamlynx is a database client for PostgreSQL, MySQL and SQLite that knows your schema. Pick a table, and it shows you every table it connects to.",
-    "ogTitle": "Beamlynx - The database client that knows your schema",
-    "ogDescription": "The database client that knows your schema. Pick a table, and it shows you every table it connects to.",
-    "twitterTitle": "Beamlynx - The database client that knows your schema",
-    "twitterDescription": "The database client that knows your schema. Pick a table, and it shows you every table it connects to."
+    "title": "Beamlynx - A database client you can hand to an AI agent",
+    "description": "Beamlynx is a desktop database client for PostgreSQL, MySQL 8 and SQLite. AI agents query through it, and the columns you mask never reach them.",
+    "ogTitle": "Beamlynx - A database client you can hand to an AI agent",
+    "ogDescription": "A desktop database client for PostgreSQL, MySQL 8 and SQLite. AI agents query through it, and the columns you mask never reach them.",
+    "twitterTitle": "Beamlynx - A database client you can hand to an AI agent",
+    "twitterDescription": "A desktop database client for PostgreSQL, MySQL 8 and SQLite. AI agents query through it, and the columns you mask never reach them."
   },
   "cta": {
     "download": "Download Beamlynx",
@@ -17,15 +17,16 @@
     "tryHere": "See how it works"
   },
   "hero": {
-    "titleLine1": "The database client",
-    "titleLine2": "that knows your schema.",
-    "description": "Pick a table, and Beamlynx shows you every table it connects to. Click one to join it, and the rows appear as you go. There are no joins to write, and the query sits beside the picture if you'd rather type.",
-    "facts": "macOS, Windows and Linux · PostgreSQL, MySQL and SQLite · No account"
+    "titleLine1": "A database client",
+    "titleLine2": "you can hand to an AI agent.",
+    "description": "An agent such as Claude Code queries your database through Beamlynx. Beamlynx writes the SQL itself, so a column you mask never leaves the database, and every query shows up in the app. For yourself, there's a canvas that knows your schema: pick a table, click to join, and the rows appear as you go.",
+    "facts": "macOS, Windows and Linux · PostgreSQL, MySQL 8 and SQLite · No account · Open source"
   },
   "try": {
     "stepOf": "Step {{n}} of {{total}}",
     "hintJoin": "Click JOIN above {{table}} to see the tables it connects to.",
-    "hintDone": "Done. Switch to SQL to see what Beamlynx wrote for you, or start over.",
+    "hintAgent": "Now click Agent above the results to see what an AI agent would get for the same query.",
+    "hintDone": "That's what an agent gets: email is xxxxx. Switch to SQL to see why, or start over.",
     "reset": "Start over",
     "resultLabel": "Query result",
     "queryLabel": "Query",
@@ -46,8 +47,15 @@
     "value": "Value",
     "apply": "Apply",
     "wholeNumber": "Use a whole number, like 500. Pine reads a bare number as a whole number.",
-    "panelLabel": "Panels",
-    "showPanel": "Show the {{panel}} panel",
-    "hidePanel": "Hide the {{panel}} panel"
+    "viewerLabel": "Whose view the results show",
+    "viewer": {
+      "you": "You",
+      "agent": "Agent"
+    },
+    "viewerNote": {
+      "you": "You see the real values.",
+      "agent": "email is masked for agents."
+    },
+    "maskedForAgents": "masked for agents"
   }
 }

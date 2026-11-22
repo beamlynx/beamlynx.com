@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Beamlynx - El cliente de bases de datos que conoce tu esquema",
-    "description": "Beamlynx es un cliente de bases de datos para PostgreSQL, MySQL y SQLite que conoce tu esquema. Elige una tabla y te muestra todas las tablas con las que se relaciona.",
-    "ogTitle": "Beamlynx - El cliente de bases de datos que conoce tu esquema",
-    "ogDescription": "El cliente de bases de datos que conoce tu esquema. Elige una tabla y te muestra todas las tablas con las que se relaciona.",
-    "twitterTitle": "Beamlynx - El cliente de bases de datos que conoce tu esquema",
-    "twitterDescription": "El cliente de bases de datos que conoce tu esquema. Elige una tabla y te muestra todas las tablas con las que se relaciona."
+    "title": "Beamlynx - Un cliente de bases de datos que puedes dar a un agente de IA",
+    "description": "Beamlynx es un cliente de bases de datos de escritorio para PostgreSQL, MySQL 8 y SQLite. Los agentes de IA consultan a través de él, y las columnas que enmascaras nunca les llegan.",
+    "ogTitle": "Beamlynx - Un cliente de bases de datos que puedes dar a un agente de IA",
+    "ogDescription": "Un cliente de bases de datos de escritorio para PostgreSQL, MySQL 8 y SQLite. Los agentes de IA consultan a través de él, y las columnas que enmascaras nunca les llegan.",
+    "twitterTitle": "Beamlynx - Un cliente de bases de datos que puedes dar a un agente de IA",
+    "twitterDescription": "Un cliente de bases de datos de escritorio para PostgreSQL, MySQL 8 y SQLite. Los agentes de IA consultan a través de él, y las columnas que enmascaras nunca les llegan."
   },
   "cta": {
     "download": "Descargar Beamlynx",
@@ -17,15 +17,16 @@
     "tryHere": "Mira cómo funciona"
   },
   "hero": {
-    "titleLine1": "El cliente de bases de datos",
-    "titleLine2": "que conoce tu esquema.",
-    "description": "Elige una tabla y Beamlynx te muestra todas las tablas con las que se relaciona. Haz clic en una para unirla y las filas aparecen a medida que avanzas. No hay joins que escribir, y la consulta está al lado del dibujo por si prefieres escribirla.",
-    "facts": "macOS, Windows y Linux · PostgreSQL, MySQL y SQLite · Sin cuenta"
+    "titleLine1": "Un cliente de bases de datos",
+    "titleLine2": "que puedes dar a un agente de IA.",
+    "description": "Un agente como Claude Code consulta tu base de datos a través de Beamlynx. Beamlynx escribe el SQL por sí mismo, así que una columna que enmascaras nunca sale de la base de datos, y cada consulta aparece en la app. Para ti, hay un lienzo que conoce tu esquema: elige una tabla, haz clic para unirla y las filas aparecen a medida que avanzas.",
+    "facts": "macOS, Windows y Linux · PostgreSQL, MySQL 8 y SQLite · Sin cuenta · Código abierto"
   },
   "try": {
     "stepOf": "Paso {{n}} de {{total}}",
     "hintJoin": "Haz clic en JOIN sobre {{table}} para ver las tablas con las que se relaciona.",
-    "hintDone": "Listo. Cambia a SQL para ver lo que Beamlynx escribió por ti, o empieza de nuevo.",
+    "hintAgent": "Ahora haz clic en Agente, encima de los resultados, para ver lo que recibiría un agente de IA con la misma consulta.",
+    "hintDone": "Esto es lo que recibe un agente: email es xxxxx. Cambia a SQL para ver por qué, o empieza de nuevo.",
     "reset": "Empezar de nuevo",
     "resultLabel": "Resultado de la consulta",
     "queryLabel": "Consulta",
@@ -46,8 +47,15 @@
     "value": "Valor",
     "apply": "Aplicar",
     "wholeNumber": "Usa un número entero, como 500. Pine lee un número sin comillas como un entero.",
-    "panelLabel": "Paneles",
-    "showPanel": "Mostrar el panel {{panel}}",
-    "hidePanel": "Ocultar el panel {{panel}}"
+    "viewerLabel": "De quién es la vista de los resultados",
+    "viewer": {
+      "you": "Tú",
+      "agent": "Agente"
+    },
+    "viewerNote": {
+      "you": "Ves los valores reales.",
+      "agent": "email está enmascarado para los agentes."
+    },
+    "maskedForAgents": "enmascarado para agentes"
   }
 }
