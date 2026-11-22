@@ -11,8 +11,8 @@
     "mainNavigation": "Main navigation"
   },
   "footer": {
-    "madeIn": "Made with <1>♥</1> in Denmark",
-    "supportedBy": "Beamlynx is supported by",
+    "madeIn": "Made with <1>♥</1> by {{name}} in Denmark",
+    "publishedBy": "Published by",
     "privacy": "Privacy",
     "terms": "Terms"
   },

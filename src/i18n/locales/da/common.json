@@ -11,8 +11,8 @@
     "mainNavigation": "Hovednavigation"
   },
   "footer": {
-    "madeIn": "Lavet med <1>♥</1> i Danmark",
-    "supportedBy": "Beamlynx understøttes af",
+    "madeIn": "Lavet med <1>♥</1> af {{name}} i Danmark",
+    "publishedBy": "Udgivet af",
     "privacy": "Privatliv",
     "terms": "Vilkår"
   },
