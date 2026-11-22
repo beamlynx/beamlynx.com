@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Beamlynx - Databaseklienten der kender dit skema",
-    "description": "Beamlynx er en databaseklient til PostgreSQL og MySQL, der kender dit skema. Vælg en tabel, og den viser dig alle de tabeller, den hænger sammen med.",
+    "description": "Beamlynx er en databaseklient til PostgreSQL, MySQL og SQLite, der kender dit skema. Vælg en tabel, og den viser dig alle de tabeller, den hænger sammen med.",
     "ogTitle": "Beamlynx - Databaseklienten der kender dit skema",
     "ogDescription": "Databaseklienten der kender dit skema. Vælg en tabel, og den viser dig alle de tabeller, den hænger sammen med.",
     "twitterTitle": "Beamlynx - Databaseklienten der kender dit skema",
@@ -20,7 +20,7 @@
     "titleLine1": "Databaseklienten",
     "titleLine2": "der kender dit skema.",
     "description": "Vælg en tabel, og Beamlynx viser dig alle de tabeller, den hænger sammen med. Klik på en for at joine den, og rækkerne dukker op undervejs. Der er ingen joins at skrive, og forespørgslen står ved siden af tegningen, hvis du hellere vil skrive.",
-    "facts": "macOS, Windows og Linux · PostgreSQL og MySQL · Ingen konto"
+    "facts": "macOS, Windows og Linux · PostgreSQL, MySQL og SQLite · Ingen konto"
   },
   "try": {
     "stepOf": "Trin {{n}} af {{total}}",

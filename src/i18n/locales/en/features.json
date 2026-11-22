@@ -1,55 +1,94 @@
 {
   "meta": {
     "title": "Features - Beamlynx",
-    "description": "What Beamlynx can do: joins from your schema, paths between tables, traverse, edits across joins, access control, and more."
+    "description": "Beamlynx is a desktop database client for PostgreSQL, MySQL 8 and SQLite, designed to be safe to use with AI agents: masking per database, read-only agents, and every query in view."
   },
-  "heading": "What Beamlynx can do",
-  "lede": "Beamlynx reads your schema, so much of what you would normally write by hand, it offers you instead.",
+  "heading": "A database client you can hand to an AI agent",
+  "lede": "Beamlynx is a desktop database client for PostgreSQL, MySQL 8 and SQLite, on macOS, Windows and Linux. It's designed so an AI agent, such as Claude Code, can query your database without seeing what you've masked.",
+  "groups": {
+    "agents": {
+      "heading": "Working with AI agents",
+      "intro": "An agent connects to Beamlynx, not to your database. Beamlynx decides what reaches it. This part is early.",
+      "caveat": "Masking limits what an agent sees, but it isn't a security guarantee. Columns you leave unmasked go to the agent's AI provider, so only show what you're willing to share with it.",
+      "link": "Set up an agent"
+    },
+    "queries": {
+      "heading": "Building queries yourself",
+      "intro": "The same query language the agent uses drives the app's visual canvas."
+    },
+    "more": {
+      "heading": "Also in the app"
+    }
+  },
   "items": {
+    "masking": {
+      "title": "Masking rules for each database",
+      "body": "You set masking rules for each database. Every query the agent sends goes through Beamlynx, which knows your schema and your rules and writes the SQL itself. A masked column is replaced with xxxxx in that SQL, so its real values never leave the database."
+    },
+    "readonly": {
+      "title": "The agent only reads, and you see every query",
+      "body": "An agent can't change your data. Only you can run an update or a delete. Each query it runs opens in a tab in Beamlynx, next to a timeline of what it has done. If it needs a masked column, it asks you to change the rules, and nothing changes until you apply it."
+    },
+    "filter": {
+      "title": "Masked columns still filter, sort and join",
+      "body": "The agent can still filter, sort and join on a masked column, with values it supplies itself. If it already knows a customer's email, it can find that customer's row. It never sees the emails it didn't know."
+    },
+    "language": {
+      "title": "Build a query one step at a time",
+      "body": "A query is a list of steps joined by pipes. Each step works on the result of the one before. The canvas is drawn from the same steps, so you can type the query or click through the canvas, and the other follows."
+    },
     "joins": {
-      "title": "Joins come from your schema",
-      "body": "Pick a table, and Beamlynx lists the tables it connects to, read from the foreign keys in your schema: the table it belongs to, and the tables that point at it. Click one, and it's joined."
-    },
-    "paths": {
-      "title": "Find the way between two tables",
-      "body": "How do customers connect to products? Name the table you want to reach, and Beamlynx finds the chains of joins that lead there: through orders and order_items, or through product_reviews. Pick one, and it's added in one step."
-    },
-    "traverse": {
-      "title": "See everything that depends on a row",
-      "body": "Traverse starts at a table and follows every table that points at it, then every table that points at those, up to 25 levels deep. It counts the rows in each. It can also write a delete script that works from the deepest table back, so no foreign key is left pointing at a deleted row."
+      "title": "Joins come from your foreign keys",
+      "body": "Pick a table, and Beamlynx lists the tables it connects to: the table it belongs to, and the tables that point at it. They come from the foreign keys in your schema. Click one, and it's joined. There's no ON clause to write."
     },
     "edit": {
       "title": "Edit results, even across joins",
-      "body": "Change a value right in the results, even when the result joins several tables. Beamlynx keeps each table's id with the result, so the change reaches the right row. A value that can't be changed says why."
+      "body": "Change a value right in the results, even when the result joins several tables. Beamlynx keeps each table's key with the result, so the change reaches the right row. A value that can't be changed says why."
     },
-    "access": {
-      "title": "Limit what AI agents see",
-      "body": "Limit what AI agents can do. They can only read, and columns you mask show to them as xxxxx. An agent that needs a masked column has to ask you first. Access control lowers what an agent sees, but it isn't a security guarantee, so only connect agents to data you're willing to share with their AI provider. Agents connect through Beamlynx's built-in MCP server, which is experimental.",
-      "link": "Set up an agent"
+    "paths": {
+      "title": "Find the way between two tables",
+      "body": "Name the table you want to reach, and Beamlynx finds the chains of joins that lead there. Pick one, and it's added in one step."
+    },
+    "traverse": {
+      "title": "See what depends on a row",
+      "body": "Traverse follows every table that points at a table, and every table that points at those, and counts the rows in each. It can also write a delete script that starts from the deepest table."
     },
     "sql": {
-      "title": "The SQL is always there",
-      "body": "Every query's SQL is one click away, to read or to copy. When you'd rather write SQL yourself, switch the panel to SQL and run it as it is."
+      "title": "The SQL is one click away",
+      "body": "Every query's SQL is there to read or copy. You can also write SQL yourself and run it as it is."
     },
     "keyboard": {
-      "title": "One key per action on the canvas, Vim in the editors",
-      "body": "When the canvas has the keyboard, each action is a single key: i joins, w filters, s selects, o orders, g groups and p finds a path. Pickers match loosely, so \"ordr itm\" finds order_items. Press : to type in the Pine query, and Esc to go back to the canvas. Vim mode puts Vim in the Pine and SQL editors and adds j and k on the canvas. Ctrl+K (⌘K on a Mac) opens the command palette, and Ctrl+Enter runs the query."
+      "title": "Keyboard first, with Vim mode",
+      "body": "On the canvas, each action is one key: i joins, w filters, s selects. Ctrl+K (⌘K on a Mac) opens the command palette. Vim mode works in the editors."
     },
     "grid": {
       "title": "A fast results grid",
-      "body": "The grid draws only the rows on screen, so even 100,000 rows scroll smoothly. Select a range with the keyboard or the mouse and paste it straight into a spreadsheet, or download the whole result as CSV."
+      "body": "100,000 rows scroll smoothly. Copy a range straight into a spreadsheet, or download the result as CSV."
     }
   },
-  "drawingsNote": "The pictures on this page are simplified drawings of the app. The names and values in them come from a sample shop database.",
-  "also": {
-    "heading": "Also",
+  "visual": {
+    "agentSends": "The agent sends",
+    "beamlynxWrites": "Beamlynx writes",
+    "agentGets": "The agent gets",
+    "masked": "masked",
+    "agentTab": "Agent",
+    "question": "Which customers ordered more than once?",
+    "proposalTitle": "Show customers.email",
+    "proposalReason": "Two customers share a first name. I need their emails to tell them apart.",
+    "apply": "Apply",
+    "decline": "Decline"
+  },
+  "drawingsNote": "The pictures on this page are simplified drawings of the app. The names, values and SQL in them come from a sample shop database.",
+  "facts": {
+    "heading": "Good to know",
     "items": [
-      "PostgreSQL and MySQL 8",
-      "Saved connections are encrypted with your system's keychain",
-      "The query server only listens on your own computer",
-      "macOS, Windows and Linux, with automatic updates",
-      "Light, Dark and Sepia themes"
-    ]
+      "PostgreSQL, MySQL 8 and SQLite",
+      "macOS, Windows and Linux, with automatic updates. The Windows installer isn't signed yet.",
+      "Pre-1.0, and no account needed",
+      "Your databases, queries and data stay on your computer. Saved connections are encrypted with your system's keychain."
+    ],
+    "license": "Open source under the AGPL-3.0. <1>The code is on GitHub</1>.",
+    "privacy": "The app sends one event when it opens, and usage stats you can turn off. The <1>privacy page</1> lists what they hold."
   },
   "closing": {
     "heading": "Try it on your own database.",

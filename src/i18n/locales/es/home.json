@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Beamlynx - El cliente de bases de datos que conoce tu esquema",
-    "description": "Beamlynx es un cliente de bases de datos para PostgreSQL y MySQL que conoce tu esquema. Elige una tabla y te muestra todas las tablas con las que se relaciona.",
+    "description": "Beamlynx es un cliente de bases de datos para PostgreSQL, MySQL y SQLite que conoce tu esquema. Elige una tabla y te muestra todas las tablas con las que se relaciona.",
     "ogTitle": "Beamlynx - El cliente de bases de datos que conoce tu esquema",
     "ogDescription": "El cliente de bases de datos que conoce tu esquema. Elige una tabla y te muestra todas las tablas con las que se relaciona.",
     "twitterTitle": "Beamlynx - El cliente de bases de datos que conoce tu esquema",
@@ -20,7 +20,7 @@
     "titleLine1": "El cliente de bases de datos",
     "titleLine2": "que conoce tu esquema.",
     "description": "Elige una tabla y Beamlynx te muestra todas las tablas con las que se relaciona. Haz clic en una para unirla y las filas aparecen a medida que avanzas. No hay joins que escribir, y la consulta está al lado del dibujo por si prefieres escribirla.",
-    "facts": "macOS, Windows y Linux · PostgreSQL y MySQL · Sin cuenta"
+    "facts": "macOS, Windows y Linux · PostgreSQL, MySQL y SQLite · Sin cuenta"
   },
   "try": {
     "stepOf": "Paso {{n}} de {{total}}",

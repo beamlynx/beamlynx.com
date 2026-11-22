@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Beamlynx - The database client that knows your schema",
-    "description": "Beamlynx is a database client for PostgreSQL and MySQL that knows your schema. Pick a table, and it shows you every table it connects to.",
+    "description": "Beamlynx is a database client for PostgreSQL, MySQL and SQLite that knows your schema. Pick a table, and it shows you every table it connects to.",
     "ogTitle": "Beamlynx - The database client that knows your schema",
     "ogDescription": "The database client that knows your schema. Pick a table, and it shows you every table it connects to.",
     "twitterTitle": "Beamlynx - The database client that knows your schema",
@@ -20,7 +20,7 @@
     "titleLine1": "The database client",
     "titleLine2": "that knows your schema.",
     "description": "Pick a table, and Beamlynx shows you every table it connects to. Click one to join it, and the rows appear as you go. There are no joins to write, and the query sits beside the picture if you'd rather type.",
-    "facts": "macOS, Windows and Linux · PostgreSQL and MySQL · No account"
+    "facts": "macOS, Windows and Linux · PostgreSQL, MySQL and SQLite · No account"
   },
   "try": {
     "stepOf": "Step {{n}} of {{total}}",
