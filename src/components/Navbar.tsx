@@ -48,10 +48,9 @@ const Navbar: React.FC = () => {
       )
     },
     {
-      // The MCP server is experimental, so the item says so.
+      // No Experimental badge here: the page's own heading carries it.
       path: "/docs/agents",
       label: t("nav.agents"),
-      badge: t("nav.experimental"),
       icon: (
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M3 9h2m-2 6h2m14-6h2m-2 6h2M7 5h10a2 2 0 012 2v10a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2zm3 5h4v4h-4v-4z" />
@@ -76,7 +75,7 @@ const Navbar: React.FC = () => {
         </svg>
       )
     },
-  ] as { path: string; label: string; badge?: string; icon: React.ReactNode }[];
+  ];
 
   // The longest item path that contains the current page wins, so on
   // /docs/agents only Agents is active, not DSL (/docs) as well.
@@ -87,15 +86,6 @@ const Navbar: React.FC = () => {
     )
     .sort((a, b) => b.length - a.length)[0];
   const isActive = (path: string) => path === activePath;
-
-  const Badge = ({ text }: { text: string }) => (
-    <span
-      className="px-1.5 py-px rounded-full text-[10px] font-semibold uppercase tracking-wider leading-4"
-      style={{ color: palette.accent, border: `1px solid ${palette.accent}55` }}
-    >
-      {text}
-    </span>
-  );
 
   const getCurrentPageTitle = () => {
     const currentItem = navItems.find((item) => isActive(item.path));
@@ -163,7 +153,6 @@ const Navbar: React.FC = () => {
                   <span className="flex items-center gap-2">
                     {item.icon}
                     <span>{item.label}</span>
-                    {item.badge && <Badge text={item.badge} />}
                   </span>
                 </Link>
               ))}
@@ -295,11 +284,11 @@ const Navbar: React.FC = () => {
                   }
                 >
                   <span className="flex items-center gap-1.5">
-                    {/* Icons only from xl up: between lg and xl the
-                        translated labels plus the Agents badge don't fit. */}
+                    {/* Icons only from xl up: between lg and xl the six
+                        translated labels (Spanish and Danish are the
+                        longest) don't fit with them. */}
                     <span className="hidden xl:inline-flex">{item.icon}</span>
                     <span>{item.label}</span>
-                    {item.badge && <Badge text={item.badge} />}
                   </span>
                   {isActive(item.path) && (
                     <span
