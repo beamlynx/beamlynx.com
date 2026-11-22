@@ -5,7 +5,7 @@
   },
   "heading": "Privacy",
   "intro": "Beamlynx is made by Grephyte ApS, a Danish company (CVR 37931535). This page says what we collect, why, and what you can turn off. Questions go to <email/>.",
-  "updated": "Last updated 30 October 2026.",
+  "updated": "Last updated 22 November 2026.",
   "sections": [
     {
       "title": "Your databases stay on your computer",
@@ -19,7 +19,8 @@
         "Each time the desktop app opens, it sends one event. If you are signed in, the event is tied to your account. If not, it is tied to a random ID made on your computer, not to you.",
         "The app also sends detailed usage stats: when you add a connection (only the database type, such as PostgreSQL), and how many queries ran each hour (only whether you or an AI agent ran them, and whether they were Pine or SQL). You can turn these off at any time in Settings → Account → Send detailed usage stats. The event when the app opens is sent either way.",
         "Every event also carries the app version, operating system and processor type. PostHog receives the events and records your country from your IP address.",
-        "The app tells you about this the first time it starts, before anything is sent."
+        "Nothing is sent until you sign in or skip signing in on the app's first screen. That screen says in one line that usage counts are sent, and links to this page.",
+        "Beamlynx is open source, so you can also read the code that sends these events, at github.com/beamlynx/beamlynx-desktop."
       ]
     },
     {

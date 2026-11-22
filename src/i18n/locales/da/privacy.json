@@ -5,7 +5,7 @@
   },
   "heading": "Privatliv",
   "intro": "Beamlynx er lavet af Grephyte ApS, et dansk selskab (CVR 37931535). Denne side fortæller, hvad vi indsamler, hvorfor, og hvad du kan slå fra. Spørgsmål sendes til <email/>.",
-  "updated": "Senest opdateret 30. oktober 2026.",
+  "updated": "Senest opdateret 22. november 2026.",
   "sections": [
     {
       "title": "Dine databaser bliver på din computer",
@@ -19,7 +19,8 @@
         "Hver gang desktop-appen åbner, sender den én hændelse. Hvis du er logget ind, bliver hændelsen knyttet til din konto. Hvis ikke, bliver den knyttet til et tilfældigt ID, der er lavet på din computer, ikke til dig.",
         "Appen sender også detaljeret brugsstatistik: når du tilføjer en forbindelse (kun databasetypen, fx PostgreSQL), og hvor mange forespørgsler der kørte hver time (kun om du eller en AI-agent kørte dem, og om de var i Pine eller SQL). Du kan når som helst slå den fra under Settings → Account → Send detailed usage stats. Hændelsen, når appen åbner, bliver sendt uanset hvad.",
         "Hver hændelse indeholder også appens version, styresystem og processortype. PostHog modtager hændelserne og registrerer dit land ud fra din IP-adresse.",
-        "Appen fortæller dig om det første gang, den starter, før noget bliver sendt."
+        "Intet bliver sendt, før du logger ind eller springer login over på appens første skærm. Den skærm siger i én linje, at der sendes brugstal, og linker til denne side.",
+        "Beamlynx er open source, så du kan også læse koden, der sender disse hændelser, på github.com/beamlynx/beamlynx-desktop."
       ]
     },
     {
