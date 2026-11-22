@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { DEMO_PATH, DEMO_STEPS, JOIN_CANDIDATES, MASKED_COLUMN, WHERE_COLUMNS, asAgentSees, joinColumnOf } from "./demoSteps";
 import type { Cell } from "./demoSteps";
@@ -568,14 +568,9 @@ const TryIt = () => {
             <p className="ti-viewer-note">{t(`try.viewerNote.${viewer}`)}</p>
           </div>
           <div className="ti-result" role="region" aria-label={t("try.resultLabel")}>
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.table
-                key={`${step}-${where ? JSON.stringify(where) : ""}-${viewer}`}
-                initial={reduceMotion ? false : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={reduceMotion ? undefined : { opacity: 0 }}
-                transition={{ duration: 0.15 }}
-              >
+            {/* Updated in place, like the app's grid. A fade out and in
+                left a blank moment on every change, which read as a flicker. */}
+            <table>
                 <thead>
                   <tr>
                     {shown.columns.map((c, i) => (
@@ -600,8 +595,7 @@ const TryIt = () => {
                     </tr>
                   ))}
                 </tbody>
-              </motion.table>
-            </AnimatePresence>
+            </table>
           </div>
           <p className="ti-count">{t("try.rows", { count: shown.rows.length })}</p>
         </div>

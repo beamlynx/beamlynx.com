@@ -19,7 +19,7 @@
   "hero": {
     "titleLine1": "可以交给 AI 智能体的",
     "titleLine2": "数据库客户端。",
-    "description": "Claude Code 等智能体通过 Beamlynx 查询你的数据库。SQL 由 Beamlynx 自己生成，所以你脱敏的列永远不会离开数据库，每条查询也都会显示在应用里。你自己用时，有一张懂你表结构的画布：选一张表，点一下就能连接，数据随之出现。",
+    "description": "AI 智能体通过 Beamlynx 查询你的数据库。你脱敏的列永远不会到达它们，每条查询你都看得见。",
     "facts": "macOS、Windows 和 Linux · PostgreSQL、MySQL 8 和 SQLite · 无需账号 · 开源"
   },
   "try": {

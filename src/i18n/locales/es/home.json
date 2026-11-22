@@ -19,7 +19,7 @@
   "hero": {
     "titleLine1": "Un cliente de bases de datos",
     "titleLine2": "que puedes dar a un agente de IA.",
-    "description": "Un agente como Claude Code consulta tu base de datos a través de Beamlynx. Beamlynx escribe el SQL por sí mismo, así que una columna que enmascaras nunca sale de la base de datos, y cada consulta aparece en la app. Para ti, hay un lienzo que conoce tu esquema: elige una tabla, haz clic para unirla y las filas aparecen a medida que avanzas.",
+    "description": "Los agentes de IA consultan tu base de datos a través de Beamlynx. Las columnas que enmascaras nunca les llegan, y ves cada consulta.",
     "facts": "macOS, Windows y Linux · PostgreSQL, MySQL 8 y SQLite · Sin cuenta · Código abierto"
   },
   "try": {
