@@ -6,6 +6,11 @@ import { getLangFromPathname, localizedPath } from '../i18n/paths';
 import { useColorPalette } from '../contexts/colorPalette';
 import NewsletterSignup from './NewsletterSignup';
 
+// The person who makes Beamlynx, named up front. Grephyte ApS, the company
+// that holds the copyright, trademark and commercial license, follows on the
+// line below as the publisher.
+const MAKER = 'Ahmad Nazir Raja';
+
 const Footer: React.FC = () => {
   const palette = useColorPalette();
   const { t } = useTranslation('common');
@@ -17,7 +22,7 @@ const Footer: React.FC = () => {
   const socialLinks = [
     {
       name: 'GitHub',
-      href: 'https://github.com/beamlynx',
+      href: 'https://github.com/beamlynx/beamlynx-desktop',
       icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
@@ -80,6 +85,7 @@ const Footer: React.FC = () => {
               <Trans
                 i18nKey="footer.madeIn"
                 ns="common"
+                values={{ name: MAKER }}
                 components={{
                   1: (
                     <span
@@ -94,7 +100,7 @@ const Footer: React.FC = () => {
               className="text-xs"
               style={{ color: `${palette.secondary}99` }}
             >
-              {t('footer.supportedBy')}{' '}
+              {t('footer.publishedBy')}{' '}
               <a
                 href="https://github.com/beamlynx/beamlynx-desktop/blob/main/LICENSING.md"
                 target="_blank"

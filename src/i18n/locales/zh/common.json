@@ -11,8 +11,8 @@
     "mainNavigation": "主导航"
   },
   "footer": {
-    "madeIn": "用 <1>♥</1> 制作于丹麦",
-    "supportedBy": "Beamlynx 技术支持来自",
+    "madeIn": "由 {{name}} 在丹麦用 <1>♥</1> 制作",
+    "publishedBy": "发行方：",
     "privacy": "隐私",
     "terms": "条款"
   },
