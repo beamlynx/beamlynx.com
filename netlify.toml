@@ -3,8 +3,7 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20.11.1"
-  NPM_VERSION = "10.2.4"
+  NODE_VERSION = "24"
 
 # The site used to live at pine-lang.org. Send every old URL to the same
 # path here with a permanent redirect, so search engines move their listing
