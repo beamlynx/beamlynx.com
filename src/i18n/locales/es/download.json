@@ -29,8 +29,8 @@
       "smartScreenWarning": "Esta versión aún no está firmada digitalmente, por lo que Windows SmartScreen puede mostrar una advertencia. Haz clic en <1>Más información</1> y luego en <3>Ejecutar de todas formas</3> para iniciarla."
     },
     "linux": {
-      "download": "<1>Descarga el .AppImage</1> (funciona en la mayoría de las distribuciones, sin necesidad de instalación):",
-      "orDeb": "O, en Debian/Ubuntu, <1>descarga el .deb</1> e instálalo con tu gestor de paquetes habitual."
+      "download": "Ejecuta esto en una terminal. Descarga el AppImage y lo abre. El AppImage funciona en la mayoría de las distribuciones y no necesita instalación. También puedes <1>descargarlo tú mismo</1>.",
+      "orDeb": "En Debian o Ubuntu, también puedes <1>descargar el .deb</1> e instalar el archivo con <3>sudo apt install ./beamlynx-*.deb</3>. Beamlynx aún no está en los repositorios de apt ni en AUR."
     }
   }
 }

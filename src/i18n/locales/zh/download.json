@@ -29,8 +29,8 @@
       "smartScreenWarning": "该安装包尚未进行代码签名，因此 Windows SmartScreen 可能会发出警告。请点击<1>更多信息</1>，然后选择<3>仍要运行</3>以启动程序。"
     },
     "linux": {
-      "download": "<1>下载 .AppImage 文件</1>（适用于大多数发行版，无需安装）：",
-      "orDeb": "或者，在 Debian/Ubuntu 上，可<1>下载 .deb 安装包</1>，用你常用的包管理器进行安装。"
+      "download": "在终端中运行下面的命令。它会下载 AppImage 并启动它。AppImage 适用于大多数发行版，无需安装。你也可以<1>自己下载</1>。",
+      "orDeb": "在 Debian 或 Ubuntu 上，也可以<1>下载 .deb 安装包</1>，然后用 <3>sudo apt install ./beamlynx-*.deb</3> 安装这个文件。Beamlynx 目前还不在 apt 软件源或 AUR 中。"
     }
   }
 }
